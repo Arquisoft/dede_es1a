@@ -52,3 +52,4 @@ You can get more information about the respository in the other README files:
 
 ## Development Team
 - Ignacio Gómez Gasch, UO271548
+- Valentin Dumitru, UO277867
