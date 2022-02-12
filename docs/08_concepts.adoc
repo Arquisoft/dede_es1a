@@ -52,16 +52,16 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 
 === Domain model
 
-image:UmlDiagram.png["Example UML Diagram"]
+image:DomainModel.png["Domain Model UML Diagram"]
 
 
 
-=== _<Concept 2>_
+=== Security and Safety
 
-_<explanation>_
+The app will provide users with a safe and secure environment. To carry this out the application will be developed using technologies such as SOLID taking into account its recommendations for use on issues related to data storage using pods. Another aspect is the use of protocols with the HTPPS for the connection with our application.
 
-...
+=== Usability
+One of the important aspects of our application is that it can be used easily by any type of user. For this, it will be sought that the application has the least number of technical requirements in its use.
 
-=== _<Concept n>_
-
-_<explanation>_
+=== Accessibility
+The color palette used in the application will be chosen taking into account that it is accessible to people with some type of color blindness.

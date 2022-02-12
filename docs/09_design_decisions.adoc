@@ -24,3 +24,13 @@ Various options:
 * more detailed in form of separate sections per decision
 * ADR (architecture decision record) for every important decision
 ****
+
+[options="header",cols="1,2"]
+|===
+|Decision|Reason
+|TypeScrip|It will be one of the languages ​​used in the application. One of its positive aspects is its ease of use with Solid
+|Solid|This technology will be used to store client addresses through the use of pods.
+|React|The use of this open source library is one of the requirements of the application that will be used to create the application interfaces.
+|MogoDB|This type of database is according to the requirements of the application.
+|BootStrap|As it has been/will be used in other subjects, the use of this library has been chosen, since it is also in accordance with the requirements of the application.
+|===
