@@ -52,9 +52,9 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 
 === Domain model
 
-image:DomainModel.png["Domain Model UML Diagram"]
+image:images/DomainModel.png["Domain Model UML Diagram"]
 
-
+The address of the clients will be stored in their pods, being requested by the server to calculate the shipping costs. Once this process is done, the server will send the customer the final costs of their purchase.
 
 === Security and Safety
 
