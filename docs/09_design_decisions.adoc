@@ -9,4 +9,5 @@
 |React|The use of this open source library is one of the requirements of the application that will be used to create the application interfaces.
 |MogoDB|This type of database is according to the requirements of the application.
 |BootStrap|As it has been/will be used in other subjects, the use of this library has been chosen, since it is also in accordance with the requirements of the application.
+|Visual Studio Code|It will be the development enviroment used by all members of the group. One of its most favorable points is the possibility of adding a wide variety of extensions that will allow the project to be carried out in a simple way
 |===
