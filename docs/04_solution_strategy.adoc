@@ -22,3 +22,16 @@ Motivate what you have decided and why you decided that way,
 based upon your problem statement, the quality goals and key constraints.
 Refer to details in the following sections.
 ****
+
+=== 4.2 How to achieve key quality objectives
+
+**Usability & Efficiently**
+
+La estructura de la web será familiar a las que ya hay en el mercado para que el usuario no tenga problemas al usarla. Intentaremos cumplir con los criterios de usabilidad mas comunes. Realizaremos pruebas de usabilidad con usuarios en las diferentes fases del desarrollo.
+Tanto la web como los servicios que ofrezca deberán estar optimizados para minimizar los tiempos de espera del usuario.
+
+**Privacity & Security**
+
+Nos aseguraremos que la aplicación es robusta frente a los ataques mas comunes, y aseguraremos la intimidad del usuario para que sus datos no sean filtrados.
+
+
