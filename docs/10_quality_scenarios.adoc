@@ -13,10 +13,10 @@ image::Quality_Tree.png[]
 |===
 Priority Position|Quality attribute|Scenario|Priority
 | **1** | **Usability** | The application must be intuitive and easy to use bu most users | Very High
-| **2** | **Privacity**  | The user will have the power to choose the (non-essential) information that the application shows or has | Very High
+| **2** | **Privay**  | The user will have the power to choose the (non-essential) information that the application shows or has | Very High
 | **3** | **Security** | The application should offer a certain security and integrity against attacks | High
-| **4** | **Modifibity** | The application code should be easily extensible to add new functionality easily | Medium
-| **5** | **Efficiently** | The application must be optimized to minimize waiting times for services | Medium
+| **4** | **Modifiability** | The application code should be easily extensible to add new functionality easily | Medium
+| **5** | **Efficiency** | The application must be optimized to minimize waiting times for services | Medium
 | **6** | **Testability** | The application code should be easily testable, to facilitate testing to realiease a robust final product | Medium
 |===
 
