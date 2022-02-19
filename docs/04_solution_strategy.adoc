@@ -5,6 +5,7 @@
 === 4.2 How to achieve key quality objectives
 
 **Usability & Efficiently**
+
 The structure of the web would be similar to the ones already available on the market, this will provide a more easily to use application to the client. We will do some usability test with different user types during developing stages.
 All web and services will be optimized with the main aim of making queue waiting times faster.
 
