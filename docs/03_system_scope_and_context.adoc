@@ -4,7 +4,7 @@
 DeDe is an online shopping system where users choose the products they wish to purchase by adding one or more addresses to their User POD.
 The system is integrated with SOLID, where users manage their PODs and their data is under their control.
 
-The system will only store user's address, preventing other type of personal data from being stored.
+The system will only store user's address, securing other type of personal data from being stored.
 
 === Business Context
 image:images/03_BusinessContext.png["Business & Tecnical Context"]
