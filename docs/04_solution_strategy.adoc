@@ -7,7 +7,7 @@
  - Solid: SOLID gives the user the ability to choose what data they want to provide, and makes it easier for us to access it.
  - BootStrap: Bootstrap makes it easy for us to develop HTML and CSS for the web application
  - MongoDB: MongoDB is a non-relational database which allows us to not have to model all relationships.
-=======
+
 
 
 
