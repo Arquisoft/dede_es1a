@@ -12,8 +12,10 @@ image:images/03_BusinessContext.png["Business & Tecnical Context"]
 |===
 |Entity|Input|Output
 |User|The user interact with the application using a computer or other device.|The user output can be different, depending on the user inputs.
-|User POD|If a POD has not yet been created, it is created and the user adds their address.|The POD sends the required information to the application.
-|Web App|It receives the requests of the user and process it.|After process the requests and get the information, it is shown to the user.
+|User POD|Each user has a POD, the user introduces data into the POD. |The POD sends the required information to the application.
+|Interface|Recieves processed data|Creates visual and interactive components for the user to see and use.
+|API|Recieves requests for processed data|Processed data
+|Database|Recieves data | Sends data
 |===
 
 === Technical Context
