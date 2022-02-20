@@ -32,4 +32,9 @@ Potentially more columns in case you need translations.
 | Runtime View                  | Describes the behavior and interaction of the system's building blocks as runtime elements
 | API                           | Application Programming Interface, which is a software intermediary that allows two applications to talk to each other.
 | Solid POD                     | Specification that lets people store their data securely in decentralized data stores.
+| MongoDB                       | MongoDB is an open source NoSQL database management program.
+| NoSQL                         | NoSQL is an approach to database design that enables the storage and querying of data outside the traditional structures found in     relational databases
+| BootStrap                     | Bootstrap is a free and open source front end development framework for the creation of websites and web apps
+| TypeScript                    | TypeScript is a programming language developed and maintained by Microsoft
+| Visual Studio Code            | Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux
 |===
