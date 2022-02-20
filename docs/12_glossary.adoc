@@ -2,7 +2,7 @@
 == Glossary
 
 
-
+////
 [role="arc42help"]
 ****
 .Contents
@@ -22,10 +22,14 @@ A table with columns <Term> and <Definition>.
 Potentially more columns in case you need translations.
 
 ****
+////
 
 [options="header"]
 |===
 | Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| Building Block                | Package of functionality defined to meet the business needs across an organization.
+| Whitebox Overall System       | An overall view of how the system would interact with other systems or users.
+| Runtime View                  | Describes the behavior and interaction of the system's building blocks as runtime elements
+| API                           | Application Programming Interface, which is a software intermediary that allows two applications to talk to each other.
+| Solid POD                     | Specification that lets people store their data securely in decentralized data stores.
 |===
