@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<title>DeDe_0</title>
+<title>DeDe_es1a</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1><span class="image"><img src="./images/LogoASW.png" alt="arc42"></span> DeDe_0</h1>
+<h1><span class="image"><img src="./images/LogoASW.png" alt="arc42"></span> DeDe_es1a</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -539,111 +539,31 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect1">
 <h2 id="section-introduction-and-goals">1. Introduction and Goals</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>Describes the relevant requirements and the driving forces that software architects and development team must consider. These include</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>underlying business goals, essential features and functional requirements for the system</p>
-</li>
-<li>
-<p>quality goals for the architecture</p>
-</li>
-<li>
-<p>relevant stakeholders and their expectations</p>
-</li>
-</ul>
+<p>Online store of varied products, using the DeDe application, which is a decentralized application for online purchase of products.
+The application will simulate the basic functionalities of an online store, where users and clients can buy different types of products.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<div class="title">Contents</div>
-<p>Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.</p>
-</div>
-<div class="paragraph">
-<p>Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.</p>
+<p>The application will be online and accessible from anywhere in the world. Users will be able to search in the catalog any product available in our shop.
+The users can order different items and the price will be calculated depending on the place from where the order is made and the products that the client buys.
+The application will store the information about the users and the products in a database MongoDB. Personal information of the users will be protected with SOLID using pods.
+The application interfaces will be created with an open source library React and the main language for the application will be TypeScript.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_quality_goals">1.2. Quality Goals</h3>
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don&#8217;t confuse them with project goals. They are not necessarily identical.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>A table with quality goals and concrete scenarios, ordered by priorities</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_stakeholders">1.3. Stakeholders</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>should know the architecture</p>
-</li>
-<li>
-<p>have to be convinced of the architecture</p>
-</li>
-<li>
-<p>have to work with the architecture or with code</p>
-</li>
-<li>
-<p>need the documentation of the architecture for their work</p>
-</li>
-<li>
-<p>have to come up with decisions about the system or its development</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Table with role names, person names, and their expectations with respect to the architecture and its documentation.</p>
-</div>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -652,24 +572,74 @@ These stakeholders determine the extent and the level of detail of your work and
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Role/Name</th>
-<th class="tableblock halign-left valign-top">Contact</th>
-<th class="tableblock halign-left valign-top">Expectations</th>
+<th class="tableblock halign-left valign-top">Priority</th>
+<th class="tableblock halign-left valign-top">Quality</th>
+<th class="tableblock halign-left valign-top">Motivation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Role-1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Contact-1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Expectation-1&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Privacy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user must know that his personal information is protected using our application.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Role-2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Contact-2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Expectation-2&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modifiability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The technology is constantly changing and is essential to keep up to date.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Efficiently</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application functionalities should be efficient for the users.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application must be adapted for every type of user.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stakeholders">1.3. Stakeholders</h3>
+<div class="sidebarblock">
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Role</th>
+<th class="tableblock halign-left valign-top">Expectations</th>
+<th class="tableblock halign-left valign-top"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Teachers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementation that shows the knowledges of the lessons.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Server admin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Server gestion and solve technical problems and doubts</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application easy to manage with a clear interface and adapted to all levels of software knowledge</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -677,24 +647,98 @@ These stakeholders determine the extent and the level of detail of your work and
 <div class="sect1">
 <h2 id="section-architecture-constraints">2. Architecture Constraints</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)</p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Technical Constraints</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Constraint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Motivation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TC1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementation in TypeScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application will be implmented with TypeScript</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TC2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface with React</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The visual interface will be implemented with React.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TC3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database in MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The data of the application will be stored in the database MongoDB.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Organizational Constraints</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Constraint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Motivation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OC1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application will be developed between March 2022 and May 2022.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OC2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Team</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignacio Gomez Gasch, Valentin Dumitru, Mario Garcia Prieto, Jorge Torano Herrera, Adrian Estrada Gonzalez</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OC3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The code and infomation of the whole project will be managed in GitHub in a private repository.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Conventions</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Constraint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Motivation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation with arc32 architecture.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application follows SOLID statements to protect personal information of the users.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Language</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation in english.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -713,7 +757,7 @@ The system is integrated with SOLID, where users manage their PODs and their dat
 <div class="sect2">
 <h3 id="_business_context">3.1. Business Context</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/images/03_BusinessContext.png" alt="Business &amp; Tecnical Context"></span></p>
+<p><span class="image"><img src="./images/03_BusinessContext.png" alt="Business &amp; Tecnical Context"></span></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -837,16 +881,16 @@ All web and services will be optimized with the main aim of making queue waiting
 <div class="sect1">
 <h2 id="section-building-block-view">5. Building Block View</h2>
 <div class="sectionbody">
-<div class="paragraph arc42help">
+<div class="paragraph">
 <p>The building block view shows the static decomposition of the system into building blocks as well as their dependencies. It allows us to understand the system as a whole.</p>
 </div>
 <div class="sect2">
 <h3 id="_whitebox_overall_system">5.1. Whitebox Overall System</h3>
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
 <div class="imageblock">
 <div class="content">
-<img src="./images/images/Diagram_ASW_Whitebox_Overall_System.png" alt="Whitebox Overall System Diagram">
+<img src="./images/Diagram_ASW_Whitebox_Overall_System.png" alt="Whitebox Overall System Diagram">
 </div>
 </div>
 <div class="dlist">
@@ -873,13 +917,13 @@ All web and services will be optimized with the main aim of making queue waiting
 </div>
 </div>
 </div>
-<div class="sect2 arc42help">
+<div class="sect2">
 <h3 id="_level_1">5.2. Level 1</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="imageblock">
 <div class="content">
-<img src="./images/images/Diagram_ASW_Level1.png" alt="Level 1 Diagram">
+<img src="./images/Diagram_ASW_Level1.png" alt="Level 1 Diagram">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -917,10 +961,10 @@ All web and services will be optimized with the main aim of making queue waiting
 <div class="sect1">
 <h2 id="section-runtime-view">6. Runtime View</h2>
 <div class="sectionbody">
-<div class="sect2 arc42help">
+<div class="sect2">
 <h3 id="_log_in">6.1. Log In</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/images/Diagram_ASW_Runtime_LoginRegister.png" alt="Hierarchy of building blocks"></span></p>
+<p><span class="image"><img src="./images/Diagram_ASW_Runtime_LoginRegister.png" alt="Hierarchy of building blocks"></span></p>
 </div>
 <div class="paragraph">
 <p>The the runtime interactions inside the system to log or register are the following:</p>
@@ -951,7 +995,7 @@ All web and services will be optimized with the main aim of making queue waiting
 <div class="sect2">
 <h3 id="_purchase">6.2. Purchase</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/images/Diagram_ASW_Runtime_Purchase.png" alt="Hierarchy of building blocks"></span>
+<p><span class="image"><img src="./images/Diagram_ASW_Runtime_Purchase.png" alt="Hierarchy of building blocks"></span>
 The the runtime interactions inside the system purchase any item in our store are the following:</p>
 </div>
 <div class="ulist">
@@ -1133,7 +1177,7 @@ when your infrastructure is more complex.</p>
 <div class="sect2">
 <h3 id="_domain_model">8.1. Domain model</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/images/08_DomainModel.png" alt="Domain Model UML Diagram"></span></p>
+<p><span class="image"><img src="./images/08_DomainModel.png" alt="Domain Model UML Diagram"></span></p>
 </div>
 <div class="paragraph">
 <p>The address of the clients will be stored in their pods, being requested by the server to calculate the shipping costs. Once this process is done, the server will send the customer the final costs of their purchase.</p>
@@ -1316,6 +1360,22 @@ when your infrastructure is more complex.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decentralized</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Controlled by several local offices or authorities rather than one single one</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Open source Javascript library designed to create user interfaces</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability is a measure of how well a specific user in a specific context can use a product/design to achieve a defined goal effectively and efficiently</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arc42 is a template for architecture communication and documentation.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Building Block</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Package of functionality defined to meet the business needs across an organization.</p></td>
 </tr>
@@ -1382,7 +1442,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-08 18:52:27 +0100
+Last updated 2022-02-21 23:03:47 +0100
 </div>
 </div>
 </body>
