@@ -4,6 +4,7 @@
 
 ////
 [role="arc42help"]
+=======
 ****
 .Contents
 The most important domain and technical terms that your stakeholders use when discussing the system.
@@ -24,9 +25,14 @@ Potentially more columns in case you need translations.
 ****
 ////
 
+
 [options="header"]
 |===
-| Term         | Definition
+| Term                          | Definition
+| Decentralized                 | Controlled by several local offices or authorities rather than one single one
+| React                         | Open source Javascript library designed to create user interfaces
+| Usability                     | Usability is a measure of how well a specific user in a specific context can use a product/design to achieve a defined goal effectively and efficiently
+| Arc42                         | Arc42 is a template for architecture communication and documentation.
 | Building Block                | Package of functionality defined to meet the business needs across an organization.
 | Whitebox Overall System       | An overall view of how the system would interact with other systems or users.
 | Runtime View                  | Describes the behavior and interaction of the system's building blocks as runtime elements
