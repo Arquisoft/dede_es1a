@@ -39,7 +39,7 @@ The building block view shows the static decomposition of the system into buildi
 ////
 
 
-image::images/Diagram_ASW_Whitebox_Overall_System.png[Whitebox Overall System Diagram]
+image::Diagram_ASW_Whitebox_Overall_System.png[Whitebox Overall System Diagram]
 
 Motivation::
 
@@ -57,7 +57,7 @@ Contained Building Blocks::
 [role="arc42help"]
 === Level 1
 ****
-image::images/Diagram_ASW_Level1.png[Level 1 Diagram]
+image::Diagram_ASW_Level1.png[Level 1 Diagram]
 
 
 [cols="1,3" options="header"]

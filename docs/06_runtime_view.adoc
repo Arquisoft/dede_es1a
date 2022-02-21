@@ -35,7 +35,7 @@ There are many notations for describing scenarios, e.g.
 === Log In
 
 
-image:images/Diagram_ASW_Runtime_LoginRegister.png["Hierarchy of building blocks"]
+image:Diagram_ASW_Runtime_LoginRegister.png["Hierarchy of building blocks"]
 ////
  * _<insert description of the notable aspects of the interactions between the
 building block instances depicted in this diagram.>_
