@@ -7,7 +7,7 @@ The system is integrated with SOLID, where users manage their PODs and their dat
 The system will only store user's address, securing other type of personal data from being stored.
 
 === Business Context
-image:images/03_BusinessContext.png["Business & Tecnical Context"]
+image:03_BusinessContext.png["Business & Tecnical Context"]
 [options="header",cols="1,2,3"]
 |===
 |Entity|Input|Output
