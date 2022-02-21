@@ -4,25 +4,26 @@
 
 [role="arc42help"]
 ****
-	Technical Constraints
+.Technical Constraints
 
 |===
 |	  |Constraint|Motivation
 | TC1 | Implementation in TypeScript | The application will be implmented with TypeScript
 | TC2 | Interface with React | The visual interface will be implemented with React.
-| TC3 | Database in MogoDB | The data of the application will be stored in the database MogoDB.
+| TC3 | Database in MongoDB | The data of the application will be stored in the database MongoDB.
 
 |===
-	Organizational Constraints
+
+.Organizational Constraints
 
 |===
 |	  |Constraint|Motivation
 | OC1 | Time | The application will be developed between March 2022 and May 2022.
-| OC2 | Team | Ignacio Gómez Gasch, Valentín Dumitru, Mario García Prieto, Jorge Toraño Herrera, Adrián Estrada González
+| OC2 | Team | Ignacio Gomez Gasch, Valentin Dumitru, Mario Garcia Prieto, Jorge Torano Herrera, Adrian Estrada Gonzalez
 | OC3 | Repository| The code and infomation of the whole project will be managed in GitHub in a private repository.
 
 |===
-	Conventions
+.Conventions
 
 |===
 |	  |Constraint|Motivation

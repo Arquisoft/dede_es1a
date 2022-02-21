@@ -13,7 +13,7 @@ The application will simulate the basic functionalities of an online store, wher
 ****
 The application will be online and accessible from anywhere in the world. Users will be able to search in the catalog any product available in our shop. 
 The users can order different items and the price will be calculated depending on the place from where the order is made and the products that the client buys.
-The application will store the information about the users and the products in a database MogoDB. Personal information of the users will be protected with SOLID using pods.
+The application will store the information about the users and the products in a database MongoDB. Personal information of the users will be protected with SOLID using pods.
 The application interfaces will be created with an open source library React and the main language for the application will be TypeScript.
 	
 
