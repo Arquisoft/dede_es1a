@@ -2,23 +2,25 @@
 == Solution Strategy
 
 
-[role="arc42help"]
-****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
+=== Technology decisions
+ - React: React makes it easy for us to program user interfaces using JavaScript.
+ - Solid: SOLID gives the user the ability to choose what data they want to provide, and makes it easier for us to access it.
+ - BootStrap: Bootstrap makes it easy for us to develop HTML and CSS for the web application
+ - MongoDB: MongoDB is a non-relational database which allows us to not have to model all relationships.
 
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
 
-.Motivation
-These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.
 
-.Form
-Keep the explanation of these key decisions short.
 
-Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.
-****
+=== How to achieve key quality objectives
+
+**Usability & Efficiently**
+
+The structure of the web would be similar to the ones already available on the market, this will provide a more easily to use application to the client. We will do some usability test with different user types during developing stages.
+All web and services will be optimized with the main aim of making queue waiting times faster.
+
+**Privacity & Security**
+
+We will ensure that the application is robust against the most common attacks, and we will ensure user privacy so that their data would not be leaked.
+
+
+
