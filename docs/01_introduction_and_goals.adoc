@@ -41,7 +41,7 @@ The application interfaces will be created with an open source library React and
 [options="header",cols="1,2,2"]
 |===
 |Role|Expectations| 
-| Teachers | Implementation that shows the knowledges of the lessons. |
+| Teachers | Implementation that shows the knowledges of the lessons |
 | Server admin | Server gestion and solve technical problems and doubts |
 | Clients | Application easy to manage with a clear interface and adapted to all levels of software knowledge |
 |===
