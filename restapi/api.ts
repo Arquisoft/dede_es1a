@@ -4,6 +4,7 @@ const User = require("./models/User");
 const Stone = require("./models/Stone");
 
 const api:Router = express.Router()
+const mongoose = require("mongoose");
 
 //Methods for control users from the app
 api.get("/users/list", async (req, res) => {
@@ -30,6 +31,16 @@ api.post("/users/add", async (req, res) => {
       await user.save();
       res.send(user);
   }
+});
+
+api.post("/users/delete", async (req, res) => {
+
+  let email = req.body.email;
+
+  let user = await User.deleteOne(
+      { email: email }
+  );
+  res.send(user);
 });
 
 //Methods for product of the app
@@ -63,5 +74,14 @@ api.post("/stones/add", async (req, res) => {
   }
 });
 
+api.post("/stones/delete", async (req, res) => {
+
+  let stoneId = req.body.stoneId;
+
+  let stone = await Stone.deleteOne(
+      { _id: mongoose.Types.ObjectId(stoneId) }
+  );
+  res.send(stone);
+});
 
 export default api;
