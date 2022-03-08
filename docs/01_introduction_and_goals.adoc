@@ -3,8 +3,8 @@
 
 [role="arc42help"]
 ****
-Online store of varied products, using the DeDe application, which is a decentralized application for online purchase of products. 
-The application will simulate the basic functionalities of an online store, where users and clients can buy different types of products.
+Online store of rocks, using the DeDe application, which is a decentralized application for online purchase of products. 
+The application will simulate the basic functionalities of an online store, where users and clients can buy different types of rocks.
 ****
 
 === Requirements Overview

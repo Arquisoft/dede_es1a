@@ -11,7 +11,7 @@ function Welcome(props: WelcomeProps): JSX.Element {
   return (
     <Grid container>
       <Grid item xs={10}>
-        <Box component="h2">Hi, {props.message}</Box>
+        <Box component="h2">Welcome, {props.message}</Box>
       </Grid>
       <Grid item xs={2}>
         <img src={logo} className="App-logo" alt="logo" />
