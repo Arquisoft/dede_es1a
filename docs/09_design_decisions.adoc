@@ -1,26 +1,13 @@
 [[section-design-decisions]]
 == Design Decisions
 
-
-[role="arc42help"]
-****
-.Contents
-Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.
-
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
-
-Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.
-
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
-
-.Form
-Various options:
-
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-* ADR (architecture decision record) for every important decision
-****
+[options="header",cols="1,2"]
+|===
+|Decision|Reason
+|TypeScript|It will be one of the languages ​​used in the application. One of its positive aspects is its ease of use with Solid
+|Solid|This technology will be used to store client addresses through the use of pods.
+|React|The use of this open source library is one of the requirements of the application that will be used to create the application interfaces.
+|MogoDB|This type of database is according to the requirements of the application.
+|BootStrap|As it has been/will be used in other subjects, the use of this library has been chosen, since it is also in accordance with the requirements of the application.
+|Visual Studio Code|It will be the development enviroment used by all members of the group. One of its most favorable points is the possibility of adding a wide variety of extensions that will allow the project to be carried out in a simple way
+|===

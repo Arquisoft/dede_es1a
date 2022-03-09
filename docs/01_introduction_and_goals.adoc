@@ -3,73 +3,48 @@
 
 [role="arc42help"]
 ****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
-
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
+Online store of rocks, using the DeDe application, which is a decentralized application for online purchase of products. 
+The application will simulate the basic functionalities of an online store, where users and clients can buy different types of rocks.
 ****
 
 === Requirements Overview
 
 [role="arc42help"]
 ****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+The application will be online and accessible from anywhere in the world. Users will be able to search in the catalog any product available in our shop. 
+The users can order different items and the price will be calculated depending on the place from where the order is made and the products that the client buys.
+The application will store the information about the users and the products in a database MongoDB. Personal information of the users will be protected with SOLID using pods.
+The application interfaces will be created with an open source library React and the main language for the application will be TypeScript.
+	
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
 
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
 ****
 
 === Quality Goals
 
 [role="arc42help"]
 ****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
-
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
-
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
+[options="header",cols="1,2,2"]
+|===
+|Priority|Quality|Motivation
+| 1 | Privacy | The user must know that his personal information is protected using our application.
+| 2 | Modifiability | The technology is constantly changing and is essential to keep up to date.
+| 3 | Efficiently | The application functionalities should be efficient for the users.
+| 4 | Usability | The application must be adapted for every type of user.
+|===
 ****
 
 === Stakeholders
 
 [role="arc42help"]
 ****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
-
 [options="header",cols="1,2,2"]
 |===
-|Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+|Role|Expectations| 
+| Teachers | Implementation that shows the knowledges of the lessons |
+| Server admin | Server gestion and solve technical problems and doubts |
+| Clients | Application easy to manage with a clear interface and adapted to all levels of software knowledge |
 |===
+****
+
+
