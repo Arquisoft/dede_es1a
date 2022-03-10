@@ -6,9 +6,8 @@ const stoneSchema = mongooseRocks.Schema({
     type: String,
     description: String,
     price: Number,
-    mooseHardness:Number,
-    density:Number,
-    texture:String
+    mohsHardness:Number,
+    density:Number
 },{
     versionKey: false
 }
