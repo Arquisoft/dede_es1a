@@ -1,7 +1,7 @@
 import express, { Request, Response, Router } from 'express';
 import {check} from 'express-validator';
 const User = require("./models/User");
-const Stone = require("./models/Stone");
+const Rock = require("./models/Rock");
 
 const api:Router = express.Router()
 const mongoose = require("mongoose");
@@ -44,44 +44,48 @@ api.post("/users/delete", async (req, res) => {
 });
 
 //Methods for product of the app
-api.get("/stones/list", async (req, res) => {
-  const stones = await Stone.find({})
-  res.send(stones);
+api.get("/rocks/list", async (req, res) => {
+  const rocks = await Rock.find({})
+  res.send(rocks);
 });
 
-api.post("/stones/add", async (req, res) => {
+api.post("/rocks/add", async (req, res) => {
 
   let name = req.body.name;
   let type = req.body.type;
   let description = req.body.description;
   let price = req.body.price;
+  let mohsHardness = req.body.mohsHardness;
+  let density = req.body.density;
 
-  let stone = await Stone.findOne(
+  let stone = await Rock.findOne(
       { name: name }
   );
   if (stone) {
       res.send({ error: "Error: This stone is already in the app " + name });
   }
   else {
-    stone = new Stone({
+    stone = new Rock({
           name: name,
           type: type,
           description: description,
-          price: price
+          price: price,
+          mooseHardness: mohsHardness,
+          density: density
       });
       await stone.save();
       res.send(stone);
   }
 });
 
-api.post("/stones/delete", async (req, res) => {
+api.post("/rocks/delete", async (req, res) => {
 
-  let stoneId = req.body.stoneId;
+  let rockId = req.body.rockId;
 
-  let stone = await Stone.deleteOne(
-      { _id: mongoose.Types.ObjectId(stoneId) }
+  let rock = await Rock.deleteOne(
+      { _id: mongoose.Types.ObjectId(rockId) }
   );
-  res.send(stone);
+  res.send(rock);
 });
 
 export default api;
