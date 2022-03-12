@@ -57,6 +57,7 @@ api.post("/rocks/add", async (req, res) => {
   let price = req.body.price;
   let mohsHardness = req.body.mohsHardness;
   let density = req.body.density;
+  let img = req.body.img;
 
   let stone = await Rock.findOne(
       { name: name }
@@ -71,7 +72,8 @@ api.post("/rocks/add", async (req, res) => {
           description: description,
           price: price,
           mooseHardness: mohsHardness,
-          density: density
+          density: density,
+          img: img
       });
       await stone.save();
       res.send(stone);
