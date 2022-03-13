@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@media (min-width: 60em) {
+  /* two column layout only when enough room (relative to default text size) */
+  div { display: flex; }
+  #main {
+    flex: 1;         /* Main takes up all remaining space */
+    order: 1;        /* Place it after (to the right of) the navigation */
+    min-width: 12em; /* Optimize main content area sizing */
+  }
+}
