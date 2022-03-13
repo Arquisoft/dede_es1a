@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 export const findUsers = async (req:Request, res:Response) => {
     const users = await User.find({})
-    res.send(users);
+    res.send(users).json();
 };
   
 export const addUser = async (req:Request, res:Response): Promise<any> => { 

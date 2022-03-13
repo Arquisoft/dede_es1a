@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 export const findRocks = async (req:Request, res:Response) => {
     const rocks = await Rock.find({})
-    res.send(rocks);
+    res.send(rocks).json();
 };
 
 export const addRock = async (req:Request, res:Response): Promise<any> => { 
