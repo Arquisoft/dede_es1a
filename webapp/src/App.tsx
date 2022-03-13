@@ -4,10 +4,12 @@ import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import EmailForm from './components/EmailForm';
 import Welcome from './components/Welcome';
+import RockImg from './components/rocksUtil';
 import UserList from './components/UserList';
 import  {getUsers} from './api/api';
 import {User} from './shared/shareddtypes';
 import './App.css';
+import rockWelcome from '../rocksWelcome.jpg';
 
 function App(): JSX.Element {
 
@@ -25,10 +27,8 @@ function App(): JSX.Element {
     <>
       <Container maxWidth="sm">
         <Welcome message="Rock-Shop"/>
-        <Box component="div" sx={{ py: 2}}>This is a basic example of a React application using Typescript. You can add your email to the list filling the form below.</Box>
-        <EmailForm OnUserListChange={refreshUserList}/>        
-        <UserList users={users}/>
-        <Link href="https://github.com/pglez82/asw2122_0">Source code</Link>
+        <Box component="div" sx={{ py: 2}}>En Rock-Shop podrás encontrar gran variedad de rocas, desde las más comunes hasta las más exóticas.</Box>
+        <RockImg/>
       </Container>
     </>
   );
