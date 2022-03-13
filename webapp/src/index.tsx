@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import {Roca} from './shared/shareddtypes';
 import App from './App';
+import Catalogo from './components/Catalogo';
 import reportWebVitals from './reportWebVitals';
+import { RocketSharp } from '@mui/icons-material';
+
+
+
+
+
 
 ReactDOM.render(
   <React.StrictMode>

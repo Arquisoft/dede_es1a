@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import logo from "../logo.svg";
 import React, { Fragment, useState } from "react";
-import mineral from '../images/minerales/coal-anthracite-380.jpg';
+import mineral1 from '../images/minerales/coal-anthracite-380.jpg';
 type FromElement = React.FormEvent<HTMLFormElement>;
 interface ITask {
   name: string;
@@ -30,11 +30,7 @@ function Welcome(props: WelcomeProps): JSX.Element {
   };
   return (
     <div className="container">
-      <div className="row">
-      <div className="col">
-         <img src={mineral} alt="" />
-      </div>
-      </div>  
+
     </div>
   );
 }
