@@ -67,7 +67,6 @@ Our information:
 
 - Ignacio Gómez Gasch, UO271548
 - Valentin Dumitru, UO277867
-- Mario García Prieto, UO279079
 - Adrián Estrada González, UO276900
 - Jorge Toraño Herrera, UO276853
  

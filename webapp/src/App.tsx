@@ -1,36 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import EmailForm from './components/EmailForm';
 import Welcome from './components/Welcome';
-import UserList from './components/UserList';
-import  {getUsers} from './api/api';
-import {User} from './shared/shareddtypes';
-import './App.css';
+import logo from './images/interfaz/logoRock.png';
+import Title from './components/titleUtil';
+import  {getUsers, getRocas} from './api/api';
+
+import { createTheme } from '@mui/material';
+import './css/App.css';
+import ResponsiveAppBar from './components/navBar';
+
+import {Roca, User} from './shared/shareddtypes';
+import Catalogo from './components/Catalogo';
+import { ThemeProvider } from '@emotion/react';
+
+//import {createData} from "./code/insertExampleData"
 
 function App(): JSX.Element {
+  const [rocas,setRocas] = useState<Roca[]>([]);
 
-  const [users,setUsers] = useState<User[]>([]);
-
-  const refreshUserList = async () => {
-    setUsers(await getUsers());
+  const refreshRocaList = async () => {
+    setRocas(await getRocas());
   }
 
   useEffect(()=>{
-    refreshUserList();
+    refreshRocaList();
   },[]);
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        light: '#f3af2f',
+        main: '#f3af2f',
+        dark: '#553311',
+        contrastText: '#111',
+      },
+      secondary: {
+        light: '#ff7961',
+        main: '#f44336',
+        dark: '#ba000d',
+        contrastText: '#000',
+      },
+      
+    },
+  });
+  
   return (
-    <>
-      <Container maxWidth="sm">
-        <Welcome message="ASW students"/>
-        <Box component="div" sx={{ py: 2}}>This is a basic example of a React application using Typescript. You can add your email to the list filling the form below.</Box>
-        <EmailForm OnUserListChange={refreshUserList}/>        
-        <UserList users={users}/>
-        <Link href="https://github.com/pglez82/asw2122_0">Source code</Link>
-      </Container>
-    </>
+    <ThemeProvider theme={theme}>
+
+      <ResponsiveAppBar/>
+      <Welcome message="ASW students"/>
+      <Catalogo rocas={rocas}/>
+      
+    </ThemeProvider>
   );
 }
 

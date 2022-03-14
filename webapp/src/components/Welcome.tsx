@@ -1,24 +1,30 @@
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import logo from '../logo.svg';
 
+import { Box, Container } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import React, { useState } from "react";
+import ResponsiveAppBar from "./navBar";
+import logo from '../images/interfaz/logoRock.png';
+import Title from "./titleUtil";
+type FromElement = React.FormEvent<HTMLFormElement>;
+interface ITask {
+  name: string;
+  done: boolean;
+}
 type WelcomeProps = {
   message: string;
-}
+};
 
 function Welcome(props: WelcomeProps): JSX.Element {
-
   return (
-    <Grid container>
-      <Grid item xs={10}>
-        <Box component="h2">Welcome, {props.message}</Box>
-      </Grid>
-      <Grid item xs={2}>
-        <img src={logo} className="App-logo" alt="logo" />
-      </Grid>
+    <>
       
-    </Grid>
-    
+      <Container maxWidth="sm" className="principal">
+        <Title/>
+        <Grid item xs={12} >
+          <Box className="logoClass"><img src={logo} className="App-logo" alt="logo" /></Box>
+        </Grid>
+      </Container>
+    </>
   );
 }
 
