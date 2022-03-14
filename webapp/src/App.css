@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #b18409;
+  
 }
 
 
@@ -9,11 +10,31 @@
     animation: App-logo-spin infinite 20s linear;
     justify-content: center;
     align-items: center;
+    margin-left: 200px;
   }
 }
+.titulo {
+  font-size:38px;
+  padding-top:25px;
+}
+.logoClass {
+  padding-top: 25px;
+}
+.formatButtons{
+  padding-top: 100px;
+  padding-left: 50px;
+}
 
+.buttonClass{
+  background-color: #70561f;
+  width: 200px;
+  height: 50px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: large;
+  font-weight: bold;
+}
 .App-header {
-  background-color: #b18409;
+  background-color: #8a6f24;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

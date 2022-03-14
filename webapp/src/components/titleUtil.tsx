@@ -4,19 +4,16 @@ import logo from '../logoRock.png';
 import rockImg from '../rocksWelcome.jpg';
 import title from '../title.png';
 
-
-function RockImg(): JSX.Element {
+function Title(): JSX.Element {
 
   return (
     <Grid container>
-      <Grid item xs={12}>
-        <img src={rockImg}/>
+      <Grid className='titulo' item xs={12}>
+        <img src={title}/>
       </Grid>
       
     </Grid>
     
   );
-
 }
-export default RockImg;
-
+export default Title;
