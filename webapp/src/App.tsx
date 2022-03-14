@@ -14,7 +14,7 @@ import  {getUsers} from './api/api';
 import {User} from './shared/shareddtypes';
 import { Button } from '@mui/material';
 import './App.css';
-
+import ResponsiveAppBar from './components/navBar';
 
 
 
@@ -32,16 +32,13 @@ function App(): JSX.Element {
 
   return (
     <>
-      <Container maxWidth="sm">
+      <ResponsiveAppBar/>
+      <Container maxWidth="sm" className="principal">
         <style>{"body {  background-color: #8a6f24 }"}</style>
         <Title/>
         <Grid item xs={12} >
           <Box className="logoClass"><img src={logo} className="App-logo" alt="logo" /></Box>
         </Grid>
-        <Grid item xs={12} className="formatButtons">
-          <button type="button" className="buttonClass">Iniciar Sesion</button>
-          <button type="button" className="buttonClass">Regístrate</button>
-      </Grid>
       </Container>
     </>
   );

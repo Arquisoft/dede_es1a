@@ -10,8 +10,12 @@
     animation: App-logo-spin infinite 20s linear;
     justify-content: center;
     align-items: center;
-    margin-left: 200px;
+    padding-top: 100px;
+    margin-left: 150px;
   }
+}
+.principal {
+  padding-top: 5px;
 }
 .titulo {
   font-size:38px;
@@ -20,18 +24,8 @@
 .logoClass {
   padding-top: 25px;
 }
-.formatButtons{
-  padding-top: 100px;
-  padding-left: 50px;
-}
-
-.buttonClass{
-  background-color: #70561f;
-  width: 200px;
-  height: 50px;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  font-size: large;
-  font-weight: bold;
+.appBar {
+  background-color: brown;
 }
 .App-header {
   background-color: #8a6f24;
