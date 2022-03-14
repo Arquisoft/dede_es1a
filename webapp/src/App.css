@@ -50,3 +50,19 @@
     transform: rotate(360deg);
   }
 }
+div > div > ul > div >div > div{
+  border:0.1em rgb(80, 80, 92) solid;
+  background-color:rgb(159, 166, 180);
+  text-align: center;
+}
+
+div > div > ul {
+  background-color: rgb(215, 217, 219);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  
+}
+div > div > ul > div{
+  padding: 1em;
+}

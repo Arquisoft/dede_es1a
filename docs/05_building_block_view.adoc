@@ -3,7 +3,6 @@
 
 == Building Block View
 
-[role="arc42help"]
 The building block view shows the static decomposition of the system into building blocks as well as their dependencies. It allows us to understand the system as a whole.
 
 ////
@@ -15,7 +14,6 @@ The building block view shows the static decomposition of the system into buildi
 ////
 
 === Whitebox Overall System
-[role="arc42help"]
 ****
 
 
@@ -54,7 +52,6 @@ Contained Building Blocks::
 
 
 
-[role="arc42help"]
 === Level 1
 ****
 image::Diagram_ASW_Level1.png[Level 1 Diagram]
