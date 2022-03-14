@@ -16,10 +16,10 @@ import {Roca, User} from './shared/shareddtypes';
 import Catalogo from './components/Catalogo';
 import { ThemeProvider } from '@emotion/react';
 
-import {createData} from "./code/insertExampleData"
+//import {createData} from "./code/insertExampleData"
 
 function App(): JSX.Element {
-  const [rocas,setRocas] = useState<Roca[]>();
+  const [rocas,setRocas] = useState<Roca[]>([]);
 
   const refreshRocaList = async () => {
     setRocas(await getRocas());

@@ -1,5 +1,5 @@
 import { Roca } from "../shared/shareddtypes";
-
+/*
 export function createData():Roca[]{
     const rocas=[];
     const numDatos=100;
@@ -19,3 +19,4 @@ export function createData():Roca[]{
     }
     return rocas
 }
+*/
