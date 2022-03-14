@@ -7,7 +7,7 @@ import { Container } from '@mui/material';
 type RocaListProps = {
   rocas: Roca[];
 };
-
+//a
 function Catalogo(rocas: RocaListProps): JSX.Element {
   return (
     <>
