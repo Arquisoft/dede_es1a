@@ -1,16 +1,10 @@
 
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import logo from '../logoRock.png';
-import rockImg from '../rocksWelcome.jpg';
-import { Button } from '@mui/material';
-
-
+import { Box, Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import logo from "../logo.svg";
-import React, { Fragment, useState } from "react";
-import mineral1 from '../images/minerales/coal-anthracite-380.jpg';
+import React, { useState } from "react";
+import ResponsiveAppBar from "./navBar";
+import logo from '../images/interfaz/logoRock.png';
+import Title from "./titleUtil";
 type FromElement = React.FormEvent<HTMLFormElement>;
 interface ITask {
   name: string;
@@ -21,27 +15,16 @@ type WelcomeProps = {
 };
 
 function Welcome(props: WelcomeProps): JSX.Element {
-  const [newTask, setNewTask] = useState<string>("");
-  const [tasks, setTasks] = useState<ITask[]>([]);
-
-  const handleSubmit = (e: FromElement) => {
-    e.preventDefault();
-    console.log(newTask);
-    addTask(newTask);
-    setNewTask("");
-    console.log(tasks);
-  };
-
-  const addTask = (name: string) => {
-    const newTasks: ITask[] = [...tasks, { name, done: false }];
-    setTasks(newTasks);
-  };
   return (
-    <Grid container>
+    <>
       
-      
-      
-    </Grid>
+      <Container maxWidth="sm" className="principal">
+        <Title/>
+        <Grid item xs={12} >
+          <Box className="logoClass"><img src={logo} className="App-logo" alt="logo" /></Box>
+        </Grid>
+      </Container>
+    </>
   );
 }
 

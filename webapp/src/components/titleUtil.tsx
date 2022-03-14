@@ -1,8 +1,5 @@
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import logo from '../logoRock.png';
-import rockImg from '../rocksWelcome.jpg';
-import title from '../title.png';
+import title from '../images/interfaz/title.png';
 
 function Title(): JSX.Element {
 

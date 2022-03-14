@@ -1,7 +1,8 @@
+/* eslint-disable testing-library/no-node-access */
 import { render, fireEvent, act } from "@testing-library/react";
-import EmailForm from "./EmailForm";
-import {User} from './../shared/shareddtypes';
-import * as api from './../api/api'
+import EmailForm from "../EmailForm";
+import {User} from '../../shared/shareddtypes';
+import * as api from '../../api/api'
 
 jest.mock('../api/api');
 

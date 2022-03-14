@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import logo from '../logoRockMini.png';
+import logo from '../images/interfaz/logoRock.png';
 
 const pages = ['Catálogo', 'Iniciar Sesión', 'Registrarse'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -35,8 +35,11 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+
+  
   return (
-    <AppBar position="static" color="primary">
+    
+    <AppBar  position="static" >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -45,7 +48,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            <Box className="logoClass"><img src={logo} alt="logo" /></Box>
+            <Box className="logoClass"><img src={logo} alt="logo" id="logoRock"/></Box>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -136,6 +139,7 @@ const ResponsiveAppBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    
   );
 };
 export default ResponsiveAppBar;
