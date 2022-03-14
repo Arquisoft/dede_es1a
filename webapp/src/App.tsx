@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import Welcome from './components/Welcome';
 import logo from './images/interfaz/logoRock.png';
 import Title from './components/titleUtil';
-import  {getUsers} from './api/api';
+import  {getUsers, getRocas} from './api/api';
 
 import { createTheme } from '@mui/material';
 import './css/App.css';
@@ -19,9 +19,15 @@ import { ThemeProvider } from '@emotion/react';
 import {createData} from "./code/insertExampleData"
 
 function App(): JSX.Element {
-  const [rocas,setRocas] = useState<Roca[]>(createData());
+  const [rocas,setRocas] = useState<Roca[]>();
 
+  const refreshRocaList = async () => {
+    setRocas(await getRocas());
+  }
 
+  useEffect(()=>{
+    refreshRocaList();
+  },[]);
 
   const theme = createTheme({
     palette: {

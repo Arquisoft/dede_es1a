@@ -17,15 +17,15 @@ function Catalogo(rocas: RocaListProps): JSX.Element {
           <div className="producto">
 
             <Grid item xs={12}>
-              <img src="./../images/minerales/gneiss.jpg" style={{width:'100%'}} alt={roca.name.toString()}/>
+              <img src={roca.img} style={{width:'100%'}} alt={roca.name.toString()}/>
             </Grid>
 
             <div className="infoProducto">
 
-                <ListItemText primary={roca.precio+"$"} className="datoProducto"/>
-                <ListItemText primary={roca.Tipo} className="datoProducto"/>
-                <ListItemText primary={roca.durezaMohs} className="datoProducto"/>
-                <ListItemText primary={roca.rugosidad} className="datoProducto"/>
+                <ListItemText primary={roca.price+"€"} className="datoProducto"/>
+                <ListItemText primary={roca.type} className="datoProducto"/>
+                <ListItemText primary={roca.mohsHardness} className="datoProducto"/>
+                <ListItemText primary={roca.density} className="datoProducto"/>
             </div>
             <Grid item xs={12}>
               <Button variant="contained" color="primary" style={{width:'100%'}}>Comprar</Button>

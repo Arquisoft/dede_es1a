@@ -4,10 +4,10 @@ export type User = {
   };
 export type Roca = {
     id:React.Key;
-    name: String; 
-    img: String;
-    precio: Number;
-    durezaMohs:Number;
-    rugosidad:String;
-    Tipo:String;
+    name: String;
+    img: string;
+    price: Number;
+    mohsHardness:Number;
+    density:String;
+    type:String;
   }
