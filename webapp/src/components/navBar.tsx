@@ -13,16 +13,20 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../images/interfaz/logoRock.png';
 
+
 const pages = ['Catálogo', 'Iniciar Sesión', 'Registrarse'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
+ 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
+    let button = event.target as HTMLInputElement;
+    openPage(button.id);
   };
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -34,8 +38,6 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-
   
   return (
     
@@ -60,7 +62,7 @@ const ResponsiveAppBar = () => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+                <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -99,8 +101,9 @@ const ResponsiveAppBar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                id={page}
+                onClick={handleOpenNavMenu}
+                sx={{ my: 2, color: 'black', display: 'block' }}
               >
                 {page}
               </Button>
@@ -142,4 +145,15 @@ const ResponsiveAppBar = () => {
     
   );
 };
+function openPage(page:string) {
+  let pag = "../views/";
+  if (page=="Iniciar Sesión")
+    pag = "../views/prueba";
+  else if (page=="Registrarse")
+    pag = "../views/Register";
+
+  return (
+     <a href={pag}></a>
+  );
+}
 export default ResponsiveAppBar;
