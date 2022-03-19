@@ -2,8 +2,11 @@ const mongooseUsers = require("mongoose")
 
 
 const userSchema = mongooseUsers.Schema({
+    dni: String,
     name: String,
-    email: String
+    email: String,
+    rol: Number,
+    password: String
 },{
     versionKey: false
 }
