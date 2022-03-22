@@ -2,6 +2,7 @@ import express, { Request, Response, Router } from 'express';
 const User = require("../models/User");
 
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 export const findUsers = async (req:Request, res:Response) => {
     const users = await User.find({})
@@ -9,10 +10,14 @@ export const findUsers = async (req:Request, res:Response) => {
 };
   
 export const addUser = async (req:Request, res:Response): Promise<any> => { 
-  
+    
+    req.body.password = await bcrypt.hash(req.body.password, 10);
+
+    let dni = req.body.dni;
     let name = req.body.name;
     let email = req.body.email;
-  
+    let rol = 1;
+    let password = req.body.password;
     let user = await User.findOne(
         { email: email }
     );
@@ -21,8 +26,11 @@ export const addUser = async (req:Request, res:Response): Promise<any> => {
     }
     else {
         user = new User({
+            dni: dni,
             name: name,
-            email: email
+            email: email,
+            rol: rol,
+            password: password
         });
         await user.save();
         res.send(user);
@@ -31,10 +39,10 @@ export const addUser = async (req:Request, res:Response): Promise<any> => {
   
 export const deleteUser = async (req:Request, res:Response): Promise<any> => {
   
-    let email = req.body.email;
+    let dni = req.body.dni;
   
     let user = await User.deleteOne(
-        { email: email }
+        { dni: dni }
     );
     res.send(user);
   };
