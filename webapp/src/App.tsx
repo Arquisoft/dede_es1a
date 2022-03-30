@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+//import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Welcome from './components/Welcome';
@@ -15,7 +15,6 @@ import ResponsiveAppBar from './components/navBar';
 import {Roca, User} from './shared/shareddtypes';
 import Catalogo from './components/Catalogo';
 import { ThemeProvider } from '@emotion/react';
-
 //import {createData} from "./code/insertExampleData"
 
 function App(): JSX.Element {
@@ -49,11 +48,9 @@ function App(): JSX.Element {
   
   return (
     <ThemeProvider theme={theme}>
-
       <ResponsiveAppBar/>
       <Welcome message="ASW students"/>
       <Catalogo rocas={rocas}/>
-      
     </ThemeProvider>
   );
 }
