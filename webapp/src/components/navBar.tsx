@@ -15,7 +15,7 @@ import logo from '../images/interfaz/logoRock.png';
 
 
 const pages = ['Catálogo', 'Iniciar Sesión', 'Registrarse'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Perfil', 'Desconectar'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -23,8 +23,6 @@ const ResponsiveAppBar = () => {
  
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
-    let button = event.target as HTMLInputElement;
-    openPage(button.id);
   };
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -145,15 +143,4 @@ const ResponsiveAppBar = () => {
     
   );
 };
-function openPage(page:string) {
-  let pag = "../views/";
-  if (page=="Iniciar Sesión")
-    pag = "../views/prueba";
-  else if (page=="Registrarse")
-    pag = "../views/Register";
-
-  return (
-     <a href={pag}></a>
-  );
-}
 export default ResponsiveAppBar;
