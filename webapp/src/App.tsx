@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
+<<<<<<< HEAD
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -12,9 +13,22 @@ import { createTheme } from '@mui/material';
 import './css/App.css';
 import ResponsiveAppBar from './components/navBar';
 
+=======
+//import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Welcome from './components/Welcome';
+import  {getUsers} from './api/api';
+>>>>>>> parent of 99783bd... Solución problemas develop
 import {Roca, User} from './shared/shareddtypes';
 import Catalogo from './components/Catalogo';
 import { ThemeProvider } from '@emotion/react';
+<<<<<<< HEAD
+=======
+import NavBar from './components/navBar';
+import { Link } from '@mui/material';
+//import {createData} from "./code/insertExampleData"
+>>>>>>> parent of 99783bd... Solución problemas develop
 
 //import {createData} from "./code/insertExampleData"
 
@@ -48,6 +62,7 @@ function App(): JSX.Element {
   });
   
   return (
+<<<<<<< HEAD
     <ThemeProvider theme={theme}>
 
       <ResponsiveAppBar/>
@@ -55,6 +70,15 @@ function App(): JSX.Element {
       <Catalogo rocas={rocas}/>
       
     </ThemeProvider>
+=======
+
+    <ThemeProvider theme={theme}>
+      <NavBar/>
+      <Welcome message="ASW students"/>
+      <Catalogo rocas={rocas}/>
+    </ThemeProvider>
+
+>>>>>>> parent of 99783bd... Solución problemas develop
   );
 }
 
