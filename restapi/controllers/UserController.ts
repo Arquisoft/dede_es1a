@@ -20,9 +20,18 @@ export const addUser = async (req:Request, res:Response): Promise<any> => {
     let email = req.body.email;
     let rol = 1;
     let password = req.body.password;
+    let repeatPassword = req.body.repeatPassword;
+
+    let errors = validateUser(dni,name,email,password,repeatPassword);
+
+    if (errors.length != 0){
+        res.send(errors).json();
+    }
+
     let user = await User.findOne(
         { email: email }
     );
+
     if (user) {
         res.send({ error: "Error: This user is already registered " + email });
     }
@@ -86,4 +95,33 @@ export const logout = async (req:Request, res:Response): Promise<any> => {
     req.session.usuario  = null;
     req.session.rol = null;
     res.send("Usuario Desconectado");
+}
+
+function validateUser(dni: string | any[], name: string | any[], email: string | any[], password: string | any[], repeatPassword: string | any[]){
+    let errors = new Array();
+    if (dni.length == 0){
+        errors.push("Error: El campo dni no puede ser vacio" );
+    }
+
+    if (name.length == 0){
+        errors.push("Error: El campo nombre no puede ser vacio" );
+    }
+
+    if (email.length == 0){
+        errors.push("Error: El campo email no puede ser vacio");
+    }
+
+    if (password.length == 0){
+        errors.push("Error: El campo password no puede ser vacio" );
+    }
+
+    if (repeatPassword.length == 0){
+        errors.push("Error: El campo repeatPassword no puede ser vacio" );
+    }
+
+    if (repeatPassword != password){
+        errors.push("Error: El campo password y repeatPassword deben ser iguales" );
+    }
+
+    return errors;
 }
