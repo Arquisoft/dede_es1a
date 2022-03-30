@@ -8,35 +8,53 @@ export const findRocks = async (req:Request, res:Response) => {
     res.send(rocks).json();
 };
 
+export const findRocksSedimentary = async (req:Request, res:Response) => {
+    const rocks = await Rock.find({type : "sedimentaria"})
+    res.send(rocks).json();
+};
+
+export const findRocksFiery= async (req:Request, res:Response) => {
+    const rocks = await Rock.find({type : "ígnea"})
+    res.send(rocks).json();
+};
+
+export const findRocksMetamorphic = async (req:Request, res:Response) => {
+    const rocks = await Rock.find({type : "metamórfica"})
+    res.send(rocks).json();
+};
+
 export const addRock = async (req:Request, res:Response): Promise<any> => { 
 
-  
+    let rockId = req.body.rockId;
     let name = req.body.name;
     let type = req.body.type;
     let description = req.body.description;
     let price = req.body.price;
     let mohsHardness = req.body.mohsHardness;
     let density = req.body.density;
+    let texture = req.body.texture;
     let img = req.body.img;
   
-    let stone = await Rock.findOne(
+    let rock = await Rock.findOne(
         { name: name }
     );
-    if (stone) {
-        res.send({ error: "Error: This stone is already in the app " + name });
+    if (rock) {
+        res.send({ error: "Error: This rock is already in the app " + name });
     }
     else {
-      stone = new Rock({
+      rock = new Rock({
+            rockId: rockId,
             name: name,
             type: type,
             description: description,
             price: price,
-            mooseHardness: mohsHardness,
+            mohsHardness: mohsHardness,
             density: density,
+            texture: texture,
             img: img
         });
-        await stone.save();
-        res.send(stone);
+        await rock.save();
+        res.send(rock);
     }
 };
 
