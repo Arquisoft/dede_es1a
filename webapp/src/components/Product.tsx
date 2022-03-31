@@ -10,12 +10,21 @@ type ProductProps = {
 function Product(rock: ProductProps): JSX.Element {
   return (
     <>
-        <div className="infoProducto">
+        <div className="producto">
+        <Grid item xs={12}>
+              <img src={rock.rock.img} style={{width:'100%'}} alt={rock.rock.name.toString()}/>
+            </Grid>
 
-            <ListItemText primary={rock.rock.price+"€"} className="datoProducto"/>
-            <ListItemText primary={rock.rock.type} className="datoProducto"/>
-            <ListItemText primary={rock.rock.mohsHardness} className="datoProducto"/>
-            <ListItemText primary={rock.rock.density} className="datoProducto"/>
+            <div className="infoProducto">
+
+                <ListItemText primary={rock.rock.price+"€"} className="datoProducto"/>
+                <ListItemText primary={rock.rock.type} className="datoProducto"/>
+                <ListItemText primary={rock.rock.mohsHardness} className="datoProducto"/>
+                <ListItemText primary={rock.rock.density} className="datoProducto"/>
+            </div>
+            <Grid item xs={12}>
+              <Button variant="contained" color="primary" style={{width:'100%'}}>Comprar</Button>
+            </Grid>
         </div>
     </>
   );

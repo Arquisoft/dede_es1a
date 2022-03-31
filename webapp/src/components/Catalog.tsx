@@ -1,8 +1,6 @@
 import {Rock} from '../shared/shareddtypes';
 import List from '@mui/material/List';
-import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
+import Product from './Product';
 type RockListProps = {
   rocks: Rock[];
 };
@@ -12,26 +10,7 @@ function Catalogo(rocks: RockListProps): JSX.Element {
     <>
       <List id="catalogo">
       {rocks.rocks.map((rock,index)=>{
-        return (
-          <div className="producto">
-
-            <Grid item xs={12}>
-              <img src={rock.img} style={{width:'100%'}} alt={rock.name.toString()}/>
-            </Grid>
-
-            <div className="infoProducto">
-
-                <ListItemText primary={rock.price+"€"} className="datoProducto"/>
-                <ListItemText primary={rock.type} className="datoProducto"/>
-                <ListItemText primary={rock.mohsHardness} className="datoProducto"/>
-                <ListItemText primary={rock.density} className="datoProducto"/>
-            </div>
-            <Grid item xs={12}>
-              <Button variant="contained" color="primary" style={{width:'100%'}}>Comprar</Button>
-            </Grid>
-
-          </div>
-        )
+        return <Product rock={rock}/>
       })}
       </List>
       
