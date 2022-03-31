@@ -11,7 +11,8 @@ const Order = require("../models/Order");
 
 export const findOrdersByUserDni = async (req:Request, res:Response) => {
     let dni = req.body.dni;
-    const users = await Order.find({userDni : dni})
+    let query = {userDni : dni};
+    const users = await Order.find(query)
     res.send(users).json();
 };
 
@@ -42,7 +43,7 @@ export const addOrder = async (req:Request, res:Response): Promise<any> => {
 
 
   export const getDeliveryCosts = async (req:Request, res:Response) : Promise<any> =>{ 
-    
+
     let address = req.body.address;
     let deliveryCosts = 0;
     const addressCordinates = await geocoder.geocode(address);
