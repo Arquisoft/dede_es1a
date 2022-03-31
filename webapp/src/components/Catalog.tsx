@@ -1,30 +1,30 @@
-import {Roca} from '../shared/shareddtypes';
+import {Rock} from '../shared/shareddtypes';
 import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-type RocaListProps = {
-  rocas: Roca[];
+type RockListProps = {
+  rocks: Rock[];
 };
 //a
-function Catalogo(rocas: RocaListProps): JSX.Element {
+function Catalogo(rocks: RockListProps): JSX.Element {
   return (
     <>
       <List id="catalogo">
-      {rocas.rocas.map((roca,index)=>{
+      {rocks.rocks.map((rock,index)=>{
         return (
           <div className="producto">
 
             <Grid item xs={12}>
-              <img src={roca.img} style={{width:'100%'}} alt={roca.name.toString()}/>
+              <img src={rock.img} style={{width:'100%'}} alt={rock.name.toString()}/>
             </Grid>
 
             <div className="infoProducto">
 
-                <ListItemText primary={roca.price+"€"} className="datoProducto"/>
-                <ListItemText primary={roca.type} className="datoProducto"/>
-                <ListItemText primary={roca.mohsHardness} className="datoProducto"/>
-                <ListItemText primary={roca.density} className="datoProducto"/>
+                <ListItemText primary={rock.price+"€"} className="datoProducto"/>
+                <ListItemText primary={rock.type} className="datoProducto"/>
+                <ListItemText primary={rock.mohsHardness} className="datoProducto"/>
+                <ListItemText primary={rock.density} className="datoProducto"/>
             </div>
             <Grid item xs={12}>
               <Button variant="contained" color="primary" style={{width:'100%'}}>Comprar</Button>
