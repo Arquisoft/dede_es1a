@@ -4,11 +4,8 @@ import Grid from "@mui/material/Grid";
 import logo from '../images/interfaz/logoRock.png';
 import Title from "./titleUtil";
 
-type WelcomeProps = {
-  message: string;
-};
 
-function Welcome(props: WelcomeProps): JSX.Element {
+function Welcome(): JSX.Element {
   return (
     <>
       

@@ -31,7 +31,7 @@ function App(): JSX.Element {
       <NavBar/>
       <Router>
         <Routes>
-          <Route path="/home" element={<Welcome message={'Hola xd'} />} />
+          <Route path="/home" element={<Welcome/>} />
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/catalogo" element={<Catalog rocks={rocks}/>}/>
         </Routes>
