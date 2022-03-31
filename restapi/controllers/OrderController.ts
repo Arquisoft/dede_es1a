@@ -11,7 +11,7 @@ const Order = require("../models/Order");
 
 export const findOrdersByUserDni = async (req:Request, res:Response) => {
     let dni = req.body.dni;
-    let query = {userDni : dni};
+    let query = {userDni : dni.toString()};
     const users = await Order.find(query)
     res.send(users).json();
 };
