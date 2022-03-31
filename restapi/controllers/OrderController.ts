@@ -17,24 +17,18 @@ export const findOrdersByUserDni = async (req:Request, res:Response) => {
 };
 
 export const addOrder = async (req:Request, res:Response): Promise<any> => { 
-
-    let orderId = Math.floor(Math.random() * (999999 + 1));
-    let order = await Order.findOne(
-        { orderId: orderId });
-    while(order){
-        orderId = Math.floor(Math.random() * (999999 + 1));
-        order = await Order.findOne(
-        { orderId: orderId });
-    }
+    const crypto = require('crypto');
+    const orderId = crypto.randomBytes(60);
 
     let userDni = req.body.dni;
     let price = req.body.price;
-    let products = req.body.products;
+    let productId = req.body.productId;
 
-    order = new Order({
+    let order = new Order({
+        orderId: orderId,
         dni: userDni,
         price: price,
-        products: products
+        productId: productId
     });
     await order.save();
     res.send(order);
