@@ -1,9 +1,15 @@
 
 import { Box, Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import React, { useState } from "react";
+import ResponsiveAppBar from "./navBar";
 import logo from '../images/interfaz/logoRock.png';
 import Title from "./titleUtil";
-
+type FromElement = React.FormEvent<HTMLFormElement>;
+interface ITask {
+  name: string;
+  done: boolean;
+}
 type WelcomeProps = {
   message: string;
 };

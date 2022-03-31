@@ -13,15 +13,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../images/interfaz/logoRock.png';
 
-
-
-const pages = ['Catálogo','Iniciar Sesión','Registrarse'];
-
+const pages = ['Catálogo', 'Iniciar Sesión', 'Registrarse'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-
-
-const NavBar = () => {
+const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -147,4 +142,4 @@ const NavBar = () => {
     
   );
 };
-export default NavBar;
+export default ResponsiveAppBar;

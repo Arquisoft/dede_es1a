@@ -3,6 +3,7 @@ import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import { Container } from '@mui/material';
 type RocaListProps = {
   rocas: Roca[];
 };
