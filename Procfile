@@ -1,1 +1,1 @@
-web: node server.ts
+web: node /restapi/server.ts
