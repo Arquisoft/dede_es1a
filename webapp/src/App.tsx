@@ -19,7 +19,7 @@ import { ThemeProvider } from '@emotion/react';
 //import {createData} from "./code/insertExampleData"
 
 import Drawer from '@material-ui/core/Drawer';
-
+import ShoppingCart from './shoppingCart/ShoppingCart';
 
 
 function App(): JSX.Element {
@@ -33,10 +33,7 @@ function App(): JSX.Element {
   const [isCartOpen, setCartOpen] = useState(false);
 
   const[cartItems, setCartItems] = useState(new Map<String, number>());
-  const[nOfCartItems, setNofCartItems] = useState(0);
 
-  const {data, isLoading, error} = useQuery<Roca[]>('rocas', getRocas);
-  
   const handleAddToCart = (selectedItem: Roca) => {
     setCartItems(cart => {
       let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
@@ -88,8 +85,18 @@ function App(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <ResponsiveAppBar/>
+      
+      <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
+          <ShoppingCart
+            rocas = {rocas}
+            cartContent={cartItems}
+            handleAddToCart={handleAddToCart}
+            handleRemoveFromCart={handleRemoveFromCart}
+          />
+      </Drawer>
+
       <Welcome message="ASW students"/>
-      <Catalogo rocas={rocas}/>
+      <Catalogo rocas={rocas} handleAddToCart={handleAddToCart}/>
     </ThemeProvider>
   );
 }
