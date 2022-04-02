@@ -8,9 +8,9 @@ type RockListProps = {
 function Catalogo(rocks: RockListProps): JSX.Element {
   return (
     <>
-      <List id="catalogo">
+      <List id="catalog">
       {rocks.rocks.map((rock,index)=>{
-        return <Product rock={rock}/>
+        return <Product product={rock} buyable={true} />
       })}
       </List>
       

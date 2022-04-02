@@ -1,32 +1,42 @@
 import {Rock} from '../shared/shareddtypes';
-import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 type ProductProps = {
-  rock: Rock;
+  product: Rock |null;
+  buyable:boolean;
 };
 //a
-function Product(rock: ProductProps): JSX.Element {
+function Product(product: ProductProps): JSX.Element {
   return (
-    <>
-        <div className="producto">
-        <Grid item xs={12}>
-              <img src={rock.rock.img} style={{width:'100%'}} alt={rock.rock.name.toString()}/>
-            </Grid>
+      <div className="product">
+          <div className='imageProductContainer'>
+          {product.product!==null ?
+              <>
+              <img src={product.product.img} style={{width:'100%'}} alt={product.product.name.toString()}/>
+              </>
+              : <></>
+            }
+            
+          </div>
 
-            <div className="infoProducto">
-
-                <ListItemText primary={rock.rock.price+"€"} className="datoProducto"/>
-                <ListItemText primary={rock.rock.type} className="datoProducto"/>
-                <ListItemText primary={rock.rock.mohsHardness} className="datoProducto"/>
-                <ListItemText primary={rock.rock.density} className="datoProducto"/>
-            </div>
-            <Grid item xs={12}>
-              <Button variant="contained" color="primary" style={{width:'100%'}}>Comprar</Button>
-            </Grid>
-        </div>
-    </>
+          <div className="infoProduct">
+              {product.product!==null ?
+              <>
+              
+              <ListItemText primary={"precio: "+product.product.price+"€"} className="datoProduct"/>
+              <ListItemText primary={"tipo: "+ product.product.type} className="datoProduct"/>
+              <ListItemText primary={"mohs: "+ product.product.mohsHardness} className="datoProduct"/>
+              <ListItemText primary={"densidad: "+product.product.density} className="datoProduct"/>
+              </>
+              : <></>
+            }
+              
+          </div>
+          <Grid item xs={12} hidden={!product.buyable}>
+            <Button variant="contained" color="primary" style={{width:'100%'}}>Comprar</Button>
+          </Grid>
+      </div>
   );
 }
 

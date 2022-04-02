@@ -26,3 +26,22 @@ export async function getRocas():Promise<Rock[]>{
   //The objects returned by the api are directly convertible to User objects
   return response.json()
 } 
+
+export async function getRocksSedimentary():Promise<Rock[]>{
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint+'/rocks/list/sedimentary');
+  //The objects returned by the api are directly convertible to User objects
+  return response.json()
+}
+export async function getRocksFiery():Promise<Rock[]>{
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint+'/rocks/list/fiery');
+  //The objects returned by the api are directly convertible to User objects
+  return response.json()
+}
+export async function getRocksMetamorphic():Promise<Rock[]>{
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint+'/rocks/list/metamorphic');
+  //The objects returned by the api are directly convertible to User objects
+  return response.json()
+}

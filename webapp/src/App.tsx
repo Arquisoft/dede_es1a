@@ -33,7 +33,7 @@ function App(): JSX.Element {
         <Routes>
           <Route path="/home" element={<Welcome/>} />
           <Route path="/" element={<Navigate replace to="/home" />} />
-          <Route path="/catalogo" element={<Catalog rocks={rocks}/>}/>
+          <Route path="/catalog" element={<Catalog rocks={rocks}/>}/>
         </Routes>
       </Router>
       
