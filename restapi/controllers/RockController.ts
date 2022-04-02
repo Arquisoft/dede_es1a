@@ -23,6 +23,12 @@ export const findRocksMetamorphic = async (req:Request, res:Response) => {
     res.send(rocks).json();
 };
 
+export const findByCritery = async (req:Request, res:Response) => {
+    let critery = req.body.critery;
+    const rocks = await Rock.find({critery})
+    res.send(rocks).json();
+}
+
 export const addRock = async (req:Request, res:Response): Promise<any> => { 
 
     let rockId = req.body.rockId;
