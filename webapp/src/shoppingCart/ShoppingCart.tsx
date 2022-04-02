@@ -1,6 +1,6 @@
 import {Roca} from '../shared/shareddtypes';
 //Styles
-import {Wrapper} from './Cart.styles';
+import {Wrapper} from './shoppingCart.styles';
 import CartItem from './ItemsCart/ItemsCart';
 
 
@@ -22,7 +22,7 @@ const Cart:React.FC<Props> = ({rocas, cartContent, handleAddToCart, handleRemove
             <CartItem 
                 key={item.id}
                 item={item}
-                quantity = {cartContent.get(key)}
+                quantity = {cartContent.get(key) as number} 
                 handleAddToCart={handleAddToCart}
                 handleRemoveFromCart={handleRemoveFromCart}
             />
