@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
 import Box from '@mui/material/Box';
 //import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -23,6 +24,40 @@ function App(): JSX.Element {
   const refreshRocaList = async () => {
     setRocas(await getRocas());
   }
+
+  // Shopping cart
+  const [isCartOpen, setCartOpen] = useState(false);
+
+  const[cartItems, setCartItems] = useState(new Map<String, number>());
+  const[nOfCartItems, setNofCartItems] = useState(0);
+
+  const {data, isLoading, error} = useQuery<Roca[]>('rocas', getRocas);
+  
+  const handleAddToCart = (selectedItem: Roca) => {
+    setCartItems(cart => {
+      let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
+
+      cart.set(selectedItem.name, quantity+1);
+      return cart;
+      
+    })
+  };
+
+  const handleRemoveFromCart = (selectedItem: Roca) => {
+    setCartItems( cart=> {
+      let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
+
+      if(quantity == 1) {
+        cart.delete(selectedItem.name);
+      } else {
+        cart.set(selectedItem.name, quantity-1);
+      }
+
+      return cart;
+    });
+
+  };
+
 
   useEffect(()=>{
     refreshRocaList();
@@ -49,6 +84,13 @@ function App(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <ResponsiveAppBar/>
+      <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
+          <Cart
+            cartItems={cartItems}
+            addToCart={handleAddToCart}
+            removeFromCart={handleRemoveFromCart}
+          />
+        </Drawer>
       <Welcome message="ASW students"/>
       <Catalogo rocas={rocas}/>
     </ThemeProvider>
