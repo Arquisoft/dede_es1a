@@ -9,7 +9,7 @@ import logo from './images/interfaz/logoRock.png';
 import Title from './components/titleUtil';
 import  {getUsers, getRocas} from './api/api';
 
-import { createTheme } from '@mui/material';
+import { createTheme, List } from '@mui/material';
 import './css/App.css';
 import ResponsiveAppBar from './components/navBar';
 
@@ -20,6 +20,7 @@ import { ThemeProvider } from '@emotion/react';
 
 import Drawer from '@material-ui/core/Drawer';
 import ShoppingCart from './shoppingCart/ShoppingCart';
+import { Wrapper, StyledButton } from './';
 
 
 function App(): JSX.Element {
@@ -30,7 +31,7 @@ function App(): JSX.Element {
   }
 
   // Shopping cart
-  const [isCartOpen, setCartOpen] = useState(false);
+  const [isCartOpen, setCartOpen] = useState(true);
 
   const[cartItems, setCartItems] = useState(new Map<String, number>());
 
@@ -82,10 +83,13 @@ function App(): JSX.Element {
   });
   
   return (
+
+
     <ThemeProvider theme={theme}>
+      <Wrapper>
       <ResponsiveAppBar/>
       
-      <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(true)}>
+      <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
           <ShoppingCart
             rocas = {rocas}
             cartContent={cartItems}
@@ -94,8 +98,23 @@ function App(): JSX.Element {
           />
       </Drawer>
 
+      <StyledButton onClick={() => setCartOpen(true)}>
+        <Badge badgeContent={getTotalItems(cartItems)} color='error'>
+          <AddShoppingCartIcon fontSize="large" htmlColor='#000000' />
+        </Badge>
+      </StyledButton>
+      
+      <Grid container spacing={3}>
+        {data?.map(item => (
+          <Grid item key={item.id} xs={12} sm={4}>
+            <Item item={item} handleAddToCart={handleAddToCart} />
+          </Grid>
+        ))}
+      </Grid>
+
       <Welcome message="ASW students"/>
       <Catalogo rocas={rocas} handleAddToCart={handleAddToCart}/>
+      </Wrapper>
     </ThemeProvider>
   );
 }
