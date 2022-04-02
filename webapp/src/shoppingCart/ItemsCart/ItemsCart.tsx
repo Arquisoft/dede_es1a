@@ -2,7 +2,7 @@ import Button from '@material-ui/core/Button';
 import { Roca } from '../../shared/shareddtypes';
 
 //Styles
-import {Wrapper} from './CartItem.styles';
+import {Wrapper} from './ItemsCart.styles';
 
 
 type Props = {

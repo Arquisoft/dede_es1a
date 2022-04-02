@@ -40,7 +40,6 @@ function App(): JSX.Element {
 
       cart.set(selectedItem.name, quantity+1);
       return cart;
-      
     })
   };
 
@@ -86,7 +85,7 @@ function App(): JSX.Element {
     <ThemeProvider theme={theme}>
       <ResponsiveAppBar/>
       
-      <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
+      <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(true)}>
           <ShoppingCart
             rocas = {rocas}
             cartContent={cartItems}

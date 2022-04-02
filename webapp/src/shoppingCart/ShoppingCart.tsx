@@ -18,7 +18,7 @@ const Cart:React.FC<Props> = ({rocas, cartContent, handleAddToCart, handleRemove
     
     const getItems = (cartContent: Map<String, number>) => {
         for(let key in cartContent.keys()) {   
-            let item = rocas.find((roca) => {roca.name === key}) as Roca;
+            let item = rocas.find(roca => roca.name === key) as Roca;
             <CartItem 
                 key={item.id}
                 item={item}
@@ -34,22 +34,16 @@ const Cart:React.FC<Props> = ({rocas, cartContent, handleAddToCart, handleRemove
         <Wrapper>
             <h3>Shopping Cart</h3>
             {cartContent.size===0 ? <p>No items in the cart</p>: null}
-            { 
+            { getItems(cartContent) }
 
-                
-            }
             <h3>Total: {getTotal(cartContent).toFixed(2)}€</h3>               
-           {  
-               cartContent.length===0 ?
+           {/* {  
+            cartContent.size===0 ?
+            <li key={0}> </li> : //if cart empty no pay button
             <li key={0}>
-        
-            </li> :
-            <li key={0}>
-                <a className={'active'} href={href}>
-                    {'Pagar'}
-                </a>
+                <a className={'active'} href={}> {'Pay'} </a>
             </li>
-            }           
+            }            */}
         </Wrapper>
     )
 };
