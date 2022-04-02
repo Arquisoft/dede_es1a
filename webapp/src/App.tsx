@@ -20,7 +20,8 @@ import { ThemeProvider } from '@emotion/react';
 
 import Drawer from '@material-ui/core/Drawer';
 import ShoppingCart from './shoppingCart/ShoppingCart';
-import { Wrapper, StyledButton } from './';
+import { Wrapper, StyledButton } from './App.styles';
+import Badge from '@material-ui/core/Badge';
 
 
 function App(): JSX.Element {
@@ -34,6 +35,13 @@ function App(): JSX.Element {
   const [isCartOpen, setCartOpen] = useState(true);
 
   const[cartItems, setCartItems] = useState(new Map<String, number>());
+
+  const getNofItemsCart = (cartItems: Map<String, number> ) => {
+    let n = 0;
+    for(let key in cartItems.keys()) {   
+      n+= cartItems.get(key) as number;
+    }
+  }
 
   const handleAddToCart = (selectedItem: Roca) => {
     setCartItems(cart => {
@@ -86,35 +94,13 @@ function App(): JSX.Element {
 
 
     <ThemeProvider theme={theme}>
-      <Wrapper>
       <ResponsiveAppBar/>
       
-      <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
-          <ShoppingCart
-            rocas = {rocas}
-            cartContent={cartItems}
-            handleAddToCart={handleAddToCart}
-            handleRemoveFromCart={handleRemoveFromCart}
-          />
-      </Drawer>
-
-      <StyledButton onClick={() => setCartOpen(true)}>
-        <Badge badgeContent={getTotalItems(cartItems)} color='error'>
-          <AddShoppingCartIcon fontSize="large" htmlColor='#000000' />
-        </Badge>
-      </StyledButton>
       
-      <Grid container spacing={3}>
-        {data?.map(item => (
-          <Grid item key={item.id} xs={12} sm={4}>
-            <Item item={item} handleAddToCart={handleAddToCart} />
-          </Grid>
-        ))}
-      </Grid>
+      
 
       <Welcome message="ASW students"/>
       <Catalogo rocas={rocas} handleAddToCart={handleAddToCart}/>
-      </Wrapper>
     </ThemeProvider>
   );
 }
