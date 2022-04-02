@@ -18,6 +18,10 @@ import Catalogo from './components/Catalogo';
 import { ThemeProvider } from '@emotion/react';
 //import {createData} from "./code/insertExampleData"
 
+import Drawer from '@material-ui/core/Drawer';
+
+
+
 function App(): JSX.Element {
   const [rocas,setRocas] = useState<Roca[]>([]);
 
@@ -84,13 +88,6 @@ function App(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <ResponsiveAppBar/>
-      <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
-          <Cart
-            cartItems={cartItems}
-            addToCart={handleAddToCart}
-            removeFromCart={handleRemoveFromCart}
-          />
-        </Drawer>
       <Welcome message="ASW students"/>
       <Catalogo rocas={rocas}/>
     </ThemeProvider>
