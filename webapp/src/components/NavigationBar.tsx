@@ -4,10 +4,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-
-const pages = ['Catálogo', 'Iniciar Sesión', 'Registrarse'];
-const settings = ['Perfil', 'Desconectar'];
-
 const NavBar=() =>{
     return(
         <AppBar position="fixed" >
