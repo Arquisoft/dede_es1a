@@ -57,7 +57,8 @@ function RegisterForm(): JSX.Element {
   }
   return (
     <>         
-    <NavBar></NavBar>
+    
+      <NavBar openCart={()=>(1+1)}></NavBar>
      <h1>Registrarse</h1>
 
         <div className="registro-container">

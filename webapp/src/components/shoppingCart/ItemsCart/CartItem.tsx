@@ -1,10 +1,6 @@
 import Button from '@material-ui/core/Button';
 import { Roca } from '../../../shared/shareddtypes';
 
-//Styles
-import {Wrapper} from './ItemsCart.styles';
-
-
 type Props = {
     item: Roca;
     quantity: number
@@ -13,12 +9,13 @@ type Props = {
 }
 
 
-const CartItem: React.FC<Props> = ({item, quantity, handleAddToCart, handleRemoveFromCart}) => (
+const CartItem: React.FC<Props> = ({item, quantity, handleAddToCart, handleRemoveFromCart}) => {
     
-    <Wrapper>
-        <div>
-            <h4>{item.name}</h4>
-            <div className="price">
+    console.log("asdasd")
+    return (
+        <>
+            <h3>{item.name}</h3>
+            {/* <div className="price">
                 <p>Price: €{item.price} </p>
                 <p>Total: €{(quantity * (item.price as number)).toFixed(2)}</p>
             </div>
@@ -42,10 +39,11 @@ const CartItem: React.FC<Props> = ({item, quantity, handleAddToCart, handleRemov
                     +
                 </Button>
             </div>
-        </div>
-        <img src={item.img}/>
-    </Wrapper>
-)
+            <img src={item.img}/> */}
+        </>
+    )
+};
+
 
 export default CartItem;
 

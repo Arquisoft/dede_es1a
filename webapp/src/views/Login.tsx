@@ -51,7 +51,7 @@ function EmailForm(): JSX.Element {
 
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar openCart={()=>(1+1)}></NavBar>
       <br></br><br></br>
       <div className='loggin-container'>
       <form name="loggin" onSubmit={handleSubmit}>

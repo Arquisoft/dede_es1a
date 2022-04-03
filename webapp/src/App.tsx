@@ -9,7 +9,7 @@ import logo from './images/interfaz/logoRock.png';
 import Title from './components/titleUtil';
 import  {getUsers, getRocas} from './api/api';
 
-import { createTheme, List } from '@mui/material';
+import { createTheme, Drawer, List } from '@mui/material';
 import './css/App.css';
 import ResponsiveAppBar from './components/navBar';
 
@@ -18,10 +18,7 @@ import Catalogo from './components/Catalogo';
 import { ThemeProvider } from '@emotion/react';
 //import {createData} from "./code/insertExampleData"
 
-import Drawer from '@material-ui/core/Drawer';
 import ShoppingCart from './components/shoppingCart/ShoppingCart';
-import { Wrapper, StyledButton } from './App.styles';
-import Badge from '@material-ui/core/Badge';
 
 
 function App(): JSX.Element {
@@ -32,30 +29,27 @@ function App(): JSX.Element {
   }
 
   // Shopping cart
-  const [isCartOpen, setCartOpen] = useState(false);
-  const[cartContent, setcartContent] = useState(new Map<String, number>());
-
-  const getNofItemsCart = (cartContent: Map<String, number> ) => {
-    let n = 0;
-    for(let key in cartContent.keys()) {   
-      n+= cartContent.get(key) as number;
-    }
-  }
+  const [isCartOpen, setCartOpen] = React.useState(false);
+  const[cartContent, setCartContent] = useState(new Map<String, number>());
 
   const handleAddToCart = (selectedItem: Roca) => {
-    setcartContent(cart => {
-      let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
+    // setCartContent(cart => {
+    //   let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
 
-      cart.set(selectedItem.name, quantity+1);
-      return cart;
-    })
+    //   cart.set(selectedItem.name, quantity+1);
+    //   alert(cart.size);
+    //   return cart;
+    // })
+      let quantity = cartContent.has(selectedItem.name) ? cartContent.get(selectedItem.name) as number : 0;
+
+      cartContent.set(selectedItem.name, quantity+1);
   };
 
   const handleRemoveFromCart = (selectedItem: Roca) => {
-    setcartContent( cart=> {
+    setCartContent( cart=> {
       let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
 
-      if(quantity == 1) {
+      if(quantity === 1) {
         cart.delete(selectedItem.name);
       } else {
         cart.set(selectedItem.name, quantity-1);
@@ -88,10 +82,10 @@ function App(): JSX.Element {
       
     },
   });
-  
+
   return (
     <ThemeProvider theme={theme}>
-      <ResponsiveAppBar/>
+      <ResponsiveAppBar openCart={()=>setCartOpen(true)}/>
       <Welcome message="ASW students"/>
       <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
         <ShoppingCart 

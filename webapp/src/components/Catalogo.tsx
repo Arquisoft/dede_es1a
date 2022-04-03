@@ -10,11 +10,11 @@ type RocaListProps = {
   handleAddToCart(r:Roca): void;
 };
 //a
-function Catalogo(rocas: RocaListProps): JSX.Element {
+function Catalogo(props: RocaListProps): JSX.Element {
   return (
     <>
       <List id="catalogo">
-      {rocas.rocas.map((roca,index)=>{
+      {props.rocas.map((roca,index)=>{
         return (
           <div className="producto">
 
@@ -30,7 +30,7 @@ function Catalogo(rocas: RocaListProps): JSX.Element {
                 <ListItemText primary={roca.density} className="datoProducto"/>
             </div>
             <Grid item xs={12}>
-              <Button variant="contained" color="primary" style={{width:'100%'}} onClick={() => rocas.handleAddToCart(roca)} >Comprar</Button>
+              <Button variant="contained" color="primary" style={{width:'100%'}} onClick={() => props.handleAddToCart(roca)} >Comprar</Button>
             </Grid>
 
           </div>
