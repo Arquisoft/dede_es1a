@@ -1,14 +1,13 @@
 .App {
   text-align: center;
   background-color: #acb7be;
-  
 }
 
-body{
+body {
   text-align: center;
 }
 
-header{
+header {
   text-align: left;
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -20,8 +19,8 @@ header{
   padding-top: 5px;
 }
 .titulo {
-  font-size:38px;
-  padding-top:25px;
+  font-size: 38px;
+  padding-top: 25px;
 }
 .logoClass {
   padding-top: 0.5em;
@@ -52,53 +51,19 @@ header{
     transform: rotate(360deg);
   }
 }
-div > div > ul > div >div > div{
-  border:0.2em #f3af2f solid;
-  background-color:#ced9ee;
-  text-align: center;
-  
-}
-img{
-  border-radius: 1em;
-}
-div > div > ul {
 
-  
-}
-div > div > ul > div{
-  padding: 1em;
-}
-
-body {  background-color: #ced9ee }
-
-header{
-  background-color: #f3af2f ;
-}
-
-#logoRock{
-  width:20%;
-}
-
-#catalogo{
-  border-radius: 1em;
-  background-color: rgb(241, 248, 255);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 1em;
-  padding: 1em;
-  width: 75%;
-  left: 11%;
-}
-
-.producto{
-  padding: 1em;
-}
-.infoProducto{
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.datoProducto{
+body {
   background-color: #ced9ee;
-  padding: 0.3em;
 }
+
+header {
+  background-color: #f3af2f;
+}
+
+#logoRock {
+  width: 20%;
+}
+
+@import "Catalog.css";
+@import "Showcases.css";
+@import "Product.css";

@@ -2,7 +2,7 @@ export type User = {
     name:string;
     email:string;
   };
-export type Roca = {
+export type Rock = {
     id:React.Key;
     name: String;
     img: string;

@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import type { AlertColor } from '@mui/material/Alert';
-import NavBar from "../components/navBar";
 import {useNavigate} from 'react-router-dom';
 import { checkUser } from '../api/api';
 
@@ -51,7 +50,6 @@ function EmailForm(): JSX.Element {
 
   return (
     <>
-      <NavBar></NavBar>
       <br></br><br></br>
       <div className='loggin-container'>
       <form name="loggin" onSubmit={handleSubmit}>
