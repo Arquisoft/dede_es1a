@@ -20,6 +20,8 @@ function RegisterForm(): JSX.Element {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
+  const[dni,setDni] = useState('');
+  const[name,setName] = useState('');
 
 
   const [notificationStatus, setNotificationStatus] = useState(false);
@@ -32,6 +34,8 @@ function RegisterForm(): JSX.Element {
     e.preventDefault();
     let result:boolean = await addUser({name : '', email});
     console.log({email});
+    console.log({name});
+    console.log({dni});
     console.log({password});
     console.log({confirmPassword})
  
@@ -58,7 +62,7 @@ function RegisterForm(): JSX.Element {
     <>         
      <h1>Registrarse</h1>
 
-        <div className="registro-container">
+        <div id= "log" className="registro-container">
         <form onSubmit={handleSubmit} name="registro" >
         <div className="registro-contenido">
 
@@ -72,6 +76,34 @@ function RegisterForm(): JSX.Element {
           variant="filled"
           value={email}
           onChange={e => setEmail(e.target.value)}
+          sx={{ my: 2 }}
+
+        />
+        </div>
+
+        <div className='field-container'>
+        <TextField
+          required
+          label="Name:"
+          name="name"
+          id="filled-size-small"
+          variant="filled"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          sx={{ my: 2 }}
+
+        />
+        </div>
+
+        <div className='field-container'>
+        <TextField
+          required
+          label="DNI:"
+          name="dni"
+          id="filled-size-small"
+          variant="filled"
+          value={dni}
+          onChange={e => setDni(e.target.value)}
           sx={{ my: 2 }}
 
         />
