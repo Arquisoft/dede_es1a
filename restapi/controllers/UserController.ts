@@ -58,7 +58,6 @@ export const deleteUser = async (req:Request, res:Response): Promise<any> => {
     let user = await User.deleteOne(
         { dni: dni }
     );
-    res.status(200);
     res.send(user);
   };
 
