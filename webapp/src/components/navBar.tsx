@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../images/interfaz/logoRock.png';
 
+import  {setCartOpen} from '../App';
 
 const pages = ['Catálogo', 'Iniciar Sesión', 'Registrarse'];
 const settings = ['Perfil', 'Desconectar'];
@@ -137,6 +138,41 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
+
+          TODO:
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open shopping cart">
+              <IconButton onClick={setCartOpen(false)} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={true/*Boolean(anchorElUser)*/}
+              onClose={setCartOpen(false)}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={setCartOpen(false)}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          TODO:
+
+
+
         </Toolbar>
       </Container>
     </AppBar>

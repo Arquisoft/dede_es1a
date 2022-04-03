@@ -19,7 +19,7 @@ import { ThemeProvider } from '@emotion/react';
 //import {createData} from "./code/insertExampleData"
 
 import Drawer from '@material-ui/core/Drawer';
-import ShoppingCart from './shoppingCart/ShoppingCart';
+import ShoppingCart from './components/shoppingCart/ShoppingCart';
 import { Wrapper, StyledButton } from './App.styles';
 import Badge from '@material-ui/core/Badge';
 
@@ -32,19 +32,18 @@ function App(): JSX.Element {
   }
 
   // Shopping cart
-  const [isCartOpen, setCartOpen] = useState(true);
+  const [isCartOpen, setCartOpen] = useState(false);
+  const[cartContent, setcartContent] = useState(new Map<String, number>());
 
-  const[cartItems, setCartItems] = useState(new Map<String, number>());
-
-  const getNofItemsCart = (cartItems: Map<String, number> ) => {
+  const getNofItemsCart = (cartContent: Map<String, number> ) => {
     let n = 0;
-    for(let key in cartItems.keys()) {   
-      n+= cartItems.get(key) as number;
+    for(let key in cartContent.keys()) {   
+      n+= cartContent.get(key) as number;
     }
   }
 
   const handleAddToCart = (selectedItem: Roca) => {
-    setCartItems(cart => {
+    setcartContent(cart => {
       let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
 
       cart.set(selectedItem.name, quantity+1);
@@ -53,7 +52,7 @@ function App(): JSX.Element {
   };
 
   const handleRemoveFromCart = (selectedItem: Roca) => {
-    setCartItems( cart=> {
+    setcartContent( cart=> {
       let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
 
       if(quantity == 1) {
@@ -91,15 +90,17 @@ function App(): JSX.Element {
   });
   
   return (
-
-
     <ThemeProvider theme={theme}>
       <ResponsiveAppBar/>
-      
-      
-      
-
       <Welcome message="ASW students"/>
+      <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
+        <ShoppingCart 
+          rocas={rocas} 
+          cartContent={cartContent} 
+          handleAddToCart={handleAddToCart} 
+          handleRemoveFromCart={handleRemoveFromCart}
+        />
+      </Drawer>
       <Catalogo rocas={rocas} handleAddToCart={handleAddToCart}/>
     </ThemeProvider>
   );

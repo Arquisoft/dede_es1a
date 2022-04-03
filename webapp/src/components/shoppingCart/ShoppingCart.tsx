@@ -1,4 +1,4 @@
-import {Roca} from '../shared/shareddtypes';
+import {Roca} from '../../shared/shareddtypes';
 //Styles
 import {Wrapper} from './shoppingCart.styles';
 import CartItem from './ItemsCart/ItemsCart';
@@ -31,20 +31,20 @@ const Cart:React.FC<Props> = ({rocas, cartContent, handleAddToCart, handleRemove
 
 
     return (
-        <Wrapper>
+        <>
             <h3>Shopping Cart</h3>
             {cartContent.size===0 ? <p>No items in the cart</p>: null}
             { getItems(cartContent) }
 
-            <h3>Total: {getTotal(cartContent).toFixed(2)}€</h3>               
-           {/* {  
+            <h3>Total: {getTotal(cartContent).toFixed(2)}€</h3>  
+            {/* {  
             cartContent.size===0 ?
             <li key={0}> </li> : //if cart empty no pay button
             <li key={0}>
                 <a className={'active'} href={}> {'Pay'} </a>
             </li>
             }            */}
-        </Wrapper>
+        </>
     )
 };
 
