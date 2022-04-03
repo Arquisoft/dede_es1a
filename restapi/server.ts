@@ -7,6 +7,8 @@ import api from "./api";
 const app: Application = express();
 const port: number = 5000;
 
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 
 const options: cors.CorsOptions = {
@@ -41,11 +43,12 @@ app.listen(port, ():void => {
     console.error('Error occured: ' + error.message);
 });
 
-mongoose.connect("mongodb+srv://dede_es1a:1234@dede-es1a.shdhg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+mongoose.connect(process.env.DB_CONN_STRING, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
   console.log('Database connected')
 }).catch((err: Error) => {
+  console.log(process.env.DB_CONN_STRING)
   console.error(err)
 })
