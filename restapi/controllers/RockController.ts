@@ -6,7 +6,9 @@ const mongoose = require("mongoose");
 export const findRocks = async (req:Request, res:Response) => {
     const rocks = await Rock.find({})
     res.setHeader('Content-Type', 'application/json');
+    res.status(200);
     res.send(rocks);
+
 };
 
 export const findRocksSedimentary = async (req:Request, res:Response) => {
@@ -26,6 +28,12 @@ export const findRocksMetamorphic = async (req:Request, res:Response) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(rocks);
 };
+
+export const findByCritery = async (req:Request, res:Response) => {
+    let critery = req.body.critery;
+    const rocks = await Rock.find({critery})
+    res.send(rocks).json();
+}
 
 export const addRock = async (req:Request, res:Response): Promise<any> => { 
 
