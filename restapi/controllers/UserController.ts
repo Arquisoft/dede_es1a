@@ -7,8 +7,9 @@ const jwt = require("jsonwebtoken");
 
 export const findUsers = async (req:Request, res:Response) => {
     const users = await User.find({});
+    res.setHeader('Content-Type', 'application/json');
     res.status(200);
-    res.send(users).json();
+    res.send(users);
 };
   
 export const addUser = async (req:Request, res:Response): Promise<any> => { 
@@ -57,6 +58,7 @@ export const deleteUser = async (req:Request, res:Response): Promise<any> => {
     let user = await User.deleteOne(
         { dni: dni }
     );
+    res.status(200);
     res.send(user);
   };
 
