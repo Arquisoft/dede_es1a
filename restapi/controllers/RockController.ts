@@ -4,24 +4,29 @@ const Rock = require("../models/Rock");
 const mongoose = require("mongoose");
 
 export const findRocks = async (req:Request, res:Response) => {
-    const rocks = await Rock.find({});
+    const rocks = await Rock.find({})
+    res.setHeader('Content-Type', 'application/json');
     res.status(200);
-    res.send(rocks).json();
+    res.send(rocks);
+
 };
 
 export const findRocksSedimentary = async (req:Request, res:Response) => {
     const rocks = await Rock.find({type : "sedimentaria"})
-    res.send(rocks).json();
+    res.setHeader('Content-Type', 'application/json');
+    res.send(rocks);
 };
 
 export const findRocksFiery= async (req:Request, res:Response) => {
     const rocks = await Rock.find({type : "ígnea"})
-    res.send(rocks).json();
+    res.setHeader('Content-Type', 'application/json');
+    res.send(rocks);
 };
 
 export const findRocksMetamorphic = async (req:Request, res:Response) => {
     const rocks = await Rock.find({type : "metamórfica"})
-    res.send(rocks).json();
+    res.setHeader('Content-Type', 'application/json');
+    res.send(rocks);
 };
 
 export const findByCritery = async (req:Request, res:Response) => {
