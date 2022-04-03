@@ -8,6 +8,8 @@ import {Rock} from './shared/shareddtypes';
 import Catalog from './components/Catalog';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from "./code/Theme";
+import LogIn from './views/Login';
+import Register from './views/Register';
 import NavBar from './components/NavigationBar';
 
 
@@ -32,6 +34,8 @@ function App(): JSX.Element {
           <Route path="/home" element={<Welcome/>} />
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/catalog" element={<Catalog rocks={rocks}/>}/>
+          <Route path = '/login' element = {<LogIn/>}/>
+          <Route path = '/register' element = {<Register/>}/>
         </Routes>
       </Router>
       

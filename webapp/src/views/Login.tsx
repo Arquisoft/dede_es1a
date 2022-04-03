@@ -36,7 +36,7 @@ function EmailForm(): JSX.Element {
         severity:'success',
         message:'You have been registered in the system!'
       });
-      navigate("/inicio");
+      navigate("/home");
       //Notify the change to the parent component
     }
     else{
@@ -87,7 +87,7 @@ function EmailForm(): JSX.Element {
            <br></br>
            <Button variant="contained" onClick={() => handleSubmit} type="submit" sx={{ my: 2 }}>Iniciar sesión</Button>
            <br></br>
-           <Button variant="contained" onClick={() => navigate("/registro")} type="submit" sx={{ my: 2 }}>¿No tienes cuenta? Regístrate</Button>
+           <Button variant="contained" onClick={() => navigate("/register")} type="submit" sx={{ my: 2 }}>¿No tienes cuenta? Regístrate</Button>
            </div>
         </div>
         
