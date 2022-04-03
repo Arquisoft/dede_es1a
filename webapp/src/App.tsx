@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+//import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import Welcome from './components/Welcome';
-import  {getRocas} from './api/api';
+import logo from './images/interfaz/logoRock.png';
+import Title from './components/titleUtil';
+import  {getUsers, getRocas} from './api/api';
 
 import { createTheme } from '@mui/material';
 import './css/App.css';
@@ -40,6 +46,5 @@ function App(): JSX.Element {
     </ThemeProvider>
   );
 }
-
 
 export default App;

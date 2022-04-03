@@ -27,6 +27,7 @@ export async function getRocas():Promise<Rock[]>{
   return response.json()
 } 
 
+
 export async function getRocksSedimentary():Promise<Rock[]>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   let response = await fetch(apiEndPoint+'/rocks/list/sedimentary');
@@ -44,4 +45,18 @@ export async function getRocksMetamorphic():Promise<Rock[]>{
   let response = await fetch(apiEndPoint+'/rocks/list/metamorphic');
   //The objects returned by the api are directly convertible to User objects
   return response.json()
+}
+
+export async function checkUser(username:String,password:String):Promise<boolean>{
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint+'/users/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({'usuario':username, 'contraseña':password})
+    });
+  if (response.status===200)
+    return true;
+  else
+    return false;
+
 }

@@ -19,6 +19,20 @@ app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(bp.json());
 
+let expressSession = require('express-session');
+app.use(expressSession({
+    secret: 'abcdefg',
+    resave: true,
+    saveUninitialized: true,
+}));
+declare global{
+  namespace Express{
+      interface Request{
+        session: typeof expressSession;
+      }
+    }
+}
+
 app.use("/api", api)
 
 app.listen(port, ():void => {
