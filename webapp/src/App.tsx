@@ -1,21 +1,13 @@
 import { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-//import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
 import Welcome from './components/Welcome';
-import logo from './images/interfaz/logoRock.png';
-import Title from './components/titleUtil';
-import  {getUsers, getRocas} from './api/api';
-
-import { createTheme } from '@mui/material';
+import  {getRocas} from './api/api';
 import './css/App.css';
 
-import { HashRouter, Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
 import {Rock} from './shared/shareddtypes';
 import Catalog from './components/Catalog';
 import { ThemeProvider } from '@emotion/react';
-import { theme } from './code/Theme';
+import { theme } from "./code/Theme";
 import NavBar from './components/NavigationBar';
 
 

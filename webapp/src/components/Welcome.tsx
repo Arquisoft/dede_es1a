@@ -1,10 +1,8 @@
 
 import { Box, Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import React, { useState } from "react";
-import ResponsiveAppBar from "./navBar";
 import logo from '../images/interfaz/logoRock.png';
-import Title from "./titleUtil";
+import Title from "./TitleUtil";
 import Showcases from "./Showcases";
 
 function Welcome(): JSX.Element {
