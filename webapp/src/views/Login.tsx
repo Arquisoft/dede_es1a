@@ -18,7 +18,7 @@ type NotificationType = {
 
 function EmailForm(): JSX.Element {
 
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [notificationStatus, setNotificationStatus] = useState(false);
@@ -29,7 +29,7 @@ function EmailForm(): JSX.Element {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let result:boolean = await checkUser(username,password);
+    let result:boolean = await checkUser(email,password);
     if (result){
       setNotificationStatus(true);
       setNotification({ 
@@ -55,16 +55,16 @@ function EmailForm(): JSX.Element {
       <form name="loggin" onSubmit={handleSubmit}>
 
       <div className='loggin-content'>
-      <h3>Usuario:</h3>
+      <h3>Email:</h3>
       <div className='field-container'>
       
         <TextField
             required
             name="Usuario"
-            label="username" 
+            label="email" 
             variant="outlined"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             sx={{ my: 2 }}
           />
       </div>
