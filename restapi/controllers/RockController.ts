@@ -4,7 +4,8 @@ const Rock = require("../models/Rock");
 const mongoose = require("mongoose");
 
 export const findRocks = async (req:Request, res:Response) => {
-    const rocks = await Rock.find({})
+    const rocks = await Rock.find({});
+    res.status(200);
     res.send(rocks).json();
 };
 
