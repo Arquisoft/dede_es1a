@@ -17,7 +17,6 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
 
     const getTotalPrice = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart * item.price, 0);
 
-
     const check2 = (cartContent: Roca[]) => {
         let a = "";
         cartContent.forEach((v, k) => ( a += (v.name + " " + v.quantityCart + "\n") ));

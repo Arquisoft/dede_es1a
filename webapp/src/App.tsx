@@ -19,7 +19,7 @@ import { ThemeProvider } from '@emotion/react';
 //import {createData} from "./code/insertExampleData"
 
 import ShoppingCart from './components/shoppingCart/ShoppingCart';
-import PaymentPage from './components/PaymentPage';
+import PaymentPage from './components/paymentPage/PaymentPage';
 
 
 function App(): JSX.Element {
@@ -95,9 +95,7 @@ function App(): JSX.Element {
     <ThemeProvider theme={theme}>
       <ResponsiveAppBar openCart={()=>setCartOpen(true)}/>
       <Welcome message="ASW students"/>
-      {/* <PaymentPage>
-        cartContent={cartContent} 
-      </PaymentPage> */}
+      
       <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
         <ShoppingCart 
           cartContent={cartContent} 
@@ -106,6 +104,7 @@ function App(): JSX.Element {
         />
       </Drawer>
       <Catalogo rocas={rocas} handleAddToCart={handleAddToCart}/>
+      <PaymentPage cartContent={cartContent} />
     </ThemeProvider>
   );
 }

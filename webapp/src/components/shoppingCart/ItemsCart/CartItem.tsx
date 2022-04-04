@@ -27,7 +27,7 @@ const CartItem: React.FC<Props> = ({item, handleAddToCart, handleRemoveFromCart}
                     onClick={() => handleRemoveFromCart(item.name)}
                 >-</Button>
                 <Typography id="quantity-ci">
-                {item.quantityCart + " uds " }
+                    {item.quantityCart + " uds " }
                 </Typography>
                 <Button
                     size="small"
