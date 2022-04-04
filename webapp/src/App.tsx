@@ -1,40 +1,48 @@
-import React, { useState, useEffect } from 'react';
+
 import { useQuery } from 'react-query';
 import Box from '@mui/material/Box';
 //import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import Welcome from './components/Welcome';
+
 import logo from './images/interfaz/logoRock.png';
 import Title from './components/titleUtil';
-import  {getUsers, getRocas} from './api/api';
+
 
 import { createTheme, Drawer, List } from '@mui/material';
+import { useState, useEffect } from 'react';
+import Welcome from './components/Welcome';
+import  {getRocas} from './api/api';
 import './css/App.css';
-import ResponsiveAppBar from './components/navBar';
-
-import {Roca, User} from './shared/shareddtypes';
-import Catalogo from './components/Catalogo';
+import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
+import {Rock} from './shared/shareddtypes';
+import Catalog from './components/Catalog';
 import { ThemeProvider } from '@emotion/react';
+import { theme } from "./code/Theme";
+import LogIn from './views/Login';
+import Register from './views/Register';
+import NavBar from './components/NavigationBar';
+import { Container } from '@mui/material';
+//import {createData} from "./code/insertExampleData"
+
+
 //import {createData} from "./code/insertExampleData"
 
 import ShoppingCart from './components/shoppingCart/ShoppingCart';
 import PaymentPage from './components/paymentPage/PaymentPage';
-import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
 import { ContentCopy } from '@mui/icons-material';
 
 
 function App(): JSX.Element {
-  const [rocas,setRocas] = useState<Roca[]>([]);
+  const [rocks,setRocks] = useState<Rock[]>([]);
 
-  const refreshRocaList = async () => {
-    setRocas(await getRocas());
+  const refreshRockList = async () => {
+    setRocks(await getRocas());
   }
 
   // Shopping cart
   const [isNewCart, setNewCart] = useState(false);
   const [isCartOpen, setCartOpen] = useState(false);
-  const [cartContent,setCartContent] = useState<Roca[]>([]);
+  const [cartContent,setCartContent] = useState<Rock[]>([]);
 
   useEffect(() => {
     if(isNewCart) {
@@ -44,7 +52,7 @@ function App(): JSX.Element {
     }
     const memoryCart = localStorage.getItem("cart");
     if (memoryCart) {
-      let cart: Roca[] = JSON.parse(memoryCart);
+      let cart: Rock[] = JSON.parse(memoryCart);
       setCartContent(cart); 
     } else {
       localStorage.setItem("cart", JSON.stringify([]));
@@ -57,19 +65,19 @@ function App(): JSX.Element {
     setCartContent([]);
   };
 
-  const handleAddToCart = (selectedItem: Roca) => {
+  const handleAddToCart = (selectedItem: Rock) => {
     localStorage.setItem("cart", JSON.stringify(cartContent));
       setCartContent(cart => {
         if (cart.find(rocaInCart => rocaInCart.name === selectedItem.name)) {
-            // return cart.map(roca => ( 
-            //   roca.name === selectedItem.name ? 
-            //     { ...roca, quantityCart: roca.quantityCart + 1 } : 
-            //     roca
+            // return cart.map(Rock => ( 
+            //   Rock.name === selectedItem.name ? 
+            //     { ...Rock, quantityCart: Rock.quantityCart + 1 } : 
+            //     Rock
             // ));
-            var tempCart= cart.map(roca=>(
-              roca.name === selectedItem.name ? 
-              { ...roca, quantityCart: roca.quantityCart + 1 } : 
-              roca
+            var tempCart= cart.map(Rock=>(
+              Rock.name === selectedItem.name ? 
+              { ...Rock, quantityCart: Rock.quantityCart + 1 } : 
+              Rock
             ));
             return tempCart;
         }
@@ -95,56 +103,41 @@ function App(): JSX.Element {
               var tempCart= [...sum, p];
               return tempCart;
           }
-      }, [] as Roca[])
+      }, [] as Rock[])
     ));
   };
 
 
   useEffect(()=>{
-    refreshRocaList();
+    refreshRockList();
   },[]);
-
-  const theme = createTheme({
-    palette: {
-      primary: {
-        light: '#f3af2f',
-        main: '#f3af2f',
-        dark: '#553311',
-        contrastText: '#111',
-      },
-      secondary: {
-        light: '#ff7961',
-        main: '#f44336',
-        dark: '#ba000d',
-        contrastText: '#000',
-      },
-      
-    },
-  });
-
   return (
     <ThemeProvider theme={theme}>
-      <ResponsiveAppBar openCart={()=>setCartOpen(true)}/>
-      
+      <Container maxWidth="xl" className="principal">
+      <NavBar/>
       <Router>
+        
         <Routes>
-          <Route path="/home" element={<Welcome message="ASW students"/>} />
+          <Route path="/home" element={<Welcome/>} />
           <Route path="/" element={<Navigate replace to="/home" />} />
-          <Route path="/catalog" element={<Catalogo rocas={rocas} handleAddToCart={handleAddToCart}/>}/>
+          <Route path="/catalog" element={<Catalog rocks={rocks}/>}/>
           <Route path="/payment" element={<PaymentPage cartContent={cartContent} setNewCart={setNewCart} />}/>
+          <Route path = '/login' element = {<LogIn/>}/>
+          <Route path = '/register' element = {<Register/>}/>
         </Routes>
+        
       </Router>
-
-      <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
+	  <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
         <ShoppingCart 
           cartContent={cartContent} 
           handleAddToCart={handleAddToCart} 
           handleRemoveFromCart={handleRemoveFromCart}
         />
       </Drawer>
-      
-      
+      </Container>
+
     </ThemeProvider>
+
   );
 }
 

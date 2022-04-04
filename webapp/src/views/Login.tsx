@@ -4,9 +4,10 @@ import TextField from '@mui/material/TextField';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import type { AlertColor } from '@mui/material/Alert';
-import NavBar from "../components/navBar";
+import Box from '@mui/material/Box';
+import logo from '../../logoAsturShop.png'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
-import { checkUser } from '../api/api';
 
 type EmailFormProps = {
   OnUserListChange: () => void;
@@ -19,7 +20,7 @@ type NotificationType = {
 
 function EmailForm(): JSX.Element {
 
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [notificationStatus, setNotificationStatus] = useState(false);
@@ -30,14 +31,15 @@ function EmailForm(): JSX.Element {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let result:boolean = await checkUser(username,password);
+    //let result:boolean = await checkUser(username,password);
+    let result:boolean = true;
     if (result){
       setNotificationStatus(true);
       setNotification({ 
         severity:'success',
         message:'You have been registered in the system!'
       });
-      navigate("/inicio");
+      navigate("/home");
       //Notify the change to the parent component
     }
     else{
@@ -51,22 +53,21 @@ function EmailForm(): JSX.Element {
 
   return (
     <>
-      <NavBar openCart={()=>(1+1)}></NavBar>
       <br></br><br></br>
       <div className='loggin-container'>
       <form name="loggin" onSubmit={handleSubmit}>
 
       <div className='loggin-content'>
-      <h3>Usuario:</h3>
+      <h3>Email:</h3>
       <div className='field-container'>
       
         <TextField
             required
             name="Usuario"
-            label="username" 
+            label="email" 
             variant="outlined"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             sx={{ my: 2 }}
           />
       </div>
@@ -89,7 +90,7 @@ function EmailForm(): JSX.Element {
            <br></br>
            <Button variant="contained" onClick={() => handleSubmit} type="submit" sx={{ my: 2 }}>Iniciar sesión</Button>
            <br></br>
-           <Button variant="contained" onClick={() => navigate("/registro")} type="submit" sx={{ my: 2 }}>¿No tienes cuenta? Regístrate</Button>
+           <Button variant="contained" onClick={() => navigate("/register")} type="submit" sx={{ my: 2 }}>¿No tienes cuenta? Regístrate</Button>
            </div>
         </div>
         

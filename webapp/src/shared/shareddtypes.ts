@@ -1,8 +1,12 @@
 export type User = {
     name:string;
     email:string;
+    dni:string;
+    password:string;
+    repeatPassword:string;
+
   };
-export type Roca = {
+export type Rock = {
     id:React.Key;
     name: string;
     img: string;
