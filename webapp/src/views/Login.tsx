@@ -8,7 +8,6 @@ import type { AlertColor } from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import logo from '../../logoAsturShop.png'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import NavBar from "../components/navBar";
 import {useNavigate} from 'react-router-dom';
 
 type EmailFormProps = {
@@ -55,7 +54,6 @@ function EmailForm(): JSX.Element {
 
   return (
     <>
-      <NavBar></NavBar>
       <br></br><br></br>
       <div className='loggin-container'>
       <form name="loggin" onSubmit={handleSubmit}>

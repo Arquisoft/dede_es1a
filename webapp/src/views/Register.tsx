@@ -7,7 +7,6 @@ import Alert from '@mui/material/Alert';
 import type { AlertColor } from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import {useNavigate} from 'react-router-dom';
-import NavBar from "../components/navBar";
 
 type RegisterProps = {
   OnUserListChange: () => void;
@@ -61,7 +60,6 @@ function RegisterForm(): JSX.Element {
   }
   return (
     <>         
-    <NavBar></NavBar>
      <h1>Registrarse</h1>
 
         <div className="registro-container">
