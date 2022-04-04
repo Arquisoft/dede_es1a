@@ -21,7 +21,7 @@ function Showcase(prefilteredbox: RockListProps): JSX.Element {
         {
             prefilteredbox.rocks.map((_,product)=>{
                 if(prefilteredbox.rocks[product]!==undefined)
-                    return <Product 
+                    return <Product  key={_.id}
                         product={prefilteredbox.rocks[product] 
                         } handleAddToCart ={prefilteredbox.handleAddToCart} buyable={false}
                     />; 

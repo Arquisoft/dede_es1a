@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getRocksFiery, getRocksMetamorphic, getRocksSedimentary } from "../api/api";
 import { Rock } from "../shared/shareddtypes";
 import Showcase from "./Showcase";
+import prefilters from "../code/Prefilters"
 
 type RockListProps = {
   handleAddToCart(r:Rock): void;
@@ -16,7 +17,7 @@ function Showcases(prefilteredbox: RockListProps): JSX.Element {
         const refreshRockList = async () => {
             
             setPrefilteredRocks([...prefilteredRocks,await getRocksMetamorphic(),await getRocksSedimentary(),await getRocksFiery()])
-            setNameOfFilters([...nameOfFilters,"Metamórifcas","Sedimentarias","Volcanicas"])
+            setNameOfFilters(prefilters)
           }
       refreshRockList();
       
@@ -26,7 +27,7 @@ function Showcases(prefilteredbox: RockListProps): JSX.Element {
         
         {prefilteredRocks.map((_, element) => {
             
-            return (<Showcase rocks={prefilteredRocks[element]} name={nameOfFilters[element]} handleAddToCart={prefilteredbox.handleAddToCart}/>); 
+            return (<Showcase key={element} rocks={prefilteredRocks[element]} name={nameOfFilters[element]} handleAddToCart={prefilteredbox.handleAddToCart}/>); 
             
         })}
         

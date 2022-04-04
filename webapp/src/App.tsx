@@ -18,8 +18,8 @@ import {Rock} from './shared/shareddtypes';
 import Catalog from './components/Catalog';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from "./code/Theme";
-import LogIn from './views/Login';
-import Register from './views/Register';
+import LogIn from './components/Login';
+import Register from './components/Register';
 import NavBar from './components/NavigationBar';
 import { Container } from '@mui/material';
 //import {createData} from "./code/insertExampleData"
