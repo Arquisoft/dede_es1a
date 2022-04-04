@@ -10,6 +10,7 @@ import { theme } from "./code/Theme";
 import LogIn from './views/Login';
 import Register from './views/Register';
 import NavBar from './components/NavigationBar';
+import { Container } from '@mui/material';
 //import {createData} from "./code/insertExampleData"
 
 
@@ -27,9 +28,10 @@ function App(): JSX.Element {
   },[]);
   return (
     <ThemeProvider theme={theme}>
-
+      <Container maxWidth="xl" className="principal">
       <NavBar/>
       <Router>
+        
         <Routes>
           <Route path="/home" element={<Welcome/>} />
           <Route path="/" element={<Navigate replace to="/home" />} />
@@ -37,8 +39,9 @@ function App(): JSX.Element {
           <Route path = '/login' element = {<LogIn/>}/>
           <Route path = '/register' element = {<Register/>}/>
         </Routes>
+        
       </Router>
-      
+      </Container>
     </ThemeProvider>
 
   );

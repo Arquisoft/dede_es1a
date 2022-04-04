@@ -1,4 +1,4 @@
-import { ListItemText } from '@mui/material';
+import { AppBar, ListItemText } from '@mui/material';
 import { useState } from 'react';
 import {Rock} from '../shared/shareddtypes';
 import Product from './Product';
@@ -16,7 +16,9 @@ function Showcase(prefilteredbox: RockListProps): JSX.Element {
   return (
     <>
     <div>
-        <ListItemText className="titleOfShowcase" primary={prefilteredbox.name}/>
+        <AppBar position='relative' className="titleOfShowcase">
+          <p> {prefilteredbox.name}</p>
+        </AppBar>
         <div className="showcase">
         {
             prefilteredbox.rocks.map((_,product)=>{
@@ -26,6 +28,7 @@ function Showcase(prefilteredbox: RockListProps): JSX.Element {
             })
         }
         </div>
+        
     </div>
     </>
   );
