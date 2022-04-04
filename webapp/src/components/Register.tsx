@@ -31,8 +31,7 @@ function RegisterForm(): JSX.Element {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-   // let result:boolean = await addUser({email,password,confirmPassword});
-   let result = true;
+    let result:boolean = await addUser({name : name, email: email, dni:dni, password:password, repeatPassword:confirmPassword});
     console.log({email});
     console.log({name});
     console.log({dni});
@@ -48,7 +47,7 @@ function RegisterForm(): JSX.Element {
         message:'You have been registered in the system!'
       });
       //Notify the change to the parent component
-      navigate("/loggin");
+      navigate("/login");
     }
     else{
       setNotificationStatus(true);
@@ -117,6 +116,7 @@ function RegisterForm(): JSX.Element {
           name="password"
           id="filled-size-small"
           variant="filled"
+          type ="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
           sx={{ my: 2 }}
@@ -131,6 +131,7 @@ function RegisterForm(): JSX.Element {
           name="confirmPassword"
           id="filled-size-small"
           variant="filled"
+          type ="password"
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
           sx={{ my: 2 }}
