@@ -30,16 +30,15 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     }
 
     return (
-        <div>
-        <h1 id='title-payment' >Your BUY</h1>
         <div className='paymentpage-payment' >
 
+        <h1 id='title-payment' >Your BUY</h1>
             <div 
                 id='info-payment'
             >
                 <div id='articles-payment'>
                     <h1>Articles</h1>
-                    <div>
+                    <div id='articles-list-payment'>
                         {   cartContent.map(Rock => (
                                 <div id="items-payment">
                                     <h2 id='items-name-payment'>{Rock.name}</h2>
@@ -53,11 +52,13 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                 
                 <div id='bill-payment'>
                     <h1>Payment summary</h1>
-                    <h2>Cost (no iva): {  (getTotalPrice() - (getTotalPrice()*0.21)).toFixed(2) }€</h2>
-                    <h2>Cost: {getTotalPrice().toFixed(2)}€</h2>
-                    
-                    <h2>Cost (shipping costs): {(getTotalPrice()+ 12).toFixed(2)}€</h2>
-                    {/* Aqui cogemos la dir de los pods y sacamos los costes envio */}
+                    <div id="costList-payment">
+                        <h2>Cost (no iva): {  (getTotalPrice() - (getTotalPrice()*0.21)).toFixed(2) }€</h2>
+                        <h2>Cost: {getTotalPrice().toFixed(2)}€</h2>
+                        
+                        <h2>Cost (shipping costs): {(getTotalPrice()+ 12).toFixed(2)}€</h2>
+                    </div>
+
                 </div>
             </div>
 
@@ -65,6 +66,7 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
             <div id='actionButtons-payment'>
             <Button
+                    id="btnHome-payment"
                     size="medium"
                     disableElevation
                     variant="contained"
@@ -86,7 +88,6 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                     Checkout
                 </Button>
             </div>
-        </div>
         </div>
     )
 };
