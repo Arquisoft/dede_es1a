@@ -25,17 +25,15 @@ export const addUser = async (req: Request, res: Response): Promise<any> => {
     let repeatPassword = req.body.repeatPassword;
 
     let errors = validateUser(dni, name, email, toComparePass, repeatPassword);
-    console.log(errors);
     if (errors.length != 0) {
+        res.status(401);
         res.send(errors);
     }
     else {
-
-        let user = await User.findOne(
-            { email: email }
-        );
-
-        if (user) {
+        let query = {email: email}
+        let user = await User.find(query);
+        if (user[0]) {
+            res.status(401);
             res.send({ error: "Error: This user is already registered " + email });
         }
         else {
