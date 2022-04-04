@@ -3,8 +3,13 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { Avatar, Tooltip } from '@mui/material';
 
-const NavBar=() =>{
+type Props = {
+    openCart: () => void;
+  };
+
+const NavBar:React.FC<Props>=({openCart}) =>{
     return(
         <AppBar position="fixed" >
             <Toolbar>
@@ -21,7 +26,11 @@ const NavBar=() =>{
                 </IconButton>
                 <Button color="inherit" href = "/login">Iniciar Sesión</Button> 
                 <Button color="inherit" href = "/register">Regístrate</Button> 
-                
+                <Tooltip title="Open shopping cart">
+                    <IconButton onClick={openCart} sx={{ p: 0 }}>
+                        <Avatar alt="Remy Sharp" src="..\src\images\interfaz\carrito-de-compras.png" />
+                    </IconButton>
+                </Tooltip>
             </Toolbar>     
         </AppBar>
             );
