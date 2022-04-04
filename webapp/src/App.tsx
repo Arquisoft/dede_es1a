@@ -28,7 +28,7 @@ import { Container } from '@mui/material';
 //import {createData} from "./code/insertExampleData"
 
 import ShoppingCart from './components/ShoppingCart';
-import PaymentPage from './components/paymentPage/PaymentPage';
+import PaymentPage from './components/PaymentPage';
 import { ContentCopy } from '@mui/icons-material';
 
 type Props = {
@@ -121,7 +121,7 @@ function App(): JSX.Element {
       <Router>
         
         <Routes>
-          <Route path="/home" element={<Welcome/>} />
+          <Route path="/home" element={<Welcome handleAddToCart={handleAddToCart}/>} />
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/catalog" element={<Catalog rocks={rocks} handleAddToCart={handleAddToCart}/>}/>
           <Route path="/payment" element={<PaymentPage cartContent={cartContent} setNewCart={setNewCart} />}/>

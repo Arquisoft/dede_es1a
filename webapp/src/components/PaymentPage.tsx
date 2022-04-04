@@ -1,4 +1,4 @@
-import {Rock} from '../../shared/shareddtypes';
+
 import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
@@ -8,6 +8,7 @@ import '../css/PaymentPage.css'
 import { CardContent, Typography } from '@mui/material';
 import { North } from '@mui/icons-material';
 import { useState } from 'react';
+import { Rock } from '../shared/shareddtypes';
 
 
 type Props = {
@@ -68,7 +69,7 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                     disableElevation
                     variant="contained"
                     disabled={false}
-                    onClick = {() =>{handlePay();}  
+                    onClick = {() =>{handlePay(); window.location.href = '/home';}  
                     }
                 >
                     Home
