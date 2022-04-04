@@ -28,7 +28,7 @@ const NavBar:React.FC<Props>=({openCart}) =>{
                 <Button color="inherit" href = "/register">Regístrate</Button> 
                 <Tooltip title="Open shopping cart">
                     <IconButton onClick={openCart} sx={{ p: 0 }}>
-                        <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                        <Avatar alt="Remy Sharp" src="..\src\images\interfaz\carrito-de-compras.png" />
                     </IconButton>
                 </Tooltip>
             </Toolbar>     
