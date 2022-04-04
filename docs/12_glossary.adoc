@@ -43,4 +43,10 @@ Potentially more columns in case you need translations.
 | BootStrap                     | Bootstrap is a free and open source front end development framework for the creation of websites and web apps
 | TypeScript                    | TypeScript is a programming language developed and maintained by Microsoft
 | Visual Studio Code            | Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux
+| U.1                           | Identificator for Usability
+| P.1                           | Identificator for Privacity
+| S.1                           | Identificator for Security**
+| M.1                           | Identificator for Modifiability
+| E.1                           | Identificator for Efficiency
+| T.1                           | Identificator for Testability
 |===
