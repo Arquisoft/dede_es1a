@@ -38,7 +38,7 @@ const PaymentPage: React.FC<Props> = ({rocas, cartContent}) => {
                 <h2>Cost (no iva): {  ((getTotal(cartContent) as number) - (getTotal(cartContent)*0.21)).toFixed(2) }€</h2>
                 <h2>Cost: {getTotal(cartContent).toFixed(2)}€</h2>
 
-                    // Aqui cogemos la dir de los pods y sacamos los costes envio
+                // Aqui cogemos la dir de los pods y sacamos los costes envio
                 <button type="button" className="btn btn-primary">
 
                 </button>

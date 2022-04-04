@@ -29,8 +29,11 @@ function App(): JSX.Element {
   }
 
   // Shopping cart
-  const [isCartOpen, setCartOpen] = React.useState(false);
-  const[cartContent, setCartContent] = useState(new Map<String, number>());
+  const [isCartOpen, setCartOpen] = useState(false);
+  const [cartContent,setCartContent] = useState<Roca[]>([]);
+  //TODO: const[cartContent, setCartContent] = useState(new Map<String, number>());
+
+  const getNofItemsCart = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart, 0);
 
   const handleAddToCart = (selectedItem: Roca) => {
     // setCartContent(cart => {
@@ -40,23 +43,51 @@ function App(): JSX.Element {
     //   alert(cart.size);
     //   return cart;
     // })
-      let quantity = cartContent.has(selectedItem.name) ? cartContent.get(selectedItem.name) as number : 0;
+      // TODO: let quantity = cartContent.has(selectedItem.name) ? cartContent.get(selectedItem.name) as number : 0;
 
-      cartContent.set(selectedItem.name, quantity+1);
+      // cartContent.set(selectedItem.name, quantity+1);
+
+      setCartContent(cart => {
+        if (cart.find(rocaInCart => rocaInCart.name === selectedItem.name)) {
+            return cart.map(roca => ( roca.name === selectedItem.name ? 
+                { ...roca, quantityCart: roca.quantityCart + 1 } : 
+                roca
+            ));
+        }
+        return [...cart, {...selectedItem, quantityCart: 1}];
+    });
+    console.log("añadido");
+    console.log(cartContent);
   };
 
-  const handleRemoveFromCart = (selectedItem: Roca) => {
-    setCartContent( cart=> {
-      let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
+  const handleRemoveFromCart = (name: string) => {
+    // TODO: setCartContent( cart=> {
+    //   let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
 
-      if(quantity === 1) {
-        cart.delete(selectedItem.name);
-      } else {
-        cart.set(selectedItem.name, quantity-1);
-      }
+    //   if(quantity === 1) {
+    //     cart.delete(selectedItem.name);
+    //   } else {
+    //     cart.set(selectedItem.name, quantity-1);
+    //   }
 
-      return cart;
-    });
+    //   return cart;
+    // });
+
+    setCartContent(cart => (
+      cart.reduce((sum, p) => {
+          if (p.name === name) {
+              if (p.quantityCart === 1) {
+                  return sum;
+              }
+              return [...sum, {...p, quantityCart: p.quantityCart - 1}];
+          } else {
+              return [...sum, p];
+          }
+      }, [] as Roca[])
+    ));
+  
+    console.log("quitado");
+    console.log(cartContent);
 
   };
 
@@ -89,7 +120,6 @@ function App(): JSX.Element {
       <Welcome message="ASW students"/>
       <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
         <ShoppingCart 
-          rocas={rocas} 
           cartContent={cartContent} 
           handleAddToCart={handleAddToCart} 
           handleRemoveFromCart={handleRemoveFromCart}

@@ -1,36 +1,35 @@
 import Button from '@material-ui/core/Button';
 import { Roca } from '../../../shared/shareddtypes';
+import './CartItem.css'
 
 type Props = {
     item: Roca;
-    quantity: number
     handleAddToCart: (selectedItem: Roca) => void;
-    handleRemoveFromCart: (selectedItem: Roca) => void;
+    // TODO: handleRemoveFromCart: (selectedItem: Roca) => void;
+    handleRemoveFromCart: (id: string) => void;
 }
 
 
-const CartItem: React.FC<Props> = ({item, quantity, handleAddToCart, handleRemoveFromCart}) => {
+const CartItem: React.FC<Props> = ({item, handleAddToCart, handleRemoveFromCart}) => {
     
-    console.log("asdasd")
     return (
-        <>
-            <h3>{item.name}</h3>
-            {/* <div className="price">
-                <p>Price: €{item.price} </p>
-                <p>Total: €{(quantity * (item.price as number)).toFixed(2)}</p>
-            </div>
-            <div className="menuButtons">
+        <div className="cartItem-ci">
+            <h3 id='name-ci'>{item.name}</h3>
+            <div className="menu-ci">
                 <Button
+                    id="buttonR-ci"
                     variant='contained'
                     size = 'small'
                     disableElevation
-                    onClick={()=>handleRemoveFromCart(item)}
+                    onClick={()=>handleRemoveFromCart(item.name)}
                     >
                     -
                 </Button>
                 
-                <p>{quantity}</p>
-                <Button
+                <p id="quantity-ci">{item.quantityCart}</p>
+
+                <Button 
+                    id="buttonS-ci"
                     variant='contained'
                     size = 'small'
                     disableElevation
@@ -39,8 +38,8 @@ const CartItem: React.FC<Props> = ({item, quantity, handleAddToCart, handleRemov
                     +
                 </Button>
             </div>
-            <img src={item.img}/> */}
-        </>
+            <img id="img-ci" src={item.img}/>
+        </div>
     )
 };
 
