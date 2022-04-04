@@ -24,18 +24,16 @@ function Product(product: ProductProps): JSX.Element {
               {product.product!==null ?
               <>
               
-              <ListItemText primary={"precio: "+product.product.price+"€"} className="datoProduct"/>
-              <ListItemText primary={"tipo: "+ product.product.type} className="datoProduct"/>
-              <ListItemText primary={"mohs: "+ product.product.mohsHardness} className="datoProduct"/>
-              <ListItemText primary={"densidad: "+product.product.density} className="datoProduct"/>
+              <p className="datoProduct">{"precio: "+product.product.price+"€"}</p>
+              <p className="datoProduct">{"tipo: "+ product.product.type}</p>
+              <p className="datoProduct">{"mohs: "+ product.product.mohsHardness}</p>
+              <p className="datoProduct">{"densidad: "+product.product.density}</p>
               </>
               : <></>
             }
               
           </div>
-          <Grid item xs={12} hidden={!product.buyable}>
-            <Button variant="contained" color="primary" style={{width:'100%'}}>Comprar</Button>
-          </Grid>
+          <Button variant="contained" className='btnBuy' color="primary" style={{width:'100%'}}>Comprar</Button>
       </div>
   );
 }

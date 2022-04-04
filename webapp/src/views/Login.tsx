@@ -4,8 +4,10 @@ import TextField from '@mui/material/TextField';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import type { AlertColor } from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import logo from '../../logoAsturShop.png'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
-import { checkUser } from '../api/api';
 
 type EmailFormProps = {
   OnUserListChange: () => void;
@@ -29,7 +31,8 @@ function EmailForm(): JSX.Element {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let result:boolean = await checkUser(email,password);
+    //let result:boolean = await checkUser(username,password);
+    let result:boolean = true;
     if (result){
       setNotificationStatus(true);
       setNotification({ 

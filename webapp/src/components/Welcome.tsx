@@ -9,15 +9,13 @@ function Welcome(): JSX.Element {
   
   return (
     <>
+      <div id="App-logo-container">
+        <img src={logo} className="App-logo" alt="logo" />
+      </div>
       
-      <Container maxWidth="sm" className="principal">
-        <Grid item xs={12} >
-          <Box className="logoClass"><img src={logo} className="App-logo" alt="logo" /></Box>
-        </Grid>
-        <div id="showcases">
+      <div id="showcases">
         <Showcases />
-        </div>
-      </Container>
+      </div>
     </>
   );
 }
