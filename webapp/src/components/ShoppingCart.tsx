@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import { Rock } from '../shared/shareddtypes';
 import CartItem from './CartItem';
 import '../css/ShoppingCart.css';
+import ProfileViewer from './solid-pods/ProfileViewer';
+import { useSession } from '@inrupt/solid-ui-react';
+import LoginPod from './solid-pods/LoginPod';
 
 
 
@@ -28,7 +31,7 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
         <Grid sx = {{width: 500}}>
             <h1 id='title-cart'>Shopping Cart</h1>
             {cartContent.length === 0 ? <h3>No items in the cart</h3> : null}
-            {/* {check2(cartContent)} */}
+            
 
             <div className="items-cart">
                 {cartContent.map(item => (
@@ -41,15 +44,8 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
                 ))}
                 <h2 id="price-cart">Total: {getTotalPrice().toFixed(2)} €</h2>
             </div>
-            <Button
-                size="medium"
-                disableElevation
-                variant="contained"
-                disabled={cartContent.length === 0}
-                href = "/payment"
-            >
-                BUY
-            </Button>
+
+            <LoginPod></LoginPod>
 
         </Grid>
     )
