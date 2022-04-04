@@ -12,10 +12,10 @@ import { useState } from 'react';
 
 type Props = {
     cartContent: Roca[];
-    handleResetCart: () => void;
+    setNewCart: (isNewCart: boolean) => void;
 };
 
-const PaymentPage: React.FC<Props> = ({cartContent, handleResetCart}) => {
+const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
     const [isPaid, setPaid] = useState(false);
     const getTotalPrice = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart * item.price, 0);
@@ -27,13 +27,11 @@ const PaymentPage: React.FC<Props> = ({cartContent, handleResetCart}) => {
     }
 
     const handlePay = () => {
-        let vo = document.getElementById('info-payment');
-        
-        if(vo != null) {
-            (vo as HTMLElement).style.visibility= 'visible';
-        };
-        handleResetCart();
+        if(!isPaid)
+            return;
 
+        setNewCart(true);
+        setPaid(false);
     }
 
     return (
@@ -68,7 +66,6 @@ const PaymentPage: React.FC<Props> = ({cartContent, handleResetCart}) => {
                 </div>
             </div>
 
-
             {isPaid ? <h1>Purchase made</h1> : null}
 
             <div id='actionButtons-payment'>
@@ -77,7 +74,8 @@ const PaymentPage: React.FC<Props> = ({cartContent, handleResetCart}) => {
                     disableElevation
                     variant="contained"
                     disabled={false}
-                    href = "/catalog"
+                    onClick = {() =>{handlePay();}  
+                    }
                 >
                     Home
                 </Button>

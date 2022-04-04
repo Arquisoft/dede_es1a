@@ -32,10 +32,16 @@ function App(): JSX.Element {
   }
 
   // Shopping cart
+  const [isNewCart, setNewCart] = useState(false);
   const [isCartOpen, setCartOpen] = useState(false);
   const [cartContent,setCartContent] = useState<Roca[]>([]);
 
   useEffect(() => {
+    if(isNewCart) {
+      resetCart();
+      setNewCart(false);
+      return;
+    }
     const memoryCart = localStorage.getItem("cart");
     if (memoryCart) {
       let cart: Roca[] = JSON.parse(memoryCart);
@@ -43,9 +49,9 @@ function App(): JSX.Element {
     } else {
       localStorage.setItem("cart", JSON.stringify([]));
     }
-  }, []);
+  }, [isNewCart]);
 
-  const handleResetCart = () => {
+  const resetCart = () => {
     setCartContent([]);
     localStorage.setItem("cart", JSON.stringify([]));
     setCartContent([]);
@@ -125,7 +131,7 @@ function App(): JSX.Element {
           <Route path="/home" element={<Welcome message="ASW students"/>} />
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/catalog" element={<Catalogo rocas={rocas} handleAddToCart={handleAddToCart}/>}/>
-          <Route path="/payment" element={<PaymentPage cartContent={cartContent} handleResetCart={handleResetCart} />}/>
+          <Route path="/payment" element={<PaymentPage cartContent={cartContent} setNewCart={setNewCart} />}/>
         </Routes>
       </Router>
 
