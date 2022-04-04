@@ -7,8 +7,10 @@ import Button from '@mui/material/Button';
 import '../css/PaymentPage.css'
 import { CardContent, Typography } from '@mui/material';
 import { North } from '@mui/icons-material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Rock } from '../shared/shareddtypes';
+import { getDeliveryCosts } from '../api/api';
+import { findConfigFile } from 'typescript';
 
 
 type Props = {
@@ -24,21 +26,44 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     const handlePay = () => {
         if(!isPaid)
             return;
-
         setNewCart(true);
         setPaid(false);
     }
+    function getAddressContent() {
+        const memoryCart = localStorage.getItem("address");
+        
+        if (memoryCart) 
+            return memoryCart;
+        else 
+          return "";
+        
+    }
+    const [deliveryCosts, setDeliveryCosts] = useState<Number>();
+    const findDC = async () => {
+        setDeliveryCosts(await getDeliveryCosts(getAddressContent()));
+    }
+    
+    useEffect(() => {
+        findDC();
+    }, []);
 
+    function getFinalDeliveryCosts(){
+        if (deliveryCosts){
+            return (Number(deliveryCosts.toString()) + Number(getTotalPrice())).toFixed(2);
+        }else{
+            return 0;
+        }
+    }
     return (
         <div>
-        <h1 id='title-payment' >Your BUY</h1>
+        <h1 id='title-payment' >Tu Compra</h1>
         <div className='paymentpage-payment' >
 
             <div 
                 id='info-payment'
             >
                 <div id='articles-payment'>
-                    <h1>Articles</h1>
+                    <h1>Articulos</h1>
                     <div>
                         {   cartContent.map(Rock => (
                                 <div id="items-payment">
@@ -52,16 +77,18 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                 </div>
                 
                 <div id='bill-payment'>
-                    <h1>Payment summary</h1>
-                    <h2>Cost (no iva): {  (getTotalPrice() - (getTotalPrice()*0.21)).toFixed(2) }€</h2>
-                    <h2>Cost: {getTotalPrice().toFixed(2)}€</h2>
+                    <h1>Resumen de Pago</h1>
+                    <h2>Costes (no iva): {  (getTotalPrice() - (getTotalPrice()*0.21)).toFixed(2) }€</h2>
+                    <h2>Costes: {getTotalPrice().toFixed(2)}€</h2>
+                    <h2>Costes de Envio: {Number(deliveryCosts).toFixed(2)}€</h2>
+                    <h2>Total: {getFinalDeliveryCosts()}€</h2>
                     
-                    <h2>Cost (shipping costs): {(getTotalPrice()+ 12).toFixed(2)}€</h2>
+                    
                     {/* Aqui cogemos la dir de los pods y sacamos los costes envio */}
                 </div>
             </div>
 
-            {isPaid ? <h1>Purchase made</h1> : null}
+            {isPaid ? <h1>Compra realizada</h1> : null}
 
             <div id='actionButtons-payment'>
             <Button

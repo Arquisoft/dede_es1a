@@ -20,7 +20,7 @@ async function infoAddress(webID: string): Promise<string[]> {
     let address = getStringNoLocale(addressProfile as Thing, VCARD.street_address) as string
     let postalCode = getStringNoLocale(addressProfile as Thing, VCARD.postal_code) as string
     let city = getStringNoLocale(addressProfile as Thing, VCARD.locality) as string
-
+    localStorage.setItem("address", address +", " + city);
     let info = [address, postalCode, city]
 
     return info
