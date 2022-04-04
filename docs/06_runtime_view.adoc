@@ -2,6 +2,23 @@
 == Runtime View
 === Add Product to Shopping Cart
 
+=== Log In / Register
+
+
+image:Diagram_ASW_Runtime_LoginRegister.png["Hierarchy of building blocks"]
+
+The the runtime interactions inside the system to log or register are the following:
+
+ - First the client enters the webpage.
+ - Then clicks on login/register, it goes to the log in page.
+ - The user is required to allow the the app to collect data from the POD.
+ - If allowed, the POD gives the necessary data.
+ - We look into our database to see if user exists, if exists brings back his data, if dont we store them.
+ - Now the user is logged in and it goes back to the home page.
+
+=== Purchase 
+image:Diagram_ASW_Runtime_Purchase.png["Hierarchy of building blocks"]
+The the runtime interactions inside the system purchase any item in our store are the following:
 [plantuml,"Diagrama Añadir producto",png]
 ----
 actor Client
@@ -64,6 +81,16 @@ end
 
 
 === View User Orders
+
+=== Filter Catalog 
+image:Diagram_ASW_Runtime_FilterCatalog.png["Hierarchy of building blocks"]
+The the runtime interactions inside the system purchase any item in our store are the following:
+
+ - First the client enters the webpage.
+ - Then types the desired words to search for.
+ - Clicks search.
+ - The api processes the request and answers with the items.
+ - The interface updates and shows the client their desired products.
 
 [plantuml,"Ver pedidos",png]
 ----

@@ -18,37 +18,36 @@ import {Rock} from './shared/shareddtypes';
 import Catalog from './components/Catalog';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from "./code/Theme";
-import LogIn from './views/Login';
-import Register from './views/Register';
-import NavBar from './components/NavigationBar';
-import { Container } from '@mui/material';
+import LogIn from "./components/Login";
+import Register from "./components/Register";
+import NavBar from "./components/NavigationBar";
+import { Container } from "@mui/material";
 //import {createData} from "./code/insertExampleData"
 
-
 //import {createData} from "./code/insertExampleData"
-
-import ShoppingCart from './components/ShoppingCart';
-import PaymentPage from './components/PaymentPage';
-import { ContentCopy } from '@mui/icons-material';
+import "./css/App.css"
+import ShoppingCart from "./components/ShoppingCart";
+import PaymentPage from "./components/PaymentPage";
+import { ContentCopy } from "@mui/icons-material";
 
 type Props = {
   openCart: () => void;
 };
 
 function App(): JSX.Element {
-  const [rocks,setRocks] = useState<Rock[]>([]);
+  const [rocks, setRocks] = useState<Rock[]>([]);
 
   const refreshRockList = async () => {
     setRocks(await getRocas());
-  }
+  };
 
   // Shopping cart
   const [isNewCart, setNewCart] = useState(false);
   const [isCartOpen, setCartOpen] = useState(false);
-  const [cartContent,setCartContent] = useState<Rock[]>([]);
+  const [cartContent, setCartContent] = useState<Rock[]>([]);
 
   useEffect(() => {
-    if(isNewCart) {
+    if (isNewCart) {
       resetCart();
       setNewCart(false);
       return;
@@ -56,7 +55,7 @@ function App(): JSX.Element {
     const memoryCart = localStorage.getItem("cart");
     if (memoryCart) {
       let cart: Rock[] = JSON.parse(memoryCart);
-      setCartContent(cart); 
+      setCartContent(cart);
     } else {
       localStorage.setItem("cart", JSON.stringify([]));
     }
@@ -70,77 +69,92 @@ function App(): JSX.Element {
 
   const handleAddToCart = (selectedItem: Rock) => {
     localStorage.setItem("cart", JSON.stringify(cartContent));
-      setCartContent(cart => {
-        if (cart.find(rocaInCart => rocaInCart.name === selectedItem.name)) {
-            // return cart.map(Rock => ( 
-            //   Rock.name === selectedItem.name ? 
-            //     { ...Rock, quantityCart: Rock.quantityCart + 1 } : 
-            //     Rock
-            // ));
-            var tempCart= cart.map(Rock=>(
-              Rock.name === selectedItem.name ? 
-              { ...Rock, quantityCart: Rock.quantityCart + 1 } : 
-              Rock
-            ));
-            return tempCart;
-        }
-        // return [...cart, {...selectedItem, quantityCart: 1}];
-        var tempCart= [...cart, {...selectedItem, quantityCart:1}];
+    setCartContent((cart) => {
+      if (cart.find((rocaInCart) => rocaInCart.name === selectedItem.name)) {
+        // return cart.map(Rock => (
+        //   Rock.name === selectedItem.name ?
+        //     { ...Rock, quantityCart: Rock.quantityCart + 1 } :
+        //     Rock
+        // ));
+        var tempCart = cart.map((Rock) =>
+          Rock.name === selectedItem.name
+            ? { ...Rock, quantityCart: Rock.quantityCart + 1 }
+            : Rock
+        );
         return tempCart;
+      }
+      // return [...cart, {...selectedItem, quantityCart: 1}];
+      var tempCart = [...cart, { ...selectedItem, quantityCart: 1 }];
+      return tempCart;
     });
   };
 
   const handleRemoveFromCart = (name: string) => {
     localStorage.setItem("cart", JSON.stringify(cartContent));
-    setCartContent(cart => (
+    setCartContent((cart) =>
       cart.reduce((sum, p) => {
-          if (p.name === name) {
-              if (p.quantityCart === 1) {
-                  return sum;
-              }
-              // return [...sum, {...p, quantityCart: p.quantityCart - 1}];
-              var tempCart= [...sum, {...p, quantityCart:p.quantityCart - 1}]
-              return tempCart;
-          } else {
-              // return [...sum, p];
-              var tempCart= [...sum, p];
-              return tempCart;
+        if (p.name === name) {
+          if (p.quantityCart === 1) {
+            return sum;
           }
+          // return [...sum, {...p, quantityCart: p.quantityCart - 1}];
+          var tempCart = [...sum, { ...p, quantityCart: p.quantityCart - 1 }];
+          return tempCart;
+        } else {
+          // return [...sum, p];
+          var tempCart = [...sum, p];
+          return tempCart;
+        }
       }, [] as Rock[])
-    ));
+    );
   };
 
-
-  useEffect(()=>{
+  useEffect(() => {
     refreshRockList();
-  },[]);
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl" className="principal">
-      <NavBar openCart={()=>setCartOpen(true)}/>
-      <Router>
-        
-        <Routes>
-          <Route path="/home" element={<Welcome handleAddToCart={handleAddToCart}/>} />
-          <Route path="/" element={<Navigate replace to="/home" />} />
-          <Route path="/catalog" element={<Catalog rocks={rocks} handleAddToCart={handleAddToCart}/>}/>
-          <Route path="/payment" element={<PaymentPage cartContent={cartContent} setNewCart={setNewCart} />}/>
-          <Route path = '/login' element = {<LogIn/>}/>
-          <Route path = '/register' element = {<Register/>}/>
-        </Routes>
-        
-      </Router>
-	  <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
-        <ShoppingCart 
-          cartContent={cartContent} 
-          handleAddToCart={handleAddToCart} 
-          handleRemoveFromCart={handleRemoveFromCart}
-        />
-      </Drawer>
+        <NavBar openCart={() => setCartOpen(true)} />
+        <Router>
+          <Routes>
+            <Route
+              path="/home"
+              element={<Welcome handleAddToCart={handleAddToCart} />}
+            />
+            <Route path="/" element={<Navigate replace to="/home" />} />
+            <Route
+              path="/catalog"
+              element={
+                <Catalog rocks={rocks} handleAddToCart={handleAddToCart} />
+              }
+            />
+            <Route
+              path="/payment"
+              element={
+                <PaymentPage
+                  cartContent={cartContent}
+                  setNewCart={setNewCart}
+                />
+              }
+            />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </Router>
+        <Drawer
+          anchor="right"
+          open={isCartOpen}
+          onClose={() => setCartOpen(false)}
+        >
+          <ShoppingCart
+            cartContent={cartContent}
+            handleAddToCart={handleAddToCart}
+            handleRemoveFromCart={handleRemoveFromCart}
+          />
+        </Drawer>
       </Container>
-
     </ThemeProvider>
-
   );
 }
 

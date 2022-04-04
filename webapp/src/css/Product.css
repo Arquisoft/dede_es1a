@@ -5,10 +5,9 @@
   height: 100%;
 }
 .infoProduct {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  grid-template-rows: repeat(2,1fr);
-  
+  display: flex;
+  margin-top: 1em;
+  flex-wrap: wrap;
   gap: 0.3em;
 }
 .imageProductContainer {
@@ -20,24 +19,29 @@
   border-radius: 1em;
   
 }
+
 .imageProductContainer  img{
   border-radius: 1em;
   margin: 1em;
 
   
 }
-
+.infoProduct .datoProduct:first-of-type{
+  width: 100%;
+}
 
 .datoProduct {
   background-color: #ced9ee;
-  padding: 0.3em;
+  padding: 0.5em;
   border-radius: 0.3em;
   border: rgb(230, 237, 241) 0.15em solid;
   height: 80%;
-  display: flex;
+  width: 43%;
+
+  display: flex; /* To make the text inside center vertically*/
   justify-content: center;
   align-items: center;
-  
+  margin: 0;
 }
 .btnBuy{
   position: relative;

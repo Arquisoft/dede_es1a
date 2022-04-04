@@ -1,5 +1,5 @@
 
-shoppingCart{
+#shoppingCart{
     display:grid;
     grid-template-columns: repeat(1,1fr);
     grid-template-rows: repeat(4,1fr);
@@ -13,7 +13,7 @@ shoppingCart{
     grid-column-start: 1;
     grid-column-end: 2;
 
-    background-color: gold;
+    background-color: #f3af2f;
 }
 
 #items-cart{
@@ -31,7 +31,7 @@ shoppingCart{
     grid-column-start: 1;
     grid-column-end: 2;
 
-    background: gold;
+    background: #f3af2f;
 }
 
 #pay-button{

@@ -55,16 +55,15 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
         }
     }
     return (
-        <div>
-        <h1 id='title-payment' >Tu Compra</h1>
         <div className='paymentpage-payment' >
 
+        <h1 id='title-payment' >Your BUY</h1>
             <div 
                 id='info-payment'
             >
                 <div id='articles-payment'>
-                    <h1>Articulos</h1>
-                    <div>
+                    <h1>Articles</h1>
+                    <div id='articles-list-payment'>
                         {   cartContent.map(Rock => (
                                 <div id="items-payment">
                                     <h2 id='items-name-payment'>{Rock.name}</h2>
@@ -92,6 +91,7 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
             <div id='actionButtons-payment'>
             <Button
+                    id="btnHome-payment"
                     size="medium"
                     disableElevation
                     variant="contained"
@@ -113,7 +113,6 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                     Checkout
                 </Button>
             </div>
-        </div>
         </div>
     )
 };

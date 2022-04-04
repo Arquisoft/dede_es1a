@@ -2,6 +2,7 @@
 .principal {
   margin-top: 7em;
   background-color: rgb(230, 237, 241);
+  
 }
 
 body {
@@ -27,10 +28,12 @@ header {
   .btnBuy{
     font-size:  8px !important;
   }
-  
 }
 @import "Catalog.css";
 @import "Showcases.css";
 @import "Product.css";
 @import "LoginRegister.css";
 @import "SpinningLogo.css";
+@import "PaymentPage.css";
+@import "CartItem.css";
+@import "ShoppingCart.css";
