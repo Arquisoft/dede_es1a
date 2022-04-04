@@ -102,6 +102,7 @@ function App(): JSX.Element {
           <Route path="/home" element={<Welcome message="ASW students"/>} />
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/catalog" element={<Catalogo rocas={rocas} handleAddToCart={handleAddToCart}/>}/>
+          <Route path="/payment" element={<PaymentPage cartContent={cartContent} />}/>
         </Routes>
         
       </Router>
@@ -113,7 +114,7 @@ function App(): JSX.Element {
         />
       </Drawer>
       
-      <PaymentPage cartContent={cartContent} />
+      
     </ThemeProvider>
   );
 }

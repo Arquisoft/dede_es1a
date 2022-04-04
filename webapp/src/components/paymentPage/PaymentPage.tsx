@@ -32,9 +32,7 @@ const PaymentPage: React.FC<Props> = ({cartContent}) => {
 
             <div 
                 id='info-payment'
-                
             >
-
                 <div id='articles-payment'>
                     <h1>Articles</h1>
                     <div>
