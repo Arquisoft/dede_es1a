@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import "./logginForm.css"
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import type { AlertColor } from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import logo from '../../logoAsturShop.png'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import NavBar from "../components/navBar";
 import {useNavigate} from 'react-router-dom';
-import { checkUser } from '../api/api';
 
 type EmailFormProps = {
   OnUserListChange: () => void;
@@ -29,7 +33,8 @@ function EmailForm(): JSX.Element {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let result:boolean = await checkUser(username,password);
+    //let result:boolean = await checkUser(username,password);
+    let result:boolean = true;
     if (result){
       setNotificationStatus(true);
       setNotification({ 
@@ -50,6 +55,7 @@ function EmailForm(): JSX.Element {
 
   return (
     <>
+      <NavBar></NavBar>
       <br></br><br></br>
       <div className='loggin-container'>
       <form name="loggin" onSubmit={handleSubmit}>

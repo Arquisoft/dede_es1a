@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import "./registro.css"
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import type { AlertColor } from '@mui/material/Alert';
+import Box from '@mui/material/Box';
 import {useNavigate} from 'react-router-dom';
-import { addUser } from '../api/api';
+import NavBar from "../components/navBar";
 
 type RegisterProps = {
   OnUserListChange: () => void;
@@ -30,7 +34,8 @@ function RegisterForm(): JSX.Element {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let result:boolean = await addUser({name : '', email});
+   // let result:boolean = await addUser({email,password,confirmPassword});
+   let result = true;
     console.log({email});
     console.log({password});
     console.log({confirmPassword})
@@ -56,6 +61,7 @@ function RegisterForm(): JSX.Element {
   }
   return (
     <>         
+    <NavBar></NavBar>
      <h1>Registrarse</h1>
 
         <div className="registro-container">
