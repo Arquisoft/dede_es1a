@@ -1,7 +1,4 @@
 .paymentpage-payment{
-    display:grid;
-    grid-template-columns: repeat(1,1fr);
-    grid-template-rows: repeat(3,1fr);
 
     padding: 5%;
 }
@@ -14,6 +11,9 @@
     grid-column-end: 2;
 
     text-align:'left';
+    
+    border-width: thin;
+    border-style: dotted;
 }
 
 #info-payment{
@@ -30,6 +30,10 @@
 
     text-align: center;
     align-content: center;
+    
+    border-width: thin;
+    border-style: dotted;
+
 }
     #articles-payment{
         grid-row-start: 1;

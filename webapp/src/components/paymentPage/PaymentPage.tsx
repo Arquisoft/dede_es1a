@@ -26,12 +26,13 @@ const PaymentPage: React.FC<Props> = ({cartContent}) => {
     }
 
     return (
-        <Grid sx = {{}} className='paymentpage-payment' >
-            <Typography id='title-payment' variant="h2" >Your BUYYYY</Typography>
+        <div>
+        <h1 id='title-payment' >Your BUYYYY</h1>
+        <div className='paymentpage-payment' >
 
-            <CardContent 
+            <div 
                 id='info-payment'
-                sx = {{alignItems:"initial"}}
+                
             >
 
                 <div id='articles-payment'>
@@ -56,9 +57,9 @@ const PaymentPage: React.FC<Props> = ({cartContent}) => {
                     <h2>Cost (shipping costs): {(getTotalPrice()+ 12).toFixed(2)}€</h2>
                     {/* Aqui cogemos la dir de los pods y sacamos los costes envio */}
                 </div>
-            </CardContent>
+            </div>
 
-            <CardContent id='actionButtons-payment'>
+            <div id='actionButtons-payment'>
             <Button
                     size="medium"
                     disableElevation
@@ -77,8 +78,9 @@ const PaymentPage: React.FC<Props> = ({cartContent}) => {
                 >
                     Checkout
                 </Button>
-            </CardContent>
-        </Grid>
+            </div>
+        </div>
+        </div>
     )
 };
 

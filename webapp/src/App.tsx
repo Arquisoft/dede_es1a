@@ -113,6 +113,7 @@ function App(): JSX.Element {
         />
       </Drawer>
       
+      <PaymentPage cartContent={cartContent} />
     </ThemeProvider>
   );
 }
