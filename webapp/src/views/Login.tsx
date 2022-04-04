@@ -53,6 +53,7 @@ function EmailForm(): JSX.Element {
 
   return (
     <>
+    <h1>Entrar en Sesión</h1>
       <br></br><br></br>
       <div className='loggin-container'>
       <form name="loggin" onSubmit={handleSubmit}>
