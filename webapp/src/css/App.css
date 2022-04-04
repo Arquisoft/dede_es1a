@@ -1,0 +1,69 @@
+.App {
+  text-align: center;
+  background-color: #acb7be;
+}
+
+body {
+  text-align: center;
+}
+
+header {
+  text-align: left;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.principal {
+  padding-top: 5px;
+}
+.titulo {
+  font-size: 38px;
+  padding-top: 25px;
+}
+.logoClass {
+  padding-top: 0.5em;
+}
+.appBar {
+  background-color: brown;
+}
+.App-header {
+  background-color: #acb7be;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(192, 157, 40);
+}
+
+.App-link {
+  color: #e0c66f;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  background-color: #ced9ee;
+}
+
+header {
+  background-color: #f3af2f;
+}
+
+#logoRock {
+  width: 20%;
+}
+
+@import "Catalog.css";
+@import "Showcases.css";
+@import "Product.css";

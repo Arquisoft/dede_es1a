@@ -1,0 +1,31 @@
+.product {
+  padding: 1em;
+  margin-bottom: 3em;
+  text-align: center;
+  text-rendering: optimizeSpeed;
+}
+.infoProduct {
+  width: 100%;
+  height: 75%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.imageProductContainer {
+  height: 7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: #f3af2f 0.2em dashed;
+  border-radius: 0.3em;
+}
+.datoProduct {
+  background-color: #ced9ee;
+  padding: 0.3em;
+  border-radius: 0.3em;
+  border: rgb(230, 237, 241) 0.15em solid;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

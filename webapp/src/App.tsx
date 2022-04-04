@@ -1,36 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Container from '@mui/material/Container';
-import EmailForm from './components/EmailForm';
+import { useState, useEffect } from 'react';
 import Welcome from './components/Welcome';
-import UserList from './components/UserList';
-import  {getUsers} from './api/api';
-import {User} from './shared/shareddtypes';
-import './App.css';
+import  {getRocas} from './api/api';
+import './css/App.css';
+
+import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
+import {Rock} from './shared/shareddtypes';
+import Catalog from './components/Catalog';
+import { ThemeProvider } from '@emotion/react';
+import { theme } from "./code/Theme";
+import LogIn from './views/Login';
+import Register from './views/Register';
+import NavBar from './components/NavigationBar';
+
+
+//import {createData} from "./code/insertExampleData"
 
 function App(): JSX.Element {
+  const [rocks,setRocks] = useState<Rock[]>([]);
 
-  const [users,setUsers] = useState<User[]>([]);
-
-  const refreshUserList = async () => {
-    setUsers(await getUsers());
+  const refreshRockList = async () => {
+    setRocks(await getRocas());
   }
 
   useEffect(()=>{
-    refreshUserList();
+    refreshRockList();
   },[]);
-
   return (
-    <>
-      <Container maxWidth="sm">
-        <Welcome message="ASW students"/>
-        <Box component="div" sx={{ py: 2}}>This is a basic example of a React application using Typescript. You can add your email to the list filling the form below.</Box>
-        <EmailForm OnUserListChange={refreshUserList}/>        
-        <UserList users={users}/>
-        <Link href="https://github.com/pglez82/asw2122_0">Source code</Link>
-      </Container>
-    </>
+    <ThemeProvider theme={theme}>
+
+      <NavBar/>
+      <Router>
+        <Routes>
+          <Route path="/home" element={<Welcome/>} />
+          <Route path="/" element={<Navigate replace to="/home" />} />
+          <Route path="/catalog" element={<Catalog rocks={rocks}/>}/>
+          <Route path = '/login' element = {<LogIn/>}/>
+          <Route path = '/register' element = {<Register/>}/>
+        </Routes>
+      </Router>
+      
+    </ThemeProvider>
   );
 }
 

@@ -2,7 +2,16 @@
 == Solution Strategy
 
 
-=== 4.2 How to achieve key quality objectives
+=== Technology decisions
+ - React: React makes it easy for us to program user interfaces using JavaScript.
+ - Solid: SOLID gives the user the ability to choose what data they want to provide, and makes it easier for us to access it.
+ - BootStrap: Bootstrap makes it easy for us to develop HTML and CSS for the web application
+ - MongoDB: MongoDB is a non-relational database which allows us to not have to model all relationships.
+
+
+
+
+=== How to achieve key quality objectives
 
 **Usability & Efficiently**
 
@@ -12,5 +21,6 @@ All web and services will be optimized with the main aim of making queue waiting
 **Privacity & Security**
 
 We will ensure that the application is robust against the most common attacks, and we will ensure user privacy so that their data would not be leaked.
+
 
 

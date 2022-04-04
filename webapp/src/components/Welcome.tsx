@@ -1,24 +1,24 @@
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import logo from '../logo.svg';
 
-type WelcomeProps = {
-  message: string;
-}
+import { Box, Container } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import logo from '../images/interfaz/logoRock.png';
+import Showcases from "./Showcases";
 
-function Welcome(props: WelcomeProps): JSX.Element {
+function Welcome(): JSX.Element {
 
+  
   return (
-    <Grid container>
-      <Grid item xs={10}>
-        <Box component="h2">Hi, {props.message}</Box>
-      </Grid>
-      <Grid item xs={2}>
-        <img src={logo} className="App-logo" alt="logo" />
-      </Grid>
+    <>
       
-    </Grid>
-    
+      <Container maxWidth="sm" className="principal">
+        <Grid item xs={12} >
+          <Box className="logoClass"><img src={logo} className="App-logo" alt="logo" /></Box>
+        </Grid>
+        <div id="showcases">
+        <Showcases />
+        </div>
+      </Container>
+    </>
   );
 }
 
