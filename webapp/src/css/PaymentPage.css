@@ -1,6 +1,6 @@
 .paymentpage-payment{
 
-    padding: 5%;
+    padding: 3%;
 }
 
 #title-payment{
@@ -12,8 +12,10 @@
 
     text-align:'left';
     
-    border-width: thin;
-    border-style: dotted;
+    
+    padding: 2%;
+
+    background-color: #f3af2f;
 }
 
 #info-payment{
@@ -25,14 +27,12 @@
 
     
     display:grid;
-    grid-template-columns: repeat(1,1fr);
-    grid-template-rows: repeat(auto,1fr);
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(1,1fr);
 
     text-align: center;
     align-content: center;
     
-    border-width: thin;
-    border-style: dotted;
 
 }
     #articles-payment{
@@ -44,17 +44,24 @@
 
         text-align: left;
 
-        padding-right: 50%;
+        padding-right: 20%;
     }
-        #items-payment{                    
-            display:grid;
-            grid-template-columns: repeat(3,1fr);
-            grid-template-rows: repeat(1,1fr);
-
-            
-        text-align: left;
+        #articles-list-payment{
+            padding: 10%;
+            padding-left: 20%;
+            border-width: 1em;
+            border-style: solid ;
+            border-color: #f3af2f;
 
         }
+            #items-payment{                    
+                display:grid;
+                grid-template-columns: repeat(3,1fr);
+                grid-template-rows: repeat(1,1fr);
+
+                
+                text-align: left;
+            }
 
     #bill-payment{
         grid-row-start: 1;
@@ -64,7 +71,17 @@
         grid-column-end: 3;
 
         text-align: left;
+
+        padding-right: 20%;
     }
+        #costList-payment{
+            padding: 10%;
+            padding-left: 20%;
+            border-width: 1em;
+            border-style: solid ;
+            border-color: #f3af2f;
+
+        }
 
 #actionButtons-payment{
     grid-row-start: 3;
@@ -72,7 +89,9 @@
 
     grid-column-start: 1;
     grid-column-end: 2;
-
+    padding: 1em;
+    
+    text-align: center;
 }
 #items-name-payment{     
     text-align: left;
