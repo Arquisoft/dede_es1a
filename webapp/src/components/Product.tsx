@@ -13,17 +13,17 @@ function Product(product: ProductProps): JSX.Element {
           <div className='imageProductContainer'>
           {product.product!==null ?
               <>
+              
               <img src={product.product.img} style={{width:'100%'}} alt={product.product.name.toString()}/>
               </>
               : <></>
             }
-            
           </div>
-
           <div className="infoProduct">
+              
               {product.product!==null ?
               <>
-              
+              <p className="datoProduct">{"nombre: "+product.product.name}</p>
               <p className="datoProduct">{"precio: "+product.product.price+"€"}</p>
               <p className="datoProduct">{"tipo: "+ product.product.type}</p>
               <p className="datoProduct">{"mohs: "+ product.product.mohsHardness}</p>

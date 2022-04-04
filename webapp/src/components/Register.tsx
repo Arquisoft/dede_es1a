@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
 import type { AlertColor } from '@mui/material/Alert';
-import Box from '@mui/material/Box';
 import {useNavigate} from 'react-router-dom';
 
 type RegisterProps = {
