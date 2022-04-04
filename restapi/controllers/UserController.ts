@@ -7,8 +7,9 @@ const jwt = require("jsonwebtoken");
 
 export const findUsers = async (req:Request, res:Response) => {
     const users = await User.find({});
+    res.setHeader('Content-Type', 'application/json');
     res.status(200);
-    res.send(users).json();
+    res.send(users);
 };
   
 export const addUser = async (req:Request, res:Response): Promise<any> => { 
