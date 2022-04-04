@@ -2,18 +2,34 @@
 == Architecture Constraints
 
 
-[role="arc42help"]
+
 ****
-.Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+.Technical Constraints
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
+|===
+|	  |Constraint|Motivation
+| TC1 | Implementation in TypeScript | The application will be implmented with TypeScript
+| TC2 | Interface with React | The visual interface will be implemented with React.
+| TC3 | Database in MongoDB | The data of the application will be stored in the database MongoDB.
 
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
+|===
+
+.Organizational Constraints
+
+|===
+|	  |Constraint|Motivation
+| OC1 | Time | The application will be developed between March 2022 and May 2022.
+| OC2 | Team | Ignacio Gomez Gasch, Valentin Dumitru, Jorge Torano Herrera, Adrian Estrada Gonzalez
+| OC3 | Repository| The code and infomation of the whole project will be managed in GitHub in a private repository.
+
+|===
+.Conventions
+
+|===
+|	  |Constraint|Motivation
+| C1 | Documentation | Documentation with arc32 architecture.
+| C2 | SOLID | The application follows SOLID statements to protect personal information of the users.
+| C3 | Language| Documentation in english.
+
+|===
 ****

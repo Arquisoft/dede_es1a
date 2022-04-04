@@ -1,0 +1,42 @@
+.showcase {
+  border: rgb(230, 237, 241) 0.3em solid;
+  background-color: #d8e3f7;
+  border-radius: 1em;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(2,1fr);
+  position: relative;
+  top: 5em;
+  
+}
+#showcases {
+  max-width: max-content;
+
+  border-radius: 1em;
+
+  gap: 1em;
+  
+  padding: 1em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+.titleOfShowcase {
+  padding-left: 1em;
+  margin-bottom: 0.8em;
+  font-size: 1.5em;
+  height: 3em;
+
+  position: relative;
+  top: 4em;
+}
+@media only screen and (max-width: 1000px) {
+  .btnBuy{
+    font-size:  12px !important;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .btnBuy{
+    font-size:  8px !important;
+  }
+}

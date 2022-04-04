@@ -1,0 +1,36 @@
+
+.principal {
+  margin-top: 7em;
+  background-color: rgb(230, 237, 241);
+}
+
+body {
+  background-color: #ced9ee;
+}
+
+header {
+  background-color: #f3af2f;
+}
+
+@media only screen and (max-width: 1000px) {
+  body {
+    font-size: 12px;
+  }
+  .btnBuy{
+    font-size:  12px !important;
+  }
+}
+@media only screen and (max-width: 800px) {
+  body {
+    font-size: 8px;
+  }
+  .btnBuy{
+    font-size:  8px !important;
+  }
+  
+}
+@import "Catalog.css";
+@import "Showcases.css";
+@import "Product.css";
+@import "LoginRegister.css";
+@import "SpinningLogo.css";

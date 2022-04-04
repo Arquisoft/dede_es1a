@@ -1,0 +1,45 @@
+.product {
+  padding: 1em;
+  margin-bottom: 3em;
+  text-align: center;
+  height: 100%;
+}
+.infoProduct {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(2,1fr);
+  
+  gap: 0.3em;
+}
+.imageProductContainer {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 1em;
+  
+}
+.imageProductContainer  img{
+  border-radius: 1em;
+  margin: 1em;
+
+  
+}
+
+
+.datoProduct {
+  background-color: #ced9ee;
+  padding: 0.3em;
+  border-radius: 0.3em;
+  border: rgb(230, 237, 241) 0.15em solid;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.btnBuy{
+  position: relative;
+  top:2em !important;
+}

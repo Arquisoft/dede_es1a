@@ -11,12 +11,12 @@ image::Quality_Tree.png[]
 === Quality Scenarios
 [options="header",cols="1,1,1,1"]
 |===
-Priority Position|Quality attribute|Scenario|Priority
-| **1** | **Usability** | The application must be intuitive and easy to use bu most users | Very High
-| **2** | **Privay**  | The user will have the power to choose the (non-essential) information that the application shows or has | Very High
-| **3** | **Security** | The application should offer a certain security and integrity against attacks | High
-| **4** | **Modifiability** | The application code should be easily extensible to add new functionality easily | Medium
-| **5** | **Efficiency** | The application must be optimized to minimize waiting times for services | Medium
-| **6** | **Testability** | The application code should be easily testable, to facilitate testing to realiease a robust final product | Medium
+ID|Quality attribute|Scenario|Priority User/Dev
+| **U.1** | **Usability** | The application must be intuitive and easy to use bu most users | High/High
+| **P.1** | **Privacity**  | The user will have the power to choose the (non-essential) information that the application shows or has | High/High
+| **S.1** | **Security** | The application should offer a certain security and integrity against attacks | High/Medium
+| **M.1** | **Modifiability** | The application code should be easily extensible to add new functionality easily | Low/High
+| **E.1** | **Efficiency** | The application must be optimized to minimize waiting times for services | High/Medium
+| **T.1** | **Testability** | The application code should be easily testable, to facilitate testing to realiease a robust final product | Low/High
 |===
 
