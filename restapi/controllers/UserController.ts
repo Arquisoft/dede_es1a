@@ -6,8 +6,10 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 
 export const findUsers = async (req:Request, res:Response) => {
-    const users = await User.find({})
-    res.send(users).json();
+    const users = await User.find({});
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
+    res.send(users);
 };
   
 export const addUser = async (req:Request, res:Response): Promise<any> => { 
@@ -44,6 +46,7 @@ export const addUser = async (req:Request, res:Response): Promise<any> => {
             password: password
         });
         await user.save();
+        res.status(200);
         res.send(user);
     }
   };
