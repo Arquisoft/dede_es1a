@@ -1,9 +1,11 @@
 import React from 'react'
-import { render } from "@testing-library/react";
+import {render , screen} from "@testing-library/react";
 import Welcome from "../Welcome";
+import { Rock } from '../../shared/shareddtypes';
 
 test('check that everything is rendering propertly', async () => {
-  const message:string = "students";
-  const { getByText } = render(<Welcome message={message}/>);
-  expect(getByText('Hi, '+message)).toBeInTheDocument();
+  render(<Welcome handleAddToCart={function (r: Rock): void {
+    throw new Error('Function not implemented.');
+  } }/>);
+  expect(screen.getByAltText("logo")).toBeInTheDocument();
 });

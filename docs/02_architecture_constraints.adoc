@@ -19,7 +19,7 @@
 |===
 |	  |Constraint|Motivation
 | OC1 | Time | The application will be developed between March 2022 and May 2022.
-| OC2 | Team | Ignacio Gomez Gasch, Valentin Dumitru, Mario Garcia Prieto, Jorge Torano Herrera, Adrian Estrada Gonzalez
+| OC2 | Team | Ignacio Gomez Gasch, Valentin Dumitru, Jorge Torano Herrera, Adrian Estrada Gonzalez
 | OC3 | Repository| The code and infomation of the whole project will be managed in GitHub in a private repository.
 
 |===

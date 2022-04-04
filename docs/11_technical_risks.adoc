@@ -1,17 +1,13 @@
 [[section-technical-risks]]
-== Risks and Technical Debts
 
-
-[role="arc42help"]
-****
-.Contents
-A list of identified technical risks or technical debts, ordered by priority
-
-.Motivation
-“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.) 
-
-This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.
-
-.Form
-List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
-****
+=== Risks and Technical Debts
+[options="header",cols="1,1"]
+|===
+Risk|Trade off
+| The interface is unfriendly to users | We will have to invest time to test and code the flows through the interfaces
+| The payment data of the purchases can intervene | slower payment transactions
+| An attacker can access and modify the data of our application | More time to choose a robust db for the application
+| It is complicated to add new functionalities to the application | Refactor and choose application design patterns well to facilitate the addition of new functionalities
+| Waiting times for application processes are very long | Increased work to design a code as efficient as possible
+| It is complicated to test the functionalities of the application | Increased work to design tests that test all the functionalities of the application
+|===

@@ -5,23 +5,40 @@ const mongoose = require("mongoose");
 
 export const findRocks = async (req:Request, res:Response) => {
     const rocks = await Rock.find({})
-    res.send(rocks).json();
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
+    res.send(rocks);
+
 };
 
 export const findRocksSedimentary = async (req:Request, res:Response) => {
     const rocks = await Rock.find({type : "sedimentaria"})
-    res.send(rocks).json();
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
+    res.send(rocks);
 };
 
 export const findRocksFiery= async (req:Request, res:Response) => {
     const rocks = await Rock.find({type : "ígnea"})
-    res.send(rocks).json();
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
+    res.send(rocks);
 };
 
 export const findRocksMetamorphic = async (req:Request, res:Response) => {
     const rocks = await Rock.find({type : "metamórfica"})
-    res.send(rocks).json();
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
+    res.send(rocks);
 };
+
+export const findByCritery = async (req:Request, res:Response) => {
+    let critery = req.body.critery;
+    const rocks = await Rock.find({critery})
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
+    res.send(rocks);
+}
 
 export const addRock = async (req:Request, res:Response): Promise<any> => { 
 
@@ -54,6 +71,7 @@ export const addRock = async (req:Request, res:Response): Promise<any> => {
             img: img
         });
         await rock.save();
+        res.status(200);
         res.send(rock);
     }
 };
@@ -65,5 +83,6 @@ export const deleteRock = async (req:Request, res:Response): Promise<any> => {
     let rock = await Rock.deleteOne(
         { _id: mongoose.Types.ObjectId(rockId) }
     );
+    res.status(200);
     res.send(rock);
 };

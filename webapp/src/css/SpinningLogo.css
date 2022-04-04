@@ -1,0 +1,21 @@
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+#App-logo-container {
+  padding-top: 4em;
+  padding-bottom: 4em;
+  text-align: center;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+#logoRock {
+  width: 20%;
+}
