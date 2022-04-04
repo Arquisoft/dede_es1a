@@ -37,4 +37,6 @@ Potentially more columns in case you need translations.
 | BootStrap                     | Bootstrap is a free and open source front end development framework for the creation of websites and web apps
 | TypeScript                    | TypeScript is a programming language developed and maintained by Microsoft
 | Visual Studio Code            | Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux
+|Cloudinary|Cloudinary is an api that transform images and videos to load faster with no visual degradation, automatically generate image and video variants, and deliver high quality responsive experiences to increase conversions.
+|OpenStreetMap|OpenStreetMap is a collaborative project to create free and editable maps.
 |===
