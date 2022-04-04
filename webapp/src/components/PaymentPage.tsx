@@ -4,7 +4,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 
 import Button from '@mui/material/Button';
-import './PaymentPage.css'
+import '../css/PaymentPage.css'
 import { CardContent, Typography } from '@mui/material';
 import { North } from '@mui/icons-material';
 import { useState } from 'react';
