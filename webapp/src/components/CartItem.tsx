@@ -1,12 +1,12 @@
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { Card, CardContent, CardMedia } from '@mui/material';
-import { Roca } from '../../../shared/shareddtypes';
-import './CartItem.css'
+import { Rock } from '../shared/shareddtypes';
+import '../css/CartItem.css';
 
 type Props = {
-    item: Roca;
-    handleAddToCart: (selectedItem: Roca) => void;
+    item: Rock;
+    handleAddToCart: (selectedItem: Rock) => void;
     handleRemoveFromCart: (id: string) => void;
 }
 

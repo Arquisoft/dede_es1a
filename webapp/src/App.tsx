@@ -27,10 +27,13 @@ import { Container } from '@mui/material';
 
 //import {createData} from "./code/insertExampleData"
 
-import ShoppingCart from './components/shoppingCart/ShoppingCart';
+import ShoppingCart from './components/ShoppingCart';
 import PaymentPage from './components/paymentPage/PaymentPage';
 import { ContentCopy } from '@mui/icons-material';
 
+type Props = {
+  openCart: () => void;
+};
 
 function App(): JSX.Element {
   const [rocks,setRocks] = useState<Rock[]>([]);
@@ -114,13 +117,13 @@ function App(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl" className="principal">
-      <NavBar/>
+      <NavBar openCart={()=>setCartOpen(true)}/>
       <Router>
         
         <Routes>
           <Route path="/home" element={<Welcome/>} />
           <Route path="/" element={<Navigate replace to="/home" />} />
-          <Route path="/catalog" element={<Catalog rocks={rocks}/>}/>
+          <Route path="/catalog" element={<Catalog rocks={rocks} handleAddToCart={handleAddToCart}/>}/>
           <Route path="/payment" element={<PaymentPage cartContent={cartContent} setNewCart={setNewCart} />}/>
           <Route path = '/login' element = {<LogIn/>}/>
           <Route path = '/register' element = {<Register/>}/>

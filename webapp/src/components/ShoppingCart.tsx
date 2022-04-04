@@ -1,15 +1,15 @@
 import { Button, Grid } from '@mui/material';
 import e from 'express';
 import { useEffect, useState } from 'react';
-import { Roca } from '../../shared/shareddtypes';
-import CartItem from './ItemsCart/CartItem';
-import "./ShoppingCart.css"
+import { Rock } from '../shared/shareddtypes';
+import CartItem from './CartItem';
+import '../css/ShoppingCart';
 
 
 
 type Props = {
-    cartContent: Roca[];
-    handleAddToCart: (selectedItem: Roca) => void;
+    cartContent: Rock[];
+    handleAddToCart: (selectedItem: Rock) => void;
     handleRemoveFromCart: (id: string) => void;
 };
 
@@ -17,7 +17,7 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
 
     const getTotalPrice = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart * item.price, 0);
 
-    const check2 = (cartContent: Roca[]) => {
+    const check2 = (cartContent: Rock[]) => {
         let a = "";
         cartContent.forEach((v, k) => ( a += (v.name + " " + v.quantityCart + "\n") ));
         console.log(a);

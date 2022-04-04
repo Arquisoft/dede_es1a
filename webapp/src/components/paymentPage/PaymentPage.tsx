@@ -1,4 +1,4 @@
-import {Roca} from '../../shared/shareddtypes';
+import {Rock} from '../../shared/shareddtypes';
 import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 
 type Props = {
-    cartContent: Roca[];
+    cartContent: Rock[];
     setNewCart: (isNewCart: boolean) => void;
 };
 
@@ -20,12 +20,6 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     const [isPaid, setPaid] = useState(false);
     const getTotalPrice = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart * item.price, 0);
     
-    const showMessagePaymentCompleted = () => {
-        return(
-            <h1>Articles</h1>
-        );
-    }
-
     const handlePay = () => {
         if(!isPaid)
             return;
@@ -45,11 +39,11 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                 <div id='articles-payment'>
                     <h1>Articles</h1>
                     <div>
-                        {   cartContent.map(roca => (
+                        {   cartContent.map(Rock => (
                                 <div id="items-payment">
-                                    <h2 id='items-name-payment'>{roca.name}</h2>
-                                    <h2 id='items-quantity-payment'>x{roca.quantityCart}</h2>
-                                    <h2 id='items-total-payment'>{roca.quantityCart*roca.price}€</h2>
+                                    <h2 id='items-name-payment'>{Rock.name}</h2>
+                                    <h2 id='items-quantity-payment'>x{Rock.quantityCart}</h2>
+                                    <h2 id='items-total-payment'>{Rock.quantityCart*Rock.price}€</h2>
                                 </div>
                             ))
                         }
