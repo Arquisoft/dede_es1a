@@ -27,21 +27,6 @@ export const findRocksMetamorphic = async (req:Request, res:Response) => {
     res.send(rocks);
 };
 
-export const findRocksSedimentary = async (req:Request, res:Response) => {
-    const rocks = await Rock.find({type : "sedimentaria"})
-    res.send(rocks).json();
-};
-
-export const findRocksFiery= async (req:Request, res:Response) => {
-    const rocks = await Rock.find({type : "ígnea"})
-    res.send(rocks).json();
-};
-
-export const findRocksMetamorphic = async (req:Request, res:Response) => {
-    const rocks = await Rock.find({type : "metamórfica"})
-    res.send(rocks).json();
-};
-
 export const addRock = async (req:Request, res:Response): Promise<any> => { 
 
     let rockId = req.body.rockId;

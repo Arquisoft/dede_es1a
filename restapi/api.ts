@@ -6,38 +6,10 @@ import {findUsers, addUser, deleteUser, loginUser, logout} from './controllers/U
 const User = require("./models/User");
 const Rock = require("./models/Rock");
 
-import {findRocks, addRock, deleteRock, findRocksSedimentary, findRocksMetamorphic, findRocksFiery} from './controllers/RockController';
-import {findUsers, addUser, deleteUser, loginUser, logout} from './controllers/UserController';
 
 const api:Router = express.Router()
 const mongoose = require("mongoose");
 
-<<<<<<< HEAD
-//Methods for control users from the app
-api.get("/users/list", findUsers);
-
-api.post("/users/add", addUser);
-
-api.post("/users/delete", deleteUser);
-
-api.post("/users/login", loginUser);
-
-api.get("/users/logout",  logout);
-
-
-//Methods for product of the app
-api.get("/rocks/list", findRocks);
-
-api.get("/rocks/list/sedimentary", findRocksSedimentary);
-
-api.get("/rocks/list/metamorphic", findRocksMetamorphic);
-
-api.get("/rocks/list/fiery", findRocksFiery);
-
-api.post("/rocks/add", addRock);
-
-api.post("/rocks/delete", deleteRock);
-=======
 interface User {
     name: string;
     email: string;
@@ -68,7 +40,6 @@ api.post(
     return res.sendStatus(200);
   }
 );
->>>>>>> parent of 99783bd... Solución problemas develop
 
 api.post("/users/login", loginUser);
 
