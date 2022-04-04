@@ -18,7 +18,7 @@ import { Container, Drawer } from "@mui/material";
 //import {createData} from "./code/insertExampleData"
 
 //import {createData} from "./code/insertExampleData"
-
+import "./css/App.css"
 import ShoppingCart from "./components/ShoppingCart";
 import PaymentPage from "./components/PaymentPage";
 import { ContentCopy } from "@mui/icons-material";
