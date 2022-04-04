@@ -64,6 +64,7 @@ const PaymentPage: React.FC<Props> = ({cartContent}) => {
                     disableElevation
                     variant="contained"
                     disabled={false}
+                    href = "/catalog"
                 >
                     Cancel
                 </Button>

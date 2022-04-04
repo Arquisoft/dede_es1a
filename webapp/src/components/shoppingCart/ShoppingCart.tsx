@@ -46,6 +46,7 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
                 disableElevation
                 variant="contained"
                 disabled={cartContent.length === 0}
+                href = "/catalog"
             >
                 BUY
             </Button>

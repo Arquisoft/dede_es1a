@@ -20,6 +20,7 @@ import { ThemeProvider } from '@emotion/react';
 
 import ShoppingCart from './components/shoppingCart/ShoppingCart';
 import PaymentPage from './components/paymentPage/PaymentPage';
+import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
 
 
 function App(): JSX.Element {
@@ -94,8 +95,16 @@ function App(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <ResponsiveAppBar openCart={()=>setCartOpen(true)}/>
-      <Welcome message="ASW students"/>
       
+      <Router>
+        
+        <Routes>
+          <Route path="/home" element={<Welcome message="ASW students"/>} />
+          <Route path="/" element={<Navigate replace to="/home" />} />
+          <Route path="/catalog" element={<Catalogo rocas={rocas} handleAddToCart={handleAddToCart}/>}/>
+        </Routes>
+        
+      </Router>
       <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
         <ShoppingCart 
           cartContent={cartContent} 
@@ -103,8 +112,7 @@ function App(): JSX.Element {
           handleRemoveFromCart={handleRemoveFromCart}
         />
       </Drawer>
-      <Catalogo rocas={rocas} handleAddToCart={handleAddToCart}/>
-      <PaymentPage cartContent={cartContent} />
+      
     </ThemeProvider>
   );
 }
