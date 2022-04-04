@@ -6,6 +6,7 @@ import Alert from '@mui/material/Alert';
 import type { AlertColor } from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import {useNavigate} from 'react-router-dom';
+import { addUser } from '../api/api';
 
 type RegisterProps = {
   OnUserListChange: () => void;
