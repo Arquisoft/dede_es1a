@@ -21,6 +21,7 @@ import { ThemeProvider } from '@emotion/react';
 import ShoppingCart from './components/shoppingCart/ShoppingCart';
 import PaymentPage from './components/paymentPage/PaymentPage';
 import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
+import { ContentCopy } from '@mui/icons-material';
 
 
 function App(): JSX.Element {
@@ -34,39 +35,62 @@ function App(): JSX.Element {
   const [isCartOpen, setCartOpen] = useState(false);
   const [cartContent,setCartContent] = useState<Roca[]>([]);
 
-  const getNofItemsCart = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart, 0);
+  useEffect(() => {
+    const memoryCart = localStorage.getItem("cart");
+    if (memoryCart) {
+      let cart: Roca[] = JSON.parse(memoryCart);
+      setCartContent(cart); 
+    } else {
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+  }, []);
+
+  const handleResetCart = () => {
+    setCartContent([]);
+    localStorage.setItem("cart", JSON.stringify([]));
+    setCartContent([]);
+  };
 
   const handleAddToCart = (selectedItem: Roca) => {
+    localStorage.setItem("cart", JSON.stringify(cartContent));
       setCartContent(cart => {
         if (cart.find(rocaInCart => rocaInCart.name === selectedItem.name)) {
-            return cart.map(roca => ( roca.name === selectedItem.name ? 
-                { ...roca, quantityCart: roca.quantityCart + 1 } : 
-                roca
+            // return cart.map(roca => ( 
+            //   roca.name === selectedItem.name ? 
+            //     { ...roca, quantityCart: roca.quantityCart + 1 } : 
+            //     roca
+            // ));
+            var tempCart= cart.map(roca=>(
+              roca.name === selectedItem.name ? 
+              { ...roca, quantityCart: roca.quantityCart + 1 } : 
+              roca
             ));
+            return tempCart;
         }
-        return [...cart, {...selectedItem, quantityCart: 1}];
+        // return [...cart, {...selectedItem, quantityCart: 1}];
+        var tempCart= [...cart, {...selectedItem, quantityCart:1}];
+        return tempCart;
     });
-    console.log("añadido");
-    console.log(cartContent);
   };
 
   const handleRemoveFromCart = (name: string) => {
+    localStorage.setItem("cart", JSON.stringify(cartContent));
     setCartContent(cart => (
       cart.reduce((sum, p) => {
           if (p.name === name) {
               if (p.quantityCart === 1) {
                   return sum;
               }
-              return [...sum, {...p, quantityCart: p.quantityCart - 1}];
+              // return [...sum, {...p, quantityCart: p.quantityCart - 1}];
+              var tempCart= [...sum, {...p, quantityCart:p.quantityCart - 1}]
+              return tempCart;
           } else {
-              return [...sum, p];
+              // return [...sum, p];
+              var tempCart= [...sum, p];
+              return tempCart;
           }
       }, [] as Roca[])
     ));
-  
-    console.log("quitado");
-    console.log(cartContent);
-
   };
 
 
@@ -97,15 +121,14 @@ function App(): JSX.Element {
       <ResponsiveAppBar openCart={()=>setCartOpen(true)}/>
       
       <Router>
-        
         <Routes>
           <Route path="/home" element={<Welcome message="ASW students"/>} />
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/catalog" element={<Catalogo rocas={rocas} handleAddToCart={handleAddToCart}/>}/>
-          <Route path="/payment" element={<PaymentPage cartContent={cartContent} />}/>
+          <Route path="/payment" element={<PaymentPage cartContent={cartContent} handleResetCart={handleResetCart} />}/>
         </Routes>
-        
       </Router>
+
       <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
         <ShoppingCart 
           cartContent={cartContent} 

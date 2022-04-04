@@ -7,27 +7,38 @@ import Button from '@mui/material/Button';
 import './PaymentPage.css'
 import { CardContent, Typography } from '@mui/material';
 import { North } from '@mui/icons-material';
+import { useState } from 'react';
 
 
 type Props = {
     cartContent: Roca[];
+    handleResetCart: () => void;
 };
 
-const PaymentPage: React.FC<Props> = ({cartContent}) => {
+const PaymentPage: React.FC<Props> = ({cartContent, handleResetCart}) => {
 
-        
+    const [isPaid, setPaid] = useState(false);
     const getTotalPrice = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart * item.price, 0);
     
     const showMessagePaymentCompleted = () => {
         return(
             <h1>Articles</h1>
-
         );
+    }
+
+    const handlePay = () => {
+        let vo = document.getElementById('info-payment');
+        
+        if(vo != null) {
+            (vo as HTMLElement).style.visibility= 'visible';
+        };
+        handleResetCart();
+
     }
 
     return (
         <div>
-        <h1 id='title-payment' >Your BUYYYY</h1>
+        <h1 id='title-payment' >Your BUY</h1>
         <div className='paymentpage-payment' >
 
             <div 
@@ -57,6 +68,9 @@ const PaymentPage: React.FC<Props> = ({cartContent}) => {
                 </div>
             </div>
 
+
+            {isPaid ? <h1>Purchase made</h1> : null}
+
             <div id='actionButtons-payment'>
             <Button
                     size="medium"
@@ -65,14 +79,16 @@ const PaymentPage: React.FC<Props> = ({cartContent}) => {
                     disabled={false}
                     href = "/catalog"
                 >
-                    Cancel
+                    Home
                 </Button>
                 <Button
                     size="medium"
                     disableElevation
                     variant="contained"
                     disabled={false}
-                    onClick={showMessagePaymentCompleted}
+                    onClick={() => {
+                        setPaid(true);
+                    }}
                 >
                     Checkout
                 </Button>
