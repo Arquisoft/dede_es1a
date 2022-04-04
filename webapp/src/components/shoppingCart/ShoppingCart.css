@@ -13,7 +13,7 @@ shoppingCart{
     grid-column-start: 1;
     grid-column-end: 2;
 
-    background-color: coral;
+    background-color: gold;
 }
 
 #items-cart{
@@ -31,7 +31,7 @@ shoppingCart{
     grid-column-start: 1;
     grid-column-end: 2;
 
-    background: coral;
+    background: gold;
 }
 
 #pay-button{

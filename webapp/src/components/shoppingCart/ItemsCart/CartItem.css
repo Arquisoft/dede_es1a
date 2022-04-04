@@ -1,18 +1,10 @@
 .cartItem-ci{
     display:grid;
     grid-template-columns: repeat(3,auto);
-    grid-template-rows: repeat(1,auto);
+    grid-template-rows: repeat(1,1fr);
 }
 
-#name-ci{
-    grid-row-start: 1;
-    grid-row-end: 2;
-
-    grid-column-start: 1;
-    grid-column-end: 2;
-
-}
-#menu-ci {
+.quantityController-ci {
     grid-row-start: 1;
     grid-row-end: 2;
 
@@ -24,39 +16,5 @@
     display:grid;
     grid-template-columns: repeat(3,auto);
     grid-template-rows: repeat(1,auto);
-
-    background: aquamarine;
 }
 
-    #buttonR-ci{
-        grid-row-start: 1;
-        grid-row-end: 2;
-
-        grid-column-start: 1;
-        grid-column-end: 2;
-    }
-    #quantity-ci{
-        grid-row-start: 1;
-        grid-row-end: 2;
-
-        grid-column-start: 2;
-        grid-column-end: 3;
-
-    }
-    #buttonS-ci{
-        grid-row-start: 1;
-        grid-row-end: 2;
-
-        grid-column-start: 3;
-        grid-column-end: 4;
-        
-    }
-
-#img-ci {
-    grid-row-start: 1;
-    grid-row-end: 2;
-
-    grid-column-start: 3;
-    grid-column-end: 4;
-
-}

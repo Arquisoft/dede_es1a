@@ -7,43 +7,47 @@ import Button from '@mui/material/Button';
 import { Container } from '@mui/material';
 
 type Props = {
-  rocas: Roca[];
-  cartContent: Map<String, number>;
+    cartContent: Roca[];
 };
 
-const PaymentPage: React.FC<Props> = ({rocas, cartContent}) => {
+const PaymentPage: React.FC<Props> = ({cartContent}) => {
+
+        
+    const getTotalPrice = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart * item.price, 0);
     
-        const getTotal = (cartContent: Map<String, number>) => {
-            var total = 0.0
-            for(let key in cartContent.keys()) {   
-                let item = rocas.find(roca => roca.name === key) as Roca;
-                total += (cartContent.get(key) as number) * (item.price as number);
-            }
-            return total;
-        }
+    return (
+        <>
+            <h2>Your BUYYYY</h2>
+            {/*cartContent.size===0 ? <p>No items in the cart</p> : null*/}
 
-        return (
-            <>
-                <h2>Your BUYYYY</h2>
-                {cartContent.size===0 ? <p>No items in the cart</p> : null}
-
-                {cartContent.forEach((v, k) => ( 
+            {/* {
+                cartContent.map(roca => {
                     <div> 
-                    <h3>{(rocas.find(roca => roca.name === k) as Roca).name}</h3>
-                    <h3>{v}</h3>
+                    <h3>{roca.name}</h3>
+                    <h3>{roca.quantityCart}</h3>
                     <h3>{v*((rocas.find(roca => roca.name === k) as Roca).price as number)}</h3>
                     </div>
-                ))}
-                
-                <h2>Cost (no iva): {  ((getTotal(cartContent) as number) - (getTotal(cartContent)*0.21)).toFixed(2) }€</h2>
-                <h2>Cost: {getTotal(cartContent).toFixed(2)}€</h2>
 
-                // Aqui cogemos la dir de los pods y sacamos los costes envio
-                <button type="button" className="btn btn-primary">
 
-                </button>
-            </>
-        )
-    };
+                })
+            }
+            {cartContent.forEach((v, k) => ( 
+                <div> 
+                <h3>{(rocas.find(roca => roca.name === k) as Roca).name}</h3>
+                <h3>{v}</h3>
+                <h3>{v*((rocas.find(roca => roca.name === k) as Roca).price as number)}</h3>
+                </div>
+            ))} */}
+            
+            // <h2>Cost (no iva): {  ((getTotalPrice() as number) - (getTotalPrice()*0.21)).toFixed(2) }€</h2>
+            // <h2>Cost: {getTotalPrice().toFixed(2)}€</h2>
+
+            // // Aqui cogemos la dir de los pods y sacamos los costes envio
+            // <button type="button" className="btn btn-primary">
+
+            // </button>
+        </>
+    )
+};
 
 export default PaymentPage;

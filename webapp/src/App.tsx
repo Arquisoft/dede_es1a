@@ -19,6 +19,7 @@ import { ThemeProvider } from '@emotion/react';
 //import {createData} from "./code/insertExampleData"
 
 import ShoppingCart from './components/shoppingCart/ShoppingCart';
+import PaymentPage from './components/PaymentPage';
 
 
 function App(): JSX.Element {
@@ -31,22 +32,10 @@ function App(): JSX.Element {
   // Shopping cart
   const [isCartOpen, setCartOpen] = useState(false);
   const [cartContent,setCartContent] = useState<Roca[]>([]);
-  //TODO: const[cartContent, setCartContent] = useState(new Map<String, number>());
 
   const getNofItemsCart = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart, 0);
 
   const handleAddToCart = (selectedItem: Roca) => {
-    // setCartContent(cart => {
-    //   let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
-
-    //   cart.set(selectedItem.name, quantity+1);
-    //   alert(cart.size);
-    //   return cart;
-    // })
-      // TODO: let quantity = cartContent.has(selectedItem.name) ? cartContent.get(selectedItem.name) as number : 0;
-
-      // cartContent.set(selectedItem.name, quantity+1);
-
       setCartContent(cart => {
         if (cart.find(rocaInCart => rocaInCart.name === selectedItem.name)) {
             return cart.map(roca => ( roca.name === selectedItem.name ? 
@@ -61,18 +50,6 @@ function App(): JSX.Element {
   };
 
   const handleRemoveFromCart = (name: string) => {
-    // TODO: setCartContent( cart=> {
-    //   let quantity = cart.has(selectedItem.name) ? cart.get(selectedItem.name) as number : 0;
-
-    //   if(quantity === 1) {
-    //     cart.delete(selectedItem.name);
-    //   } else {
-    //     cart.set(selectedItem.name, quantity-1);
-    //   }
-
-    //   return cart;
-    // });
-
     setCartContent(cart => (
       cart.reduce((sum, p) => {
           if (p.name === name) {
@@ -118,6 +95,9 @@ function App(): JSX.Element {
     <ThemeProvider theme={theme}>
       <ResponsiveAppBar openCart={()=>setCartOpen(true)}/>
       <Welcome message="ASW students"/>
+      {/* <PaymentPage>
+        cartContent={cartContent} 
+      </PaymentPage> */}
       <Drawer anchor='right' open={isCartOpen} onClose={() => setCartOpen(false)}>
         <ShoppingCart 
           cartContent={cartContent} 
