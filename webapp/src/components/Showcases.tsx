@@ -4,7 +4,11 @@ import { Rock } from "../shared/shareddtypes";
 import Showcase from "./Showcase";
 import prefilters from "../code/Prefilters"
 
-function Showcases() {
+type RockListProps = {
+  handleAddToCart(r:Rock): void;
+};
+
+function Showcases(prefilteredbox: RockListProps): JSX.Element {
     const [prefilteredRocks,setPrefilteredRocks] = useState<Rock[][]>([]);
     const [nameOfFilters,setNameOfFilters]=useState<String[]>([]);
     
@@ -22,7 +26,9 @@ function Showcases() {
     <>
         
         {prefilteredRocks.map((_, element) => {
-          return (<Showcase key={element} rocks={prefilteredRocks[element]} name={nameOfFilters[element]}/>); 
+            
+            return (<Showcase key={element} rocks={prefilteredRocks[element]} name={nameOfFilters[element]} handleAddToCart={prefilteredbox.handleAddToCart}/>); 
+            
         })}
         
     </>

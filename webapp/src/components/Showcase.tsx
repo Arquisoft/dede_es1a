@@ -5,14 +5,12 @@ import Product from './Product';
 type RockListProps = {
   rocks: Rock[];
   name:String;
+  handleAddToCart(r:Rock): void;
 };
 
 //a
 function Showcase(prefilteredbox: RockListProps): JSX.Element {
 
-    
-
-    
   return (
     <>
     <div>
@@ -23,7 +21,10 @@ function Showcase(prefilteredbox: RockListProps): JSX.Element {
         {
             prefilteredbox.rocks.map((_,product)=>{
                 if(prefilteredbox.rocks[product]!==undefined)
-                    return <Product key={_.id} product={prefilteredbox.rocks[product]} buyable={false}/>; 
+                    return <Product  key={_.id}
+                        product={prefilteredbox.rocks[product] 
+                        } handleAddToCart ={prefilteredbox.handleAddToCart} buyable={false}
+                    />; 
                 
             })
         }

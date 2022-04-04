@@ -2,8 +2,13 @@ import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@in
 import { Button, Card, CardActionArea, CardContent, Container, Typography } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import GetPodAddress from './GetPodAddress';
+import { Rock } from "../../shared/shareddtypes";
 
-const ProfileViewer = () => {
+type Props = {
+  cartContent: Rock[];
+};
+
+const ProfileViewer: React.FC<Props> = ({cartContent}) => {
   const { session } = useSession();
 
   return (
@@ -28,6 +33,15 @@ const ProfileViewer = () => {
         </Button>
       </LogoutButton>
       
+      <Button
+          size="medium"
+          disableElevation
+          variant="contained"
+          disabled={cartContent.length === 0}
+          href = "/payment"
+      >
+          BUY
+      </Button>
 
     </Container>
   );

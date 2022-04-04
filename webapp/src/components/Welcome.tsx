@@ -1,10 +1,12 @@
-
-import { Box, Container } from "@mui/material";
-import Grid from "@mui/material/Grid";
 import logo from '../images/interfaz/logoRock.png';
 import Showcases from "./Showcases";
+import { Rock } from "../shared/shareddtypes";
 
-function Welcome(): JSX.Element {
+type RockListProps = {
+  handleAddToCart(r:Rock): void;
+};
+
+function Welcome(prefilteredbox: RockListProps): JSX.Element {
 
   
   return (
@@ -14,7 +16,7 @@ function Welcome(): JSX.Element {
       </div>
       
       <div id="showcases">
-        <Showcases />
+        <Showcases handleAddToCart={prefilteredbox.handleAddToCart} />
       </div>
     </>
   );
