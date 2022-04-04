@@ -21,7 +21,7 @@ type NotificationType = {
 
 function EmailForm(): JSX.Element {
 
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [notificationStatus, setNotificationStatus] = useState(false);
@@ -40,7 +40,7 @@ function EmailForm(): JSX.Element {
         severity:'success',
         message:'You have been registered in the system!'
       });
-      navigate("/inicio");
+      navigate("/home");
       //Notify the change to the parent component
     }
     else{
@@ -59,16 +59,16 @@ function EmailForm(): JSX.Element {
       <form name="loggin" onSubmit={handleSubmit}>
 
       <div className='loggin-content'>
-      <h3>Usuario:</h3>
+      <h3>Email:</h3>
       <div className='field-container'>
       
         <TextField
             required
             name="Usuario"
-            label="username" 
+            label="email" 
             variant="outlined"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             sx={{ my: 2 }}
           />
       </div>
@@ -91,7 +91,7 @@ function EmailForm(): JSX.Element {
            <br></br>
            <Button variant="contained" onClick={() => handleSubmit} type="submit" sx={{ my: 2 }}>Iniciar sesión</Button>
            <br></br>
-           <Button variant="contained" onClick={() => navigate("/registro")} type="submit" sx={{ my: 2 }}>¿No tienes cuenta? Regístrate</Button>
+           <Button variant="contained" onClick={() => navigate("/register")} type="submit" sx={{ my: 2 }}>¿No tienes cuenta? Regístrate</Button>
            </div>
         </div>
         

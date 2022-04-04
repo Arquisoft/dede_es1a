@@ -1,0 +1,13 @@
+#log {
+    border-radius: 1em;
+    background-color: rgb(241, 248, 255);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  
+    padding: 1em;
+    width: 75%;
+    left: 11%;
+    margin-top: 3em;
+  }
+
+  
