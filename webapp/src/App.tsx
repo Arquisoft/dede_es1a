@@ -22,9 +22,7 @@ import LogIn from "./components/Login";
 import Register from "./components/Register";
 import NavBar from "./components/NavigationBar";
 import { Container } from "@mui/material";
-//import {createData} from "./code/insertExampleData"
 
-//import {createData} from "./code/insertExampleData"
 import "./css/App.css"
 import ShoppingCart from "./components/ShoppingCart";
 import PaymentPage from "./components/PaymentPage";
@@ -71,21 +69,13 @@ function App(): JSX.Element {
     localStorage.setItem("cart", JSON.stringify(cartContent));
     setCartContent((cart) => {
       if (cart.find((rocaInCart) => rocaInCart.name === selectedItem.name)) {
-        // return cart.map(Rock => (
-        //   Rock.name === selectedItem.name ?
-        //     { ...Rock, quantityCart: Rock.quantityCart + 1 } :
-        //     Rock
-        // ));
-        var tempCart = cart.map((Rock) =>
-          Rock.name === selectedItem.name
-            ? { ...Rock, quantityCart: Rock.quantityCart + 1 }
-            : Rock
-        );
-        return tempCart;
+        return cart.map(Rock => (
+          Rock.name === selectedItem.name ?
+            { ...Rock, quantityCart: Rock.quantityCart + 1 } :
+            Rock
+        ));
       }
-      // return [...cart, {...selectedItem, quantityCart: 1}];
-      var tempCart = [...cart, { ...selectedItem, quantityCart: 1 }];
-      return tempCart;
+      return [...cart, {...selectedItem, quantityCart: 1}];
     });
   };
 
@@ -97,13 +87,9 @@ function App(): JSX.Element {
           if (p.quantityCart === 1) {
             return sum;
           }
-          // return [...sum, {...p, quantityCart: p.quantityCart - 1}];
-          var tempCart = [...sum, { ...p, quantityCart: p.quantityCart - 1 }];
-          return tempCart;
+          return [...sum, {...p, quantityCart: p.quantityCart - 1}];
         } else {
-          // return [...sum, p];
-          var tempCart = [...sum, p];
-          return tempCart;
+          return [...sum, p];
         }
       }, [] as Rock[])
     );
