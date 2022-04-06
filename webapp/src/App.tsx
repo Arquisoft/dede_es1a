@@ -44,7 +44,7 @@ function App(): JSX.Element {
   const [isCartOpen, setCartOpen] = useState(false);
   const [cartContent, setCartContent] = useState<Rock[]>([]);
 
-  useEffect(() => {
+  useEffect(() => { //TODO: esto cuando funciona?? es necesario lo de despues del if ??
     if (isNewCart) {
       resetCart();
       setNewCart(false);
@@ -59,14 +59,15 @@ function App(): JSX.Element {
     }
   }, [isNewCart]);
 
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartContent));
+  }, [cartContent]);
+
   const resetCart = () => {
-    setCartContent([]);
-    localStorage.setItem("cart", JSON.stringify([]));
     setCartContent([]);
   };
 
   const handleAddToCart = (selectedItem: Rock) => {
-    localStorage.setItem("cart", JSON.stringify(cartContent));
     setCartContent((cart) => {
       if (cart.find((rocaInCart) => rocaInCart.name === selectedItem.name)) {
         return cart.map(Rock => (
@@ -80,7 +81,6 @@ function App(): JSX.Element {
   };
 
   const handleRemoveFromCart = (name: string) => {
-    localStorage.setItem("cart", JSON.stringify(cartContent));
     setCartContent((cart) =>
       cart.reduce((sum, p) => {
         if (p.name === name) {
