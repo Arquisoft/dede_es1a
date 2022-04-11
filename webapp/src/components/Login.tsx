@@ -89,8 +89,8 @@ function EmailForm(): JSX.Element {
           variant="outlined"
           type="password"
           value={password}
-          error = {checkParams(email) && pulse}
-          helperText={checkParams(email) && pulse ? 'El campo no puede estar vacio' : ''}
+          error = {checkParams(password) && pulse}
+          helperText={checkParams(password) && pulse ? 'El campo no puede estar vacio' : ''}
           onChange={e => setPassword(e.target.value)}
           sx={{ my: 2 }}
         />
