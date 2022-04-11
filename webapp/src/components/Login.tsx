@@ -9,6 +9,8 @@ import logo from '../../logoAsturShop.png'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
 import { checkUser } from '../api/api';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const checkParams = (text: String) => {
   return text === "" || text == null;
@@ -35,6 +37,29 @@ function EmailForm(): JSX.Element {
   const navigate = useNavigate();
 
 
+  const handleLogin = (email: String, pass: String) => {
+    axios.post("http://localhost:5000/user/login",{"email":email,"password":pass})
+    .then(res => {
+        if(res.status == 201){
+         Swal.fire({
+             title: "Sesión iniciada",
+             icon: "success"
+         }).then(() => {
+             console.log(res.data)
+             localStorage.setItem('token',res.data.token);
+             window.location.assign("/products");
+         });
+        }else{
+             Swal.fire({
+                 title: "Creedenciales incorrectos",
+                 text: "El usuario o contraseña son incorrectos, vuelva a introducirlos",
+                 icon: "error",
+                 footer: '<a href ="/signup">¿No tienes cuenta? Registrate ahora!</a>'
+             });
+        }
+    })
+ }
+ 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let result:boolean = await checkUser(email,password);
@@ -55,6 +80,11 @@ function EmailForm(): JSX.Element {
       });
     }
   }
+  function allFunc(idUser: String, pass: String){
+    handleLogin(idUser, pass);
+    setPulse(true);
+}
+
 
   return (
     <>
@@ -98,7 +128,7 @@ function EmailForm(): JSX.Element {
 
         <div className='buttons'>
            <br></br>
-           <Button variant="contained" onClick={() => handleSubmit} type="submit" sx={{ my: 2 }}>Iniciar sesión</Button>
+           <Button onClick={() => allFunc(email, password)} variant="contained" type="submit">Iniciar Sesión</Button>
            <br></br>
            <Button variant="contained" onClick={() => navigate("/register")} type="submit" sx={{ my: 2 }}>¿No tienes cuenta? Regístrate</Button>
            </div>
