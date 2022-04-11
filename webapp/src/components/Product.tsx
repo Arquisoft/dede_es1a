@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 type ProductProps = {
   product: Rock |null;
   buyable:boolean;
+  handleAddToCart(r:Rock): void;
 };
 //a
 function Product(product: ProductProps): JSX.Element {
@@ -13,17 +14,17 @@ function Product(product: ProductProps): JSX.Element {
           <div className='imageProductContainer'>
           {product.product!==null ?
               <>
+              
               <img src={product.product.img} style={{width:'100%'}} alt={product.product.name.toString()}/>
               </>
               : <></>
             }
-            
           </div>
-
           <div className="infoProduct">
+              
               {product.product!==null ?
               <>
-              
+              <p className="datoProduct">{"nombre: "+product.product.name}</p>
               <p className="datoProduct">{"precio: "+product.product.price+"€"}</p>
               <p className="datoProduct">{"tipo: "+ product.product.type}</p>
               <p className="datoProduct">{"mohs: "+ product.product.mohsHardness}</p>
@@ -33,7 +34,13 @@ function Product(product: ProductProps): JSX.Element {
             }
               
           </div>
-          <Button variant="contained" className='btnBuy' color="primary" style={{width:'100%'}}>Comprar</Button>
+          <Button 
+            variant="contained" 
+            className='btnBuy' 
+            color="primary" 
+            style={{width:'100%'}}
+            onClick={() => product.handleAddToCart(product.product as Rock)}>
+          Comprar</Button>
       </div>
   );
 }

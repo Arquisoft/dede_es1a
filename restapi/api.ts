@@ -10,36 +10,9 @@ const Rock = require("./models/Rock");
 const api:Router = express.Router()
 const mongoose = require("mongoose");
 
-interface User {
-    name: string;
-    email: string;
-}
+api.get("/users/list",findUsers);
 
-//This is not a restapi as it mantains state but it is here for
-//simplicity. A database should be used instead.
-let users: Array<User> = [];
-
-api.get(
-    "/users/list",
-    async (req: Request, res: Response): Promise<Response> => {
-        return res.status(200).send(users);
-    }
-);
-
-
-api.post(
-  "/users/add",[
-    check('name').isLength({ min: 1 }).trim().escape(),
-    check('email').isEmail().normalizeEmail(),
-  ],
-  async (req: Request, res: Response): Promise<Response> => {
-    let name = req.body.name;
-    let email = req.body.email;
-    let user: User = {name:name,email:email}
-    users.push(user);
-    return res.sendStatus(200);
-  }
-);
+api.post("/users/add",addUser);
 
 api.post("/users/login", loginUser);
 
@@ -66,6 +39,6 @@ api.get("/orders/userList", findOrdersByUserDni);
 
 api.post("/orders/add", addOrder);
 
-api.get("/orders/deliveryCosts", getDeliveryCosts)
+api.post("/orders/deliveryCosts", getDeliveryCosts)
 
 export default api;

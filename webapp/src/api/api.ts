@@ -60,3 +60,20 @@ export async function checkUser(email:String,password:String):Promise<boolean>{
     return false;
 
 }
+
+export async function getDeliveryCosts(address:String):Promise<Number>{
+  console.log("BBBBBBBBBBBBBBBBBBBBBBBBB");
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint+'/orders/deliveryCosts', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({'address':address})
+    });
+  
+  if (response.status===200){
+    return response.json();
+  }
+  else
+    return -1;
+
+}

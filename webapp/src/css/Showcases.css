@@ -1,12 +1,12 @@
 .showcase {
-  border: rgb(230, 237, 241) 0.3em solid;
+  border: rgb(255, 255, 255) 0.3em solid;
   background-color: #d8e3f7;
   border-radius: 1em;
   display: grid;
   grid-template-columns: repeat(2,1fr);
   grid-template-rows: repeat(2,1fr);
   position: relative;
-  top: 5em;
+  margin-top: 7em;
   
 }
 #showcases {
