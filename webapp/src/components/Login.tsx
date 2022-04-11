@@ -8,6 +8,11 @@ import Box from '@mui/material/Box';
 import logo from '../../logoAsturShop.png'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
+import { checkUser } from '../api/api';
+
+const checkParams = (text: String) => {
+  return text === "" || text == null;
+}
 
 type EmailFormProps = {
   OnUserListChange: () => void;
@@ -22,6 +27,7 @@ function EmailForm(): JSX.Element {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [pulse, setPulse] = useState(false)
 
   const [notificationStatus, setNotificationStatus] = useState(false);
   const [notification, setNotification] = useState<NotificationType>({severity:'success',message:''});
@@ -31,8 +37,7 @@ function EmailForm(): JSX.Element {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //let result:boolean = await checkUser(username,password);
-    let result:boolean = true;
+    let result:boolean = await checkUser(email,password);
     if (result){
       setNotificationStatus(true);
       setNotification({ 
@@ -68,6 +73,8 @@ function EmailForm(): JSX.Element {
             label="email" 
             variant="outlined"
             value={email}
+            error = {checkParams(email) && pulse}
+            helperText={checkParams(email) && pulse ? 'El campo no puede estar vacio' : ''}
             onChange={e => setEmail(e.target.value)}
             sx={{ my: 2 }}
           />
@@ -82,6 +89,8 @@ function EmailForm(): JSX.Element {
           variant="outlined"
           type="password"
           value={password}
+          error = {checkParams(email) && pulse}
+          helperText={checkParams(email) && pulse ? 'El campo no puede estar vacio' : ''}
           onChange={e => setPassword(e.target.value)}
           sx={{ my: 2 }}
         />
