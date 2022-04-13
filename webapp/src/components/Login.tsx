@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import logo from '../../logoAsturShop.png'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
+import { checkUser } from '../api/api';
 
 type EmailFormProps = {
   OnUserListChange: () => void;
@@ -23,6 +24,7 @@ function EmailForm(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+
   const [notificationStatus, setNotificationStatus] = useState(false);
   const [notification, setNotification] = useState<NotificationType>({severity:'success',message:''});
   
@@ -31,15 +33,15 @@ function EmailForm(): JSX.Element {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //let result:boolean = await checkUser(username,password);
-    let result:boolean = true;
+    let result:boolean = await checkUser(email,password);
     if (result){
       setNotificationStatus(true);
       setNotification({ 
         severity:'success',
         message:'You have been registered in the system!'
       });
-      navigate("/home");
+      console.log(sessionStorage.getItem("userLogged"));
+      navigate("/catalog");
       //Notify the change to the parent component
     }
     else{

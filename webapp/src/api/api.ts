@@ -54,15 +54,16 @@ export async function checkUser(email:String,password:String):Promise<boolean>{
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({'email':email, 'password':password})
     });
-  if (response.status===200)
+  if (response.status===200){
+    sessionStorage.setItem("userLogged", email.toString());
     return true;
+  }
   else
     return false;
 
 }
 
 export async function getDeliveryCosts(address:String):Promise<Number>{
-  console.log("BBBBBBBBBBBBBBBBBBBBBBBBB");
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   let response = await fetch(apiEndPoint+'/orders/deliveryCosts', {
       method: 'POST',
@@ -76,4 +77,11 @@ export async function getDeliveryCosts(address:String):Promise<Number>{
   else
     return -1;
 
+}
+
+export async function logout():Promise<any>{
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint+'/users/logout');
+  //The objects returned by the api are directly convertible to User objects
+  return response.json()
 }

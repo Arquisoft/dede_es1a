@@ -4,13 +4,40 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Avatar, Tooltip } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { checkServerIdentity } from 'tls';
+import { logout } from '../api/api';
+import {useSession} from "@inrupt/solid-ui-react";
 
 type Props = {
     openCart: () => void;
   };
 
 const NavBar:React.FC<Props>=({openCart}) =>{
+
+    const[isLoggedIn, setLoggedIn] = useState(false);
+
+    function checkIsLoggedIn(){
+
+        if (sessionStorage.getItem("userLogged")){
+            setLoggedIn(true);
+        }else{
+            setLoggedIn(false);
+        }
+    }
+
+    async function logOutUser(){
+        sessionStorage.clear();
+        let restult = await logout();
+    };
+    const i = sessionStorage.getItem("userLogged");
+    useEffect(() =>{
+       checkIsLoggedIn();
+    },[isLoggedIn]);
+
+    
     return(
+        
         <AppBar position="fixed" >
             <Toolbar>
             <Typography variant="h6" component="div" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
@@ -24,8 +51,15 @@ const NavBar:React.FC<Props>=({openCart}) =>{
 
               <IconButton onClick={() => window.location.href = '/summary'} aria-label="cart" size="medium">
                 </IconButton>
-                <Button color="inherit" href = "/login">Iniciar Sesión</Button> 
-                <Button color="inherit" href = "/register">Regístrate</Button> 
+                {isLoggedIn ? (
+                    [<Typography variant="body1" component="div" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
+                    {sessionStorage.getItem("userLogged")}</Typography>,
+                    <Button color="inherit" href = "/profile">Perfil</Button>
+                    ,<Button color="inherit" onClick={() => logOutUser()} href = "/logout">Desconectarse</Button>]
+                ):(
+                    [<Button color="inherit" href = "/login">Iniciar Sesión</Button>,
+                    <Button color="inherit" href = "/register">Regístrate</Button> ]
+                )}
                 <Tooltip title="Open shopping cart">
                     <IconButton onClick={openCart} sx={{ p: 0 }}>
                         <Avatar alt="Remy Sharp" src="..\src\images\interfaz\carrito-de-compras.png" />

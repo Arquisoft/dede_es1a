@@ -140,6 +140,7 @@ function App(): JSX.Element {
             />
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/logout" element ={<Welcome handleAddToCart={handleAddToCart} />}/>
           </Routes>
         </Router>
         <Drawer
