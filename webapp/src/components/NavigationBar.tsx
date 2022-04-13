@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { checkServerIdentity } from 'tls';
 import { logout } from '../api/api';
 import {useSession} from "@inrupt/solid-ui-react";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 type Props = {
     openCart: () => void;
@@ -62,7 +63,7 @@ const NavBar:React.FC<Props>=({openCart}) =>{
                 )}
                 <Tooltip title="Open shopping cart">
                     <IconButton onClick={openCart} sx={{ p: 0 }}>
-                        <Avatar alt="Remy Sharp" src="..\src\images\interfaz\carrito-de-compras.png" />
+                        <AddShoppingCartIcon />
                     </IconButton>
                 </Tooltip>
             </Toolbar>     
