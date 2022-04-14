@@ -202,3 +202,28 @@ describe('product ', () => {
         expect(response.statusCode).toBe(200);
     });
 });
+
+
+describe('order ', () => {
+    jest.setTimeout(10000);
+    
+    it('can be created correctly', async () => {
+        const response: Response = await request(app).post('/api/orders/add').
+            send({
+                orderId: "prueba",
+                userEmail: "prueba",
+                price: 3,
+                productId: "prueba"
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('can be listed', async () => {
+        const response: Response = await request(app).get("/api/orders/userList")
+            .send({userEmail : "prueba"})
+            .set('Accept', 'application/json');
+        expect(response.body[0].userEmail).toBe("prueba");
+        expect(response.statusCode).toBe(200);
+    });
+});

@@ -10,10 +10,11 @@ const Order = require("../models/Order");
 
 
 export const findOrdersByUserEmail = async (req:Request, res:Response) => {
-    let email = req.body.email;
-    let query = {userEmail : email.toString()};
+    let userEmail = req.body.userEmail;
+    let query = {userEmail : userEmail.toString()};
     const users = await Order.find(query)
     res.setHeader('Content-Type', 'application/json');
+    res.status(200);
     res.send(users);
 };
 
@@ -22,17 +23,19 @@ export const addOrder = async (req:Request, res:Response): Promise<any> => {
     const crypto = require('crypto');
     const orderId = crypto.randomBytes(60);
 
-    let email = req.body.email;
+    let userEmail = req.body.userEmail;
     let price = req.body.price;
     let productId = req.body.productId;
 
     let order = new Order({
         orderId: orderId,
-        userEmail: email,
+        userEmail: userEmail,
         price: price,
         productId: productId
     });
     await order.save();
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
     res.send(order);
     
   };
