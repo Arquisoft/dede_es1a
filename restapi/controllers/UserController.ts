@@ -58,6 +58,8 @@ export const deleteUser = async (req: Request, res: Response): Promise<any> => {
     let user = await User.deleteOne(
         { dni: dni }
     );
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
     res.send(user);
 };
 

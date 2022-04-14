@@ -18,6 +18,8 @@ api.post("/users/login", loginUser);
 
 api.get("/users/logout",  logout);
 
+api.post("/users/delete",  deleteUser);
+
 
 //Methods for product of the app
 api.get("/rocks/list", findRocks);
