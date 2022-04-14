@@ -226,4 +226,11 @@ describe('order ', () => {
         expect(response.body[0].userEmail).toBe("prueba");
         expect(response.statusCode).toBe(200);
     });
+
+    it('can obtain deliveryCosts', async () => {
+        const response: Response = await request(app).post("/api/orders/deliveryCosts")
+            .send({address : "Palmira Villa, Oviedo"})
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+    });
 });
