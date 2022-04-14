@@ -1,38 +1,56 @@
-import request, {Response} from 'supertest';
+import request, { Response } from 'supertest';
 import express, { Application } from 'express';
 import * as http from 'http';
 import bp from 'body-parser';
 import cors from 'cors';
 import api from '../api';
-import {findUsers, addUser, deleteUser, loginUser, logout} from '../controllers/UserController';
+import { findUsers, addUser, deleteUser, loginUser, logout } from '../controllers/UserController';
+import path from 'path';
 
-let app:Application;
-let server:http.Server;
+let app: Application;
+let server: http.Server;
 const mongoose = require('mongoose');
+let envPath = path.resolve("../.env");
+require('dotenv').config({ path: envPath });
+
+let expressSession = require('express-session');
+declare global {
+    namespace Express {
+        interface Request {
+            session: typeof expressSession;
+        }
+    }
+}
 
 beforeAll(async () => {
-    
+
     app = express();
-    const port: number = 5000;
+
     const options: cors.CorsOptions = {
         origin: ['http://localhost:3000']
     };
     app.use(cors(options));
     app.use(bp.json());
+
+    app.use(expressSession({
+        secret: 'abcdefg',
+        resave: true,
+        saveUninitialized: true,
+    }));
+    
     app.use("/api", api)
 
-    api.get("/users/list", findUsers);
-
-    server = app.listen(port, ():void => {
-        console.log('Restapi server for testing listening on '+ port);
-    }).on("error",(error:Error)=>{
+    const port: number = 5000;
+    server = app.listen(port, (): void => {
+        console.log('Restapi server for testing listening on ' + port);
+    }).on("error", (error: Error) => {
         console.error('Error occured: ' + error.message);
     });
 
-    mongoose.connect("mongodb+srv://dede_es1a:1234@dede-es1a.shdhg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+    mongoose.connect(process.env.DB_CONN_TEST_STRING, {
         useNewUrlParser: true,
         useUnifiedTopology: true
-      });
+    });
 });
 
 afterAll(async () => {
@@ -41,51 +59,111 @@ afterAll(async () => {
 })
 
 describe('user ', () => {
+
+    jest.setTimeout(100000);
+    const crypto = require('crypto');
+    const pass = crypto.randomBytes(4).toString('utf8');
+
     /**
-     * Test that we can list users without any error.
+     * Tests that a user can be created through the user without throwing any errors.
      */
-    it('can be listed',async () => {
-        const response:Response = await request(app).get("/users/list");
+    it('can be created correctly', async () => {
+
+        let username: string = 'Pablo'
+        let email: string = 'gonzalezgpablo@uniovi.es'
+        const response: Response = await request(app).post('/api/users/add')
+            .send({
+                dni: "1",
+                name: username,
+                email: email,
+                rol: 1,
+                password: pass,
+                repeatPassword: pass
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('cant be created correctly', async () => {
+
+        let username: string = 'Pablo'
+        let email: string = 'gonzalezgpablo@uniovi.es'
+        const response: Response = await request(app).post('/api/users/add')
+            .send({
+                dni: "1",
+                name: username,
+                email: email,
+                rol: 1,
+                password: pass,
+                repeatPassword: pass
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(401);
+    });
+
+    /**
+ * Test that we can list users without any error.
+ */
+    it('can be listed', async () => {
+        const response: Response = await request(app).get("/api/users/list");
+        expect(response.body[0].email).toBe("gonzalezgpablo@uniovi.es");
         expect(response.statusCode).toBe(200);
     });
 
     /**
-     * Tests that a user can be created through the productService without throwing any errors.
-     */
-    it('can be created correctly', async () => {
-        let username:string = 'Pablo'
-        let email:string = 'gonzalezgpablo@uniovi.es'
-        const crypto = require('crypto');
-        const pass = crypto.randomBytes(4).toString('utf8');
-        const response:Response = await request(app).post('/users/add')
-        .send({dni: "1",
-                name: username,
-                email: email,
-                rol: 1,
-                password: pass})
-        .set('Accept', 'application/json')
-        //expect(response.statusCode).toBe(200);
+ * Test that we can login users without any error.
+ */
+    it('can be login', async () => {
+        const response: Response = await request(app).post("/api/users/login")
+            .send({
+                email: "gonzalezgpablo@uniovi.es",
+                password: pass
+            })
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
     });
+
+    /**
+* Test that we can logout users without any error.
+*/
+    it('can be logout', async () => {
+        const response: Response = await request(app).get("/api/users/logout");
+        expect(response.statusCode).toBe(200);
+    });
+
+    /**
+ * Tests that a user can be deleted through the user without throwing any errors.
+ */
+    it('can be deleted', async () => {
+        const response: Response = await request(app).post("/api/users/delete")
+            .send({ dni: "1" })
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+    });
+
 });
 
 describe('product ', () => {
-    it('can be listed',async () => {
-        const response:Response = await request(app).get("/rocks/list");
-       // expect(response.statusCode).toBe(200);
+    jest.setTimeout(10000);
+    it('can be listed', async () => {
+        const response: Response = await request(app).get("/api/rocks/list");
+        expect(response.statusCode).toBe(200);
     });
 
     it('can be created correctly', async () => {
-        const response:Response = await request(app).post('/rocks/add').
-        send({rockId:"prueba",
-            name: "prueba",
-            type: "prueba",
-            description: "prueba",
-            price: 1,
-            mohsHardness:1,
-            density:1,
-            texture:"prueba",
-            img: "prueba"})
-        .set('Accept', 'application/json')
-       // expect(response.statusCode).toBe(200);
+        const response: Response = await request(app).post('/api/rocks/add').
+            send({
+                rockId: "prueba",
+                name: "prueba",
+                type: "prueba",
+                description: "prueba",
+                price: 1,
+                mohsHardness: 1,
+                density: 1,
+                texture: "prueba",
+                img: "prueba"
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(200);
     });
 });
