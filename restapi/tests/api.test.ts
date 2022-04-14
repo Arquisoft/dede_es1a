@@ -6,6 +6,7 @@ import cors from 'cors';
 import api from '../api';
 import { findUsers, addUser, deleteUser, loginUser, logout } from '../controllers/UserController';
 import path from 'path';
+import { send } from 'process';
 
 let app: Application;
 let server: http.Server;
@@ -37,7 +38,7 @@ beforeAll(async () => {
         resave: true,
         saveUninitialized: true,
     }));
-    
+
     app.use("/api", api)
 
     const port: number = 5000;
@@ -145,17 +146,13 @@ describe('user ', () => {
 
 describe('product ', () => {
     jest.setTimeout(10000);
-    it('can be listed', async () => {
-        const response: Response = await request(app).get("/api/rocks/list");
-        expect(response.statusCode).toBe(200);
-    });
-
+    
     it('can be created correctly', async () => {
         const response: Response = await request(app).post('/api/rocks/add').
             send({
                 rockId: "prueba",
                 name: "prueba",
-                type: "prueba",
+                type: "sedimentaria",
                 description: "prueba",
                 price: 1,
                 mohsHardness: 1,
@@ -164,6 +161,44 @@ describe('product ', () => {
                 img: "prueba"
             })
             .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('cant be created correctly', async () => {
+        const response: Response = await request(app).post('/api/rocks/add').
+            send({
+                rockId: "prueba",
+                name: "prueba",
+                type: "sedimentaria",
+                description: "prueba",
+                price: 1,
+                mohsHardness: 1,
+                density: 1,
+                texture: "prueba",
+                img: "prueba"
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(401);
+    });
+
+    it('can be listed', async () => {
+        const response: Response = await request(app).get("/api/rocks/list");
+        expect(response.body[0].name).toBe("prueba");
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('can be listed by critery', async () => {
+        const response: Response = await request(app).get("/api/rocks/list/critery")
+            .send({critery : {name : "prueba"}})
+            .set('Accept', 'application/json');
+        expect(response.body[0].name).toBe("prueba");
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('can be deleted', async () => {
+        const response: Response = await request(app).post("/api/rocks/delete")
+            .send({ rockId: "prueba" })
+            .set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });
 });
