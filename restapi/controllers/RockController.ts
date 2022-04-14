@@ -32,7 +32,7 @@ export const findRocksMetamorphic = async (req:Request, res:Response) => {
     res.send(rocks);
 };
 
-export const findByCriteryText = async (req:Request, res:Response) => {
+export const  findByCriteryText = async (req:Request, res:Response) => {
     let critery = req.body.critery;
     const rocks = await Rock.find({$or:[{name : critery}, {type : critery}, {texture : critery} ]})
     res.setHeader('Content-Type', 'application/json');
@@ -47,6 +47,7 @@ export const findByCriteryNumber = async (req:Request, res:Response) => {
     res.status(200);
     res.send(rocks);
 }
+
 
 export const addRock = async (req:Request, res:Response): Promise<any> => { 
 
