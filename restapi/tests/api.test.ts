@@ -102,6 +102,91 @@ describe('user ', () => {
         expect(response.statusCode).toBe(401);
     });
 
+    it('cant be created correctly 2', async () => {
+
+        let username: string = ''
+        let email: string = 'gonzalezgpablo@uniovi.es'
+        const response: Response = await request(app).post('/api/users/add')
+            .send({
+                dni: "1",
+                name: username,
+                email: email,
+                rol: 1,
+                password: pass,
+                repeatPassword: pass
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(401);
+    });
+
+    it('cant be created correctly 3', async () => {
+
+        let username: string = 'Pablo'
+        let email: string = ''
+        const response: Response = await request(app).post('/api/users/add')
+            .send({
+                dni: "1",
+                name: username,
+                email: email,
+                rol: 1,
+                password: pass,
+                repeatPassword: pass
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(401);
+    });
+
+    it('cant be created correctly 4', async () => {
+
+        let username: string = 'Pablo'
+        let email: string = 'gonzalezgpablo@uniovi.es'
+        const response: Response = await request(app).post('/api/users/add')
+            .send({
+                dni: "",
+                name: username,
+                email: email,
+                rol: 1,
+                password: pass,
+                repeatPassword: pass
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(401);
+    });
+
+    it('cant be created correctly 5', async () => {
+
+        let username: string = 'Pablo'
+        let email: string = 'gonzalezgpablo@uniovi.es'
+        const response: Response = await request(app).post('/api/users/add')
+            .send({
+                dni: "1",
+                name: username,
+                email: email,
+                rol: 1,
+                password: "",
+                repeatPassword: pass
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(401);
+    });
+
+    it('cant be created correctly 6', async () => {
+
+        let username: string = 'Pablo'
+        let email: string = 'gonzalezgpablo@uniovi.es'
+        const response: Response = await request(app).post('/api/users/add')
+            .send({
+                dni: "1",
+                name: username,
+                email: email,
+                rol: 1,
+                password: pass,
+                repeatPassword: ""
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(401);
+    });
+
     /**
  * Test that we can list users without any error.
  */
@@ -123,6 +208,19 @@ describe('user ', () => {
             .set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });
+
+       /**
+ * Test that we cant login user.
+ */
+        it('cant be login', async () => {
+            const response: Response = await request(app).post("/api/users/login")
+                .send({
+                    email: "g",
+                    password: pass
+                })
+                .set('Accept', 'application/json');
+            expect(response.statusCode).toBe(401);
+        });
 
     /**
 * Test that we can logout users without any error.
