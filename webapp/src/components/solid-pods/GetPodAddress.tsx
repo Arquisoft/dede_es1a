@@ -1,9 +1,9 @@
-import React, {useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Grid from "@mui/material/Grid"
 import Box from "@mui/material/Box"
 
-import {VCARD } from "@inrupt/vocab-common-rdf";
+import { FOAF, VCARD } from "@inrupt/vocab-common-rdf";
 import {getSolidDataset, getStringNoLocale, getThing, Thing, getUrl} from "@inrupt/solid-client";
 
 type PODProps = {
@@ -20,7 +20,7 @@ async function infoAddress(webID: string): Promise<string[]> {
     let address = getStringNoLocale(addressProfile as Thing, VCARD.street_address) as string
     let postalCode = getStringNoLocale(addressProfile as Thing, VCARD.postal_code) as string
     let city = getStringNoLocale(addressProfile as Thing, VCARD.locality) as string
-
+    localStorage.setItem("address", address +", " + city);
     let info = [address, postalCode, city]
 
     return info

@@ -1,16 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SessionProvider, useSession } from "@inrupt/solid-ui-react";
 import LoginForm from "./LoginForm"
 import ProfileViewer from "./ProfileViewer"
+import React from 'react';
+import { Rock } from '../../shared/shareddtypes';
 
 //import {createData} from "./code/insertExampleData"
 
-function LoginPod(): JSX.Element {
+
+function LoginPod():  JSX.Element   {
 //We use this state variable
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 //With this we can control the login status for solid
 const { session } = useSession();
+
+
+function getCartContent() {
+  const memoryCart = localStorage.getItem("cart");
+  if (memoryCart) {
+    return JSON.parse(memoryCart);
+  } else {
+    return [];
+  }
+}
+
 
 //We have logged in
 session.onLogin(()=>{
@@ -24,9 +38,12 @@ session.onLogout(()=>{
 
   return (
     <SessionProvider sessionId="log-in-example">
-      {(!isLoggedIn) ? <LoginForm/> : <ProfileViewer/>}
+      
+      {(!isLoggedIn) ? <LoginForm/> : <ProfileViewer cartContent={getCartContent()}/>}
     </SessionProvider>
   )
 }
 
 export default LoginPod;
+
+

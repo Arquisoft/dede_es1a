@@ -5,7 +5,7 @@ export async function addUser(user:User):Promise<boolean>{
     let response = await fetch(apiEndPoint+'/users/add', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({'name':user.name, 'email':user.email})
+        body: JSON.stringify({'name':user.name, 'email':user.email, 'dni':user.dni, 'password':user.password, 'repeatPassword': user.repeatPassword})
       });
     if (response.status===200)
       return true;
@@ -47,16 +47,33 @@ export async function getRocksMetamorphic():Promise<Rock[]>{
   return response.json()
 }
 
-export async function checkUser(username:String,password:String):Promise<boolean>{
+export async function checkUser(email:String,password:String):Promise<boolean>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   let response = await fetch(apiEndPoint+'/users/login', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({'usuario':username, 'contraseña':password})
+      body: JSON.stringify({'email':email, 'password':password})
     });
   if (response.status===200)
     return true;
   else
     return false;
+
+}
+
+export async function getDeliveryCosts(address:String):Promise<Number>{
+  console.log("BBBBBBBBBBBBBBBBBBBBBBBBB");
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint+'/orders/deliveryCosts', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({'address':address})
+    });
+  
+  if (response.status===200){
+    return response.json();
+  }
+  else
+    return -1;
 
 }

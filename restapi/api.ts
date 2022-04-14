@@ -6,15 +6,13 @@ import {findUsers, addUser, deleteUser, loginUser, logout} from './controllers/U
 const User = require("./models/User");
 const Rock = require("./models/Rock");
 
+
 const api:Router = express.Router()
 const mongoose = require("mongoose");
 
-//Methods for control users from the app
-api.get("/users/list", findUsers);
+api.get("/users/list",findUsers);
 
-api.post("/users/add", addUser);
-
-api.post("/users/delete", deleteUser);
+api.post("/users/add",addUser);
 
 api.post("/users/login", loginUser);
 
@@ -41,6 +39,6 @@ api.get("/orders/userList", findOrdersByUserEmail);
 
 api.post("/orders/add", addOrder);
 
-api.get("/orders/deliveryCosts", getDeliveryCosts)
+api.post("/orders/deliveryCosts", getDeliveryCosts)
 
 export default api;

@@ -2,30 +2,48 @@
   padding: 1em;
   margin-bottom: 3em;
   text-align: center;
-  text-rendering: optimizeSpeed;
+  height: 100%;
 }
 .infoProduct {
-  width: 100%;
-  height: 75%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  margin-top: 1em;
+  flex-wrap: wrap;
+  gap: 0.3em;
 }
 .imageProductContainer {
-  height: 7em;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border: #f3af2f 0.2em dashed;
-  border-radius: 0.3em;
+  border-radius: 1em;
+  
 }
+
+.imageProductContainer  img{
+  border-radius: 1em;
+  margin: 1em;
+
+  
+}
+.infoProduct .datoProduct:first-of-type{
+  width: 100%;
+}
+
 .datoProduct {
   background-color: #ced9ee;
-  padding: 0.3em;
+  padding: 0.5em;
   border-radius: 0.3em;
   border: rgb(230, 237, 241) 0.15em solid;
+  height: 80%;
+  width: 43%;
 
-  display: flex;
+  display: flex; /* To make the text inside center vertically*/
   justify-content: center;
   align-items: center;
+  margin: 0;
+}
+.btnBuy{
+  position: relative;
+  top:2em !important;
 }
