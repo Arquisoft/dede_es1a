@@ -285,6 +285,40 @@ describe('product ', () => {
         expect(response.statusCode).toBe(200);
     });
 
+    it('cant be created correctly 2', async () => {
+        const response: Response = await request(app).post('/api/rocks/add').
+            send({
+                rockId: "prueba2",
+                name: "prueba2",
+                type: "ígnea",
+                description: "prueba",
+                price: 1,
+                mohsHardness: 1,
+                density: 1,
+                texture: "prueba",
+                img: "prueba"
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('cant be created correctly 3', async () => {
+        const response: Response = await request(app).post('/api/rocks/add').
+            send({
+                rockId: "prueba3",
+                name: "prueba3",
+                type: "metamórfica",
+                description: "prueba",
+                price: 1,
+                mohsHardness: 1,
+                density: 1,
+                texture: "prueba",
+                img: "prueba"
+            })
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(200);
+    });
+
     it('can be listed by critery', async () => {
         const response: Response = await request(app).get("/api/rocks/list/critery")
             .send({critery : {name : "prueba"}})
@@ -293,9 +327,41 @@ describe('product ', () => {
         expect(response.statusCode).toBe(200);
     });
 
+    it('can be listed by sedimetary', async () => {
+        const response: Response = await request(app).get("/api/rocks/list/sedimentary")
+        expect(response.body[0].type).toBe("sedimentaria");
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('can be listed by fiery', async () => {
+        const response: Response = await request(app).get("/api/rocks/list/fiery")
+        expect(response.body[0].type).toBe("ígnea");
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('can be listed by metamorphic', async () => {
+        const response: Response = await request(app).get("/api/rocks/list/metamorphic")
+        expect(response.body[0].type).toBe("metamórfica");
+        expect(response.statusCode).toBe(200);
+    });
+
     it('can be deleted', async () => {
         const response: Response = await request(app).post("/api/rocks/delete")
             .send({ rockId: "prueba" })
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('can be deleted 2', async () => {
+        const response: Response = await request(app).post("/api/rocks/delete")
+            .send({ rockId: "prueba2" })
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('can be deleted 3', async () => {
+        const response: Response = await request(app).post("/api/rocks/delete")
+            .send({ rockId: "prueba3" })
             .set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });
