@@ -10,18 +10,19 @@ type ProductProps = {
 //a
 function Product(product: ProductProps): JSX.Element {
   return (
-    <CardActionArea>
+    
     <Card className="product">
-      
+      <CardActionArea>
         <CardMedia component="img"
           height="200"
           image={product.product?.img}
           alt={product.product?.name}
         />
+        </CardActionArea >
         <CardContent>
           {product.product !== null ?
 
-            <Grid container spacing={1} >
+            <Grid container spacing={3} >
               <Grid item xs={12}>
                 <Paper elevation={3} className='productDataContainer' />
                 <Typography className='productDataText'>{"nombre: " + product.product.name}</Typography>
@@ -66,7 +67,7 @@ function Product(product: ProductProps): JSX.Element {
         </CardContent>
         
     </Card >
-    </CardActionArea >
+    
   );
 }
 

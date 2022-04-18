@@ -2,19 +2,26 @@
   padding: 1em;
   text-align: center;
   height: 100%;
+  
 }
 
 .btnBuy{
   position: relative;
-  top:2em !important;
+  top:3em !important;
 }
 
 .productDataText{
-  margin-top: -2em !important;
+
+  position: relative;
+
+  bottom: 100%;
+  
 }
 .productDataContainer{
-  margin-top: 1em;
-  height: 2.5em;
+
+  height: 100%;
+  padding-top: 1em;
+  
 }
 @media only screen and (max-width: 1000px) {
   .productDataText{
