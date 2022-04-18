@@ -1,94 +1,72 @@
-import {Rock} from '../shared/shareddtypes';
+import { Rock } from '../shared/shareddtypes';
 import Button from '@mui/material/Button';
-import { Grid, Paper, Typography } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Grid, Paper, Typography } from '@mui/material';
 type ProductProps = {
-  product: Rock |null;
-  buyable:boolean;
-  handleAddToCart(r:Rock): void;
+  product: Rock | null;
+  buyable: boolean;
+  handleAddToCart(r: Rock): void;
 };
 
 //a
 function Product(product: ProductProps): JSX.Element {
   return (
-      <div className="product">
-          <div className='imageProductContainer'>
-          {product.product!==null ?
-              <>
-              
-              <img src={product.product.img} style={{width:'100%'}} alt={product.product.name.toString()}/>
-              </>
-              : <></>
-            }
-          </div>
-          <div>
-              
-              {product.product!==null ?
-              <Grid container spacing={2} >
-              
-                <Grid item xs={12}>
-                  <Paper elevation={3} sx={{
-                    bgcolor: 'background.default',
-                    height:'2em'
-                  }}/>
-                  <Typography mt={-3.3}></Typography>
-                  {"nombre: "+product.product.name}
-                  <Paper />
-                  
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper elevation={3} sx={{
-                    bgcolor: 'background.default',
-                    height:'2em'
-                  }}/>
-                  <Typography mt={-3.3}></Typography>
-                  {"nombre: "+product.product.name}
-                  <Paper />
-                  
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper elevation={3} sx={{
-                    bgcolor: 'background.default',
-                    height:'2em'
-                  }}/>
-                  <Typography mt={-3.3}></Typography>
-                  {"nombre: "+product.product.name}
-                  <Paper />
-                  
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper elevation={3} sx={{
-                    bgcolor: 'background.default',
-                    height:'2em'
-                  }}/>
-                  <Typography mt={-3.3}></Typography>
-                  {"nombre: "+product.product.name}
-                  <Paper />
-                  
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper elevation={3} sx={{
-                    bgcolor: 'background.default',
-                    height:'2em'
-                  }}/>
-                  <Typography mt={-3.3}></Typography>
-                  {"nombre: "+product.product.name}
-                  <Paper />
-                  
-                </Grid>
-              
+    <CardActionArea>
+    <Card className="product">
+      
+        <CardMedia component="img"
+          height="200"
+          image={product.product?.img}
+          alt={product.product?.name}
+        />
+        <CardContent>
+          {product.product !== null ?
+
+            <Grid container spacing={1} >
+              <Grid item xs={12}>
+                <Paper elevation={3} className='productDataContainer' />
+                <Typography className='productDataText'>{"nombre: " + product.product.name}</Typography>
+                <Paper />
               </Grid>
-              : <></>
-            }
-              
-          </div>
-          <Button 
-            variant="contained" 
-            className='btnBuy' 
-            color="primary" 
-            style={{width:'100%'}}
-            onClick={() => product.handleAddToCart(product.product as Rock)}>
-          Comprar</Button>
-      </div>
+              <Grid item xs={6}>
+                <Paper elevation={3} className='productDataContainer' />
+                <Typography className='productDataText'>{"nombre: " + product.product.name}</Typography>
+                <Paper />
+              </Grid>
+              <Grid item xs={6}>
+                <Paper elevation={3} className='productDataContainer' />
+                <Typography className='productDataText'>{"nombre: " + product.product.name}</Typography>
+                <Paper />
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className='productDataContainer' elevation={3} />
+                <Typography className='productDataText'>{"nombre: " + product.product.name}
+                </Typography>
+                <Paper />
+              </Grid>
+              <Grid item xs={6}>
+                <Paper elevation={3} className='productDataContainer' />
+                <Typography className='productDataText'> {"nombre: " + product.product.name}</Typography>
+                <Paper />
+              </Grid>
+            </Grid>
+
+            : <></>
+          }
+
+
+
+      
+      <Button
+        variant="contained"
+        className='btnBuy'
+        color="primary"
+        style={{ width: '100%' }}
+        onClick={() => product.handleAddToCart(product.product as Rock)}>
+        Comprar</Button>
+        </CardContent>
+        
+    </Card >
+    </CardActionArea >
   );
 }
 
