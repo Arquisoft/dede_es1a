@@ -5,12 +5,22 @@ import {Grid } from '@mui/material';
 import RangeSlider from "./Rangeslider";
 import BasicTextFieldWithOptions from "./TextFieldWithOptions";
 import BasicTextField from "./TextField";
+import  {getRocas} from '../api/api';
+import { useEffect, useState } from 'react';
 type RockListProps = {
-  rocks: Rock[];
   handleAddToCart(rock:Rock): void;
 };
 //a
-function Catalogo(rocks: RockListProps): JSX.Element {
+function Catalogo(rockListPros: RockListProps): JSX.Element {
+  const [rocks, setRocks] = useState<Rock[]>([]);
+
+  const refreshRockList = async () => {
+    setRocks(await getRocas());
+  };
+  useEffect(() => {
+    refreshRockList();
+  }, []);
+
   return (
     <>
       <Grid id="catalogFilter" container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
@@ -31,8 +41,8 @@ function Catalogo(rocks: RockListProps): JSX.Element {
         </Grid>
       </Grid>
       <List id="catalog">
-      {rocks.rocks.map((rock,index)=>{
-        return <Product product={rock} buyable={true} handleAddToCart={rocks.handleAddToCart}/>
+      {rocks.map((rock,index)=>{
+        return <Product product={rock} buyable={true} handleAddToCart={rockListPros.handleAddToCart}/>
       })}
       </List>
       

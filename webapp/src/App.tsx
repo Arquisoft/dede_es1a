@@ -28,11 +28,7 @@ type Props = {
 };
 
 function App(): JSX.Element {
-  const [rocks, setRocks] = useState<Rock[]>([]);
 
-  const refreshRockList = async () => {
-    setRocks(await getRocas());
-  };
 
   // Shopping cart
   const [isNewCart, setNewCart] = useState(false);
@@ -102,9 +98,7 @@ function App(): JSX.Element {
     );
   };
 
-  useEffect(() => {
-    refreshRockList();
-  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl" className="principal">
@@ -119,7 +113,7 @@ function App(): JSX.Element {
             <Route
               path="/catalog"
               element={
-                <Catalog rocks={rocks} handleAddToCart={handleAddToCart} />
+                <Catalog handleAddToCart={handleAddToCart} />
               }
             />
             <Route
