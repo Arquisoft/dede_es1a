@@ -5,7 +5,7 @@ const mongooseOrders = require("mongoose")
 const orderSchema = mongooseOrders.Schema({
     orderId : String,
     price : Number,
-    userDni : String,
+    userEmail : String,
     productId : String
 },{
     versionKey: false
