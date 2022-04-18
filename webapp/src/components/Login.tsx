@@ -11,6 +11,7 @@ import {useNavigate} from 'react-router-dom';
 import { checkUser } from '../api/api';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { Link } from '@mui/material';
 
 const checkParams = (text: String) => {
   return text === "" || text == null;
@@ -109,7 +110,6 @@ function EmailForm(): JSX.Element {
       </div>
       <div className='field-container'>
    
-        <h3>Contraseña:</h3>
         <TextField
           required
           name="Contraseña"
@@ -124,12 +124,10 @@ function EmailForm(): JSX.Element {
         />
         </div>    
 
-        <div className='buttons'>
-           <br></br>
+        <div className='buttonCls'>
            <Button onClick={() => allFunc(email, password)} variant="contained" type="submit">Iniciar Sesión</Button>
-           <br></br>
-           <Button variant="contained" onClick={() => navigate("/register")} type="submit" sx={{ my: 2 }}>¿No tienes cuenta? Regístrate</Button>
            </div>
+           <Link href = "/register">¿Aún no estás registrado? Regístrate aqui!</Link>
         </div>
         
         </form>
