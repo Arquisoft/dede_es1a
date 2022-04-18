@@ -42,7 +42,7 @@ function EmailForm(): JSX.Element {
       });
       console.log(sessionStorage.getItem("userLogged"));
       navigate("/catalog");
-      //Notify the change to the parent component
+      window.location.reload();
     }
     else{
       setNotificationStatus(true);
