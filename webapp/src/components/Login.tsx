@@ -88,13 +88,11 @@ function EmailForm(): JSX.Element {
 
   return (
     <>
-    <h1>Entrar en Sesión</h1>
-      <br></br><br></br>
-      <div className='loggin-container'>
+      <div className='loginBackground'>
       <form name="loggin" onSubmit={handleSubmit}>
 
-      <div className='loggin-content'>
-      <h3>Email:</h3>
+      <div className='registerForm'>
+      <h1>Entrar en Sesión</h1>
       <div className='field-container'>
       
         <TextField
