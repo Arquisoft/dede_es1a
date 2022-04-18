@@ -79,10 +79,9 @@ export const addRock = async (req:Request, res:Response): Promise<any> => {
 
 export const deleteRock = async (req:Request, res:Response): Promise<any> => {
   
-    let rockId = req.body.rockId;
-  
+    let query = {rockId : req.body.rockId.toString()};
     let rock = await Rock.deleteOne(
-        { rockId : rockId }
+        {query}
     );
     
     res.setHeader('Content-Type', 'application/json');

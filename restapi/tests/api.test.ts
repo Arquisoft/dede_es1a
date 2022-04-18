@@ -4,9 +4,7 @@ import * as http from 'http';
 import bp from 'body-parser';
 import cors from 'cors';
 import api from '../api';
-import { findUsers, addUser, deleteUser, loginUser, logout } from '../controllers/UserController';
 import path from 'path';
-import { send } from 'process';
 
 let app: Application;
 let server: http.Server;
