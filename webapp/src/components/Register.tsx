@@ -7,6 +7,8 @@ import Link from '@mui/material/Link';
 import { addUser } from '../api/api';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import '../css/LoginRegister.css';
+
 
 type RegisterProps = {
   OnUserListChange: () => void;
@@ -107,102 +109,102 @@ const getEmail = async (email: String) => {
     }
   }
   return (
-    <>         
-     <h1>Registrarse</h1>
+    <>    
+        <div id= "log" className="loginBackground" >
+          <form onSubmit={handleSubmit} name="registro" >
+            <div className="registerForm">
 
-        <div id= "log" className="registro-container">
-        <form onSubmit={handleSubmit} name="registro" >
-        <div className="registro-contenido">
+              <h1>Crear cuenta</h1>
+                <div className="">
 
-       <div className='field-container'>
+              <TextField
+              required
+              label="Email:"
+              name="email"
+              id="filled-size-small"
+              variant="filled"
+              value={email}
+              error = {checkParams(email) && pulse}
+              helperText={checkParams(email) && pulse ? 'El campo no puede estar vacio' : ''}
+              onChange={e => setEmail(e.target.value)}
+              sx={{ my: 2 }}
 
-          <TextField
-          required
-          label="Email:"
-          name="email"
-          id="filled-size-small"
-          variant="filled"
-          value={email}
-          error = {checkParams(email) && pulse}
-          helperText={checkParams(email) && pulse ? 'El campo no puede estar vacio' : ''}
-          onChange={e => setEmail(e.target.value)}
-          sx={{ my: 2 }}
+            />
+            </div>
 
-        />
+            <div className='field-container'>
+            <TextField
+              required
+              label="Name:"
+              name="name"
+              id="filled-size-small"
+              variant="filled"
+              value={name}
+              error = {checkParams(name) && pulse}
+              helperText={checkParams(name) && pulse ? 'El campo no puede estar vacio' : ''}
+              onChange={e => setName(e.target.value)}
+              sx={{ my: 2 }}
+
+            />
+            </div>
+
+            <div className='field-container'>
+            <TextField
+              required
+              label="DNI:"
+              name="dni"
+              id="filled-size-small"
+              variant="filled"
+              value={dni}
+              error = {checkParams(dni) && pulse}
+              helperText={checkParams(dni) && pulse ? 'El campo no puede estar vacio' : ''}
+              onChange={e => setDni(e.target.value)}
+              sx={{ my: 2 }}
+
+            />
+            </div>
+
+            <div className='field-container'>
+
+            <TextField
+              required
+              label="Password:"    
+              name="password"
+              id="filled-size-small"
+              variant="filled"
+              type ="password"
+              value={password}
+              error = {checkParams(password) && pulse}
+              helperText={checkParams(password) && pulse ? 'El campo no puede estar vacio' : ''}
+              onChange={e => setPassword(e.target.value)}
+              sx={{ my: 2 }}
+
+            />
+            </div>
+            <div className='field-container'>
+
+            <TextField
+              required
+              label="Confirm Password:"
+              name="confirmPassword"
+              id="filled-size-small"
+              variant="filled"
+              type ="password"
+              value={confirmPassword}
+              error = {checkParams(confirmPassword) && pulse}
+              helperText={checkParams(confirmPassword) && pulse ? 'El campo no puede estar vacio' : ''
+                || checkPaswwords(confirmPassword, password) && pulse ? 'Las contraseñas no coinciden' : ''}
+              onChange={e => setConfirmPassword(e.target.value)}
+              sx={{ my: 2 }}
+
+            />
+
+            </div>
+            <div className="buttonCls">
+              <Button onClick={() => allFunc(name,dni,email,password,confirmPassword)} variant="contained" type="submit">Regístrate</Button>
+            </div>
+            <Link href = "/login">¿Ya tienes una cuenta? Inicia sesión aqui!</Link>
         </div>
-
-        <div className='field-container'>
-        <TextField
-          required
-          label="Name:"
-          name="name"
-          id="filled-size-small"
-          variant="filled"
-          value={name}
-          error = {checkParams(name) && pulse}
-          helperText={checkParams(name) && pulse ? 'El campo no puede estar vacio' : ''}
-          onChange={e => setName(e.target.value)}
-          sx={{ my: 2 }}
-
-        />
-        </div>
-
-        <div className='field-container'>
-        <TextField
-          required
-          label="DNI:"
-          name="dni"
-          id="filled-size-small"
-          variant="filled"
-          value={dni}
-          error = {checkParams(dni) && pulse}
-          helperText={checkParams(dni) && pulse ? 'El campo no puede estar vacio' : ''}
-          onChange={e => setDni(e.target.value)}
-          sx={{ my: 2 }}
-
-        />
-        </div>
-
-        <div className='field-container'>
-
-        <TextField
-          required
-          label="Password:"    
-          name="password"
-          id="filled-size-small"
-          variant="filled"
-          type ="password"
-          value={password}
-          error = {checkParams(password) && pulse}
-          helperText={checkParams(password) && pulse ? 'El campo no puede estar vacio' : ''}
-          onChange={e => setPassword(e.target.value)}
-          sx={{ my: 2 }}
-
-        />
-        </div>
-        <div className='field-container'>
-
-        <TextField
-          required
-          label="Confirm Password:"
-          name="confirmPassword"
-          id="filled-size-small"
-          variant="filled"
-          type ="password"
-          value={confirmPassword}
-          error = {checkParams(confirmPassword) && pulse}
-          helperText={checkParams(confirmPassword) && pulse ? 'El campo no puede estar vacio' : ''
-            || checkPaswwords(confirmPassword, password) && pulse ? 'Las contraseñas no coinciden' : ''}
-          onChange={e => setConfirmPassword(e.target.value)}
-          sx={{ my: 2 }}
-
-        />
-
-        </div>
-
-        </div>
-        <Button onClick={() => allFunc(name,dni,email,password,confirmPassword)} variant="contained" type="submit">Regístrate</Button>
-        <Link href = "/login">¿Ya tienes una cuenta? Inicia sesión aqui!</Link>
         </form>
         </div>
 
