@@ -32,6 +32,7 @@ function EmailForm(): JSX.Element {
   const [password, setPassword] = useState('');
   const [pulse, setPulse] = useState(false)
 
+
   const [notificationStatus, setNotificationStatus] = useState(false);
   const [notification, setNotification] = useState<NotificationType>({severity:'success',message:''});
   
@@ -70,8 +71,9 @@ function EmailForm(): JSX.Element {
         severity:'success',
         message:'You have been registered in the system!'
       });
-      navigate("/home");
-      //Notify the change to the parent component
+      console.log(sessionStorage.getItem("userLogged"));
+      navigate("/catalog");
+      window.location.reload();
     }
     else{
       setNotificationStatus(true);
