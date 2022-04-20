@@ -30,6 +30,7 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: 16
+        buildargs: DB_CONN_TEST_STRING
     - run: npm ci
     - run: npm test
     - uses: codecov/codecov-action@v2
