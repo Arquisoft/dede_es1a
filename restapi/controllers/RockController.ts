@@ -33,7 +33,28 @@ export const findRocksMetamorphic = async (req:Request, res:Response) => {
 };
 
 export const findByCritery = async (req:Request, res:Response) => {
-    let critery = req.body.critery;
+    let critery = {
+        mohs:
+        {
+            $gt:req.params.mohsMin,
+            $lt:req.params.mohsMax
+        },
+        density:
+        {
+            $gt:req.params.densityMin,
+            $lt:req.params.densityMax
+        },
+        price:
+        {
+            $gt:req.params.priceMin,
+            $lt:req.params.priceMax
+        },
+        name:
+        {
+            $regex:req.params.nameSubString
+        }
+    };
+
     const rocks = await Rock.find(critery)
     res.setHeader('Content-Type', 'application/json');
     res.status(200);

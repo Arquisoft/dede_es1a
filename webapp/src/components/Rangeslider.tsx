@@ -8,7 +8,8 @@ function valuetext(value: number) {
 type SliderProps={
     max:number,
     min:number,
-    valueName:string
+    valueName:string,
+    onValueChanged(low:Number,high:Number):void
 }
 
 export default function RangeSlider(sliderProps:SliderProps) {
@@ -16,6 +17,7 @@ export default function RangeSlider(sliderProps:SliderProps) {
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
+    sliderProps.onValueChanged(value[0],value[1])
   };
 
   return (

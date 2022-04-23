@@ -4,7 +4,8 @@ import TextField from '@mui/material/TextField';
 
 type BasicTextFieldProps={
     label:string,
-    placeholder:string
+    placeholder:string,
+    onChange(event:React.ChangeEvent<HTMLInputElement>):void
 }
 export default function BasicTextField(basicTextFieldProps:BasicTextFieldProps) {
 
@@ -15,6 +16,7 @@ export default function BasicTextField(basicTextFieldProps:BasicTextFieldProps) 
     label={basicTextFieldProps.label}
     placeholder={basicTextFieldProps.placeholder}
     multiline
+    onChange={basicTextFieldProps.onChange}
     />
 
   );
