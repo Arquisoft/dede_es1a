@@ -29,6 +29,7 @@ import PaymentPage from "./components/PaymentPage";
 import { ContentCopy } from "@mui/icons-material";
 
 type Props = {
+  openCart: () => void;
 };
 
 function App(): JSX.Element {
@@ -48,6 +49,13 @@ function App(): JSX.Element {
       resetCart();
       setNewCart(false);
       return;
+    }
+    const memoryCart = localStorage.getItem("cart");
+    if (memoryCart) {
+      let cart: Rock[] = JSON.parse(memoryCart);
+      setCartContent(cart);
+    } else {
+      localStorage.setItem("cart", JSON.stringify([]));
     }
   }, [isNewCart]);
 
@@ -90,7 +98,6 @@ function App(): JSX.Element {
   useEffect(() => {
     refreshRockList();
   }, []);
-  
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl" className="principal">

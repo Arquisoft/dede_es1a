@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { SessionProvider, useSession } from "@inrupt/solid-ui-react";
 import LoginForm from "./LoginForm"
 import ProfileViewer from "./ProfileViewer"
-import React from 'react';
-import { Rock } from '../../shared/shareddtypes';
 
 //import {createData} from "./code/insertExampleData"
 
