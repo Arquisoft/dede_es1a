@@ -29,7 +29,6 @@ import PaymentPage from "./components/PaymentPage";
 import { ContentCopy } from "@mui/icons-material";
 
 type Props = {
-  openCart: () => void;
 };
 
 function App(): JSX.Element {
@@ -44,18 +43,11 @@ function App(): JSX.Element {
   const [isCartOpen, setCartOpen] = useState(false);
   const [cartContent, setCartContent] = useState<Rock[]>([]);
 
-  useEffect(() => { //TODO: esto cuando funciona?? es necesario lo de despues del if ??
+  useEffect(() => {
     if (isNewCart) {
       resetCart();
       setNewCart(false);
       return;
-    }
-    const memoryCart = localStorage.getItem("cart");
-    if (memoryCart) {
-      let cart: Rock[] = JSON.parse(memoryCart);
-      setCartContent(cart);
-    } else {
-      localStorage.setItem("cart", JSON.stringify([]));
     }
   }, [isNewCart]);
 
@@ -104,26 +96,10 @@ function App(): JSX.Element {
         <NavBar openCart={() => setCartOpen(true)} />
         <Router>
           <Routes>
-            <Route
-              path="/home"
-              element={<Welcome handleAddToCart={handleAddToCart} />}
-            />
+            <Route  path="/home" element={<Welcome handleAddToCart={handleAddToCart} />} />
             <Route path="/" element={<Navigate replace to="/home" />} />
-            <Route
-              path="/catalog"
-              element={
-                <Catalog rocks={rocks} handleAddToCart={handleAddToCart} />
-              }
-            />
-            <Route
-              path="/payment"
-              element={
-                <PaymentPage
-                  cartContent={cartContent}
-                  setNewCart={setNewCart}
-                />
-              }
-            />
+            <Route path="/catalog" element={ <Catalog rocks={rocks} handleAddToCart={handleAddToCart} /> } />
+            <Route  path="/payment" element={ <PaymentPage cartContent={cartContent} setNewCart={setNewCart} /> } />
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<Register />} />
           </Routes>
