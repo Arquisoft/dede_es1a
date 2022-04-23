@@ -90,6 +90,7 @@ function App(): JSX.Element {
   useEffect(() => {
     refreshRockList();
   }, []);
+  
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl" className="principal">
