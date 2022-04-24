@@ -470,14 +470,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_log_in">6.1. Log In</a></li>
-<li><a href="#_purchase">6.2. Purchase</a></li>
+<li><a href="#_add_product_to_shopping_cart">6.1. Add Product to Shopping Cart</a></li>
+<li><a href="#_delete_product_from_shopping_cart">6.2. Delete Product from Shopping Cart.</a></li>
+<li><a href="#_login">6.3. Login</a></li>
+<li><a href="#_register">6.4. Register</a></li>
+<li><a href="#_view_user_orders">6.5. View User Orders</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
 <ul class="sectlevel2">
 <li><a href="#_infrastructure_level_1">7.1. Infrastructure Level 1</a></li>
-<li><a href="#_infrastructure_level_2">7.2. Infrastructure Level 2</a></li>
 </ul>
 </li>
 <li><a href="#section-concepts">8. Cross-cutting Concepts</a>
@@ -493,10 +495,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_quality_tree">10.1. Quality Tree</a></li>
 <li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
+<li><a href="#section-technical-risks">10.3. Risks and Technical Debts</a></li>
 </ul>
 </li>
-<li><a href="#section-technical-risks">11. Risks and Technical Debts</a></li>
-<li><a href="#section-glossary">12. Glossary</a></li>
+<li><a href="#section-glossary">11. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -542,8 +544,8 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>Online store of varied products, using the DeDe application, which is a decentralized application for online purchase of products.
-The application will simulate the basic functionalities of an online store, where users and clients can buy different types of products.</p>
+<p>Online store of rocks, using the DeDe application, which is a decentralized application for online purchase of products.
+The application will simulate the basic functionalities of an online store, where users and clients can buy different types of rocks.</p>
 </div>
 </div>
 </div>
@@ -623,7 +625,7 @@ The application interfaces will be created with an open source library React and
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Teachers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Implementation that shows the knowledges of the lessons.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementation that shows the knowledges of the lessons</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -632,7 +634,7 @@ The application interfaces will be created with an open source library React and
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clients</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Application easy to manage with a clear interface and adapted to all levels of software knowledge</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -700,7 +702,7 @@ The application interfaces will be created with an open source library React and
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OC2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Team</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ignacio Gomez Gasch, Valentin Dumitru, Mario Garcia Prieto, Jorge Torano Herrera, Adrian Estrada Gonzalez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignacio Gomez Gasch, Valentin Dumitru, Jorge Torano Herrera, Adrian Estrada Gonzalez</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OC3</p></td>
@@ -962,72 +964,83 @@ All web and services will be optimized with the main aim of making queue waiting
 <h2 id="section-runtime-view">6. Runtime View</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_log_in">6.1. Log In</h3>
-<div class="paragraph">
-<p><span class="image"><img src="./images/Diagram_ASW_Runtime_LoginRegister.png" alt="Hierarchy of building blocks"></span></p>
+<h3 id="_add_product_to_shopping_cart">6.1. Add Product to Shopping Cart</h3>
+<div class="listingblock">
+<div class="content">
+<pre>actor Client
+participant Shopping Cart
+Client -&gt; Shopping Cart: Authentication request
+Shopping Cart -&gt; Client: Authentication answer
+Client -&gt; Shopping Cart: Add products
+note across: Then, the product is stored
+Client -&gt; Shopping Cart: Click on shopping cart
+Shopping Cart -&gt; Client: View shopping cart</pre>
 </div>
-<div class="paragraph">
-<p>The the runtime interactions inside the system to log or register are the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>First the client enters the webpage.</p>
-</li>
-<li>
-<p>Then clicks on login/register, it goes to the log in page.</p>
-</li>
-<li>
-<p>The user is required to allow the the app to collect data from the POD.</p>
-</li>
-<li>
-<p>If allowed, the POD gives the necessary data.</p>
-</li>
-<li>
-<p>We look into our database to see if user exists, if exists brings back his data, if dont we store them.</p>
-</li>
-<li>
-<p>Now the user is logged in and it goes back to the home page.</p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_purchase">6.2. Purchase</h3>
-<div class="paragraph">
-<p><span class="image"><img src="./images/Diagram_ASW_Runtime_Purchase.png" alt="Hierarchy of building blocks"></span>
-The the runtime interactions inside the system purchase any item in our store are the following:</p>
+<h3 id="_delete_product_from_shopping_cart">6.2. Delete Product from Shopping Cart.</h3>
+<div class="listingblock">
+<div class="content">
+<pre>actor Client
+participant Shopping Cart
+Client -&gt; Shopping Cart: Click on shopping cart
+Shopping Cart -&gt; Cliente: View shopping cart
+Client -&gt; Shopping Cart: Delete selected product
+note across: Then, the product is deleted
+Shopping Cart -&gt; Client: Shopping cart is updated</pre>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>First the client enters the webpage.</p>
-</li>
-<li>
-<p>Then searches the product they want by their name or searching by category.</p>
-</li>
-<li>
-<p>After that, the API is called and it fetches the products the user searched from the database.</p>
-</li>
-<li>
-<p>Afterwards the user will select the items he wants to buy.</p>
-</li>
-<li>
-<p>We look into our database to see if user exists, if exists brings back his data, if dont we store them, and after finishing, they will go to the shopping cart to conclude.</p>
-</li>
-<li>
-<p>The api will calculate the price, and if the user modifies the products, it will calculate it again.</p>
-</li>
-<li>
-<p>Then the user will press buy.</p>
-</li>
-<li>
-<p>For the order to be sent, the user is required to allow the app to collect data from the POD, in this case, his credit card, adress and other relevant data. After allowed, the API stores into the database the order.</p>
-</li>
-<li>
-<p>And finally the user is sent back to the home page.</p>
-</li>
-</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_login">6.3. Login</h3>
+<div class="listingblock">
+<div class="content">
+<pre>actor Client
+participant Frontend
+participant Backend
+Client -&gt; Frontend: Introduce email and password
+Frontend -&gt; Backend: Login request
+alt User exists
+    Backend -&gt; Frontend: Returns user
+    Frontend -&gt; Cliente: Redirects home page with the user session
+else User doesn't exists
+    Backend -&gt; Frontend: Authentication error
+end</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_register">6.4. Register</h3>
+<div class="listingblock">
+<div class="content">
+<pre>actor Client
+participant Frontend
+participant Backend
+Cliente -&gt; Frontend: Introduce email, name, dni, password and confirm password
+Frontend -&gt; Backend: Authentication request
+alt User exists
+    Backend -&gt; Frontend: Sign up fails
+    Frontend -&gt; Cliente: Notification to user (email in use)
+else User doesn't exists
+    Backend -&gt; Frontend: New user registered
+    Frontend -&gt; Cliente: Redirects login page
+end</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_view_user_orders">6.5. View User Orders</h3>
+<div class="listingblock">
+<div class="content">
+<pre>actor Client
+participant User Interface
+database "POD"
+Client -&gt; User Interface: View orders
+User Interface -&gt; "POD": Obtain user orders
+"POD" -&gt; User Interface: Return user orders
+User Interface -&gt; Show user orders</pre>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1036,138 +1049,66 @@ The the runtime interactions inside the system purchase any item in our store ar
 <div class="sect1">
 <h2 id="section-deployment-view">7. Deployment View</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Content</div>
-<p>The deployment view describes:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>the technical infrastructure used to execute your system, with infrastructure elements like geographical locations, environments, computers, processors, channels and net topologies as well as other infrastructure elements and</p>
-</li>
-<li>
-<p>the mapping of (software) building blocks to that infrastructure elements.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Often systems are executed in different environments, e.g. development environment, test environment, production environment. In such cases you should document all relevant environments.</p>
-</div>
-<div class="paragraph">
-<p>Especially document the deployment view when your software is executed as distributed system with more then one computer, processor, server or container or when you design and construct your own hardware processors and chips.</p>
-</div>
-<div class="paragraph">
-<p>From a software perspective it is sufficient to capture those elements of the infrastructure that are needed to show the deployment of your building blocks. Hardware architects can go beyond that and describe the infrastructure to any level of detail they need to capture.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Software does not run without hardware.
-This underlying infrastructure can and will influence your system and/or some
-cross-cutting concepts. Therefore, you need to know the infrastructure.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Maybe the highest level deployment diagram is already contained in section 3.2. as
-technical context with your own infrastructure as ONE black box. In this section you will
-zoom into this black box using additional deployment diagrams:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>UML offers deployment diagrams to express that view. Use it, probably with nested diagrams,
-when your infrastructure is more complex.</p>
-</li>
-<li>
-<p>When your (hardware) stakeholders prefer other kinds of diagrams rather than the deployment diagram, let them use any kind that is able to show nodes and channels of the infrastructure.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 <div class="sect2">
 <h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<p>Describe (usually in a combination of diagrams, tables, and text):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>the distribution of your system to multiple locations, environments, computers, processors, .. as well as the physical connections between them</p>
-</li>
-<li>
-<p>important justification or motivation for this deployment structure</p>
-</li>
-<li>
-<p>Quality and/or performance features of the infrastructure</p>
-</li>
-<li>
-<p>the mapping of software artifacts to elements of the infrastructure</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><em><strong>&lt;Overview Diagram&gt;</strong></em></p>
+<p><span class="image"><img src="./images/07_DeploymentView.png" alt="Deployment View"></span></p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p><em>&lt;explanation in text form&gt;</em></p>
+<p>By using this structure, you can see an overview of how the application will work in runtime</p>
 </dd>
 <dt class="hdlist1">Quality and/or Performance Features</dt>
 <dd>
-<p><em>&lt;explanation in text form&gt;</em></p>
+<p>Despite the fact that issues such as connection speed or performance depend mainly on other aspects such as the internet connection, we have tried our best to create a clean code that achieves the best performance for the user.
+With this, the intention is to achieve a good experience for the user in the use of the application.</p>
 </dd>
 <dt class="hdlist1">Mapping of Building Blocks to Infrastructure</dt>
-<dd>
-<p><em>&lt;description of the mapping&gt;</em></p>
-</dd>
 </dl>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Here you can include the internal structure of (some) infrastructure elements from level 1.</p>
-</div>
-<div class="paragraph">
-<p>Please copy the structure from level 1 for each selected element.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_1">7.2.1. <em>&lt;Infrastructure Element 1&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_2">7.2.2. <em>&lt;Infrastructure Element 2&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_n">7.2.3. <em>&lt;Infrastructure Element n&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Browser</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The method with which the user will connect to the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Webapp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The layer of views that the users will be able to see</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RestApi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The layer of logic with which the application will connect</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID USER POD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The address of the user will be obtained from his POD</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloudinary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The API in which the images of the application&#8217;s products are stored</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node Geocoder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The API that allows to obtain the coordinates of the user&#8217;s address to calculate the shipping costs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DB MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The database of the application with which the restapi will interact</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
-</div>
 </div>
 </div>
 </div>
@@ -1220,28 +1161,24 @@ when your infrastructure is more complex.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It will be one of the languages ​​used in the application. One of its positive aspects is its ease of use with Solid</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Solid</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This technology will be used to store client addresses through the use of pods.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The use of this open source library is one of the requirements of the application that will be used to create the application interfaces.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MogoDB</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This type of database is according to the requirements of the application.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BootStrap</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">As it has been/will be used in other subjects, the use of this library has been chosen, since it is also in accordance with the requirements of the application.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">It will be the development enviroment used by all members of the group. One of its most favorable points is the possibility of adding a wide variety of extensions that will allow the project to be carried out in a simple way</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloudinary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In this platform the images of the application will be stored, making it not necessary to save them locally</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node Geocoder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By using this library we get the coordinates from the user address stored in your POD</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Openstreetmap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This will be the provider that we will use in the Node Geoder api, to obtain the coordinates of the user&#8217;s address</p></td>
 </tr>
 </tbody>
 </table>
@@ -1270,48 +1207,90 @@ when your infrastructure is more complex.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Priority Position</th>
+<th class="tableblock halign-left valign-top">ID</th>
 <th class="tableblock halign-left valign-top">Quality attribute</th>
 <th class="tableblock halign-left valign-top">Scenario</th>
-<th class="tableblock halign-left valign-top">Priority</th>
+<th class="tableblock halign-left valign-top">Priority User/Dev</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>U.1</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Usability</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The application must be intuitive and easy to use bu most users</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Very High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High/High</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>2</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Privay</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>P.1</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Privacity</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The user will have the power to choose the (non-essential) information that the application shows or has</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Very High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High/High</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>S.1</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Security</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The application should offer a certain security and integrity against attacks</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High/Medium</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>4</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>M.1</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Modifiability</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The application code should be easily extensible to add new functionality easily</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low/High</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>5</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>E.1</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Efficiency</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The application must be optimized to minimize waiting times for services</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High/Medium</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>6</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>T.1</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Testability</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The application code should be easily testable, to facilitate testing to realiease a robust final product</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low/High</p></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="section-technical-risks">10.3. Risks and Technical Debts</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Risk</th>
+<th class="tableblock halign-left valign-top">Trade off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The interface is unfriendly to users</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We will have to invest time to test and code the flows through the interfaces</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The payment data of the purchases can intervene</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">slower payment transactions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An attacker can access and modify the data of our application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">More time to choose a robust db for the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is complicated to add new functionalities to the application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Refactor and choose application design patterns well to facilitate the addition of new functionalities</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Waiting times for application processes are very long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Increased work to design a code as efficient as possible</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is complicated to test the functionalities of the application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Increased work to design tests that test all the functionalities of the application</p></td>
 </tr>
 </tbody>
 </table>
@@ -1320,32 +1299,7 @@ when your infrastructure is more complex.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-technical-risks">11. Risks and Technical Debts</h2>
-<div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>A list of identified technical risks or technical debts, ordered by priority</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.)</p>
-</div>
-<div class="paragraph">
-<p>This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.</p>
-</div>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-glossary">12. Glossary</h2>
+<h2 id="section-glossary">11. Glossary</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1415,6 +1369,38 @@ when your infrastructure is more complex.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloudinary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloudinary is an api that transform images and videos to load faster with no visual degradation, automatically generate image and video variants, and deliver high quality responsive experiences to increase conversions.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenStreetMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenStreetMap is a collaborative project to create free and editable maps.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">U.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identificator for Usability</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identificator for Privacity</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identificator for Security</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identificator for Modifiability</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identificator for Efficiency</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identificator for Testability</p></td>
+</tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
@@ -1442,7 +1428,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-21 23:03:47 +0100
+Last updated 2022-03-05 15:52:33 +0100
 </div>
 </div>
 </body>
