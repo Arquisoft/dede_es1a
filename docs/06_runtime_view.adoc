@@ -73,5 +73,5 @@ database "POD"
 Client -> UserInterface: View orders
 UserInterface -> "POD": Obtain user orders
 "POD" -> UserInterface: Return user orders
-UserInterface -> UserInterface: Show user orders
+UserInterface -> Client: Show user orders
 ----
