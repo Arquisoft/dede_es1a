@@ -965,81 +965,41 @@ All web and services will be optimized with the main aim of making queue waiting
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_add_product_to_shopping_cart">6.1. Add Product to Shopping Cart</h3>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>actor Client
-participant Shopping Cart
-Client -&gt; Shopping Cart: Authentication request
-Shopping Cart -&gt; Client: Authentication answer
-Client -&gt; Shopping Cart: Add products
-note across: Then, the product is stored
-Client -&gt; Shopping Cart: Click on shopping cart
-Shopping Cart -&gt; Client: View shopping cart</pre>
+<img src="./images/Diagrama%20Añadir%20producto.png" alt="Diagrama Añadir producto" width="247" height="371">
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_delete_product_from_shopping_cart">6.2. Delete Product from Shopping Cart.</h3>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>actor Client
-participant Shopping Cart
-Client -&gt; Shopping Cart: Click on shopping cart
-Shopping Cart -&gt; Cliente: View shopping cart
-Client -&gt; Shopping Cart: Delete selected product
-note across: Then, the product is deleted
-Shopping Cart -&gt; Client: Shopping cart is updated</pre>
+<img src="./images/Diagrama%20Eliminar%20Producto.png" alt="Diagrama Eliminar Producto" width="261" height="341">
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_login">6.3. Login</h3>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>actor Client
-participant Frontend
-participant Backend
-Client -&gt; Frontend: Introduce email and password
-Frontend -&gt; Backend: Login request
-alt User exists
-    Backend -&gt; Frontend: Returns user
-    Frontend -&gt; Cliente: Redirects home page with the user session
-else User doesn't exists
-    Backend -&gt; Frontend: Authentication error
-end</pre>
+<img src="./images/Diagrama%20Inicio%20de%20sesión.png" alt="Diagrama Inicio de sesión" width="541" height="383">
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_register">6.4. Register</h3>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>actor Client
-participant Frontend
-participant Backend
-Cliente -&gt; Frontend: Introduce email, name, dni, password and confirm password
-Frontend -&gt; Backend: Authentication request
-alt User exists
-    Backend -&gt; Frontend: Sign up fails
-    Frontend -&gt; Cliente: Notification to user (email in use)
-else User doesn't exists
-    Backend -&gt; Frontend: New user registered
-    Frontend -&gt; Cliente: Redirects login page
-end</pre>
+<img src="./images/Diagrama%20Registro.png" alt="Diagrama Registro" width="615" height="414">
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_view_user_orders">6.5. View User Orders</h3>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>actor Client
-participant User Interface
-database "POD"
-Client -&gt; User Interface: View orders
-User Interface -&gt; "POD": Obtain user orders
-"POD" -&gt; User Interface: Return user orders
-User Interface -&gt; Show user orders</pre>
+<img src="./images/Ver%20pedidos.png" alt="Ver pedidos" width="283" height="318">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1073,11 +1033,13 @@ With this, the intention is to achieve a good experience for the user in the use
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Node</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<th class="tableblock halign-left valign-top">Node</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Browser</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The method with which the user will connect to the application</p></td>
