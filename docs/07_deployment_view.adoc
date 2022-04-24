@@ -5,13 +5,28 @@
 
 === Infrastructure Level 1
 
+image:07_DeploymentView.png["Deployment View"]
 
 Motivation::
 
-The motivation of this deployment structure is the correct understanding of how nodes and components of the project behave and are related in runtime.
+
+By using this structure, you can see an overview of how the application will work in runtime
 
 Quality and/or Performance Features::
 
-The performance mainly depends on the network connection from the user and the servers on which the application runs. We cannot control those two things, but we can improve as much as possible the quality of the application by writing the cleanest possible code.
+Despite the fact that issues such as connection speed or performance depend mainly on other aspects such as the internet connection, we have tried our best to create a clean code that achieves the best performance for the user.
+With this, the intention is to achieve a good experience for the user in the use of the application.
 
 Mapping of Building Blocks to Infrastructure::
+
+[options="header"]
+|===
+|Node|Description
+| Browser | The method with which the user will connect to the application
+| Webapp | The layer of views that the users will be able to see
+| RestApi | The layer of logic with which the application will connect
+| SOLID USER POD | The address of the user will be obtained from his POD
+| Cloudinary | The API in which the images of the application's products are stored
+| Node Geocoder | The API that allows to obtain the coordinates of the user's address to calculate the shipping costs
+| DB MongoDB | The database of the application with which the restapi will interact
+|===
