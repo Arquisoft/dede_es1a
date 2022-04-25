@@ -110,6 +110,7 @@ function App(): JSX.Element {
             <Route  path="/payment" element={ <PaymentPage cartContent={cartContent} setNewCart={setNewCart} /> } />
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/logout" element ={<Welcome handleAddToCart={handleAddToCart} />}/>
           </Routes>
         </Router>
         <Drawer
