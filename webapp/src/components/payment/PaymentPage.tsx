@@ -15,7 +15,13 @@ import CartItem from '../CartItem';
 import PaymentItem from './PaymentItem';
 import React from 'react';
 import PaymentPayForm from './PaymentPayForm';
+import PaymentComplete from './PaymentComplete';
 
+
+const NUM_VIEWS = 3;
+const ITEMS_TO_BUY_VIEW = 0;
+const PAYMENT_FORM_VIEW = 1;
+const PAYMENT_COMPLETE = 2;
 
 type Props = {
     cartContent: Rock[];
@@ -26,16 +32,28 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
 
     const [paymentView, setPaymentView] = React.useState(0);
+    useEffect(() => {
+        if(paymentView>=NUM_VIEWS) {
+            window.location.href = '/home';
+            handlePay();
+            setPaymentView(0);
+        } else if(paymentView<0) {
+            window.location.href = '/home';
+            setPaymentView(0);
+        } 
+    }, [paymentView]);
+
+
     const nextView = () => {
         setPaymentView((paymentView) => paymentView + 1);
-      };
+    };
     const previusView = () => {
         setPaymentView((paymentView) => paymentView - 1);
     };
 
     const getView = (paymentView: number) => {
         switch (paymentView) {
-          case 0:
+          case ITEMS_TO_BUY_VIEW:
             return (
                 <div id='articles-payment'>
                     <h1>Articulos</h1>
@@ -48,36 +66,38 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                 </div>
             );
 
-          case 1:
+          case PAYMENT_FORM_VIEW:
             return (
-
                 <PaymentPayForm></PaymentPayForm>
+            );
 
-            //   <Delivery
-            //     cartItems={cartItems}
-            //     siguientePaso={siguientePaso}
-            //     deliveryCost={gastosEnvio}
-            //     setDeliveryCost={setDeliveryCost}
-            //     setAddress={setAddress}
-            //     address={address}
-            //     setDeliveryDate={setDeliveryDate}
-            //   />
+            case PAYMENT_COMPLETE:
+            return (
+                <PaymentComplete></PaymentComplete>
             );
       }
     }
 
 
+    const getPaymentSummary = (isSimplified: boolean) => {
+        return <PaymentSummary cartContent={cartContent} simplificate={isSimplified}></PaymentSummary>
+    }
+
+    const handlePay = () => {
+        setNewCart(true);
+        //TODO: añadir a bd
+        alert("Pagado -> no se añade bd");
+    }
+
     return (
         <div className='PaymentProcess-payment' >
         
         <h1 id='title-payment' >Mi compra</h1>
-            <div 
-                id='info-payment'
-            >
+            <div id='info-payment' >
                 {getView(paymentView)}
+                {getPaymentSummary( false)} 
+                {/* {localStorage.getItem("address")!=null) } */}
                 
-                <PaymentSummary cartContent={cartContent} simplificate={true}></PaymentSummary>
-
             </div>
 
             <div id='actionButtons-payment'>
@@ -89,11 +109,10 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                     onClick={() => {
                         // setPaid(true); 
                         // window.location.href = '/home';
-                        nextView();
-                        
+                        previusView();
                     }}
                 >
-                    Checkout
+                    Volver
                 </Button>
                 <Button
                     size="medium"
@@ -101,12 +120,12 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                     variant="contained"
                     disabled={false}
                     onClick={() => {
+                        nextView();
                         // setPaid(true); 
                         // window.location.href = '/home';
-                        nextView();
                     }}
                 >
-                    Checkout
+                    Continuar
                 </Button>
             </div>
         </div>

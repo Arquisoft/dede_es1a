@@ -28,20 +28,11 @@ const ProfileViewer: React.FC<Props> = ({cartContent}) => {
       </CombinedDataProvider>
       ): null }
       <LogoutButton >
-        <Button style={{ marginTop: 20 }} variant="contained" color="primary">
+        <Button style={{ marginTop: 20 }} variant="contained" color="primary">  //TODO: hay que desloguearse
           Logout
         </Button>
       </LogoutButton>
       
-      <Button
-          size="medium"
-          disableElevation
-          variant="contained"
-          disabled={cartContent.length === 0}
-          href = "/payment"
-      >
-          BUY
-      </Button>
 
     </Container>
   );
