@@ -40,7 +40,9 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     }
     const [deliveryCosts, setDeliveryCosts] = useState<Number>();
     const findDC = async () => {
-        setDeliveryCosts(await getDeliveryCosts(getAddressContent()));
+        //TODO:
+        setDeliveryCosts(100);
+        // setDeliveryCosts(await getDeliveryCosts(getAddressContent()));
     }
     
     useEffect(() => {
@@ -56,13 +58,15 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     }
     return (
         <div className='paymentpage-payment' >
+        
+        
 
-        <h1 id='title-payment' >Your BUY</h1>
+        <h1 id='title-payment' >Mi compra</h1>
             <div 
                 id='info-payment'
             >
                 <div id='articles-payment'>
-                    <h1>Articles</h1>
+                    <h1>Articulos</h1>
                     <div id='articles-list-payment'>
                         {   cartContent.map(Rock => (
                                 <div id="items-payment">
@@ -78,12 +82,10 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                 <div id='bill-payment'>
                     <h1>Resumen de Pago</h1>
                     <h2>Costes (no iva): {  (getTotalPrice() - (getTotalPrice()*0.21)).toFixed(2) }€</h2>
-                    <h2>Costes: {getTotalPrice().toFixed(2)}€</h2>
+                    <h2>Costes (iva 21%): {getTotalPrice().toFixed(2)}€</h2>
                     <h2>Costes de Envio: {Number(deliveryCosts).toFixed(2)}€</h2>
                     <h2>Total: {getFinalDeliveryCosts()}€</h2>
                     
-                    
-                    {/* Aqui cogemos la dir de los pods y sacamos los costes envio */}
                 </div>
             </div>
 

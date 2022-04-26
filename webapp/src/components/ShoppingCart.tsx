@@ -15,8 +15,8 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
 
     return (
         <Grid sx = {{width: 500}}>
-            <h1 id='title-cart'>Shopping Cart</h1>
-            {cartContent.length === 0 ? <h3>No items in the cart</h3> : null}
+            <h1 id='title-cart'>Mi carrito</h1>
+            {cartContent.length === 0 ? <h3>El carrito está vacío</h3> : null}
             
             <div className="items-cart">
                 {cartContent.map(item => (
@@ -27,7 +27,7 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
                     handleRemoveFromCart={handleRemoveFromCart}
                 />
                 ))}
-                <h2 id="price-cart">Total: {getTotalPrice().toFixed(2)} €</h2>
+                <h2 id="price-cart">Total (iva 21% incluido): {getTotalPrice().toFixed(2)} €</h2>
             </div>
 
             <LoginPod></LoginPod>
