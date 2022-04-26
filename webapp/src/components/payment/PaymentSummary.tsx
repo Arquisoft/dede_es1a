@@ -33,11 +33,8 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
     const [deliveryCosts, setDeliveryCosts] = useState<Number>();
 
     const findDC =  async () => {
-        //TODO:
-        // setDeliveryCosts(100);
-        if(simplificate )
-            setDeliveryCosts(0);
-        else
+
+        if(!simplificate)
             setDeliveryCosts(await getDeliveryCosts(getAddressContent()));
     }
     

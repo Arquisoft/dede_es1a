@@ -25,10 +25,10 @@ import { Container } from "@mui/material";
 
 import "./css/App.css"
 import ShoppingCart from "./components/ShoppingCart";
-import PaymentPage from "./components/payment/PaymentProcess";
+import PaymentPage from "./components/payment/PaymentPage";
 import { ContentCopy } from "@mui/icons-material";
 import PaymentSummary from './components/payment/PaymentSummary';
-import PaymentProcess from './components/payment/PaymentProcess';
+import PaymentProcess from './components/payment/PaymentPage';
 
 type Props = {
   openCart: () => void;
