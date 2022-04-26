@@ -4,7 +4,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 
 import Button from '@mui/material/Button';
-import '../css/PaymentPage.css'
+import '../css/PaymentProcess.css'
 import { CardContent, Typography } from '@mui/material';
 import { North } from '@mui/icons-material';
 import { useState, useEffect } from 'react';
@@ -18,46 +18,10 @@ type Props = {
     setNewCart: (isNewCart: boolean) => void;
 };
 
-const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
+const PaymentProcess: React.FC<Props> = ({cartContent, setNewCart}) => {
 
-    const [isPaid, setPaid] = useState(false);
-    const getTotalPrice = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart * item.price, 0);
-    
-    const handlePay = () => {
-        if(!isPaid)
-            return;
-        setNewCart(true);
-        setPaid(false);
-    }
-    function getAddressContent() {
-        const memoryCart = localStorage.getItem("address");
-        
-        if (memoryCart) 
-            return memoryCart;
-        else 
-          return "";
-        
-    }
-    const [deliveryCosts, setDeliveryCosts] = useState<Number>();
-    const findDC = async () => {
-        //TODO:
-        setDeliveryCosts(100);
-        // setDeliveryCosts(await getDeliveryCosts(getAddressContent()));
-    }
-    
-    useEffect(() => {
-        findDC();
-    }, []);
-
-    function getFinalDeliveryCosts(){
-        if (deliveryCosts){
-            return (Number(deliveryCosts.toString()) + Number(getTotalPrice())).toFixed(2);
-        }else{
-            return 0;
-        }
-    }
     return (
-        <div className='paymentpage-payment' >
+        <div className='PaymentProcess-payment' >
         
         
 
@@ -109,7 +73,8 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                     variant="contained"
                     disabled={false}
                     onClick={() => {
-                        setPaid(true);
+                        setPaid(true); 
+                        window.location.href = '/home';
                     }}
                 >
                     Checkout
@@ -119,4 +84,4 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     )
 };
 
-export default PaymentPage;
+export default PaymentProcess;

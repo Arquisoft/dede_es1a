@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { Rock } from '../shared/shareddtypes';
 import CartItem from './CartItem';
 import '../css/ShoppingCart.css';
@@ -29,6 +29,16 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
                 ))}
                 <h2 id="price-cart">Total (iva 21% incluido): {getTotalPrice().toFixed(2)} €</h2>
             </div>
+            <Button
+                    size="medium"
+                    disableElevation
+                    variant="contained"
+                    disabled={false}
+                    onClick={() => { window.location.href = '/summary'; }
+                    }
+                >
+                    Realizar Pedido
+                </Button>
 
             <LoginPod></LoginPod>
 

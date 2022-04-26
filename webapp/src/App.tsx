@@ -25,8 +25,9 @@ import { Container } from "@mui/material";
 
 import "./css/App.css"
 import ShoppingCart from "./components/ShoppingCart";
-import PaymentPage from "./components/PaymentPage";
+import PaymentPage from "./components/PaymentProcess";
 import { ContentCopy } from "@mui/icons-material";
+import PaymentSummary from './components/payment/PaymentSummary';
 
 type Props = {
   openCart: () => void;
@@ -105,9 +106,10 @@ function App(): JSX.Element {
         <Router>
           <Routes>
             <Route  path="/home" element={<Welcome handleAddToCart={handleAddToCart} />} />
-            <Route path="/" element={<Navigate replace to="/payment" />} />
+            <Route path="/" element={<Navigate replace to="/summary" />} />
             <Route path="/catalog" element={ <Catalog rocks={rocks} handleAddToCart={handleAddToCart} /> } />
             <Route  path="/payment" element={ <PaymentPage cartContent={cartContent} setNewCart={setNewCart} /> } />
+            <Route  path="/summary" element={ <PaymentSummary cartContent={cartContent} simplificate={false} /> } />
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element ={<Welcome handleAddToCart={handleAddToCart} />}/>
