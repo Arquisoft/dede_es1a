@@ -35,7 +35,10 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
     const findDC =  async () => {
         //TODO:
         // setDeliveryCosts(100);
-        setDeliveryCosts(await getDeliveryCosts(getAddressContent()));
+        if(simplificate )
+            setDeliveryCosts(0);
+        else
+            setDeliveryCosts(await getDeliveryCosts(getAddressContent()));
     }
     
     function getFinalDeliveryCosts(){
@@ -49,10 +52,10 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
         <div id='bill-payment'>
             <h1>Resumen de Pago</h1>
             <h2>Costes (no iva): {  (getTotalPrice() - (getTotalPrice()*0.21)).toFixed(2) }€</h2>
-            <h2>Costes (iva 21%): {getTotalPrice().toFixed(2)}€</h2>
+            <h2>Costes (iva 21%): { getTotalPrice().toFixed(2) }€</h2>
 
             {simplificate ? 
-                <div/> 
+                null
                 :
                 <div>
                     {findDC()}

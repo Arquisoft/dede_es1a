@@ -29,18 +29,19 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
                 ))}
                 <h2 id="price-cart">Total (iva 21% incluido): {getTotalPrice().toFixed(2)} €</h2>
             </div>
-            <Button
-                    size="medium"
-                    disableElevation
-                    variant="contained"
-                    disabled={false}
-                    onClick={() => { window.location.href = '/summary'; }
-                    }
-                >
-                    Realizar Pedido
-                </Button>
 
-            <LoginPod></LoginPod>
+            <Button
+                size="medium"
+                disableElevation
+                variant="contained"
+                disabled={false}
+                onClick={() => { window.location.href = '/payment'; }
+                }
+            >
+                Realizar Pedido
+            </Button>
+
+            
 
         </Grid>
     )
