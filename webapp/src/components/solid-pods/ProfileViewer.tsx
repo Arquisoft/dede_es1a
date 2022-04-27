@@ -5,9 +5,10 @@ import GetPodAddress from './GetPodAddress';
 import { Rock } from "../../shared/shareddtypes";
 
 type Props = {
+  logoutEnabled: boolean;
 };
 
-const ProfileViewer: React.FC<Props> = () => {
+const ProfileViewer: React.FC<Props> = ({logoutEnabled}) => {
   const { session } = useSession();
 
   return (
@@ -26,11 +27,13 @@ const ProfileViewer: React.FC<Props> = () => {
         </Card>
       </CombinedDataProvider>
       ): null }
-      <LogoutButton >
-        <Button style={{ marginTop: 20 }} variant="contained" color="primary">
-          Logout
-        </Button>
-      </LogoutButton>
+      {logoutEnabled ? 
+        <LogoutButton >
+          <Button style={{ marginTop: 20 }} variant="contained" color="primary">
+            Logout
+          </Button>
+        </LogoutButton>
+      : null}
       
 
     </Container>

@@ -41,7 +41,7 @@ session.onLogout(()=>{
   return (
     <SessionProvider sessionId="log-in-example">
       
-      {(!isLoggedIn) ? <LoginForm/> : <ProfileViewer />}
+      {(!isLoggedIn) ? <LoginForm/> : <ProfileViewer logoutEnabled={true}/>}
     </SessionProvider>
   )
 }

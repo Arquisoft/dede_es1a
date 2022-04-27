@@ -30,7 +30,7 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView, setLoggedPod, i
             
             {(!isLoggedPod) ? 
                 <LoginPod setLoggedPod={setLoggedPod}></LoginPod>
-                : <ProfileViewer />}
+                : <ProfileViewer logoutEnabled={true} />}
 
             <div id='actionButtons-payment'>
             <Button
