@@ -12,19 +12,25 @@ import { getDeliveryCosts } from '../../api/api';
 import { findConfigFile } from 'typescript';
 import LoginPod from '../solid-pods/LoginPod';
 
+import { SessionProvider, useSession } from "@inrupt/solid-ui-react";
+import ProfileViewer from '../solid-pods/ProfileViewer';
 
 type Props = {
     nextView: () => void;
     previusView: () => void;
+    setLoggedPod: (b:boolean) => void;
+    isLoggedPod: boolean;
 };
 
-const PaymentPayForm: React.FC<Props> = ({nextView, previusView}) => {
-
+const PaymentPayForm: React.FC<Props> = ({nextView, previusView, setLoggedPod, isLoggedPod}) => {
+    
     return (
         
         <div className='paymentpage-payment' >
-            <LoginPod></LoginPod>
             
+            {(!isLoggedPod) ? 
+                <LoginPod setLoggedPod={setLoggedPod}></LoginPod>
+                : <ProfileViewer />}
 
             <div id='actionButtons-payment'>
             <Button
@@ -42,7 +48,7 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView}) => {
                 size="medium"
                 disableElevation
                 variant="contained"
-                disabled={false}
+                disabled={!isLoggedPod}
                 onClick={() => {
                     nextView();
                 }}
@@ -55,3 +61,5 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView}) => {
 };
 
 export default PaymentPayForm;
+
+

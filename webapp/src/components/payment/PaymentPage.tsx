@@ -32,7 +32,7 @@ type Props = {
 
 const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
-
+    
     const [paymentView, setPaymentView] = React.useState(PAYMENT_FORM_VIEW);
     useEffect(() => {
         if(paymentView>=NUM_VIEWS) {
@@ -64,7 +64,12 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
           case PAYMENT_FORM_VIEW:
             return (
-                <PaymentPayForm nextView={nextView} previusView={previusView}></PaymentPayForm>
+                <PaymentPayForm 
+                    nextView={nextView} 
+                    previusView={previusView}
+                    setLoggedPod={setLoggedPod}
+                    isLoggedPod={isLoggedPod}
+                ></PaymentPayForm>
             );
 
             case PAYMENT_COMPLETE:
@@ -74,9 +79,11 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
       }
     }
 
-
+    
+    const [isLoggedPod, setLoggedPod] = React.useState(false);
+    
     const getPaymentSummary = () => {
-        return <PaymentSummary cartContent={cartContent} simplificate={(paymentView <= PAYMENT_FORM_VIEW)}></PaymentSummary>
+        return <PaymentSummary cartContent={cartContent} simplificate={(!isLoggedPod)}></PaymentSummary>
     }
 
     const handlePay = () => {
@@ -84,6 +91,8 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
         //TODO: añadir a bd
         alert("Pagado -> no se añade bd");
     }
+    
+
     
     return (
         <div className='PaymentProcess-payment' >

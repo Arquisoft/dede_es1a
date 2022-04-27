@@ -34,7 +34,7 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
                 size="medium"
                 disableElevation
                 variant="contained"
-                disabled={false}
+                disabled={cartContent.length<=0}
                 onClick={() => { window.location.href = '/payment'; }
                 }
             >

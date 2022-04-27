@@ -24,7 +24,7 @@ const PaymentComplete: React.FC<Props> = ({nextView, previusView}) => {
         <div>
             <Typography variant="h2" component="h2">Pedido finalizado</Typography>
             <Typography variant="h5" component="h2">Direccion de envio:</Typography>
-            <ProfileViewer cartContent={[]}></ProfileViewer>
+            <ProfileViewer></ProfileViewer>
             <div id='actionButtons-payment'>
             <Button
                 size="medium"

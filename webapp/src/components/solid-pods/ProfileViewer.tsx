@@ -5,10 +5,9 @@ import GetPodAddress from './GetPodAddress';
 import { Rock } from "../../shared/shareddtypes";
 
 type Props = {
-  cartContent: Rock[];
 };
 
-const ProfileViewer: React.FC<Props> = ({cartContent}) => {
+const ProfileViewer: React.FC<Props> = () => {
   const { session } = useSession();
 
   return (
