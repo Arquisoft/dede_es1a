@@ -15,14 +15,41 @@ import ProfileViewer from '../solid-pods/ProfileViewer';
 
 
 type Props = {
+    nextView: () => void;
+    previusView: () => void;
 };
 
-const PaymentComplete: React.FC<Props> = ({}) => {
+const PaymentComplete: React.FC<Props> = ({nextView, previusView}) => {
     return (
         <div>
             <Typography variant="h2" component="h2">Pedido finalizado</Typography>
             <Typography variant="h5" component="h2">Direccion de envio:</Typography>
             <ProfileViewer cartContent={[]}></ProfileViewer>
+            <div id='actionButtons-payment'>
+            <Button
+                size="medium"
+                disableElevation
+                variant="contained"
+                disabled={false}
+                onClick={() => {
+                    previusView();
+                }}
+            >
+                Volver
+            </Button>
+            <Button
+                size="medium"
+                disableElevation
+                variant="contained"
+                disabled={false}
+                onClick={() => {
+                    nextView();
+                }}
+            >
+                Continuar
+            </Button>
+        </div>
+       
         </div>
 
         // localStorage.clear();

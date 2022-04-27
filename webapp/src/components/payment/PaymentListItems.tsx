@@ -17,18 +17,17 @@ import PaymentItem from './PaymentItem';
 
 type Props = {
     cartContent: Rock[];
+    nextView: () => void;
+    previusView: () => void;
 };
 
-const PaymentListItems: React.FC<Props> = ({cartContent}) => {
+const PaymentListItems: React.FC<Props> = ({cartContent, nextView, previusView}) => {
 
     return (
         <div id='articles-payment'>
         <h1>Articulos</h1>
         <div className="items-cart">
-            {cartContent.map(item => (
-                <PaymentItem   item={item}  />
-                ))
-            }
+            {cartContent.map(item => ( <PaymentItem   item={item}  /> ))}
         </div>
         <div id='actionButtons-payment'>
             <Button
@@ -37,7 +36,7 @@ const PaymentListItems: React.FC<Props> = ({cartContent}) => {
                 variant="contained"
                 disabled={false}
                 onClick={() => {
-                    // previusView();
+                    previusView();
                 }}
             >
                 Volver
@@ -48,7 +47,7 @@ const PaymentListItems: React.FC<Props> = ({cartContent}) => {
                 variant="contained"
                 disabled={false}
                 onClick={() => {
-                    // nextView();
+                    nextView();
                 }}
             >
                 Continuar

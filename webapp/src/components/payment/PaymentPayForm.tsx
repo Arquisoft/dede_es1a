@@ -18,13 +18,12 @@ type Props = {
     previusView: () => void;
 };
 
-const PaymentPayForm: React.FC<Props> = ({Props}) => {
+const PaymentPayForm: React.FC<Props> = ({nextView, previusView}) => {
 
     return (
         
         <div className='paymentpage-payment' >
             <LoginPod></LoginPod>
-
             
 
             <div id='actionButtons-payment'>
@@ -34,7 +33,7 @@ const PaymentPayForm: React.FC<Props> = ({Props}) => {
                 variant="contained"
                 disabled={false}
                 onClick={() => {
-                    Props.previusView();
+                    previusView();
                 }}
             >
                 Volver
@@ -45,7 +44,7 @@ const PaymentPayForm: React.FC<Props> = ({Props}) => {
                 variant="contained"
                 disabled={false}
                 onClick={() => {
-                    Props.nextView();
+                    nextView();
                 }}
             >
                 Continuar

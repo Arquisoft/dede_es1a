@@ -58,18 +58,18 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
           case ITEMS_TO_BUY_VIEW:
             return (
                 
-                <PaymentListItems cartContent={cartContent}></PaymentListItems>
+                <PaymentListItems cartContent={cartContent} nextView={nextView} previusView={previusView}></PaymentListItems>
                 
             );
 
           case PAYMENT_FORM_VIEW:
             return (
-                <PaymentPayForm></PaymentPayForm>
+                <PaymentPayForm nextView={nextView} previusView={previusView}></PaymentPayForm>
             );
 
             case PAYMENT_COMPLETE:
             return (
-                <PaymentComplete></PaymentComplete>
+                <PaymentComplete nextView={nextView} previusView={previusView}></PaymentComplete>
             );
       }
     }
