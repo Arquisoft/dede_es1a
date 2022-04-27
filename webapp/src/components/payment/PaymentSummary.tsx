@@ -30,35 +30,38 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
           return "";
         
     }
+    
     const [deliveryCosts, setDeliveryCosts] = useState<Number>();
-
-    const findDC =  async () => {
-
-        if(!simplificate)
+    const findDC = async () => {
+        if(localStorage.getItem("address")){
             setDeliveryCosts(await getDeliveryCosts(getAddressContent()));
+        }
     }
+    
+    useEffect(() => {
+        findDC();
+    }, []);
     
     function getFinalDeliveryCosts(){
         if (deliveryCosts){
             return (Number(deliveryCosts.toString()) + Number(getTotalPrice())).toFixed(2);
         }else{
-            return 0;
+            return Number(getTotalPrice()).toFixed(2);
         }
     }
+
     return (
         <div id='bill-payment'>
             <h1>Resumen de Pago</h1>
             <h2>Costes (no iva): {  (getTotalPrice() - (getTotalPrice()*0.21)).toFixed(2) }€</h2>
             <h2>Costes (iva 21%): { getTotalPrice().toFixed(2) }€</h2>
 
-            {simplificate ? 
-                null
-                :
+            {deliveryCosts ? 
                 <div>
-                    {findDC()}
                     <h2>Costes de Envio: {Number(deliveryCosts).toFixed(2)}€</h2>
                     <h2>Total: {getFinalDeliveryCosts()}€</h2>
                 </div>
+                : null
             }
         </div>
     )

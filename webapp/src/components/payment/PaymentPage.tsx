@@ -16,11 +16,12 @@ import PaymentItem from './PaymentItem';
 import React from 'react';
 import PaymentPayForm from './PaymentPayForm';
 import PaymentComplete from './PaymentComplete';
+import { useSession } from '@inrupt/solid-ui-react';
 
 
 const NUM_VIEWS = 3;
-const ITEMS_TO_BUY_VIEW = 0;
-const PAYMENT_FORM_VIEW = 1;
+const PAYMENT_FORM_VIEW = 0;
+const ITEMS_TO_BUY_VIEW = 1;
 const PAYMENT_COMPLETE = 2;
 
 type Props = {
@@ -31,7 +32,7 @@ type Props = {
 const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
 
-    const [paymentView, setPaymentView] = React.useState(0);
+    const [paymentView, setPaymentView] = React.useState(PAYMENT_FORM_VIEW);
     useEffect(() => {
         if(paymentView>=NUM_VIEWS) {
             window.location.href = '/home';
@@ -55,15 +56,9 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
         switch (paymentView) {
           case ITEMS_TO_BUY_VIEW:
             return (
-                <div id='articles-payment'>
-                    <h1>Articulos</h1>
-                    <div className="items-cart">
-                        {cartContent.map(item => (
-                            <PaymentItem   item={item}  />
-                            ))
-                        }
-                    </div>
-                </div>
+                
+
+                
             );
 
           case PAYMENT_FORM_VIEW:
@@ -79,8 +74,8 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     }
 
 
-    const getPaymentSummary = (isSimplified: boolean) => {
-        return <PaymentSummary cartContent={cartContent} simplificate={isSimplified}></PaymentSummary>
+    const getPaymentSummary = () => {
+        return <PaymentSummary cartContent={cartContent} simplificate={true}></PaymentSummary>
     }
 
     const handlePay = () => {
@@ -88,46 +83,18 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
         //TODO: añadir a bd
         alert("Pagado -> no se añade bd");
     }
-
+    
     return (
         <div className='PaymentProcess-payment' >
         
         <h1 id='title-payment' >Mi compra</h1>
             <div id='info-payment' >
                 {getView(paymentView)}
-                {getPaymentSummary( false)} 
-                {/* {localStorage.getItem("address")!=null) } */}
+                {getPaymentSummary()}
                 
             </div>
 
-            <div id='actionButtons-payment'>
-                <Button
-                    size="medium"
-                    disableElevation
-                    variant="contained"
-                    disabled={false}
-                    onClick={() => {
-                        // setPaid(true); 
-                        // window.location.href = '/home';
-                        previusView();
-                    }}
-                >
-                    Volver
-                </Button>
-                <Button
-                    size="medium"
-                    disableElevation
-                    variant="contained"
-                    disabled={false}
-                    onClick={() => {
-                        nextView();
-                        // setPaid(true); 
-                        // window.location.href = '/home';
-                    }}
-                >
-                    Continuar
-                </Button>
-            </div>
+            
         </div>
     )
 };

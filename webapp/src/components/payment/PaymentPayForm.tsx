@@ -18,9 +18,6 @@ type Props = {
 
 const PaymentPayForm: React.FC<Props> = ({}) => {
 
-    
-
-    
     return (
         
         <div className='paymentpage-payment' >

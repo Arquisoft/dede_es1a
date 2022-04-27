@@ -28,7 +28,7 @@ const ProfileViewer: React.FC<Props> = ({cartContent}) => {
       </CombinedDataProvider>
       ): null }
       <LogoutButton >
-        <Button style={{ marginTop: 20 }} variant="contained" color="primary">  //TODO: hay que desloguearse
+        <Button style={{ marginTop: 20 }} variant="contained" color="primary">
           Logout
         </Button>
       </LogoutButton>

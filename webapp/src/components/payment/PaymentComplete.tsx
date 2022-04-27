@@ -18,10 +18,6 @@ type Props = {
 };
 
 const PaymentComplete: React.FC<Props> = ({}) => {
-
-    
-
-    
     return (
         <div>
             <Typography variant="h2" component="h2">Pedido finalizado</Typography>
@@ -29,9 +25,7 @@ const PaymentComplete: React.FC<Props> = ({}) => {
             <ProfileViewer cartContent={[]}></ProfileViewer>
         </div>
 
-
-
-// localStorage.clear();
+        // localStorage.clear();
     )
 };
 
