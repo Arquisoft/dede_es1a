@@ -56,12 +56,13 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
             <h2>Costes (no iva): {  (getTotalPrice() - (getTotalPrice()*0.21)).toFixed(2) }€</h2>
             <h2>Costes (iva 21%): { getTotalPrice().toFixed(2) }€</h2>
 
-            {deliveryCosts ? 
+            {simplificate ? 
+                null
+                : 
                 <div>
                     <h2>Costes de Envio: {Number(deliveryCosts).toFixed(2)}€</h2>
                     <h2>Total: {getFinalDeliveryCosts()}€</h2>
                 </div>
-                : null
             }
         </div>
     )

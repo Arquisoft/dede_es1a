@@ -17,6 +17,7 @@ import React from 'react';
 import PaymentPayForm from './PaymentPayForm';
 import PaymentComplete from './PaymentComplete';
 import { useSession } from '@inrupt/solid-ui-react';
+import PaymentListItems from './PaymentListItems';
 
 
 const NUM_VIEWS = 3;
@@ -57,7 +58,7 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
           case ITEMS_TO_BUY_VIEW:
             return (
                 
-
+                <PaymentListItems cartContent={cartContent}></PaymentListItems>
                 
             );
 
@@ -75,7 +76,7 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
 
     const getPaymentSummary = () => {
-        return <PaymentSummary cartContent={cartContent} simplificate={true}></PaymentSummary>
+        return <PaymentSummary cartContent={cartContent} simplificate={(paymentView <= PAYMENT_FORM_VIEW)}></PaymentSummary>
     }
 
     const handlePay = () => {
@@ -95,6 +96,32 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
             </div>
 
             
+//TODO:
+<div id='actionButtons-payment'>
+            <Button
+                size="medium"
+                disableElevation
+                variant="contained"
+                disabled={false}
+                onClick={() => {
+                    previusView();
+                }}
+            >
+                Volver
+            </Button>
+            <Button
+                size="medium"
+                disableElevation
+                variant="contained"
+                disabled={false}
+                onClick={() => {
+                    nextView();
+                }}
+            >
+                Continuar
+            </Button>
+        </div>
+
         </div>
     )
 };

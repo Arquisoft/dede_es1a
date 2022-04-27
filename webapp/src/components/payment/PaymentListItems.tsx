@@ -37,7 +37,7 @@ const PaymentListItems: React.FC<Props> = ({cartContent}) => {
                 variant="contained"
                 disabled={false}
                 onClick={() => {
-                    previusView();
+                    // previusView();
                 }}
             >
                 Volver
@@ -48,7 +48,7 @@ const PaymentListItems: React.FC<Props> = ({cartContent}) => {
                 variant="contained"
                 disabled={false}
                 onClick={() => {
-                    nextView();
+                    // nextView();
                 }}
             >
                 Continuar
