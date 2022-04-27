@@ -27,7 +27,9 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView, setLoggedPod, i
     return (
         
         <div className='paymentpage-payment' >
+            <Typography variant="h4" component="h4">Método de pago</Typography>
             
+            <Typography variant="h4" component="h4">Direccion de envío</Typography>
             {(!isLoggedPod) ? 
                 <LoginPod setLoggedPod={setLoggedPod}></LoginPod>
                 : <ProfileViewer logoutEnabled={true} />}

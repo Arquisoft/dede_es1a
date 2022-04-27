@@ -37,7 +37,6 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     useEffect(() => {
         if(paymentView>=NUM_VIEWS) {
             window.location.href = '/home';
-            handlePay();
             setPaymentView(0);
         } else if(paymentView<0) {
             window.location.href = '/home';
@@ -58,7 +57,12 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
           case ITEMS_TO_BUY_VIEW:
             return (
                 
-                <PaymentListItems cartContent={cartContent} nextView={nextView} previusView={previusView}></PaymentListItems>
+                <PaymentListItems 
+                    cartContent={cartContent} 
+                    nextView={nextView} 
+                    previusView={previusView} 
+                    handlePay={handlePay}
+                ></PaymentListItems>
                 
             );
 
@@ -74,7 +78,7 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
             case PAYMENT_COMPLETE:
             return (
-                <PaymentComplete nextView={nextView} previusView={previusView}></PaymentComplete>
+                <PaymentComplete nextView={nextView} ></PaymentComplete>
             );
       }
     }

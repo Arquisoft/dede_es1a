@@ -19,9 +19,10 @@ type Props = {
     cartContent: Rock[];
     nextView: () => void;
     previusView: () => void;
+    handlePay: () => void;
 };
 
-const PaymentListItems: React.FC<Props> = ({cartContent, nextView, previusView}) => {
+const PaymentListItems: React.FC<Props> = ({cartContent, nextView, previusView, handlePay}) => {
 
     return (
         <div id='articles-payment'>
@@ -47,10 +48,11 @@ const PaymentListItems: React.FC<Props> = ({cartContent, nextView, previusView})
                 variant="contained"
                 disabled={false}
                 onClick={() => {
+                    handlePay();
                     nextView();
                 }}
             >
-                Continuar
+                Completar Pago
             </Button>
         </div>
     </div>
