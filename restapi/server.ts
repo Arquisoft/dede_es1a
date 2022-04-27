@@ -19,7 +19,7 @@ const options: cors.CorsOptions = {
 const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
 app.use(metricsMiddleware);
 
-app.use(cors(options));
+app.use(cors());
 app.use(bp.json());
 
 let expressSession = require('express-session');
