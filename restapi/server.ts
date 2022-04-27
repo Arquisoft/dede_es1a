@@ -13,13 +13,13 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 const options: cors.CorsOptions = {
-  origin: ['http://localhost:3000']
+  origin: ['http://localhost:3000',' http://*.compute-1.amazonaws.com'] // NOSONAR
 };
 
 const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
 app.use(metricsMiddleware);
 
-app.use(cors());
+app.use(cors(options));
 app.use(bp.json());
 
 let expressSession = require('express-session');
