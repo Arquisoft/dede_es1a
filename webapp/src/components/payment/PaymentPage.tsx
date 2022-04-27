@@ -88,39 +88,13 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     return (
         <div className='PaymentProcess-payment' >
         
-        <h1 id='title-payment' >Mi compra</h1>
+            <h1 id='title-payment' >Mi compra</h1>
             <div id='info-payment' >
                 {getView(paymentView)}
                 {getPaymentSummary()}
                 
             </div>
 
-            
-//TODO:
-<div id='actionButtons-payment'>
-            <Button
-                size="medium"
-                disableElevation
-                variant="contained"
-                disabled={false}
-                onClick={() => {
-                    previusView();
-                }}
-            >
-                Volver
-            </Button>
-            <Button
-                size="medium"
-                disableElevation
-                variant="contained"
-                disabled={false}
-                onClick={() => {
-                    nextView();
-                }}
-            >
-                Continuar
-            </Button>
-        </div>
 
         </div>
     )

@@ -14,14 +14,43 @@ import LoginPod from '../solid-pods/LoginPod';
 
 
 type Props = {
+    nextView: () => void;
+    previusView: () => void;
 };
 
-const PaymentPayForm: React.FC<Props> = ({}) => {
+const PaymentPayForm: React.FC<Props> = ({Props}) => {
 
     return (
         
         <div className='paymentpage-payment' >
             <LoginPod></LoginPod>
+
+            
+
+            <div id='actionButtons-payment'>
+            <Button
+                size="medium"
+                disableElevation
+                variant="contained"
+                disabled={false}
+                onClick={() => {
+                    Props.previusView();
+                }}
+            >
+                Volver
+            </Button>
+            <Button
+                size="medium"
+                disableElevation
+                variant="contained"
+                disabled={false}
+                onClick={() => {
+                    Props.nextView();
+                }}
+            >
+                Continuar
+            </Button>
+        </div>
         </div>
     )
 };
