@@ -10,12 +10,17 @@ const Order = require("../models/Order");
 
 
 export const findOrdersByUserEmail = async (req:Request, res:Response) => {
-    let userEmail = req.body.userEmail;
-    let query = {userEmail : userEmail.toString()};
-    const users = await Order.find(query)
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200);
-    res.send(users);
+    let userEmail = sessionStorage.getItem("userLogged");
+    if(userEmail){
+      let query = {userEmail : userEmail.toString()};
+      const users = await Order.find(query)
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200);
+      res.send(users);
+    }else{
+      res.status(401);
+    }
+
 };
 
 
@@ -26,12 +31,14 @@ export const addOrder = async (req:Request, res:Response): Promise<any> => {
     let userEmail = req.body.userEmail;
     let price = req.body.price;
     let productId = req.body.productId;
+    let date = Date.now();
 
     let order = new Order({
         orderId: orderId,
         userEmail: userEmail,
         price: price,
-        productId: productId
+        productId: productId,
+        date: date
     });
     await order.save();
     res.setHeader('Content-Type', 'application/json');
