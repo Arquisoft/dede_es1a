@@ -14,7 +14,7 @@ import { findConfigFile } from 'typescript';
 
 type Props = {
     cartContent: Rock[];
-    simplificate: boolean; // true: solo muestra total  : false: muestra desglose
+    simplificate: boolean; // true: solo muestra total  : false: muestra desglose (+ envio)
 };
 
 const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {

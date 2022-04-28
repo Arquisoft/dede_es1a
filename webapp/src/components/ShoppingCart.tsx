@@ -38,7 +38,6 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
                 variant="contained"
                 disabled={cartContent.length<=0}
                 onClick={() => { 
-                    // if(localStorage.getItem('token'))
                     if(sessionStorage.getItem("userLogged"))
                         window.location.href = '/payment'; 
                     else

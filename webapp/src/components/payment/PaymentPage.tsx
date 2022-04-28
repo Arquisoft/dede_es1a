@@ -96,8 +96,6 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
         alert("Pagado -> no se añade bd");
     }
     
-
-    
     return (
         <div className='PaymentProcess-payment' >
             <h1 id='title-payment' >Mi compra</h1>

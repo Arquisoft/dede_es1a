@@ -27,38 +27,55 @@ const PaymentListItems: React.FC<Props> = ({cartContent, nextView, previusView, 
     return (
         <div id='articles-payment'>
         <h1>Articulos</h1>
-        <div className="items-cart">
-            {cartContent.map(item => ( <PaymentItem   item={item}  /> ))}
+        {cartContent.length === 0 ? 
+            <div>
+                <h2>No se puede completar la compra:</h2> 
+                <h3>No hay articulos en el pedido</h3> 
+
+                <Button
+                        size="medium"
+                        disableElevation
+                        variant="contained"
+                        disabled={false}
+                        onClick={() => {
+                            previusView();
+                            window.location.href = '/home';
+                        }}
+                    >
+                        Pagina principal
+                    </Button>
+            </div>
+        : 
+            <div>
+                {cartContent.map(item => ( <PaymentItem   item={item}  /> ))}
+                <div id='actionButtons-payment'>
+                        <Button
+                            size="medium"
+                            disableElevation
+                            variant="contained"
+                            disabled={false}
+                            onClick={() => {
+                                previusView();
+                            }}
+                        >
+                            Volver
+                        </Button>
+                        <Button
+                            size="medium"
+                            disableElevation
+                            variant="contained"
+                            disabled={cartContent.length<=0}
+                            onClick={() => {
+                                handlePay();
+                                nextView();
+                            }}
+                        >
+                            Completar Pago
+                        </Button>
+                </div>
+            </div> 
+        }
         </div>
-        <div id='actionButtons-payment'>
-            <Button
-                size="medium"
-                disableElevation
-                variant="contained"
-                disabled={false}
-                onClick={() => {
-                    previusView();
-                }}
-            >
-                Volver
-            </Button>
-            <Button
-                size="medium"
-                disableElevation
-                variant="contained"
-                disabled={false}
-                onClick={() => {
-                    handlePay();
-                    nextView();
-                }}
-            >
-                Completar Pago
-            </Button>
-        </div>
-    </div>
-
-
-
     )
 };
 
