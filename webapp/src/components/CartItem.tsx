@@ -12,11 +12,16 @@ type Props = {
 
 const CartItem: React.FC<Props> = ({item, handleAddToCart, handleRemoveFromCart}) => {
     return (
-    <Card className="cartItem-ci" sx={{ maxWidth: 500 } }>
+    <Card className="cartItem-ci" sx={{ maxWidth: 450 } }>
+        <CardMedia
+            className = "img-ci"
+            component="img"
+            sx={{ width: 150, maxWidth: 150 }}
+            image={item.img}
+            alt={item.name}
+        />
         <CardContent>
-            <Typography variant="h5">
-                {item.name}
-            </Typography>
+            <Typography className='name-ci' variant="h5"> {item.name} </Typography>
             <div className="quantityController-ci">  
                 <Button
                     size="small"
@@ -25,8 +30,8 @@ const CartItem: React.FC<Props> = ({item, handleAddToCart, handleRemoveFromCart}
                     color="primary" 
                     onClick={() => handleRemoveFromCart(item.name)}
                 >-</Button>
-                <Typography id="quantity-ci">
-                    {item.quantityCart + " uds " }
+                <Typography id="quantity-ci" variant="h6"> 
+                    {item.quantityCart + " uds" }
                 </Typography>
                 <Button
                     size="small"
@@ -36,17 +41,11 @@ const CartItem: React.FC<Props> = ({item, handleAddToCart, handleRemoveFromCart}
                     onClick={() => handleAddToCart(item)}
                 >+</Button>
             </div>
-            <Typography id="quantity-ci">
+            <Typography id="quantity-ci" variant="h6">
                 {(item.price * item.quantityCart).toFixed(2) + " €"}
             </Typography>
         </CardContent>
-        <CardMedia
-            className = "img-ci"
-            component="img"
-            sx={{ width: 120, maxWidth: 120 }}
-            image={item.img}
-            alt={item.name}
-        />
+        
     </Card>
 
     )

@@ -1,9 +1,8 @@
-import { Button, Grid } from '@mui/material';
+import { AppBar, Button, Grid } from '@mui/material';
+import { Card, CardContent } from '@mui/material';
 import { Rock } from '../shared/shareddtypes';
 import CartItem from './CartItem';
 import '../css/ShoppingCart.css';
-import LoginPod from './solid-pods/LoginPod';
-import {useNavigate} from 'react-router-dom';
 
 
 type Props = {
@@ -14,24 +13,37 @@ type Props = {
 
 const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromCart }) => {
     const getTotalPrice = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart * item.price, 0);
+    const getTotalUds = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart, 0);
 
     return (
-        <Grid sx = {{width: 500}}>
-            <h1 id='title-cart'>Mi carrito</h1>
-            {cartContent.length === 0 ? <h3>El carrito está vacío</h3> : null}
+        <Card sx = {{width: 450}} className="cart" variant="outlined">
+            <AppBar position='relative' className="title-cart">
+                <h1>Mi carrito</h1>
+            </AppBar>
             
-            <div className="items-cart">
-                {cartContent.map(item => (
-                <CartItem 
-                    key={item.id} 
-                    item={item} 
-                    handleAddToCart={handleAddToCart}
-                    handleRemoveFromCart={handleRemoveFromCart}
-                />
-                ))}
-                <h2 id="price-cart">Total (iva 21% incluido): {getTotalPrice().toFixed(2)} €</h2>
+            <div className='items-cart'>
+            {cartContent.map(item => (
+            <CartItem 
+                key={item.id} 
+                item={item} 
+                handleAddToCart={handleAddToCart}
+                handleRemoveFromCart={handleRemoveFromCart}
+            />
+            ))}
             </div>
+                
 
+            <Card  className="summary-cart">
+                <div id="summary-labels">
+                    <h3>Unidades: </h3>
+                    <h2>Total: </h2>
+                </div>
+                <div id="summary-data">
+                    <h3>{getTotalUds()}</h3>
+                    <h2>{getTotalPrice().toFixed(2)} €</h2>
+                </div>
+            </Card>
+                
             <Button
                 size="medium"
                 disableElevation
@@ -46,10 +58,7 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
             >
                 Realizar Pedido
             </Button>
-
-            
-
-        </Grid>
+        </Card>
     )
 };
 
