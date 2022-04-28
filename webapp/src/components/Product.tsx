@@ -14,7 +14,6 @@ function Product(product: ProductProps): JSX.Element {
           <div className='imageProductContainer'>
           {product.product!==null ?
               <>
-              
               <img src={product.product.img} style={{width:'100%'}} alt={product.product.name.toString()}/>
               </>
               : <></>
