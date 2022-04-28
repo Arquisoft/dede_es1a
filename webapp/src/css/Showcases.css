@@ -27,9 +27,8 @@
   font-size: 1.5em;
   height: 3em;
 
-  position: relative;
-  top: 4em;
 }
+
 @media only screen and (max-width: 1000px) {
   .btnBuy{
     font-size:  12px !important;

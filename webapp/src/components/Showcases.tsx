@@ -1,37 +1,52 @@
 import { useEffect, useState } from "react";
-import { getRocksFiery, getRocksMetamorphic, getRocksSedimentary } from "../api/api";
+import {
+  getRocksFiery,
+  getRocksMetamorphic,
+  getRocksSedimentary,
+} from "../api/api";
 import { Rock } from "../shared/shareddtypes";
 import Showcase from "./Showcase";
-import prefilters from "../code/Prefilters"
+import prefilters from "../code/Prefilters";
+import { Grid } from "@mui/material";
+import { SearchCritery, TYPES_INDEX, TYPES_LIST } from "./Catalog";
 
 type RockListProps = {
-  handleAddToCart(r:Rock): void;
+  handleAddToCart(r: Rock): void;
 };
 
+const LIST_OF_CRITERIES:Record<string, SearchCritery>[]=[
+{'Sedimentary':{type:'Sedimentary'}},
+{}
+]
+
 function Showcases(prefilteredbox: RockListProps): JSX.Element {
-    const [prefilteredRocks,setPrefilteredRocks] = useState<Rock[][]>([]);
-    const [nameOfFilters,setNameOfFilters]=useState<String[]>([]);
-    
-    
-    useEffect(()=>{
-        const refreshRockList = async () => {
-            
-            setPrefilteredRocks([...prefilteredRocks,await getRocksMetamorphic(),await getRocksSedimentary(),await getRocksFiery()])
-            setNameOfFilters(prefilters)
-          }
-      refreshRockList();
-      
-    },[]);
+  const [nameOfFilters, setNameOfFilters] = useState<String[]>([]);
+
+  useEffect(() => {
+    const refreshRockList = async () => {
+      setNameOfFilters(prefilters);
+    };
+    refreshRockList();
+  }, []);
   return (
     <>
+    <Grid container spacing={3} >
+      {LIST_OF_CRITERIES.map((_, element) => {
         
-        {prefilteredRocks.map((_, element) => {
-            
-            return (<Showcase key={element} rocks={prefilteredRocks[element]} name={nameOfFilters[element]} handleAddToCart={prefilteredbox.handleAddToCart}/>); 
-            
-        })}
+        return (
+          <Grid item xs={6} key={element}>
+          <Showcase
+              key={element}
+              name={nameOfFilters[element]}
+              handleAddToCart={prefilteredbox.handleAddToCart} search={{
+                type: TYPES_LIST[element],
+              }}  />
+          </Grid>
+        );
         
+      })}
+      </Grid>
     </>
   );
 }
-export default Showcases
+export default Showcases;

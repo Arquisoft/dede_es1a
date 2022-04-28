@@ -1,4 +1,5 @@
-import express, { Request, Response, Router } from 'express';
+import express, { json, Request, Response, Router } from 'express';
+import { stringify } from 'querystring';
 const Rock = require("../models/Rock");
 
 const mongoose = require("mongoose");
@@ -33,34 +34,56 @@ export const findRocksMetamorphic = async (req:Request, res:Response) => {
 };
 
 export const findByCritery = async (req:Request, res:Response) => {
+    
+    let name=req.query.nameSubString;
+    name=name?.toString().trimEnd().trimStart()
+    let nameRegEx;
+    if(name!==undefined)
+        nameRegEx=new RegExp(name, "gi");
     let critery = {
-        mohs:
+        mohsHardness:
         {
-            $gt:req.params.mohsMin,
-            $lt:req.params.mohsMax
+            $gt:req.query.mohsMin,
+            $lt:req.query.mohsMax
         },
         density:
         {
-            $gt:req.params.densityMin,
-            $lt:req.params.densityMax
+            $gt:req.query.densityMin,
+            $lt:req.query.densityMax
         },
         price:
         {
-            $gt:req.params.priceMin,
-            $lt:req.params.priceMax
+            $gt:req.query.priceMin,
+            $lt:req.query.priceMax
         },
         name:
         {
-            $regex:req.params.nameSubString
+            $regex:nameRegEx
+        },
+        type:
+        {
+            $regex:req.query.type
         }
     };
-
-    const rocks = await Rock.find(critery)
+    console.log(critery)
+    var rocks
+    try {
+        rocks = await Rock.find(critery)
+    } catch (error) {
+        console.log(error)
+        console.log("Values:"
+        +"\n\tmohsMin: "+req.query.mohsMin
+        +"\n\tmohsMax: "+req.query.mohsMax
+        +"\n\tdensityMin: "+req.query.densityMin
+        +"\n\tpriceMin: "+req.query.priceMin
+        +"\n\tpriceMax: "+req.query.priceMax
+        +"\n\tnameSubString: "+req.query.nameSubString)
+    }
+    
     res.setHeader('Content-Type', 'application/json');
     res.status(200);
     res.send(rocks);
 }
-
 
 export const addRock = async (req:Request, res:Response): Promise<any> => { 
 

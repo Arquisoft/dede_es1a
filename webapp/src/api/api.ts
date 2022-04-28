@@ -42,8 +42,13 @@ export async function getRocksMetamorphic():Promise<Rock[]>{
   //The objects returned by the api are directly convertible to User objects
   return response.json()
 }
-export async function getFilteredRocks(mohsMin:Number,mohsMax:Number,densityMin:Number,densityMax:Number,priceMin:Number,priceMax:Number,nameSubString:string):Promise<Rock[]> {
-  let response = await fetch(apiEndPoint+'/rocks/list/critery?mohsMin='+mohsMin+"&mohsMax="+mohsMax+"&densityMin="+densityMin+"&densityMax="+densityMax+"&priceMin="+priceMin+"&priceMax"+priceMax+"&nameSubString="+nameSubString);
+export async function getFilteredRocks(mohsMin:Number,mohsMax:Number,densityMin:Number,densityMax:Number,priceMin:Number,priceMax:Number,nameSubString:string,type:string):Promise<Rock[]> {
+  let response = await fetch(apiEndPoint+'/rocks/list/critery?mohsMin='+mohsMin+"&mohsMax="+mohsMax+"&densityMin="+densityMin+"&densityMax="+densityMax+"&priceMin="+priceMin+"&priceMax="+priceMax+"&nameSubString="+nameSubString+"&type="+type);
+  //The objects returned by the api are directly convertible to User objects
+  return response.json()
+}
+export async function getMaxAndMins() {
+  let response = await fetch(apiEndPoint+'/rocks/maxvalues');
   //The objects returned by the api are directly convertible to User objects
   return response.json()
 }

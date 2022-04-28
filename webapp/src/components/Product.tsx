@@ -25,28 +25,28 @@ function Product(product: ProductProps): JSX.Element {
             <Grid container spacing={3} >
               <Grid item xs={12}>
                 <Paper elevation={3} className='productDataContainer' />
-                <Typography className='productDataText'>{"nombre: " + product.product.name}</Typography>
+                <Typography className='productDataText'>{"Nombre: " + product.product.name}</Typography>
                 <Paper />
               </Grid>
               <Grid item xs={6}>
                 <Paper elevation={3} className='productDataContainer' />
-                <Typography className='productDataText'>{"nombre: " + product.product.name}</Typography>
+                <Typography className='productDataText'>{"Precio: " + product.product.price}</Typography>
                 <Paper />
               </Grid>
               <Grid item xs={6}>
                 <Paper elevation={3} className='productDataContainer' />
-                <Typography className='productDataText'>{"nombre: " + product.product.name}</Typography>
+                <Typography className='productDataText'>{"Densidad: " + product.product.density}</Typography>
                 <Paper />
               </Grid>
               <Grid item xs={6}>
                 <Paper className='productDataContainer' elevation={3} />
-                <Typography className='productDataText'>{"nombre: " + product.product.name}
+                <Typography className='productDataText'>{"Mohs: " + product.product.mohsHardness}
                 </Typography>
                 <Paper />
               </Grid>
               <Grid item xs={6}>
                 <Paper elevation={3} className='productDataContainer' />
-                <Typography className='productDataText'> {"nombre: " + product.product.name}</Typography>
+                <Typography className='productDataText'> {"Tipo: " + product.product.type[0].toLocaleUpperCase()+product.product.type.substring(1,product.product.type.length)}</Typography>
                 <Paper />
               </Grid>
             </Grid>
