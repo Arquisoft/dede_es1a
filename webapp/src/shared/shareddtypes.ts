@@ -18,3 +18,21 @@ export type Rock = {
     
     quantityCart:number
   }
+export type Order = {
+    orderId : String,
+    date: Date,
+    price : Number,
+    products: Product[],
+    userEmail : String,
+}
+
+export type Product = {
+  codigo: string;
+  nombre: string;
+  categoria: string;
+  precio: number;
+  stock: string;
+  url: string;
+  descripcion: string;
+  cantidad: number;
+}

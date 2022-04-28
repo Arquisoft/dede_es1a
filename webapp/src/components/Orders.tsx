@@ -8,7 +8,7 @@ import { styled } from '@mui/material/styles';
 import { Order } from '../shared/shareddtypes';
 import Paper from '@mui/material/Paper';
 import {  getOrders } from '../api/api';
-
+import OrderUser from '../components/OrderUser';
 
 type Id = {
     email:String
