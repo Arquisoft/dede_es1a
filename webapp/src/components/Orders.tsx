@@ -47,9 +47,9 @@ const OrderHistory = (id: Id) => {
                     <Table sx={{ minWidth: 650 }} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                            <StyledTableCell>Código del pedido</StyledTableCell>
-                                <StyledTableCell>Fecha de orden</StyledTableCell>
-                                <StyledTableCell>Precio del pedido</StyledTableCell>
+                            <StyledTableCell>Código</StyledTableCell>
+                                <StyledTableCell>Fecha</StyledTableCell>
+                                <StyledTableCell>Precio</StyledTableCell>
                                 <StyledTableCell>Productos</StyledTableCell>
                             </TableRow>
                         </TableHead>

@@ -13,7 +13,7 @@ const OrderUser = (order: OrderProps) => {
         <>
             {order.orders.map((o) => {
                 return (
-                    <TableRow key={o.orderId} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                         <TableCell component="th" scope="row">{o.orderId}</TableCell>
                         <TableCell component="th" scope="row">{o.date.toLocaleString().substring(0, 10)}</TableCell>
                         <TableCell component="th" scope="row">{o.price}</TableCell>

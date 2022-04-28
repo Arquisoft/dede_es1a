@@ -46,7 +46,7 @@ const NavBar:React.FC<Props>=({openCart}) =>{
               </Typography>
               <Button color="inherit" href = "/">Home</Button>
               <Button color="inherit" href = "/catalog">Catálogo</Button>
-              <Button color="inherit" href = "/pedidos">Pedidos</Button>
+              <Button color="inherit" href = "/orders">Pedidos</Button>
     
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               </Typography>
