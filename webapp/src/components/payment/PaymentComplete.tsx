@@ -34,7 +34,7 @@ const PaymentComplete: React.FC<Props> = ({nextView}) => {
                         nextView();
                     }}
                 >
-                    Continuar
+                    Página principal
                 </Button>
             </div>
        

@@ -3,6 +3,8 @@ import { Rock } from '../shared/shareddtypes';
 import CartItem from './CartItem';
 import '../css/ShoppingCart.css';
 import LoginPod from './solid-pods/LoginPod';
+import {useNavigate} from 'react-router-dom';
+
 
 type Props = {
     cartContent: Rock[];
@@ -35,8 +37,13 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
                 disableElevation
                 variant="contained"
                 disabled={cartContent.length<=0}
-                onClick={() => { window.location.href = '/payment'; }
-                }
+                onClick={() => { 
+                    // if(localStorage.getItem('token'))
+                    if(sessionStorage.getItem("userLogged"))
+                        window.location.href = '/payment'; 
+                    else
+                        window.location.href = '/login'; 
+                }}
             >
                 Realizar Pedido
             </Button>

@@ -100,15 +100,11 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     
     return (
         <div className='PaymentProcess-payment' >
-        
             <h1 id='title-payment' >Mi compra</h1>
             <div id='info-payment' >
                 {getView(paymentView)}
                 {getPaymentSummary()}
-                
             </div>
-
-
         </div>
     )
 };
