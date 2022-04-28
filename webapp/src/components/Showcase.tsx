@@ -1,11 +1,11 @@
-import { AppBar, Button, Card, Grid, ListItemText } from "@mui/material";
+import { AppBar, Button, Card, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Rock } from "../shared/shareddtypes";
 import Product from "./Product";
 import { defaultCriteryForSearch, SearchCritery } from "./Catalog";
 import { getFilteredRocks } from "../api/api";
 type RockListProps = {
-  name: String;
+  name: string;
   handleAddToCart(r: Rock): void;
   search: SearchCritery;
 };
@@ -98,6 +98,7 @@ function Showcase(prefilteredbox: RockListProps): JSX.Element {
     "&type=" +
     type;
   const refreshRockList = async () => {
+
     setRocks(
       await getFilteredRocks(
         mohsMin,
