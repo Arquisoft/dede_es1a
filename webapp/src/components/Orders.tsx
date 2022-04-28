@@ -42,7 +42,7 @@ const OrderHistory = (id: Id) => {
 
     return (
         <div>
-            <div style={{ margin: '170px' }}>
+            <div  style={{ margin: '170px' }}>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="customized table">
                         <TableHead>
