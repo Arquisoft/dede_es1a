@@ -11,6 +11,15 @@ export const findRocks = async (req:Request, res:Response) => {
 
 };
 
+export const findRocksById = async (req:Request, res:Response) => {
+    let rockId = req.params.rockId
+    const rocks = await Rock.find({rockId : rockId.toString()})
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
+    res.send(rocks);
+
+};
+
 export const findRocksSedimentary = async (req:Request, res:Response) => {
     const rocks = await Rock.find({type : "sedimentaria"})
     res.setHeader('Content-Type', 'application/json');

@@ -10,7 +10,7 @@ const Order = require("../models/Order");
 
 
 export const findOrdersByUserEmail = async (req:Request, res:Response) => {
-    let userEmail = sessionStorage.getItem("userLogged");
+    let userEmail = req.params.userEmail;
     if(userEmail){
       let query = {userEmail : userEmail.toString()};
       const users = await Order.find(query)

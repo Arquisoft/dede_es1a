@@ -33,7 +33,7 @@ const OrderHistory = (id: Id) => {
     const[ordersEmail, setOrdersEmail] = React.useState<Order[]>([]);
     
     async function cargarPedidos() {
-        setOrders(await getOrders());
+        setOrdersEmail(await getOrders());
     }
 
     useEffect(() => {cargarPedidos();}, []);
@@ -47,10 +47,10 @@ const OrderHistory = (id: Id) => {
                     <Table sx={{ minWidth: 650 }} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                            <StyledTableCell>Código</StyledTableCell>
+                                <StyledTableCell>Nombre</StyledTableCell>
+                                <StyledTableCell>Tipo</StyledTableCell>
                                 <StyledTableCell>Fecha</StyledTableCell>
                                 <StyledTableCell>Precio</StyledTableCell>
-                                <StyledTableCell>Productos</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

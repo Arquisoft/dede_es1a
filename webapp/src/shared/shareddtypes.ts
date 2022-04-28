@@ -22,8 +22,10 @@ export type Order = {
     orderId : String,
     date: Date,
     price : Number,
-    products: Product[],
+    productId: String,
     userEmail : String,
+    productName : String,
+    productType : String
 }
 
 export type Product = {

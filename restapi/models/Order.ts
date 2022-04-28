@@ -7,7 +7,9 @@ const orderSchema = mongooseOrders.Schema({
     price : Number,
     userEmail : String,
     productId : String,
-    date : Date
+    date : Date,
+    productName : String,
+    productType : String
 },{
     versionKey: false
 }
