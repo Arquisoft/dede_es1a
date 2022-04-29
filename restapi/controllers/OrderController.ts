@@ -9,28 +9,44 @@ const geocoder = NodeGeocoder(options);
 const Order = require("../models/Order");
 
 
-export const findOrdersByUserDni = async (req:Request, res:Response) => {
-    let dni = req.body.dni;
-    let query = {userDni : dni.toString()};
-    const users = await Order.find(query)
-    res.send(users).json();
+export const findOrdersByUserEmail = async (req:Request, res:Response) => {
+    let userEmail = req.params.userEmail;
+    if(userEmail){
+      let query = {userEmail : userEmail.toString()};
+      const users = await Order.find(query)
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200);
+      res.send(users);
+    }else{
+      res.status(401);
+    }
+
 };
+
 
 export const addOrder = async (req:Request, res:Response): Promise<any> => { 
     const crypto = require('crypto');
     const orderId = crypto.randomBytes(60);
 
-    let userDni = req.body.dni;
+    let userEmail = req.body.userEmail;
     let price = req.body.price;
     let productId = req.body.productId;
+    let date = Date.now();
+    let productName = req.body.productName;
+    let productType = req.body.productType;
 
     let order = new Order({
         orderId: orderId,
-        dni: userDni,
+        userEmail: userEmail,
         price: price,
-        productId: productId
+        productId: productId,
+        date: date,
+        productName : productName,
+        productType : productType
     });
     await order.save();
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
     res.send(order);
     
   };

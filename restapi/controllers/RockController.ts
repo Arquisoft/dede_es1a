@@ -11,6 +11,15 @@ export const findRocks = async (req:Request, res:Response) => {
 
 };
 
+export const findRocksById = async (req:Request, res:Response) => {
+    let rockId = req.params.rockId
+    const rocks = await Rock.find({rockId : rockId.toString()})
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
+    res.send(rocks);
+
+};
+
 export const findRocksSedimentary = async (req:Request, res:Response) => {
     const rocks = await Rock.find({type : "sedimentaria"})
     res.setHeader('Content-Type', 'application/json');
@@ -34,7 +43,7 @@ export const findRocksMetamorphic = async (req:Request, res:Response) => {
 
 export const findByCritery = async (req:Request, res:Response) => {
     let critery = req.body.critery;
-    const rocks = await Rock.find({critery})
+    const rocks = await Rock.find(critery)
     res.setHeader('Content-Type', 'application/json');
     res.status(200);
     res.send(rocks);
@@ -56,6 +65,7 @@ export const addRock = async (req:Request, res:Response): Promise<any> => {
         { name: name }
     );
     if (rock) {
+        res.status(401);
         res.send({ error: "Error: This rock is already in the app " + name });
     }
     else {
@@ -78,11 +88,13 @@ export const addRock = async (req:Request, res:Response): Promise<any> => {
 
 export const deleteRock = async (req:Request, res:Response): Promise<any> => {
   
-    let rockId = req.body.rockId;
-  
+    let query = {rockId : req.body.rockId.toString()};
     let rock = await Rock.deleteOne(
-        { _id: mongoose.Types.ObjectId(rockId) }
+        {query}
     );
+    
+    res.setHeader('Content-Type', 'application/json');
     res.status(200);
     res.send(rock);
+   
 };

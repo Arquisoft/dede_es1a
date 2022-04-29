@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { SessionProvider, useSession } from "@inrupt/solid-ui-react";
 import LoginForm from "./LoginForm"
 import ProfileViewer from "./ProfileViewer"
-import React from 'react';
-import { Rock } from '../../shared/shareddtypes';
 
-//import {createData} from "./code/insertExampleData"
+type Props = {
+  setLoggedPod: (b:boolean) => void;
+};
 
-
-function LoginPod():  JSX.Element   {
+  const LoginPod: React.FC<Props> = ({setLoggedPod}) => {
+// function LoginPod():  JSX.Element   {
 //We use this state variable
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -28,18 +28,20 @@ function getCartContent() {
 
 //We have logged in
 session.onLogin(()=>{
-  setIsLoggedIn(true)
+  setIsLoggedIn(true);
+  setLoggedPod(true);
 })
 
 //We have logged out
 session.onLogout(()=>{
-  setIsLoggedIn(false)
+  setIsLoggedIn(false);
+  setLoggedPod(false);
 })
 
   return (
     <SessionProvider sessionId="log-in-example">
       
-      {(!isLoggedIn) ? <LoginForm/> : <ProfileViewer cartContent={getCartContent()}/>}
+      {(!isLoggedIn) ? <LoginForm/> : <ProfileViewer logoutEnabled={true}/>}
     </SessionProvider>
   )
 }

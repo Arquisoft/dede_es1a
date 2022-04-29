@@ -5,10 +5,10 @@ import GetPodAddress from './GetPodAddress';
 import { Rock } from "../../shared/shareddtypes";
 
 type Props = {
-  cartContent: Rock[];
+  logoutEnabled: boolean;
 };
 
-const ProfileViewer: React.FC<Props> = ({cartContent}) => {
+const ProfileViewer: React.FC<Props> = ({logoutEnabled}) => {
   const { session } = useSession();
 
   return (
@@ -27,21 +27,14 @@ const ProfileViewer: React.FC<Props> = ({cartContent}) => {
         </Card>
       </CombinedDataProvider>
       ): null }
-      <LogoutButton >
-        <Button style={{ marginTop: 20 }} variant="contained" color="primary">
-          Logout
-        </Button>
-      </LogoutButton>
+      {logoutEnabled ? 
+        <LogoutButton >
+          <Button style={{ marginTop: 20 }} variant="contained" color="primary">
+            Logout
+          </Button>
+        </LogoutButton>
+      : null}
       
-      <Button
-          size="medium"
-          disableElevation
-          variant="contained"
-          disabled={cartContent.length === 0}
-          href = "/payment"
-      >
-          BUY
-      </Button>
 
     </Container>
   );

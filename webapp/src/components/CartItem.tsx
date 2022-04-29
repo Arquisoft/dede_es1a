@@ -10,9 +10,7 @@ type Props = {
     handleRemoveFromCart: (id: string) => void;
 }
 
-
 const CartItem: React.FC<Props> = ({item, handleAddToCart, handleRemoveFromCart}) => {
-    
     return (
     <Card className="cartItem-ci" sx={{ maxWidth: 500 } }>
         <CardContent>
@@ -24,6 +22,7 @@ const CartItem: React.FC<Props> = ({item, handleAddToCart, handleRemoveFromCart}
                     size="small"
                     disableElevation
                     variant="contained"
+                    color="primary" 
                     onClick={() => handleRemoveFromCart(item.name)}
                 >-</Button>
                 <Typography id="quantity-ci">
@@ -33,6 +32,7 @@ const CartItem: React.FC<Props> = ({item, handleAddToCart, handleRemoveFromCart}
                     size="small"
                     disableElevation
                     variant="contained"
+                    color="primary" 
                     onClick={() => handleAddToCart(item)}
                 >+</Button>
             </div>
@@ -48,7 +48,6 @@ const CartItem: React.FC<Props> = ({item, handleAddToCart, handleRemoveFromCart}
             alt={item.name}
         />
     </Card>
-
 
     )
 };
