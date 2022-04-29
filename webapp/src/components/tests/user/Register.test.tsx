@@ -11,12 +11,14 @@ test('Check words of Login', async () => {
         </Router>
         )
         
-        expect(container).toHaveTextContent("Mame:")
+        expect(container).toHaveTextContent("Crear cuenta")
+        expect(container).toHaveTextContent("Email:")
+        expect(container).toHaveTextContent("Name:")
         expect(container).toHaveTextContent("DNI:")
         expect(container).toHaveTextContent("Password:")
         expect(container).toHaveTextContent("Confirm Password:")    
         expect(container).toHaveTextContent("Regístrate") 
-        expect(container).toHaveTextContent("¿Aún no estás registrado? Regístrate aqui!")    
+        expect(container).toHaveTextContent("¿Ya tienes una cuenta? Inicia sesión aqui!")    
             
         
 });
