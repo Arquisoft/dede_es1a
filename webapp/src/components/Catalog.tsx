@@ -1,93 +1,36 @@
 import { Rock } from "../shared/shareddtypes";
-import List from "@mui/material/List";
 import Product from "./Product";
 import {
   Accordion,
   AccordionSummary,
-  Button,
   Grid,
   Typography,
 } from "@mui/material";
-import RangeSlider from "./Rangeslider";
-import BasicTextFieldWithOptions from "./TextFieldWithOptions";
-import BasicTextField from "./TextField";
 import { getFilteredRocks } from "../api/api";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import React from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Filter, { defaultCriteryForSearch } from "./Filter";
 type RockListProps = {
   handleAddToCart(rock: Rock): void;
+  testRocks?: Rock[];
 };
 
-export const TYPES_LIST = ["todas", "metamórfica", "sedimentaria", "ígnea"];
-export enum TYPES_INDEX {
-  ALL = 0,
-  METAMORPHIC,
-  SEDIMENTARY,
-  IGNEOUS,
-}
-export const defaultCriteryForSearch: DefaultSearchCritery = {
-  mohsMin: 0,
-  mohsMax: 10,
-  densityMin: 0,
-  densityMax: 100,
-  priceMin: 0,
-  priceMax: 100,
-  type: TYPES_LIST[TYPES_INDEX.ALL],
-  nameSubstring: "",
-};
-type DefaultSearchCritery = {
-  mohsMin: number;
-  mohsMax: number;
-  densityMin: number;
-  densityMax: number;
-  priceMin: number;
-  priceMax: number;
-  type: string;
-  nameSubstring: string;
-};
-export type SearchCritery = {
-  mohsMin?: number;
-  mohsMax?: number;
-  densityMin?: number;
-  densityMax?: number;
-  priceMin?: number;
-  priceMax?: number;
-  type?: string;
-  nameSubstring?: string;
-};
+
+
 function useQuery() {
   const { search } = useLocation();
 
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 //a
-function Catalogo(rockListPros: RockListProps): JSX.Element {
+function Catalog(rockListPros: RockListProps): JSX.Element {
   let query = useQuery();
+
   const [rocks, setRocks] = useState<Rock[]>([]);
-  const [mohsMin, setMohsMin] = useState<number>(
-    defaultCriteryForSearch.mohsMin
-  );
-  const [mohsMax, setMohsMax] = useState<number>(
-    defaultCriteryForSearch.mohsMax
-  );
-  const [densityMin, setDensityMin] = useState<number>(
-    defaultCriteryForSearch.densityMin
-  );
-  const [densityMax, setDensityMax] = useState<number>(
-    defaultCriteryForSearch.densityMax
-  );
-  const [priceMin, setPriceMin] = useState<number>(
-    defaultCriteryForSearch.priceMin
-  );
-  const [priceMax, setPriceMax] = useState<number>(
-    defaultCriteryForSearch.priceMax
-  );
-  const [type, setType] = useState<string>(defaultCriteryForSearch.type);
-  const [nameSubstring, setNameSubstring] = useState<string>(
-    defaultCriteryForSearch.nameSubstring
-  );
+
+
   //?densityMin=1&densityMax=3
   const refreshRockList = async () => {
     const mohsMinStr = query.get("mohsMin"),
@@ -140,60 +83,29 @@ function Catalogo(rockListPros: RockListProps): JSX.Element {
     if (priceMaxStr !== undefined && priceMaxStr !== null)
       priceMax = parseFloat(priceMaxStr);
     else priceMax = defaultCriteryForSearch.priceMax;
+    if (rockListPros.testRocks === undefined)
+      setRocks(
+        await getFilteredRocks(
+          mohsMin,
+          mohsMax,
+          densityMin,
+          densityMax,
+          priceMin,
+          priceMax,
+          nameSubstring,
+          typeSearched
+        )
+      );
+    else setRocks(rockListPros.testRocks);
+  };
 
-    setRocks(
-      await getFilteredRocks(
-        mohsMin,
-        mohsMax,
-        densityMin,
-        densityMax,
-        priceMin,
-        priceMax,
-        nameSubstring,
-        typeSearched
-      )
-    );
-  };
-  const handleChangeMohs = (low: number, high: number) => {
-    setMohsMin(low);
-    setMohsMax(high);
-  };
-  const handleChangeDensity = (low: number, high: number) => {
-    setDensityMin(low);
-    setDensityMax(high);
-  };
-  const handleChangePrice = (low: number, high: number) => {
-    setPriceMin(low);
-    setPriceMax(high);
-  };
-  const handleChangeNameSubstring = (nameSubstring: string) => {
-    setNameSubstring(nameSubstring);
-  };
-  const handleChangeType = (type: string) => {
-    setType(type);
-  };
+
 
   useEffect(() => {
     refreshRockList();
   }, []);
   //TODO: El nameSubstring se come la ultima letra
-  let filterLink =
-    "/catalog?mohsMin=" +
-    mohsMin +
-    "&mohsMax=" +
-    mohsMax +
-    "&densityMin=" +
-    densityMin +
-    "&densityMax=" +
-    densityMax +
-    "&priceMin=" +
-    priceMin +
-    "&priceMax=" +
-    priceMax +
-    "&nameSubstring=" +
-    nameSubstring +
-    "&type=" +
-    type;
+
   return (
     <>
       <Accordion id="accordeonFilter">
@@ -204,87 +116,24 @@ function Catalogo(rockListPros: RockListProps): JSX.Element {
         >
           <Typography>Filtrar</Typography>
         </AccordionSummary>
-        <Grid
-          id="catalogFilter"
-          container
-          rowSpacing={1}
-          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-        >
-          <Grid item xs={12 / 3}>
-            <RangeSlider
-              min={defaultCriteryForSearch.mohsMin}
-              max={defaultCriteryForSearch.mohsMax}
-              valueName={"Mohs"}
-              onValueChanged={handleChangeMohs}
-              actualMin={mohsMin}
-              actualMax={mohsMax}
-            />
-          </Grid>
-          <Grid item xs={12 / 3}>
-            <RangeSlider
-              min={defaultCriteryForSearch.densityMin}
-              max={defaultCriteryForSearch.densityMax}
-              valueName={"Densidad"}
-              onValueChanged={handleChangeDensity}
-              actualMin={densityMin}
-              actualMax={densityMax}
-            />
-          </Grid>
-          <Grid item xs={12 / 3}>
-            <RangeSlider
-              min={defaultCriteryForSearch.priceMin}
-              max={defaultCriteryForSearch.priceMax}
-              valueName={"Precio"}
-              onValueChanged={handleChangePrice}
-              actualMin={priceMin}
-              actualMax={priceMax}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <BasicTextFieldWithOptions
-              values={TYPES_LIST}
-              onValueChanged={handleChangeType}
-              titleText={"Tipo de rocas"}
-              helperText={"Selecciona el tipo de roca"}
-              actualValue={type}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <BasicTextField
-              value={nameSubstring}
-              label={"Nombre"}
-              placeholder={"Ej: Cuarcita"}
-              onChange={handleChangeNameSubstring}
-              actualValue={nameSubstring}
-            />
-          </Grid>
-          <Grid item xs={9}></Grid>
-          <Grid item xs={3}>
-            <Button
-              variant="contained"
-              href={filterLink}
-              fullWidth
-              onClick={refreshRockList}
-            >
-              Buscar
-            </Button>
-          </Grid>
-        </Grid>
+        <Filter refreshRockList={refreshRockList}/>
       </Accordion>
-      <List id="catalog">
+      <Grid container spacing={3} rowSpacing={7} padding={2}>
         {rocks.map((rock, index) => {
           return (
+            <Grid item xs={3}>
             <Product
               product={rock}
               key={index}
               buyable={true}
               handleAddToCart={rockListPros.handleAddToCart}
             />
+            </Grid>
           );
         })}
-      </List>
+      </Grid>
     </>
   );
 }
 
-export default Catalogo;
+export default Catalog;

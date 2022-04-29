@@ -2,14 +2,15 @@ import { AppBar, Button, Card, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Rock } from "../shared/shareddtypes";
 import Product from "./Product";
-import { defaultCriteryForSearch, SearchCritery } from "./Catalog";
+import { defaultCriteryForSearch, SearchCritery } from "./Filter";
 import { getFilteredRocks } from "../api/api";
 type RockListProps = {
   name: string;
   handleAddToCart(r: Rock): void;
   search: SearchCritery;
+  testRocks?:Rock[]
 };
-const NUMBER_OF_PRODUCTS_SHOWN: number = 2;
+export const NUMBER_OF_PRODUCTS_SHOWN: number = 2;
 //a
 function Showcase(prefilteredbox: RockListProps): JSX.Element {
   const [rocks, setRocks] = useState<Rock[]>([]);
@@ -102,19 +103,21 @@ function Showcase(prefilteredbox: RockListProps): JSX.Element {
     "&type=" +
     type;
   const refreshRockList = async () => {
-
-    setRocks(
-      await getFilteredRocks(
-        mohsMin,
-        mohsMax,
-        densityMin,
-        densityMax,
-        priceMin,
-        priceMax,
-        nameSubstring,
-        type
-      )
-    );
+    if(prefilteredbox.testRocks!==undefined){
+      setRocks(prefilteredbox.testRocks)
+    }else
+      setRocks(
+        await getFilteredRocks(
+          mohsMin,
+          mohsMax,
+          densityMin,
+          densityMax,
+          priceMin,
+          priceMax,
+          nameSubstring,
+          type
+        )
+      );
   };
   useEffect(() => {
     refreshRockList();

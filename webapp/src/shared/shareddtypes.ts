@@ -12,9 +12,7 @@ export type Rock = {
     img: string;
     price: number;
     mohsHardness:number;
-    density:string;
+    density:number;
     type:string;
-
-    
     quantityCart:number
   }

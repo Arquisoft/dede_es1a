@@ -24,6 +24,7 @@ import "./css/App.css";
 import ShoppingCart from "./components/ShoppingCart";
 import PaymentPage from "./components/PaymentPage";
 import { ContentCopy } from "@mui/icons-material";
+import Showcase from "./components/Showcase";
 
 type Props = {
   openCart: () => void;
