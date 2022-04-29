@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 import { Rock } from "../../../shared/shareddtypes";
+import { Order } from "../../../shared/shareddtypes"
 
 export const LIST_OF_ROCKS_TEST : Rock[]= [
     {
@@ -43,8 +43,6 @@ export const LIST_OF_ROCKS_TEST : Rock[]= [
       quantityCart: 3,
     },
   ];
-=======
-import { Order } from "../../../shared/shareddtypes"
 
 export const LIST_OF_ORDERS_TEST : Order[]= [
     {
@@ -84,4 +82,3 @@ export const LIST_OF_ORDERS_TEST : Order[]= [
         productType : "metamórfica"
     },
 ];
->>>>>>> develop

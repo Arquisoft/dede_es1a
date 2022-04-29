@@ -75,11 +75,7 @@ export async function checkUser(email:String,password:String):Promise<boolean>{
 }
 
 export async function getDeliveryCosts(address:String):Promise<Number>{
-<<<<<<< HEAD
-  console.log("BBBBBBBBBBBBBBBBBBBBBBBBB");
-=======
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
->>>>>>> develop
   let response = await fetch(apiEndPoint+'/orders/deliveryCosts', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},

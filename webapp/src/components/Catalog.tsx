@@ -121,10 +121,10 @@ function Catalog(rockListPros: RockListProps): JSX.Element {
       <Grid container spacing={3} rowSpacing={7} padding={2}>
         {rocks.map((rock, index) => {
           return (
-            <Grid item xs={3}>
+            <Grid item xs={3} key={index}>
             <Product
               product={rock}
-              key={index}
+              
               buyable={true}
               handleAddToCart={rockListPros.handleAddToCart}
             />

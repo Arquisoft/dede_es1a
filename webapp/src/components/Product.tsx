@@ -10,7 +10,6 @@ type ProductProps = {
 //a
 function Product(product: ProductProps): JSX.Element {
   return (
-<<<<<<< HEAD
     
     <Card className="product">
       <CardActionArea>
@@ -69,39 +68,6 @@ function Product(product: ProductProps): JSX.Element {
         
     </Card >
     
-=======
-      <div className="product">
-          <div className='imageProductContainer'>
-          {product.product!==null ?
-              <>
-              <img src={product.product.img} style={{width:'100%'}} alt={product.product.name.toString()}/>
-              </>
-              : <></>
-            }
-          </div>
-          <div className="infoProduct">
-              
-              {product.product!==null ?
-              <>
-              <p className="datoProduct">{"nombre: "+product.product.name}</p>
-              <p className="datoProduct">{"precio: "+product.product.price+"€"}</p>
-              <p className="datoProduct">{"tipo: "+ product.product.type}</p>
-              <p className="datoProduct">{"mohs: "+ product.product.mohsHardness}</p>
-              <p className="datoProduct">{"densidad: "+product.product.density}</p>
-              </>
-              : <></>
-            }
-              
-          </div>
-          <Button 
-            variant="contained" 
-            className='btnBuy' 
-            color="primary" 
-            style={{width:'100%'}}
-            onClick={() => product.handleAddToCart(product.product as Rock)}>
-          Comprar</Button>
-      </div>
->>>>>>> develop
   );
 }
 
