@@ -3,7 +3,7 @@ import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-d
 
 import Register from '../../Register';
 
-test('Check words of Login', async () => {
+test('Check words of Register', async () => {
     
         const { container } = render(
         <Router> 
