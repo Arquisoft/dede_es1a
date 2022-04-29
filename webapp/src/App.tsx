@@ -13,7 +13,7 @@ import { useState, useEffect } from 'react';
 import Welcome from './components/Welcome';
 import  {getRocas} from './api/api';
 import './css/App.css';
-import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes, Navigate, BrowserRouter as Router, BrowserRouter } from "react-router-dom";
 import {Rock} from './shared/shareddtypes';
 import Catalog from './components/Catalog';
 import { ThemeProvider } from '@emotion/react';
@@ -105,7 +105,7 @@ function App(): JSX.Element {
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl" className="principal">
         <NavBar openCart={() => setCartOpen(true)} />
-        <Router>
+        <BrowserRouter>
           <Routes>
             <Route  path="/home" element={<Welcome handleAddToCart={handleAddToCart} />} />
             <Route path="/" element={<Navigate replace to="/home" />} />
@@ -116,7 +116,7 @@ function App(): JSX.Element {
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element ={<Welcome handleAddToCart={handleAddToCart} />}/>
           </Routes>
-        </Router>
+        </BrowserRouter>
         <Drawer
           anchor="right"
           open={isCartOpen}
