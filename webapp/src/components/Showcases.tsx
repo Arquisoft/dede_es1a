@@ -1,7 +1,7 @@
 import { Rock } from "../shared/shareddtypes";
 import Showcase from "./Showcase";
 import { Grid } from "@mui/material";
-import { SearchCritery } from "./Catalog";
+import { defaultCriteryForSearch, SearchCritery } from "./Catalog";
 
 type RockListProps = {
   handleAddToCart(r: Rock): void;
@@ -11,12 +11,12 @@ const LIST_OF_CRITERIES: SearchCritery[] = [
   { type: "sedimentaria" },
   { type: "magmática" },
   {type: "ígnea"},
-  {}
+  {type: "all"}
 ];
 const LIST_OF_NAMES:string[]=[
   "Sedimentarias",
-  "Metamorficas",
-  "Volcanicas",
+  "Metamórficas",
+  "Volcánicas",
   "Las Mas Vendidas!"
 ]
 

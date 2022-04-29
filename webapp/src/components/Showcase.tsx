@@ -80,6 +80,10 @@ function Showcase(prefilteredbox: RockListProps): JSX.Element {
   )
     type = prefilteredbox.search.type;
   else type = defaultCriteryForSearch.type;
+
+  if(type==="all"){
+    type="";
+  }
   link =
     "/catalog?mohsMin=" +
     mohsMin +

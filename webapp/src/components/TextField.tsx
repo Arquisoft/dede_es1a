@@ -6,6 +6,7 @@ type BasicTextFieldProps={
     label:string,
     placeholder:string,
     value:string,
+    actualValue:string,
     onChange(nameSubstring:string):void
 }
 export default function BasicTextField(basicTextFieldProps:BasicTextFieldProps) {

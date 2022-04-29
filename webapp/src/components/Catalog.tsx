@@ -1,7 +1,13 @@
 import { Rock } from "../shared/shareddtypes";
 import List from "@mui/material/List";
 import Product from "./Product";
-import { Button, Grid } from "@mui/material";
+import {
+  Accordion,
+  AccordionSummary,
+  Button,
+  Grid,
+  Typography,
+} from "@mui/material";
 import RangeSlider from "./Rangeslider";
 import BasicTextFieldWithOptions from "./TextFieldWithOptions";
 import BasicTextField from "./TextField";
@@ -9,6 +15,7 @@ import { getFilteredRocks } from "../api/api";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import React from "react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 type RockListProps = {
   handleAddToCart(rock: Rock): void;
 };
@@ -134,8 +141,6 @@ function Catalogo(rockListPros: RockListProps): JSX.Element {
       priceMax = parseFloat(priceMaxStr);
     else priceMax = defaultCriteryForSearch.priceMax;
 
-
-
     setRocks(
       await getFilteredRocks(
         mohsMin,
@@ -191,71 +196,81 @@ function Catalogo(rockListPros: RockListProps): JSX.Element {
     type;
   return (
     <>
-      <Grid
-        id="catalogFilter"
-        container
-        rowSpacing={1}
-        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-      >
-        <Grid item xs={12 / 3}>
-          <RangeSlider
-            min={defaultCriteryForSearch.mohsMin}
-            max={defaultCriteryForSearch.mohsMax}
-            valueName={"Mohs"}
-            onValueChanged={handleChangeMohs}
-            actualMin={mohsMin}
-            actualMax={mohsMax}
-          />
-          
+      <Accordion id="accordeonFilter">
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>Filtrar</Typography>
+        </AccordionSummary>
+        <Grid
+          id="catalogFilter"
+          container
+          rowSpacing={1}
+          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+        >
+          <Grid item xs={12 / 3}>
+            <RangeSlider
+              min={defaultCriteryForSearch.mohsMin}
+              max={defaultCriteryForSearch.mohsMax}
+              valueName={"Mohs"}
+              onValueChanged={handleChangeMohs}
+              actualMin={mohsMin}
+              actualMax={mohsMax}
+            />
+          </Grid>
+          <Grid item xs={12 / 3}>
+            <RangeSlider
+              min={defaultCriteryForSearch.densityMin}
+              max={defaultCriteryForSearch.densityMax}
+              valueName={"Densidad"}
+              onValueChanged={handleChangeDensity}
+              actualMin={densityMin}
+              actualMax={densityMax}
+            />
+          </Grid>
+          <Grid item xs={12 / 3}>
+            <RangeSlider
+              min={defaultCriteryForSearch.priceMin}
+              max={defaultCriteryForSearch.priceMax}
+              valueName={"Precio"}
+              onValueChanged={handleChangePrice}
+              actualMin={priceMin}
+              actualMax={priceMax}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <BasicTextFieldWithOptions
+              values={TYPES_LIST}
+              onValueChanged={handleChangeType}
+              titleText={"Tipo de rocas"}
+              helperText={"Selecciona el tipo de roca"}
+              actualValue={type}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <BasicTextField
+              value={nameSubstring}
+              label={"Nombre"}
+              placeholder={"Ej: Cuarcita"}
+              onChange={handleChangeNameSubstring}
+              actualValue={nameSubstring}
+            />
+          </Grid>
+          <Grid item xs={9}></Grid>
+          <Grid item xs={3}>
+            <Button
+              variant="contained"
+              href={filterLink}
+              fullWidth
+              onClick={refreshRockList}
+            >
+              Buscar
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={12 / 3}>
-          <RangeSlider
-            min={defaultCriteryForSearch.densityMin}
-            max={defaultCriteryForSearch.densityMax}
-            valueName={"Densidad"}
-            onValueChanged={handleChangeDensity}
-            actualMin={densityMin}
-            actualMax={densityMax}
-          />
-        </Grid>
-        <Grid item xs={12 / 3}>
-          <RangeSlider
-            min={defaultCriteryForSearch.priceMin}
-            max={defaultCriteryForSearch.priceMax}
-            valueName={"Precio"}
-            onValueChanged={handleChangePrice}
-            actualMin={priceMin}
-            actualMax={priceMax}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <BasicTextFieldWithOptions
-            values={TYPES_LIST}
-            onValueChanged={handleChangeType}
-            titleText={"Tipo de rocas"}
-            helperText={"Selecciona el tipo de roca"}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <BasicTextField
-            value={nameSubstring}
-            label={"Nombre"}
-            placeholder={"Ej: Cuarcita"}
-            onChange={handleChangeNameSubstring}
-          />
-        </Grid>
-        <Grid item xs={9}></Grid>
-        <Grid item xs={3}>
-          <Button
-            variant="contained"
-            href={filterLink}
-            fullWidth
-            onClick={refreshRockList}
-          >
-            Buscar
-          </Button>
-        </Grid>
-      </Grid>
+      </Accordion>
       <List id="catalog">
         {rocks.map((rock, index) => {
           return (

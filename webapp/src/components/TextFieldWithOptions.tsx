@@ -4,6 +4,7 @@ import { MenuItem } from "@mui/material";
 
 type BasicTextFieldProps = {
   values: string[];
+  actualValue:string;
   titleText: string;
   helperText: string;
   onValueChanged(type: string): void;
@@ -11,11 +12,13 @@ type BasicTextFieldProps = {
 export default function BasicTextFieldWithOptions(
   basicTextFieldProps: BasicTextFieldProps
 ) {
-  const [value, setValue] = React.useState(basicTextFieldProps.values[0]);
+
+  const [value, setValue] = React.useState(basicTextFieldProps.actualValue);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     basicTextFieldProps.onValueChanged(event.target.value);
   };
+  
   return (
     <TextField
       fullWidth
