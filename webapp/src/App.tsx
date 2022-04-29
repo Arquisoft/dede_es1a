@@ -1,30 +1,27 @@
-import { createTheme, Drawer, List } from "@mui/material";
-import { useState, useEffect } from "react";
-import Welcome from "./components/Welcome";
-import { getRocas } from "./api/api";
-import "./css/App.css";
-import {
-  Route,
-  Routes,
-  Navigate,
-  BrowserRouter as Router,
-} from "react-router-dom";
-import { Rock } from "./shared/shareddtypes";
-import Catalog from "./components/Catalog";
-import { ThemeProvider } from "@emotion/react";
+
+//import { useQuery } from 'react-query';
+//import Link from '@mui/material/Link';
+
+
+
+import { Drawer } from '@mui/material';
+import { useState, useEffect } from 'react';
+import Welcome from './components/Welcome';
+import './css/App.css';
+import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
+import {Rock} from './shared/shareddtypes';
+import Catalog from './components/Catalog';
+import { ThemeProvider } from '@emotion/react';
 import { theme } from "./code/Theme";
 import LogIn from "./components/Login";
 import Register from "./components/Register";
 import NavBar from "./components/NavigationBar";
 import { Container } from "@mui/material";
-//import {createData} from "./code/insertExampleData"
 
-//import {createData} from "./code/insertExampleData"
-import "./css/App.css";
+import "./css/App.css"
 import ShoppingCart from "./components/ShoppingCart";
-import PaymentPage from "./components/PaymentPage";
-import { ContentCopy } from "@mui/icons-material";
-import Showcase from "./components/Showcase";
+import PaymentProcess from './components/payment/PaymentPage';
+import OrderHistory from './components/Orders';
 
 type Props = {
   openCart: () => void;
@@ -51,49 +48,37 @@ function App(): JSX.Element {
     }
   }, [isNewCart]);
 
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartContent));
+  }, [cartContent]);
+
   const resetCart = () => {
-    setCartContent([]);
-    localStorage.setItem("cart", JSON.stringify([]));
     setCartContent([]);
   };
 
   const handleAddToCart = (selectedItem: Rock) => {
-    localStorage.setItem("cart", JSON.stringify(cartContent));
     setCartContent((cart) => {
       if (cart.find((rocaInCart) => rocaInCart.name === selectedItem.name)) {
-        // return cart.map(Rock => (
-        //   Rock.name === selectedItem.name ?
-        //     { ...Rock, quantityCart: Rock.quantityCart + 1 } :
-        //     Rock
-        // ));
-        var tempCart = cart.map((Rock) =>
-          Rock.name === selectedItem.name
-            ? { ...Rock, quantityCart: Rock.quantityCart + 1 }
-            : Rock
-        );
-        return tempCart;
+        return cart.map(Rock => (
+          Rock.name === selectedItem.name ?
+            { ...Rock, quantityCart: Rock.quantityCart + 1 } :
+            Rock
+        ));
       }
-      // return [...cart, {...selectedItem, quantityCart: 1}];
-      var tempCart = [...cart, { ...selectedItem, quantityCart: 1 }];
-      return tempCart;
+      return [...cart, {...selectedItem, quantityCart: 1}];
     });
   };
 
   const handleRemoveFromCart = (name: string) => {
-    localStorage.setItem("cart", JSON.stringify(cartContent));
     setCartContent((cart) =>
       cart.reduce((sum, p) => {
         if (p.name === name) {
           if (p.quantityCart === 1) {
             return sum;
           }
-          // return [...sum, {...p, quantityCart: p.quantityCart - 1}];
-          var tempCart = [...sum, { ...p, quantityCart: p.quantityCart - 1 }];
-          return tempCart;
+          return [...sum, {...p, quantityCart: p.quantityCart - 1}];
         } else {
-          // return [...sum, p];
-          var tempCart = [...sum, p];
-          return tempCart;
+          return [...sum, p];
         }
       }, [] as Rock[])
     );
@@ -103,30 +88,18 @@ function App(): JSX.Element {
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl" className="principal">
         <NavBar openCart={() => setCartOpen(true)} />
-        <Router>
+        <BrowserRouter>
           <Routes>
-            <Route
-              path="/home"
-              element={<Welcome handleAddToCart={handleAddToCart} />}
-            />
+            <Route path="/home" element={<Welcome handleAddToCart={handleAddToCart} />} />
             <Route path="/" element={<Navigate replace to="/home" />} />
-            <Route
-              path="/catalog"
-              element={<Catalog handleAddToCart={handleAddToCart}/>}
-            />
-            <Route
-              path="/payment"
-              element={
-                <PaymentPage
-                  cartContent={cartContent}
-                  setNewCart={setNewCart}
-                />
-              }
-            />
+            <Route path="/catalog" element={ <Catalog handleAddToCart={handleAddToCart} /> } />
+            <Route path="/orders" element={ <OrderHistory email={"admin@email.es"}/> } />
+            <Route path="/payment" element={ <PaymentProcess cartContent={cartContent} setNewCart={setNewCart} /> } />
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/logout" element ={<Welcome handleAddToCart={handleAddToCart} />}/>
           </Routes>
-        </Router>
+        </BrowserRouter>
         <Drawer
           anchor="right"
           open={isCartOpen}

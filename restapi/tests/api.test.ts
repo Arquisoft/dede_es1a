@@ -45,8 +45,8 @@ beforeAll(async () => {
     }).on("error", (error: Error) => {
         console.error('Error occured: ' + error.message);
     });
-
-    mongoose.connect(process.env.DB_CONN_TEST_STRING, {
+    //This database is for testing only
+    mongoose.connect("mongodb+srv://dede-es1a-Tests:1234@dede-es1a-tests.z8kxq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });

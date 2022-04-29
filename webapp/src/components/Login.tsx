@@ -11,6 +11,7 @@ import {useNavigate} from 'react-router-dom';
 import { checkUser } from '../api/api';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { Link } from '@mui/material';
 
 const checkParams = (text: String) => {
   return text === "" || text == null;
@@ -30,6 +31,7 @@ function EmailForm(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [pulse, setPulse] = useState(false)
+
 
   const [notificationStatus, setNotificationStatus] = useState(false);
   const [notification, setNotification] = useState<NotificationType>({severity:'success',message:''});
@@ -69,8 +71,9 @@ function EmailForm(): JSX.Element {
         severity:'success',
         message:'You have been registered in the system!'
       });
-      navigate("/home");
-      //Notify the change to the parent component
+      console.log(sessionStorage.getItem("userLogged"));
+      navigate("/catalog");
+      window.location.reload();
     }
     else{
       setNotificationStatus(true);
@@ -88,13 +91,11 @@ function EmailForm(): JSX.Element {
 
   return (
     <>
-    <h1>Entrar en Sesión</h1>
-      <br></br><br></br>
-      <div className='loggin-container'>
+      <div className='loginBackground'>
       <form name="loggin" onSubmit={handleSubmit}>
 
-      <div className='loggin-content'>
-      <h3>Email:</h3>
+      <div className='registerForm'>
+      <h1>Entrar en Sesión</h1>
       <div className='field-container'>
       
         <TextField
@@ -111,7 +112,6 @@ function EmailForm(): JSX.Element {
       </div>
       <div className='field-container'>
    
-        <h3>Contraseña:</h3>
         <TextField
           required
           name="Contraseña"
@@ -126,12 +126,10 @@ function EmailForm(): JSX.Element {
         />
         </div>    
 
-        <div className='buttons'>
-           <br></br>
+        <div className='buttonCls'>
            <Button onClick={() => allFunc(email, password)} variant="contained" type="submit">Iniciar Sesión</Button>
-           <br></br>
-           <Button variant="contained" onClick={() => navigate("/register")} type="submit" sx={{ my: 2 }}>¿No tienes cuenta? Regístrate</Button>
            </div>
+           <Link href = "/register">¿Aún no estás registrado? Regístrate aqui!</Link>
         </div>
         
         </form>

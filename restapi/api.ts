@@ -1,7 +1,7 @@
 import express, { Request, Response, Router } from 'express';
 import {check} from 'express-validator';
 import { addOrder, findOrdersByUserEmail, getDeliveryCosts } from './controllers/OrderController';
-import {findRocks, addRock, deleteRock, findRocksSedimentary, findRocksMetamorphic, findRocksFiery, findByCritery} from './controllers/RockController';
+import {findRocks, addRock, deleteRock, findRocksSedimentary, findRocksMetamorphic, findRocksFiery, findByCritery, findRocksById} from './controllers/RockController';
 import {findUsers, addUser, deleteUser, loginUser, logout} from './controllers/UserController';
 const User = require("./models/User");
 const Rock = require("./models/Rock");
@@ -24,6 +24,8 @@ api.post("/users/delete",  deleteUser);
 //Methods for product of the app
 api.get("/rocks/list", findRocks);
 
+api.get("/rocks/:rockId", findRocksById);
+
 api.get("/rocks/list/sedimentary", findRocksSedimentary);
 
 api.get("/rocks/list/metamorphic", findRocksMetamorphic);
@@ -38,7 +40,7 @@ api.post("/rocks/delete", deleteRock);
 
 
 //Methods for product of the app
-api.get("/orders/userList", findOrdersByUserEmail);
+api.get("/orders/userList/:userEmail", findOrdersByUserEmail);
 
 api.post("/orders/add", addOrder);
 
