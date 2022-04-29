@@ -18,3 +18,19 @@ test('Check basic content of user Orders', async () => {
         expect(container).toHaveTextContent("Precio")    
         
 });
+
+test('Check user orders', async () => {
+    
+    const { container } = render(
+    <Router> 
+        <Orders email={"admin@gmail.com"}/>
+        testOrders={LIST_OF_ORDERS_TEST}
+    </Router>
+    )
+    
+    expect(container).toHaveTextContent("Nombre")
+    expect(container).toHaveTextContent("Tipo")
+    expect(container).toHaveTextContent("Fecha")
+    expect(container).toHaveTextContent("Precio")    
+    
+});
