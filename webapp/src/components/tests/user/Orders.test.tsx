@@ -8,7 +8,6 @@ test('Check basic content of user Orders', async () => {
         const { container } = render(
         <Router> 
             <Orders email={"admin@gmail.com"}/>
-            testOrders={LIST_OF_ORDERS_TEST}
         </Router>
         )
         
@@ -32,5 +31,13 @@ test('Check user orders', async () => {
     expect(container).toHaveTextContent("Tipo")
     expect(container).toHaveTextContent("Fecha")
     expect(container).toHaveTextContent("Precio")    
+
+    for (let index = 0; index < LIST_OF_ORDERS_TEST.length; index++) {
+        var order = LIST_OF_ORDERS_TEST[index];
+        expect(container).toHaveTextContent(order.productName.toString());
+        expect(container).toHaveTextContent(order.productType.toString());
+        expect(container).toHaveTextContent(order.date.toString());
+        expect(container).toHaveTextContent(order.price.toString());
+      }
     
 });
