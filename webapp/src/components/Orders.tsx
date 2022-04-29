@@ -10,8 +10,9 @@ import Paper from '@mui/material/Paper';
 import {  getOrders } from '../api/api';
 import OrderUser from '../components/OrderUser';
 
-type Id = {
-    email:String
+type OrdersProps = {
+    email:string
+    ordersTest?:Order[]
 }
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -28,17 +29,20 @@ async function ordersByEmail(order:Order[], orderEmail:Order[], email:String){
     order.forEach(e => {if(e.userEmail == email){ orderEmail.push(e) }});
 }
 
-const OrderHistory = (id: Id) => {
+const OrderHistory = (props: OrdersProps) => {
     const [orders, setOrders]  = React.useState<Order[]>([]);
     const[ordersEmail, setOrdersEmail] = React.useState<Order[]>([]);
     
     async function cargarPedidos() {
-        setOrdersEmail(await getOrders());
+        if (props.ordersTest === undefined)
+            setOrdersEmail(await getOrders());
+        else
+            setOrdersEmail(props.ordersTest);
     }
 
     useEffect(() => {cargarPedidos();}, []);
 
-    ordersByEmail(orders,ordersEmail,id.email);
+    ordersByEmail(orders,ordersEmail,props.email);
 
     return (
         <div>
