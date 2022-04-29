@@ -114,7 +114,10 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
         
         if(sessionStorage.getItem("userLogged")){
             cartContent.forEach(function(rock){
-                addOrders(rock);
+
+                for (let i = 0; i< rock.quantityCart; i++){
+                    addOrders(rock);
+                }
             });
             alert("Su pedido ha sido realizado correctamente");
         }else{
