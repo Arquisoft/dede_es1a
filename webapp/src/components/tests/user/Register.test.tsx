@@ -1,13 +1,13 @@
 import { render } from '@testing-library/react';
 import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
 
-import Login from '../../Login';
+import Register from '../../Register';
 
 test('Check words of Login', async () => {
     
         const { container } = render(
         <Router> 
-            <Login/>
+            <Register/>
         </Router>
         )
         
