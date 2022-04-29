@@ -1,9 +1,9 @@
 name: CI for ASW2122
 
 on:
-  push:
-    branches: 
-      - Ignacio_BaseDeDatos
+  release:
+    types: [published]
+
 
 jobs:
   unit-test-webapp:
