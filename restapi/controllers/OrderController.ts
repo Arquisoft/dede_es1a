@@ -32,13 +32,17 @@ export const addOrder = async (req:Request, res:Response): Promise<any> => {
     let price = req.body.price;
     let productId = req.body.productId;
     let date = Date.now();
+    let productName = req.body.productName;
+    let productType = req.body.productType;
 
     let order = new Order({
         orderId: orderId,
         userEmail: userEmail,
         price: price,
         productId: productId,
-        date: date
+        date: date,
+        productName : productName,
+        productType : productType
     });
     await order.save();
     res.setHeader('Content-Type', 'application/json');

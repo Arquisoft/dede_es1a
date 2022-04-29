@@ -32,7 +32,6 @@ const OrderUser = (order: OrderProps) => {
                         <TableCell component="th" scope="row">{o.productType}</TableCell>
                         <TableCell component="th" scope="row">{o.date.toLocaleString().substring(0, 10)}</TableCell>
                         <TableCell component="th" scope="row">{o.price}€</TableCell>
-                        {/* <TableCell component="th" scope="row"><img src={rock[0].img}></img></TableCell>   */}
                     </TableRow>
                 );  
             })}
