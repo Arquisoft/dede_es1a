@@ -27,6 +27,13 @@ export async function getRocas():Promise<Rock[]>{
   return response.json()
 } 
 
+export async function getRocksById(rockId:String):Promise<Rock[]>{
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint+'/rocks/' + rockId);
+  //The objects returned by the api are directly convertible to User objects
+  return response.json()
+} 
+
 
 export async function getRocksSedimentary():Promise<Rock[]>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
@@ -86,7 +93,7 @@ export async function logout():Promise<any>{
   return response.json()
 }
 export async function getOrders(): Promise<Order[]>{
-  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
-  let response = await fetch(apiEndPoint + "/order/list");
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint + "/orders/userList/" + sessionStorage.getItem("userLogged"));
   return response.json();
 }

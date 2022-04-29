@@ -6,7 +6,10 @@ const orderSchema = mongooseOrders.Schema({
     orderId : String,
     price : Number,
     userEmail : String,
-    productId : String
+    productId : String,
+    date : Date,
+    productName : String,
+    productType : String
 },{
     versionKey: false
 }

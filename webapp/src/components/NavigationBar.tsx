@@ -46,7 +46,6 @@ const NavBar:React.FC<Props>=({openCart}) =>{
               </Typography>
               <Button color="inherit" href = "/">Home</Button>
               <Button color="inherit" href = "/catalog">Catálogo</Button>
-              <Button color="inherit" href = "/orders">Pedidos</Button>
     
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               </Typography>
@@ -56,7 +55,7 @@ const NavBar:React.FC<Props>=({openCart}) =>{
                 {isLoggedIn ? (
                     [<Typography variant="body1" component="div" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
                     {sessionStorage.getItem("userLogged")}</Typography>,
-                    <Button color="inherit" href = "/profile">Perfil</Button>
+                    <Button color="inherit" href = "/orders">Perfil</Button>
                     ,<Button color="inherit" onClick={() => logOutUser()} href = "/logout">Desconectarse</Button>]
                 ):(
                     [<Button color="inherit" href = "/login">Iniciar Sesión</Button>,
