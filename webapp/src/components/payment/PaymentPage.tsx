@@ -8,7 +8,7 @@ import { CardContent, Typography } from '@mui/material';
 import { North } from '@mui/icons-material';
 import { useState, useEffect } from 'react';
 import { Rock } from '../../shared/shareddtypes';
-import { getDeliveryCosts } from '../../api/api';
+import { addOrder, getDeliveryCosts } from '../../api/api';
 import { findConfigFile } from 'typescript';
 import PaymentSummary from './PaymentSummary';
 import CartItem from '../CartItem';
@@ -90,11 +90,39 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
         return <PaymentSummary cartContent={cartContent} simplificate={(!isLoggedPod)}></PaymentSummary>
     }
 
+    function getUserEmail() {
+        const userEmail = sessionStorage.getItem("userLogged");
+        
+        if (userEmail) 
+            return userEmail;
+        else 
+          return "";
+        
+    }
+
+    const addOrders = async (rock:Rock) => {
+        let rockId = rock.rockId;
+        let price = rock.price;
+        let name = rock.name;
+        let type = rock.type;
+        console.log(getUserEmail());
+        await addOrder({ userEmail: getUserEmail(), price: price, productId: rockId, productName: name, productType: type, orderId: "", date: new Date});
+    }
+
     const handlePay = () => {
         setNewCart(true);
-        //TODO: añadir a bd
-        alert("Pagado -> no se añade bd");
+        
+        if(sessionStorage.getItem("userLogged")){
+            cartContent.forEach(function(rock){
+                addOrders(rock);
+            });
+            alert("Su pedido ha sido realizado correctamente");
+        }else{
+            alert("Se ha producido un error en la creación de su pedido");
+        }
     }
+
+
     
     return (
         <div className='PaymentProcess-payment' >

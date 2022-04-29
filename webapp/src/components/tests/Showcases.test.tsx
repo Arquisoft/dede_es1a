@@ -6,6 +6,7 @@ import { Rock } from '../../shared/shareddtypes';
 test('Check that the showcases render properly', async () => {
     const { container } = render(<Showcase rocks={[{
         "id": "1222",
+        "rockId" : "1111",
         "name": "testtest",
         "img": "asdf",
         "price": 122,
