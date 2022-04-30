@@ -22,7 +22,7 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
     const getTotalPrice = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart * item.price, 0);
     
     function getAddressContent() {
-        const memoryCart = localStorage.getItem("address");
+        const memoryCart = sessionStorage.getItem("address");
         
         if (memoryCart) 
             return memoryCart;
@@ -30,11 +30,14 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
           return "";
         
     }
-    
+    const[addressOK, setAddresOk] = useState<boolean>();
     const [deliveryCosts, setDeliveryCosts] = useState<Number>();
     const findDC = async () => {
-        if(localStorage.getItem("address")){
+        if(sessionStorage.getItem("address")){
             setDeliveryCosts(await getDeliveryCosts(getAddressContent()));
+            setAddresOk(true);
+        }else{
+            setAddresOk(false);
         }
     }
     
@@ -60,8 +63,13 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
                 null
                 : 
                 <div>
-                    <h2>Costes de Envio: {Number(deliveryCosts).toFixed(2)}€</h2>
+                    {addressOK ?
+                        <h2>Costes de Envio:{Number(deliveryCosts).toFixed(2)}€</h2>
+                    :
+                        <h2>No se ha especificado una dirección correcta, el pedido sera almacenado en la tienda a espera de recogida</h2>
+                    }
                     <h2>Total: {getFinalDeliveryCosts()}€</h2>
+                    
                 </div>
             }
         </div>
