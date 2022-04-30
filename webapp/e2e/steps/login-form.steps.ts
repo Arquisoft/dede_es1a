@@ -27,7 +27,7 @@ defineFeature(feature, test => {
     let email:string
     let password:string
 
-    given("User data", () => {
+    given("Email and password of a user", () => {
       email = "admin@gmail.com"
       password = "admin"
     });

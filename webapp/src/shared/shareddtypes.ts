@@ -17,6 +17,7 @@ export type Rock = {
     quantityCart:number
   }
 export type Order = {
+    code : string,
     orderId : String,
     date: Date,
     price : Number,
