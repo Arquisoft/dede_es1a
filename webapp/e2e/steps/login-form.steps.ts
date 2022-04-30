@@ -36,15 +36,15 @@ defineFeature(feature, test => {
       await page.setViewport({ width: 1200, height: 1300 });
       await expect(page).toMatch("Sedimentarias");
       await expect(page).toClick("a[href='/login']");
-      await expect(page).toFill("input[name='username']", email);
+      await expect(page).toFill("input[name='email']", email);
       await expect(page).toFill("input[name='password']", password);
-      await expect(page).toClick('button', { text: 'Log In' });
+      await expect(page).toClick('button', { text: 'Iniciar Sesión' });
     });
 
-    then("I should be redirected to my profile", async () => {
+    then("I should be redirected to the catalog", async () => {
       await page.waitForNavigation()
       await page.waitForTimeout(2000);
-      await expect(page).toMatch("Historico de pedidos:");
+      await expect(page).toMatch("Yeso");
     });
   });
 
