@@ -1,8 +1,6 @@
 import { Order, Rock } from '../shared/shareddtypes';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-import React, { useState, useEffect } from 'react';
-import { getRocas, getRocksById } from '../api/api';
 
 type OrderProps = {
     orders: Order[]
