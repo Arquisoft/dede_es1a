@@ -105,9 +105,10 @@ export const addRock = async (req:Request, res:Response): Promise<any> => {
     let density = req.body.density;
     let texture = req.body.texture;
     let img = req.body.img;
-  
+    
+    let query = {name: name.toString()}
     let rock = await Rock.findOne(
-        { name: name }
+        { query }
     );
     if (rock) {
         res.status(401);
