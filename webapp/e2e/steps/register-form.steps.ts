@@ -51,10 +51,10 @@ defineFeature(feature, test => {
       await expect(page).toClick('button', { text: 'Regístrate' });
     });
 
-    then("I should be redirected to the catalog", async () => {
+    then("I should be redirected to the login page", async () => {
       await page.waitForNavigation()
       await page.waitForTimeout(2000);
-      await expect(page).toMatch("Yeso");
+      await expect(page).toMatch("Entrar en Sesión");
     });
   });
 });
