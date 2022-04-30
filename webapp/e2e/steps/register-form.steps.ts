@@ -35,16 +35,20 @@ defineFeature(feature, test => {
       name = "Adri"
       dni = "12345678"
       password = "adri"
-      confirmPassword:"adri"
+      confirmPassword = "adri"
     });
 
-    when("I click in Iniciar Sesion", async () => {
+    when("I click in Regístrate", async () => {
       await page.setViewport({ width: 1200, height: 1300 });
       await expect(page).toMatch("Sedimentarias");
-      await expect(page).toClick("a[href='/login']");
+      await expect(page).toClick("a[href='/register']");
+      await expect(page).toMatch("Crear cuenta");
       await expect(page).toFill("input[name='email']", email);
+      await expect(page).toFill("input[name='name']", name);
+      await expect(page).toFill("input[name='dni']", dni);
       await expect(page).toFill("input[name='password']", password);
-      await expect(page).toClick('button', { text: 'Iniciar Sesión' });
+      await expect(page).toFill("input[name='confirmPassword']", confirmPassword);
+      await expect(page).toClick('button', { text: 'Regístrate' });
     });
 
     then("I should be redirected to the catalog", async () => {
