@@ -31,8 +31,11 @@ defineFeature(feature, test => {
     let confirmPassword:string
 
     given("Email and password of a user", () => {
-      email = "admin@gmail.com"
-      password = "admin"
+      email = "adri@gmail.com"
+      name = "Adri"
+      dni = "12345678"
+      password = "adri"
+      confirmPassword:"adri"
     });
 
     when("I click in Iniciar Sesion", async () => {
