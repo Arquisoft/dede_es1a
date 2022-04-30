@@ -9,23 +9,10 @@ type OrderProps = {
 }
 
 const OrderUser = (order: OrderProps) => {
-
-    // const [rock, setRock]  = React.useState<Rock[]>([]);
-    // async function cargarRoca() {
-    //     let rocks:Rock[] = await getRocksById("1");
-    //     setRock(rocks);
-    // }
-    // useEffect(() => {
-    //     cargarRoca();
-    //     return () => {
-    //         setRock([]);
-    //     }
-    // }, []);
     return (
         
         <>
             {order.orders.map( (o) => {
-                console.log(order.orders[0]);
                 return (
                     <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                         <TableCell component="th" scope="row">{o.productName}</TableCell>
