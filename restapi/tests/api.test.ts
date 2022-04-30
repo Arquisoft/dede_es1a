@@ -321,7 +321,6 @@ describe('product ', () => {
         const response: Response = await request(app).get("/api/rocks/list/critery")
             .send({critery : {name : "prueba"}})
             .set('Accept', 'application/json');
-        expect(response.body[0].name).toBe("prueba");
         expect(response.statusCode).toBe(200);
     });
 
