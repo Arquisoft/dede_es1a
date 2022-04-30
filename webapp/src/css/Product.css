@@ -1,49 +1,35 @@
 .product {
   padding: 1em;
-  margin-bottom: 3em;
   text-align: center;
   height: 100%;
-}
-.infoProduct {
-  display: flex;
-  margin-top: 1em;
-  flex-wrap: wrap;
-  gap: 0.3em;
-}
-.imageProductContainer {
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 1em;
   
 }
 
-.imageProductContainer  img{
-  border-radius: 1em;
-  margin: 1em;
-
-  
-}
-.infoProduct .datoProduct:first-of-type{
-  width: 100%;
-}
-
-.datoProduct {
-  background-color: #ced9ee;
-  padding: 0.5em;
-  border-radius: 0.3em;
-  border: rgb(230, 237, 241) 0.15em solid;
-  height: 80%;
-  width: 43%;
-
-  display: flex; /* To make the text inside center vertically*/
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-}
 .btnBuy{
   position: relative;
-  top:2em !important;
+  top:3em !important;
+}
+
+.productDataText{
+
+  position: relative;
+
+  bottom: 100%;
+  
+}
+.productDataContainer{
+
+  height: 100%;
+  padding-top: 1em;
+  
+}
+@media only screen and (max-width: 1000px) {
+  .productDataText{
+    margin-top: -1.5em !important;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .productDataText{
+    margin-top: -1em !important;
+  }
 }

@@ -53,10 +53,10 @@ export const addUser = async (req: Request, res: Response): Promise<any> => {
 
 export const deleteUser = async (req: Request, res: Response): Promise<any> => {
 
-    let dni = req.body.dni;
 
+    let query = {dni : req.body.dni.toString()};
     let user = await User.deleteOne(
-        { dni: dni }
+        { query }
     );
     res.setHeader('Content-Type', 'application/json');
     res.status(200);
