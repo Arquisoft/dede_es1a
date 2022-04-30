@@ -1,6 +1,6 @@
 import express, { Request, Response, Router } from 'express';
 import {check} from 'express-validator';
-import { addOrder, findOrdersByUserEmail, getDeliveryCosts } from './controllers/OrderController';
+import { addOrder, findOrdersByUserEmail, getBestSeller, getDeliveryCosts } from './controllers/OrderController';
 import {findRocks, addRock, deleteRock, findRocksSedimentary, findRocksMetamorphic, findRocksFiery, findByCritery, findRocksById} from './controllers/RockController';
 import {findUsers, addUser, deleteUser, loginUser, logout} from './controllers/UserController';
 const User = require("./models/User");
@@ -45,5 +45,7 @@ api.get("/orders/userList/:userEmail", findOrdersByUserEmail);
 api.post("/orders/add", addOrder);
 
 api.post("/orders/deliveryCosts", getDeliveryCosts)
+
+api.get("/orders/bestSeller", getBestSeller);
 
 export default api;

@@ -7,6 +7,7 @@ const options = {
 
 const geocoder = NodeGeocoder(options);
 const Order = require("../models/Order");
+const Rock = require("../models/Rock");
 
 
 export const findOrdersByUserEmail = async (req:Request, res:Response) => {
@@ -51,6 +52,28 @@ export const addOrder = async (req:Request, res:Response): Promise<any> => {
     
   };
 
+  export const getBestSeller = async (req:Request, res:Response): Promise<any> => {
+
+    const order = await Order.distinct("productName");
+
+    let num = 0;
+    let aux;
+    let aux2;
+
+    for (let i =0; i < order.length; i++){
+      aux= await Order.find({productName :order[i]});
+      if (aux.length > num){
+        num = aux.length;
+        aux2 = aux[0].productName;
+      }
+    }
+
+    let bestSeller = await Rock.find({name: aux2});
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200);
+    res.send(bestSeller);
+  
+  }
 
   export const getDeliveryCosts = async (req:Request, res:Response) : Promise<any> =>{ 
 
