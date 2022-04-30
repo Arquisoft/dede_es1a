@@ -15,7 +15,7 @@ function Welcome(prefilteredbox: RockListProps): JSX.Element {
         <img src={logo} className="App-logo" alt="logo" />
       </div>
       
-      <div id="showcases">
+      <div>
         <Showcases handleAddToCart={prefilteredbox.handleAddToCart} />
       </div>
     </>
