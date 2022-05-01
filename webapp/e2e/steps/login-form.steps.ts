@@ -23,38 +23,29 @@ defineFeature(feature, test => {
       .catch(() => {});
   });
   
-  test("User Register", ({given,when,then}) => {
+  test("User Login", ({given,when,then}) => {
     let email:string
-    let name:string
-    let dni:string
     let password:string
-    let confirmPassword:string
 
     given("Email and password of a user", () => {
-      email = "adri@gmail.com"
-      name = "Adri"
-      dni = "12345678"
-      password = "adri"
-      confirmPassword = "adri"
+      email = "admin@gmail.com"
+      password = "admin"
     });
 
-    when("I click in Regístrate", async () => {
+    when("I click in Iniciar Sesion", async () => {
       await page.setViewport({ width: 1200, height: 1300 });
       await expect(page).toMatch("Sedimentarias");
-      await expect(page).toClick("a[href='/register']");
-      await expect(page).toMatch("Crear cuenta");
+      await expect(page).toClick("a[href='/login']");
       await expect(page).toFill("input[name='email']", email);
-      await expect(page).toFill("input[name='name']", name);
-      await expect(page).toFill("input[name='dni']", dni);
       await expect(page).toFill("input[name='password']", password);
-      await expect(page).toFill("input[name='confirmPassword']", confirmPassword);
-      await expect(page).toClick('button', { text: 'Regístrate' });
+      await expect(page).toClick('button', { text: 'Iniciar Sesión' });
     });
 
-    then("I should be redirected to the login page", async () => {
+    then("I should be redirected to the catalog", async () => {
       await page.waitForNavigation()
       await page.waitForTimeout(2000);
-      await expect(page).toMatch("Entrar en Sesión");
+      await expect(page).toMatch("Yeso");
     });
   });
+
 });
