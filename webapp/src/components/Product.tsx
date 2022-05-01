@@ -20,7 +20,7 @@ function Product(product: ProductProps): JSX.Element {
   return (
     <Card elevation={cardState} className="product" onMouseEnter={handleHoveringProduct} onMouseLeave={handleNotHoveringProduct}>
       
-      <CardActionArea href={'/product/'+product.product.id}>
+      <CardActionArea href={'/product/'+product.product.rockId}>
         <CardMedia component="img"
           height="200"
           image={product.product?.img}
