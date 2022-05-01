@@ -1,17 +1,25 @@
 import { Rock } from '../shared/shareddtypes';
 import Button from '@mui/material/Button';
 import { Card, CardActionArea, CardContent, CardMedia, Grid, Paper, Typography } from '@mui/material';
+import { useState } from 'react';
+import { height, padding } from '@mui/system';
 type ProductProps = {
   product: Rock | null;
   buyable: boolean;
   handleAddToCart(r: Rock): void;
 };
-
 //a
 function Product(product: ProductProps): JSX.Element {
+  const [cardState,setCardState] = useState<2 | 8>(2)
+  const handleHoveringProduct = (event: React.MouseEvent<HTMLElement>)=>{
+    setCardState(8)
+  }
+  const handleNotHoveringProduct = (event: React.MouseEvent<HTMLElement>)=>{
+    setCardState(2)
+  }
   return (
-    
-    <Card className="product">
+    <Card elevation={cardState} className="product" onMouseEnter={handleHoveringProduct} onMouseLeave={handleNotHoveringProduct}>
+      
       <CardActionArea>
         <CardMedia component="img"
           height="200"
@@ -67,7 +75,6 @@ function Product(product: ProductProps): JSX.Element {
         </CardContent>
         
     </Card >
-    
   );
 }
 
