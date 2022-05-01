@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { Card, CardContent, CardMedia } from "@mui/material";
 import { Rock } from "../shared/shareddtypes";
 
@@ -11,53 +11,49 @@ type CartItemProps = {
 
 function CartItem(props: CartItemProps): JSX.Element {
   return (
-    <Card  sx={{ height: "25vh",paddingY:"2vh" }}>
+    <Card className="cartItem-ci">
       <CardMedia
+        className="img-ci"
         component="img"
-        sx={{ height: "55%" }}
+        sx={{ width: 150, maxWidth: 150 }}
         image={props.item.img}
         alt={props.item.name}
       />
       <CardContent>
-        <Typography variant="h5">{props.item.name}</Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <Grid container spacing={2}>
-              <Grid item>
-                <Button
-                color="secondary"
-                  size="small"
-                  disableElevation
-                  variant="contained"
-                  onClick={() => props.handleRemoveFromCart(props.item.name)}
-                >
-                  <Typography variant="h5">-</Typography>
-                </Button>
-              </Grid>
-              <Grid item>
-                <Typography variant="h5">
-                  {props.item.quantityCart + " uds "}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Button
-                color="secondary"
-                  size="small"
-                  disableElevation
-                  variant="contained"
-                  onClick={() => props.handleAddToCart(props.item)}
-                >
-                  <Typography variant="h5">+</Typography>
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={4}>
-            <Typography variant="h4">
-              {(props.item.price * props.item.quantityCart).toFixed(2) + " €"}
+        <Typography className="name-ci" variant="h5">
+          {" "}
+          {props.item.name}{" "}
+        </Typography>
+        <div className="quantityController-ci">
+          <Button
+            size="small"
+            disableElevation
+            variant="contained"
+            color="primary"
+            onClick={() => props.handleRemoveFromCart(props.item.name)}
+          >
+            <Typography id="quantity-ci" variant="h6">
+              -
             </Typography>
-          </Grid>
-        </Grid>
+          </Button>
+          <Typography id="quantity-ci" variant="h6">
+            {props.item.quantityCart + " uds"}
+          </Typography>
+          <Button
+            size="small"
+            disableElevation
+            variant="contained"
+            color="primary"
+            onClick={() => props.handleAddToCart(props.item)}
+          >
+            <Typography id="quantity-ci" variant="h6">
+              +
+            </Typography>
+          </Button>
+        </div>
+        <Typography id="quantity-ci" variant="h6">
+          {(props.item.price * props.item.quantityCart).toFixed(2) + " €"}
+        </Typography>
       </CardContent>
     </Card>
   );
