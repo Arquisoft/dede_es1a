@@ -27,7 +27,6 @@ export async function getRocas():Promise<Rock[]>{
 } 
 
 export async function getRocksById(rockId:String):Promise<Rock[]>{
-  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   let response = await fetch(apiEndPoint+'/rocks/' + rockId);
   //The objects returned by the api are directly convertible to User objects
   return response.json()

@@ -22,7 +22,7 @@ import "./css/App.css"
 import ShoppingCart from "./components/ShoppingCart";
 import PaymentProcess from './components/payment/PaymentPage';
 import OrderHistory from './components/Orders';
-
+import ProductView from './components/ProductView';
 type Props = {
   openCart: () => void;
 };
@@ -98,6 +98,7 @@ function App(): JSX.Element {
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element ={<Welcome handleAddToCart={handleAddToCart} />}/>
+            <Route path="/product/:id" element={<ProductView handleAddToCart={handleAddToCart}></ProductView>}/>
           </Routes>
         </BrowserRouter>
         <Drawer

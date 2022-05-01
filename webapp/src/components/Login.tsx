@@ -7,11 +7,11 @@ import type { AlertColor } from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import logo from '../../logoAsturShop.png'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { checkUser } from '../api/api';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { Link } from '@mui/material';
+import { Grid, Link, Typography } from '@mui/material';
 
 const checkParams = (text: String) => {
   return text === "" || text == null;
@@ -34,8 +34,8 @@ function EmailForm(): JSX.Element {
 
 
   const [notificationStatus, setNotificationStatus] = useState(false);
-  const [notification, setNotification] = useState<NotificationType>({severity:'success',message:''});
-  
+  const [notification, setNotification] = useState<NotificationType>({ severity: 'success', message: '' });
+
   const navigate = useNavigate();
 
 
@@ -59,23 +59,23 @@ function EmailForm(): JSX.Element {
                  footer: '<a href ="/signup">¿No tienes cuenta? Registrate ahora!</a>'
              });
         }
-    })
- }
- 
+      })
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let result:boolean = await checkUser(email,password);
-    if (result){
+    let result: boolean = await checkUser(email, password);
+    if (result) {
       setNotificationStatus(true);
-      setNotification({ 
-        severity:'success',
-        message:'You have been registered in the system!'
+      setNotification({
+        severity: 'success',
+        message: 'You have been registered in the system!'
       });
       console.log(sessionStorage.getItem("userLogged"));
       navigate("/catalog");
       window.location.reload();
     }
-    else{
+    else {
       setNotificationStatus(true);
       setNotification({ 
         severity:'error',
@@ -83,63 +83,72 @@ function EmailForm(): JSX.Element {
       });
     }
   }
-  function allFunc(idUser: String, pass: String){
+  function allFunc(idUser: String, pass: String) {
     handleLogin(idUser, pass);
     setPulse(true);
-}
+  }
 
 
   return (
     <>
-      <div className='loginBackground'>
       <form name="loggin" onSubmit={handleSubmit}>
+        <Grid
+          container
+          style={{ width: '100%' }}
+          direction="column"
+          alignItems="center"
+          padding={2}
+        >
+          <Grid item >
+            <Typography variant="h2">Iniciar sesión</Typography>
+          </Grid>
+          <Grid item width={'50%'}>
+            <TextField
+              required
+              name="Usuario"
+              label="email"
+              variant="outlined"
+              fullWidth
+              value={email}
+              error={checkParams(email) && pulse}
+              helperText={checkParams(email) && pulse ? 'El campo no puede estar vacio' : ''}
+              onChange={e => setEmail(e.target.value)}
+              sx={{ my: 2 }}
+            />
+          </Grid>
+          <Grid item width={'50%'}>
+            <TextField
+              required
+              name="Contraseña"
+              label="password"
+              variant="outlined"
+              type="password"
+              fullWidth
+              value={password}
+              error={checkParams(password) && pulse}
+              helperText={checkParams(password) && pulse ? 'El campo no puede estar vacio' : ''}
+              onChange={e => setPassword(e.target.value)}
+              sx={{ my: 2 }}
+            />
 
-      <div className='registerForm'>
-      <h1>Entrar en Sesión</h1>
-      <div className='field-container'>
-      
-        <TextField
-            required
-            name="Usuario"
-            label="email" 
-            variant="outlined"
-            value={email}
-            error = {checkParams(email) && pulse}
-            helperText={checkParams(email) && pulse ? 'El campo no puede estar vacio' : ''}
-            onChange={e => setEmail(e.target.value)}
-            sx={{ my: 2 }}
-          />
-      </div>
-      <div className='field-container'>
-   
-        <TextField
-          required
-          name="Contraseña"
-          label="password" 
-          variant="outlined"
-          type="password"
-          value={password}
-          error = {checkParams(password) && pulse}
-          helperText={checkParams(password) && pulse ? 'El campo no puede estar vacio' : ''}
-          onChange={e => setPassword(e.target.value)}
-          sx={{ my: 2 }}
-        />
-        </div>    
+          </Grid>
+          <Grid item width={'50%'}>
 
-        <div className='buttonCls'>
-           <Button onClick={() => allFunc(email, password)} variant="contained" type="submit">Iniciar Sesión</Button>
-           </div>
-           <Link href = "/register">¿Aún no estás registrado? Regístrate aqui!</Link>
-        </div>
-        
-        </form>
-        
-      </div>
-      <Snackbar open={notificationStatus} autoHideDuration={3000} onClose={()=>{setNotificationStatus(false)}}>
-        <Alert severity={notification.severity} sx={{ width: '100%' }}>
-          {notification.message}
-        </Alert>
-      </Snackbar>
+            <Button onClick={() => allFunc(email, password)} variant="contained" fullWidth type="submit">Iniciar Sesión</Button>
+
+          </Grid>
+          <Grid item marginTop={2}>
+            <Link href="/register">
+              <Typography >¿Aún no estás registrado? Regístrate aqui!</Typography>
+            </Link>
+          </Grid>
+        </Grid>
+        <Snackbar open={notificationStatus} autoHideDuration={3000} onClose={() => { setNotificationStatus(false) }}>
+          <Alert severity={notification.severity} sx={{ width: '100%' }}>
+            {notification.message}
+          </Alert>
+        </Snackbar>
+      </form>
     </>
   );
 }
