@@ -56,14 +56,12 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
         switch (paymentView) {
           case ITEMS_TO_BUY_VIEW:
             return (
-                
                 <PaymentListItems 
                     cartContent={cartContent} 
                     nextView={nextView} 
                     previusView={previusView} 
                     handlePay={handlePay}
                 ></PaymentListItems>
-                
             );
 
           case PAYMENT_FORM_VIEW:
@@ -97,13 +95,17 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     }
     
     return (
-        <div className='PaymentProcess-payment' >
+        <Grid container spacing={2} className='PaymentProcess-payment' >
+            <Grid item xs={12}>
             <h1 id='title-payment' >Mi compra</h1>
-            <div id='info-payment' >
+            </Grid>
+            <Grid item xs={8}>
                 {getView(paymentView)}
+            </Grid>
+            <Grid item xs={4}>
                 {getPaymentSummary()}
-            </div>
-        </div>
+            </Grid>
+        </Grid>
     )
 };
 

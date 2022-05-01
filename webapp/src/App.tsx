@@ -67,6 +67,7 @@ function App(): JSX.Element {
 
   const resetCart = () => {
     setCartContent([]);
+    localStorage.setItem("cart", JSON.stringify([]));
   };
 
   const handleAddToCart = (selectedItem: Rock) => {

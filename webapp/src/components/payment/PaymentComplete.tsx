@@ -21,8 +21,9 @@ type Props = {
 const PaymentComplete: React.FC<Props> = ({nextView}) => {
     return (
         <div>
-            <Typography variant="h2" component="h2">Pedido finalizado</Typography>
-            <Typography variant="h5" component="h2">Direccion de envio:</Typography>
+            <Typography variant="h4" component="h2">Pedido finalizado</Typography>
+            <Typography variant="h2" component="h2">Gracias por realizar tu compra</Typography>
+            <Typography variant="h5" component="h2">Orden de entrega:</Typography>
             <ProfileViewer logoutEnabled={false}></ProfileViewer>
             <div id='actionButtons-payment'>
                 <Button
