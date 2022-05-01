@@ -20,10 +20,23 @@ type Props = {
 
 const PaymentComplete: React.FC<Props> = ({nextView}) => {
     return (
-        <div>
-            <Typography variant="h2" component="h2">Pedido finalizado</Typography>
-            <Typography variant="h5" component="h2">Direccion de envio:</Typography>
+        <Grid container spacing={2} className='paymentpage-payment' >
+            <Grid item xs={12}>
+            <Typography variant="h4" component="h2">Pedido finalizado</Typography>
+
+            </Grid>
+            <Grid item xs={12}>
+            <Typography variant="h5" component="h2">¡Tu pedido ya está en camino!</Typography>
+                
+            </Grid>
+            <Grid item xs={12}>
+            <Typography variant="h5" component="h2">Orden de entrega:</Typography>
+                
+            </Grid>
+            <Grid item xs={12}>
             <ProfileViewer logoutEnabled={false}></ProfileViewer>
+                
+            </Grid>
             <div id='actionButtons-payment'>
                 <Button
                     size="medium"
@@ -38,7 +51,7 @@ const PaymentComplete: React.FC<Props> = ({nextView}) => {
                 </Button>
             </div>
        
-        </div>
+        </Grid>
 
     )
 };
