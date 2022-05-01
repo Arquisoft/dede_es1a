@@ -46,7 +46,7 @@ defineFeature(feature, test => {
       await expect(page).toMatch('Iniciar Sesión')
       
       await expect(page).toFill('#email', email);
-      await expect(page).toFill('#pass', password);
+      await expect(page).toFill('#password', password);
 
       await expect(page).toClick('button', { text: 'Iniciar Sesión' })
     });
@@ -71,12 +71,40 @@ defineFeature(feature, test => {
       await expect(page).toMatch('Iniciar Sesión')
       
       await expect(page).toFill('#email', email);
-      await expect(page).toFill('#pass', password);
+      await expect(page).toFill('#password', password);
 
       await expect(page).toClick('button', { text: 'Iniciar Sesión' })
     });
 
     then('Warning message below Email', async () => {
+      await expect(page).toMatch('El campo no puede estar vacio')
+    });
+  })
+
+  afterEach(async ()=>{
+    browser.close()
+  })
+
+  test('User log in blank password', ({given,when,then}) => {
+    
+    let email:string;
+    let password:string;
+
+    given('Email and blank password of a user', () => {
+      email = "adri"
+      password = " "
+    });
+
+    when('I click in Iniciar Sesión', async () => {
+      await expect(page).toMatch('Iniciar Sesión')
+      
+      await expect(page).toFill('#email', email);
+      await expect(page).toFill('#password', password);
+
+      await expect(page).toClick('button', { text: 'Iniciar Sesión' })
+    });
+
+    then('Warning message below Password', async () => {
       await expect(page).toMatch('El campo no puede estar vacio')
     });
   })

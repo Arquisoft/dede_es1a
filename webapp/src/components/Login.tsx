@@ -105,6 +105,7 @@ function EmailForm(): JSX.Element {
           <Grid item width={'50%'}>
             <TextField
               required
+              id="email"
               name="Usuario"
               label="email"
               variant="outlined"
@@ -119,6 +120,7 @@ function EmailForm(): JSX.Element {
           <Grid item width={'50%'}>
             <TextField
               required
+              id="password"
               name="Contraseña"
               label="password"
               variant="outlined"
