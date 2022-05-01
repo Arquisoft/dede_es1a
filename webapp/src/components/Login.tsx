@@ -40,24 +40,24 @@ function EmailForm(): JSX.Element {
 
 
   const handleLogin = (email: String, pass: String) => {
-    axios.post("http://localhost:5000/user/login", { "email": email, "password": pass })
-      .then(res => {
-        if (res.status == 201) {
-          Swal.fire({
-            title: "Sesión iniciada",
-            icon: "success"
-          }).then(() => {
-            console.log(res.data)
-            localStorage.setItem('token', res.data.token);
-            window.location.assign("/products");
-          });
-        } else {
-          Swal.fire({
-            title: "Creedenciales incorrectos",
-            text: "El usuario o contraseña son incorrectos, vuelva a introducirlos",
-            icon: "error",
-            footer: '<a href ="/signup">¿No tienes cuenta? Registrate ahora!</a>'
-          });
+    axios.post(("http://localhost:5000/api/user/login"|| process.env.REACT_APP_API_URI +"/users/login"),{"email":email,"password":pass})
+    .then(res => {
+        if(res.status == 201){
+         Swal.fire({
+             title: "Sesión iniciada",
+             icon: "success"
+         }).then(() => {
+             console.log(res.data)
+             localStorage.setItem('token',res.data.token);
+             window.location.assign("/products");
+         });
+        }else{
+             Swal.fire({
+                 title: "Creedenciales incorrectos",
+                 text: "El usuario o contraseña son incorrectos, vuelva a introducirlos",
+                 icon: "error",
+                 footer: '<a href ="/signup">¿No tienes cuenta? Registrate ahora!</a>'
+             });
         }
       })
   }
@@ -77,9 +77,9 @@ function EmailForm(): JSX.Element {
     }
     else {
       setNotificationStatus(true);
-      setNotification({
-        severity: 'error',
-        message: 'There\'s been an error in the register proccess.'
+      setNotification({ 
+        severity:'error',
+        message:'El usuario o contraseña son incorrectos, vuelva a introducirlos'
       });
     }
   }

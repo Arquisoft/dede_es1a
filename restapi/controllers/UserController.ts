@@ -1,7 +1,6 @@
-import express, { Request, Response, Router } from 'express';
+import  { Request, Response } from 'express';
 const User = require("../models/User");
 
-const mongoose = require("mongoose");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 
@@ -95,7 +94,7 @@ export const loginUser = async (req: Request, res: Response): Promise<any> => {
             //autenticado: true,
           //  token: token
         //});
-        res.send(req.session.usuario);
+        res.send();
     }
 }
 
