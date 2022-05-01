@@ -18,12 +18,14 @@ import PaymentPayForm from './PaymentPayForm';
 import PaymentComplete from './PaymentComplete';
 import { useSession } from '@inrupt/solid-ui-react';
 import PaymentListItems from './PaymentListItems';
+import PaymentShipping from './PaymentShipping';
 
 
-const NUM_VIEWS = 3;
+const NUM_VIEWS = 4;
 const PAYMENT_FORM_VIEW = 0;
-const ITEMS_TO_BUY_VIEW = 1;
-const PAYMENT_COMPLETE = 2;
+const SHIPPING_VIEW = 1;
+const ITEMS_TO_BUY_VIEW = 2;
+const PAYMENT_COMPLETE = 3;
 
 type Props = {
     cartContent: Rock[];
@@ -35,13 +37,10 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     
     const [paymentView, setPaymentView] = React.useState(PAYMENT_FORM_VIEW);
     useEffect(() => {
-        if(paymentView>=NUM_VIEWS) {
+        if(paymentView<0 || paymentView>=NUM_VIEWS) {
             window.location.href = '/home';
             setPaymentView(0);
-        } else if(paymentView<0) {
-            window.location.href = '/home';
-            setPaymentView(0);
-        } 
+        }
     }, [paymentView]);
 
 
@@ -64,14 +63,22 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                 ></PaymentListItems>
             );
 
-          case PAYMENT_FORM_VIEW:
+            case PAYMENT_FORM_VIEW:
+                return (
+                    <PaymentPayForm 
+                        nextView={nextView} 
+                        previusView={previusView}
+                    ></PaymentPayForm>
+                );
+
+          case SHIPPING_VIEW:
             return (
-                <PaymentPayForm 
+                <PaymentShipping 
                     nextView={nextView} 
                     previusView={previusView}
                     setLoggedPod={setLoggedPod}
                     isLoggedPod={isLoggedPod}
-                ></PaymentPayForm>
+                ></PaymentShipping>
             );
 
             case PAYMENT_COMPLETE:

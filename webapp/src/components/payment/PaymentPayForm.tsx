@@ -20,11 +20,9 @@ import CardFormT from './creditCardForm/CardForm';
 type Props = {
     nextView: () => void;
     previusView: () => void;
-    setLoggedPod: (b:boolean) => void;
-    isLoggedPod: boolean;
 };
 
-const PaymentPayForm: React.FC<Props> = ({nextView, previusView, setLoggedPod, isLoggedPod}) => {
+const PaymentPayForm: React.FC<Props> = ({nextView, previusView}) => {
 
     const [cardIsValid, setCardIsValid] = useState(false);
     
@@ -35,15 +33,6 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView, setLoggedPod, i
             </Grid>
             <Grid item xs={12}>
                 <CardForm setCardIsValid={setCardIsValid}></CardForm>
-            </Grid>
-            <Grid item xs={12}>
-            <Typography variant="h4" component="h4">Direccion de envío</Typography>
-                
-            </Grid>
-            <Grid item xs={12}>
-                {(!isLoggedPod) ? 
-                <LoginPod setLoggedPod={setLoggedPod}></LoginPod>
-                : <ProfileViewer logoutEnabled={true} />}
             </Grid>
             <Grid item xs={12}>
             <div id='actionButtons-payment'>
@@ -62,7 +51,7 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView, setLoggedPod, i
                     size="medium"
                     disableElevation
                     variant="contained"
-                    disabled={!cardIsValid && !isLoggedPod}
+                    disabled={!cardIsValid}
                     onClick={() => {
                         nextView();
                     }}

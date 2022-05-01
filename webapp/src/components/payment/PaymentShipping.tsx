@@ -25,17 +25,9 @@ type Props = {
 };
 
 const PaymentShipping: React.FC<Props> = ({nextView, previusView, setLoggedPod, isLoggedPod}) => {
-
-    const [cardIsValid, setCardIsValid] = useState(false);
     
     return (
         <Grid container spacing={2} className='paymentpage-payment' >
-            <Grid item xs={12}>
-                <Typography variant="h4" component="h4">Método de pago</Typography>
-            </Grid>
-            <Grid item xs={12}>
-                <CardForm setCardIsValid={setCardIsValid}></CardForm>
-            </Grid>
             <Grid item xs={12}>
             <Typography variant="h4" component="h4">Direccion de envío</Typography>
                 
@@ -62,7 +54,7 @@ const PaymentShipping: React.FC<Props> = ({nextView, previusView, setLoggedPod, 
                     size="medium"
                     disableElevation
                     variant="contained"
-                    disabled={!cardIsValid && !isLoggedPod}
+                    disabled={!isLoggedPod}
                     onClick={() => {
                         nextView();
                     }}
