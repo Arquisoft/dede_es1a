@@ -11,7 +11,7 @@ test('Check words of Login', async () => {
         </Router>
         )
         
-        expect(container).toHaveTextContent("Entrar en Sesión")
+        expect(container).toHaveTextContent("Iniciar Sesión")
         expect(container).toHaveTextContent("email")
         expect(container).toHaveTextContent("password")
         expect(container).toHaveTextContent("Iniciar Sesión")    

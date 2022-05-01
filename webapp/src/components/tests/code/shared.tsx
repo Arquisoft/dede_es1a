@@ -50,6 +50,7 @@ export const LIST_OF_ROCKS_TEST : Rock[]= [
 
 export const LIST_OF_ORDERS_TEST : Order[]= [
     {
+        code:"1",
         orderId : "123",
         date: new Date("2020-12-12"),
         price : 150,
@@ -59,6 +60,7 @@ export const LIST_OF_ORDERS_TEST : Order[]= [
         productType : "magmática"
     },
     {
+        code:"2",
         orderId : "1234",
         date: new Date("2021-12-12"),
         price : 180,
@@ -68,6 +70,7 @@ export const LIST_OF_ORDERS_TEST : Order[]= [
         productType : "metamórfica"
     },
     {
+        code: "3",
         orderId : "12345",
         date: new Date("2022-12-12"),
         price : 190,
@@ -77,6 +80,7 @@ export const LIST_OF_ORDERS_TEST : Order[]= [
         productType : "ígnea"
     },
     {
+        code : "4",
         orderId : "123567",
         date: new Date("2019-12-12"),
         price : 110,

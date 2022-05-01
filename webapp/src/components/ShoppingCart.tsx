@@ -30,6 +30,17 @@ function Cart(props: CartProps): JSX.Element {
               Total (iva 21% incluido): {getTotalPrice().toFixed(2)} €
             </Typography>
 
+            <Card  className="summary-cart">
+                <div id="summary-labels">
+                    <h3>Unidades: </h3>
+                    <h2>Total: </h2>
+                </div>
+                <div id="summary-data">
+                    <h3>{getTotalUds()}</h3>
+                    <h2>{getTotalPrice().toFixed(2)} €</h2>
+                </div>
+            </Card>
+                
             <Button
               disableElevation
               fullWidth

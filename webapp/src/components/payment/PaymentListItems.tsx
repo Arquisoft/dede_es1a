@@ -4,7 +4,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 
 import Button from '@mui/material/Button';
-import { CardContent, Typography } from '@mui/material';
+import { CardContent, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import { North } from '@mui/icons-material';
 import { useState, useEffect } from 'react';
 import { Rock } from '../../shared/shareddtypes';
@@ -47,7 +47,34 @@ const PaymentListItems: React.FC<Props> = ({cartContent, nextView, previusView, 
             </div>
         : 
             <div>
-                {cartContent.map(item => ( <PaymentItem   item={item}  /> ))}
+
+
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650, border: 2 }} aria-label="simple table">
+                        <TableHead sx={{ border:2 } }>
+                            <TableRow > 
+                                <TableCell>Articulos</TableCell>
+                                <TableCell align="right">Precio (€/Ud)</TableCell>
+                                <TableCell align="right">Unidades</TableCell>
+                                <TableCell align="right">Precio Total</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                        {cartContent.map((rock) => (
+                            <TableRow
+                                key={rock.name}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                            <TableCell component="th" scope="row"> {rock.name}</TableCell>
+                            <TableCell align="right">{rock.price +" €"}</TableCell>
+                            <TableCell align="right">{rock.quantityCart}</TableCell>
+                            <TableCell align="right">{rock.price*rock.quantityCart +" €"}</TableCell>
+                            </TableRow>
+                        ))}
+                        </TableBody>
+                    </Table>
+                    </TableContainer>
+
                 <div id='actionButtons-payment'>
                         <Button
                             size="medium"
