@@ -1,19 +1,14 @@
 
 //import { useQuery } from 'react-query';
-import Box from '@mui/material/Box';
 //import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-
-import logo from './images/interfaz/logoRock.png';
-import Title from './components/titleUtil';
 
 
-import { createTheme, Drawer, List } from '@mui/material';
+
+import { Drawer } from '@mui/material';
 import { useState, useEffect } from 'react';
 import Welcome from './components/Welcome';
-import  {getRocas} from './api/api';
 import './css/App.css';
-import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
 import {Rock} from './shared/shareddtypes';
 import Catalog from './components/Catalog';
 import { ThemeProvider } from '@emotion/react';
@@ -25,22 +20,14 @@ import { Container } from "@mui/material";
 
 import "./css/App.css"
 import ShoppingCart from "./components/ShoppingCart";
-import PaymentPage from "./components/payment/PaymentPage";
-import { ContentCopy } from "@mui/icons-material";
-import PaymentSummary from './components/payment/PaymentSummary';
 import PaymentProcess from './components/payment/PaymentPage';
+import OrderHistory from './components/Orders';
 
 type Props = {
   openCart: () => void;
 };
 
 function App(): JSX.Element {
-  const [rocks, setRocks] = useState<Rock[]>([]);
-
-  const refreshRockList = async () => {
-    setRocks(await getRocas());
-  };
-
   // Shopping cart
   const [isNewCart, setNewCart] = useState(false);
   const [isCartOpen, setCartOpen] = useState(false);
@@ -98,24 +85,22 @@ function App(): JSX.Element {
     );
   };
 
-  useEffect(() => {
-    refreshRockList();
-  }, []);
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl" className="principal">
         <NavBar openCart={() => setCartOpen(true)} />
-        <Router>
+        <BrowserRouter>
           <Routes>
-            <Route  path="/home" element={<Welcome handleAddToCart={handleAddToCart} />} />
+            <Route path="/home" element={<Welcome handleAddToCart={handleAddToCart} />} />
             <Route path="/" element={<Navigate replace to="/home" />} />
-            <Route path="/catalog" element={ <Catalog rocks={rocks} handleAddToCart={handleAddToCart} /> } />
-            <Route  path="/payment" element={ <PaymentProcess cartContent={cartContent} setNewCart={setNewCart} /> } />
+            <Route path="/catalog" element={ <Catalog handleAddToCart={handleAddToCart} /> } />
+            <Route path="/orders" element={ <OrderHistory email={"admin@email.es"}/> } />
+            <Route path="/payment" element={ <PaymentProcess cartContent={cartContent} setNewCart={setNewCart} /> } />
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element ={<Welcome handleAddToCart={handleAddToCart} />}/>
           </Routes>
-        </Router>
+        </BrowserRouter>
         <Drawer
           anchor="right"
           open={isCartOpen}

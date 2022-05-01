@@ -1,37 +1,44 @@
-import { useEffect, useState } from "react";
-import { getRocksFiery, getRocksMetamorphic, getRocksSedimentary } from "../api/api";
 import { Rock } from "../shared/shareddtypes";
 import Showcase from "./Showcase";
-import prefilters from "../code/Prefilters"
+import { Grid } from "@mui/material";
+import { SearchCritery } from "./Filter";
 
 type RockListProps = {
-  handleAddToCart(r:Rock): void;
+  handleAddToCart(r: Rock): void;
 };
 
+export const LIST_OF_CRITERIES: SearchCritery[] = [
+  { type: "sedimentaria" },
+  { type: "magmática" },
+  {type: "ígnea"},
+  {type: "todas"}
+];
+export const LIST_OF_NAMES:string[]=[
+  "Sedimentarias",
+  "Metamórficas",
+  "Volcánicas",
+  "Las Mas Vendidas!"
+]
+
 function Showcases(prefilteredbox: RockListProps): JSX.Element {
-    const [prefilteredRocks,setPrefilteredRocks] = useState<Rock[][]>([]);
-    const [nameOfFilters,setNameOfFilters]=useState<String[]>([]);
-    
-    
-    useEffect(()=>{
-        const refreshRockList = async () => {
-            
-            setPrefilteredRocks([...prefilteredRocks,await getRocksMetamorphic(),await getRocksSedimentary(),await getRocksFiery()])
-            setNameOfFilters(prefilters)
-          }
-      refreshRockList();
-      
-    },[]);
+
   return (
     <>
-        
-        {prefilteredRocks.map((_, element) => {
-            
-            return (<Showcase key={element} rocks={prefilteredRocks[element]} name={nameOfFilters[element]} handleAddToCart={prefilteredbox.handleAddToCart}/>); 
-            
-        })}
-        
+      <Grid container spacing={3}>
+        {
+        LIST_OF_CRITERIES.map((value,index)=>
+        <Grid item xs={6} key={index}>
+            <Showcase
+              key={index}
+              name={LIST_OF_NAMES[index]}
+              handleAddToCart={prefilteredbox.handleAddToCart}
+              search={value}
+            />
+          </Grid>
+        )
+          }
+      </Grid>
     </>
   );
 }
-export default Showcases
+export default Showcases;
