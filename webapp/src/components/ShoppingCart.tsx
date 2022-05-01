@@ -1,52 +1,34 @@
-import { AppBar, Button, Grid, List } from '@mui/material';
-import { Card, CardContent } from '@mui/material';
-import { Rock } from '../shared/shareddtypes';
-import CartItem from './CartItem';
-import '../css/ShoppingCart.css';
+import { AppBar, Button, Grid, Typography } from "@mui/material";
+import { Rock } from "../shared/shareddtypes";
+import CartItem from "./CartItem";
+import "../css/ShoppingCart.css";
+import LoginPod from "./solid-pods/LoginPod";
+import { useNavigate } from "react-router-dom";
 
-
-type Props = {
-    cartContent: Rock[];
-    handleAddToCart: (selectedItem: Rock) => void;
-    handleRemoveFromCart: (id: string) => void;
+type CartProps = {
+  cartContent: Rock[];
+  handleAddToCart: (selectedItem: Rock) => void;
+  handleRemoveFromCart: (id: string) => void;
 };
 
-const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromCart }) => {
-    const getTotalPrice = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart * item.price, 0);
-    const getTotalUds = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart, 0);
+function Cart(props: CartProps): JSX.Element {
+  const getTotalPrice = () =>
+    props.cartContent.reduce(
+      (sum: number, item) => sum + item.quantityCart * item.price,
+      0
+    );
 
-    return (
-        <Card sx = {{width: '32em'}} className="cart" variant="outlined">
-            <AppBar position='relative' className="title-cart">
-                <h1>Mi carrito</h1>
+  return (
+    <>
+      {props.cartContent.length !== 0 ? (
+        <>
+          <Grid sx={{ width: 500 }}>
+            <AppBar color="secondary" position="static">
+              <Typography variant="h5">Mi Carrito</Typography>
             </AppBar>
-            
-            <List
-                sx={{
-                    width: '100%',
-                    bgcolor: 'background.paper',
-                    position: 'relative',
-                    overflow: 'auto',
-                    height: '100%',
-                    '& ul': { padding: 0 },
-                }}
-                subheader={<li />}
-                >
-                {[0].map((sectionId) => (
-                    <li key={`section-${sectionId}`}>
-                    <ul>
-                    {cartContent.map(item => (
-                    <CartItem 
-                        key={item.id} 
-                        item={item} 
-                        handleAddToCart={handleAddToCart}
-                        handleRemoveFromCart={handleRemoveFromCart}
-                    />
-                    ))}
-                    </ul>
-                    </li>
-                ))}
-            </List>
+            <Typography variant="h5">
+              Total (iva 21% incluido): {getTotalPrice().toFixed(2)} €
+            </Typography>
 
             <Card  className="summary-cart">
                 <div id="summary-labels">
@@ -60,21 +42,34 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
             </Card>
                 
             <Button
-                size="medium"
-                disableElevation
-                variant="contained"
-                disabled={cartContent.length<=0}
-                onClick={() => { 
-                    if(sessionStorage.getItem("userLogged"))
-                        window.location.href = '/payment'; 
-                    else
-                        window.location.href = '/login'; 
-                }}
+              disableElevation
+              fullWidth
+              color="secondary"
+              variant="contained"
+              disabled={props.cartContent.length <= 0}
+              onClick={() => {
+                if (sessionStorage.getItem("userLogged"))
+                  window.location.href = "/payment";
+                else window.location.href = "/login";
+              }}
             >
-                Realizar Pedido
+              Realizar Pedido
             </Button>
-        </Card>
-    )
-};
+            {props.cartContent.map((item) => (
+              <CartItem
+                key={item.id}
+                item={item}
+                handleAddToCart={props.handleAddToCart}
+                handleRemoveFromCart={props.handleRemoveFromCart}
+              />
+            ))}
+          </Grid>
+        </>
+      ) : (
+        <Typography variant="h3">El carrito está vacío</Typography>
+      )}
+    </>
+  );
+}
 
 export default Cart;
