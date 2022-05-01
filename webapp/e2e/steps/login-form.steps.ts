@@ -48,4 +48,49 @@ defineFeature(feature, test => {
     });
   });
 
+  test("User Login", ({given,when,then}) => {
+    let email:string
+    let password:string
+
+    given("Blank Email and password of a user", () => {
+      email = " "
+      password = "admin"
+    });
+
+    when("I click in Iniciar Sesion", async () => {
+      await page.setViewport({ width: 1200, height: 1300 });
+      await expect(page).toMatch("Sedimentarias");
+      await expect(page).toClick("a[href='/login']");
+      await expect(page).toFill("input[name='email']", email);
+      await expect(page).toFill("input[name='password']", password);
+      await expect(page).toClick('button', { text: 'Iniciar Sesión' });
+    });
+
+    then("Warning below email", async () => {
+      await expect(page).toMatch("El campo no puede estar vacio");
+    });
+  });
+  test("User Login", ({given,when,then}) => {
+    let email:string
+    let password:string
+
+    given("Email and blank password of a user", () => {
+      email = "adri@email.com"
+      password = " "
+    });
+
+    when("I click in Iniciar Sesion", async () => {
+      await page.setViewport({ width: 1200, height: 1300 });
+      await expect(page).toMatch("Sedimentarias");
+      await expect(page).toClick("a[href='/login']");
+      await expect(page).toFill("input[name='email']", email);
+      await expect(page).toFill("input[name='password']", password);
+      await expect(page).toClick('button', { text: 'Iniciar Sesión' });
+    });
+
+    then("Warning below password", async () => {
+      await expect(page).toMatch("El campo no puede estar vacio");
+    });
+  });
+
 });
