@@ -1,4 +1,4 @@
-import { AppBar, Button, Grid } from '@mui/material';
+import { AppBar, Button, Grid, List } from '@mui/material';
 import { Card, CardContent } from '@mui/material';
 import { Rock } from '../shared/shareddtypes';
 import CartItem from './CartItem';
@@ -16,22 +16,37 @@ const Cart: React.FC<Props> = ({ cartContent, handleAddToCart, handleRemoveFromC
     const getTotalUds = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart, 0);
 
     return (
-        <Card sx = {{width: 450}} className="cart" variant="outlined">
+        <Card sx = {{width: '32em'}} className="cart" variant="outlined">
             <AppBar position='relative' className="title-cart">
                 <h1>Mi carrito</h1>
             </AppBar>
             
-            <div className='items-cart'>
-            {cartContent.map(item => (
-            <CartItem 
-                key={item.id} 
-                item={item} 
-                handleAddToCart={handleAddToCart}
-                handleRemoveFromCart={handleRemoveFromCart}
-            />
-            ))}
-            </div>
-                
+            <List
+                sx={{
+                    width: '100%',
+                    bgcolor: 'background.paper',
+                    position: 'relative',
+                    overflow: 'auto',
+                    height: '100%',
+                    '& ul': { padding: 0 },
+                }}
+                subheader={<li />}
+                >
+                {[0].map((sectionId) => (
+                    <li key={`section-${sectionId}`}>
+                    <ul>
+                    {cartContent.map(item => (
+                    <CartItem 
+                        key={item.id} 
+                        item={item} 
+                        handleAddToCart={handleAddToCart}
+                        handleRemoveFromCart={handleRemoveFromCart}
+                    />
+                    ))}
+                    </ul>
+                    </li>
+                ))}
+            </List>
 
             <Card  className="summary-cart">
                 <div id="summary-labels">

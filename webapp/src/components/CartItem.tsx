@@ -12,7 +12,7 @@ type Props = {
 
 const CartItem: React.FC<Props> = ({item, handleAddToCart, handleRemoveFromCart}) => {
     return (
-    <Card className="cartItem-ci" sx={{ maxWidth: 450 } }>
+    <Card className="cartItem-ci" >
         <CardMedia
             className = "img-ci"
             component="img"
