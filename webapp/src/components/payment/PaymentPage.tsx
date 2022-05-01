@@ -22,8 +22,8 @@ import PaymentShipping from './PaymentShipping';
 
 
 const NUM_VIEWS = 4;
-const PAYMENT_FORM_VIEW = 0;
-const SHIPPING_VIEW = 1;
+const SHIPPING_VIEW = 0;
+const PAYMENT_FORM_VIEW = 1;
 const ITEMS_TO_BUY_VIEW = 2;
 const PAYMENT_COMPLETE = 3;
 
@@ -35,7 +35,7 @@ type Props = {
 const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
     
-    const [paymentView, setPaymentView] = React.useState(PAYMENT_FORM_VIEW);
+    const [paymentView, setPaymentView] = React.useState(0);
     useEffect(() => {
         if(paymentView<0 || paymentView>=NUM_VIEWS) {
             window.location.href = '/home';
@@ -110,7 +110,7 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
                 {getView(paymentView)}
             </Grid>
             <Grid item xs={4}>
-                {getPaymentSummary()}
+                {paymentView === PAYMENT_COMPLETE ? null:  getPaymentSummary()}
             </Grid>
         </Grid>
     )

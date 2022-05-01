@@ -75,7 +75,7 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
                 />
             </Grid>
             <Grid item xs={12}>
-                <TextField  sx={{ width: '25em' }}
+                <TextField  sx={{ width: '25em'}}
                     required
                     name="CardNumber"
                     label="Numero de targeta" 
