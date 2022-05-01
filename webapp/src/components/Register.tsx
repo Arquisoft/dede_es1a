@@ -202,8 +202,8 @@ const getEmail = async (email: String) => {
             </div>
             <div className="buttonCls">
               <Button onClick={() => allFunc(name,dni,email,password,confirmPassword)} variant="contained" type="submit">Regístrate</Button>
-            </div>
-            <Link href = "/login">¿Ya tienes una cuenta? Inicia sesión aqui!</Link>
+            </div>   
+              <Link href = "/login">¿Ya tienes una cuenta? Inicia sesión aqui!</Link>
         </div>
         </form>
         </div>
