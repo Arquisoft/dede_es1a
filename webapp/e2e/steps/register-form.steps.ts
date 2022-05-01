@@ -65,7 +65,7 @@ defineFeature(feature, test => {
     let confirmPassword:string
 
     given("Name, Dni, Password and confirmPassword of a user", () => {
-      email = " "
+      email = ""
       name = "Adri"
       dni = "12345678"
       password = "adri"
@@ -98,7 +98,7 @@ defineFeature(feature, test => {
 
     given("Email, Dni, Password and confirmPassword of a user", () => {
       email = "adri@gmail.com"
-      name = " "
+      name = ""
       dni = "12345678"
       password = "adri"
       confirmPassword = "adri"
@@ -118,6 +118,38 @@ defineFeature(feature, test => {
     });
 
     then("Warning below name", async () => {
+      await expect(page).toMatch("El campo no puede estar vacio");
+    });
+  });
+  test("User Register blank dni", ({given,when,then}) => {
+    let email:string
+    let name:string
+    let dni:string
+    let password:string
+    let confirmPassword:string
+
+    given("Email, Name, Password and confirmPassword of a user", () => {
+      email = "adrian@gmail.com"
+      name = "Adri"
+      dni = ""
+      password = "adri"
+      confirmPassword = "adri"
+    });
+
+    when("I click in Regístrate", async () => {
+      await page.setViewport({ width: 1200, height: 1300 });
+      await expect(page).toMatch("Sedimentarias");
+      await expect(page).toClick("a[href='/register']");
+      await expect(page).toMatch("Crear cuenta");
+      await expect(page).toFill("input[name='email']", email);
+      await expect(page).toFill("input[name='name']", name);
+      await expect(page).toFill("input[name='dni']", dni);
+      await expect(page).toFill("input[name='password']", password);
+      await expect(page).toFill("input[name='confirmPassword']", confirmPassword);
+      await expect(page).toClick('button', { text: 'Regístrate' });
+    });
+
+    then("Warning below dni", async () => {
       await expect(page).toMatch("El campo no puede estar vacio");
     });
   });
