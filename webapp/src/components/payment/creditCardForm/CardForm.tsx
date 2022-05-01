@@ -61,7 +61,7 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
         <Grid container spacing={2} className='paymentpage-payment' >
         <form name="loggin" onSubmit={handleSubmit}>
             <Grid item xs={12}>
-                <TextField
+                <TextField sx={{ width: '25em' }}
                     required
                     name="nameCard"
                     label="Nombre del titular" 
@@ -75,7 +75,7 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
                 />
             </Grid>
             <Grid item xs={12}>
-                <TextField  sx={{ width: '30em' }}
+                <TextField  sx={{ width: '25em' }}
                     required
                     name="CardNumber"
                     label="Numero de targeta" 
@@ -91,7 +91,7 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
                 <TextField
                     required
                     name="ExpDate"
-                    label="Fecha Vencimiento MM/AA" 
+                    label="Vencimiento MM/AA" 
                     variant="outlined"
                     margin="dense"
                     value={expDate}

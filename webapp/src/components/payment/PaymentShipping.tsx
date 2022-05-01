@@ -24,7 +24,7 @@ type Props = {
     isLoggedPod: boolean;
 };
 
-const PaymentPayForm: React.FC<Props> = ({nextView, previusView, setLoggedPod, isLoggedPod}) => {
+const PaymentShipping: React.FC<Props> = ({nextView, previusView, setLoggedPod, isLoggedPod}) => {
 
     const [cardIsValid, setCardIsValid] = useState(false);
     
@@ -75,6 +75,6 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView, setLoggedPod, i
     )
 };
 
-export default PaymentPayForm;
+export default PaymentShipping;
 
 
