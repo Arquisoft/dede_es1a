@@ -93,10 +93,35 @@ function App(): JSX.Element {
             <Route path="/home" element={<Welcome handleAddToCart={handleAddToCart} />} />
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="/catalog" element={ <Catalog handleAddToCart={handleAddToCart} /> } />
-            <Route path="/orders" element={ <OrderHistory email={"admin@email.es"}/> } />
-            <Route path="/payment" element={ <PaymentProcess cartContent={cartContent} setNewCart={setNewCart} /> } />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/orders" element={ 
+            sessionStorage.getItem("userLogged") ?
+            <OrderHistory email={"admin@email.es"}/> 
+            :
+            <LogIn />
+          
+            } />
+            <Route path="/payment" element={ 
+              sessionStorage.getItem("userLogged") ?
+              <PaymentProcess cartContent={cartContent} setNewCart={setNewCart} /> 
+              :
+              <LogIn />
+            } />
+
+            <Route path="/login" element={
+            sessionStorage.getItem("userLogged") ?
+              <Catalog handleAddToCart={handleAddToCart} />
+              :
+              <LogIn />
+          
+            } />
+
+            <Route path="/register" element={
+              sessionStorage.getItem("userLogged") ?
+              <Catalog handleAddToCart={handleAddToCart} />
+                :
+                <Register />
+            } />
+            
             <Route path="/logout" element ={<Welcome handleAddToCart={handleAddToCart} />}/>
           </Routes>
         </BrowserRouter>
