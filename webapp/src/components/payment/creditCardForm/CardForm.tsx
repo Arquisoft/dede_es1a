@@ -38,7 +38,7 @@ const CardForm: React.FC<Props> = ({}) => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         var resultCheckCard = checkCard();
-        if (resultCheckCard){
+        if (resultCheckCard[0]){
             setNotificationStatus(true);
             setNotification({ 
                 severity:'success',
@@ -49,7 +49,7 @@ const CardForm: React.FC<Props> = ({}) => {
             setNotificationStatus(true);
             setNotification({ 
                 severity:'error',
-                message: resultCheckCard.toString()
+                message: resultCheckCard[1].toString()
             });
         }
     }
@@ -118,7 +118,11 @@ const CardForm: React.FC<Props> = ({}) => {
     )
 
     function checkCard() {
-        return true;
+        if( checkTextField(nameCard, CARD_NAME_LENGHT, "") ) return [false, " Nombre no válido"]
+        if( checkTextField(cardNumber, CARD_NUMBER_LENGHT, CARD_NUMBER_SEPARATOR) ) return [false, " Numero targeta no válido"]
+        if( checkDate(expDate) ) return [false, " fecha vencimiento no válida"]
+        if( checkTextField(cvc, CARD_CVC_LENGHT, "") ) return [false, " cvc no válido"]
+        return [true, ""]
     }
 };
 
@@ -161,7 +165,47 @@ const CardForm: React.FC<Props> = ({}) => {
 
 
 
-    
+    function checkDate(text: string) {
+        const checkStatus:CheckStatus = checkTextField(text, CARD_EXP_DATE_LENGHT, DATE_SEPARATOR);
+        
+        if(! checkStatus.isValid ) return checkStatus; 
+
+        var splited = text.split(DATE_SEPARATOR);
+        if(parseInt(splited[0]) < 0 || parseInt(splited[0]) > 12 ) {
+            checkStatus.isValid = false;
+            checkStatus.message += "(campo mes no valido)";
+            return checkStatus;
+        }
+        if(parseInt(splited[1]) < 22) {
+            checkStatus.isValid = false;
+            checkStatus.message += "(campo año no valido)";
+            return checkStatus;
+        }
+        checkStatus.isValid = true;
+        return checkStatus;
+        
+    }
+
+    function checkTextField(text: string, lengthExpected: number, separatorChar: string) {
+        const checkStatus:CheckStatus = { isValid: false, message: '' };
+
+        if(text === "") {
+            checkStatus.message = "(campo vacio)";
+            return checkStatus;
+        }
+        
+        var nChar = 0;
+        for (var i = 0; i < text.length;i++) {
+            if(text[i]!=separatorChar)    
+                nChar++;
+        }
+        if(nChar!=lengthExpected) {
+            checkStatus.message = "(formato no apropiado)";
+            return checkStatus;
+        }
+        checkStatus.isValid = true;
+        return checkStatus;
+    }
 
 
 
