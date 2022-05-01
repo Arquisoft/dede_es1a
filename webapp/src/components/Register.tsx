@@ -20,7 +20,7 @@ type NotificationType = {
 };
 
 const checkParams = (text: String) => {
-  return text === "" || text == null;
+  return text.trim() === "" || text == null;
 };
 
 const checkPaswwords = (repPass: String, pass: String) => {
