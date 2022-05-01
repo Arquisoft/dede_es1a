@@ -83,7 +83,6 @@ export const addOrder = async (req:Request, res:Response): Promise<any> => {
 
     let string = JSON.stringify(addressCordinates);
     let objectValue = JSON.parse(string);
-    console.log(addressCordinates);
     let latitudeAddress = objectValue[0].latitude
     let longitudeAddress = objectValue[0].longitude
 
