@@ -14,7 +14,7 @@ import axios from 'axios';
 import { Grid, Link, Typography } from '@mui/material';
 
 const checkParams = (text: String) => {
-  return text === "" || text == null;
+  return text.trim() === "" || text == null;
 }
 
 type EmailFormProps = {
