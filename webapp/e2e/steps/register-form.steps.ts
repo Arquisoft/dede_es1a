@@ -89,4 +89,36 @@ defineFeature(feature, test => {
       await expect(page).toMatch("El campo no puede estar vacio");
     });
   });
+  test("User Register blank name", ({given,when,then}) => {
+    let email:string
+    let name:string
+    let dni:string
+    let password:string
+    let confirmPassword:string
+
+    given("Email, Dni, Password and confirmPassword of a user", () => {
+      email = "adri@gmail.com"
+      name = " "
+      dni = "12345678"
+      password = "adri"
+      confirmPassword = "adri"
+    });
+
+    when("I click in Regístrate", async () => {
+      await page.setViewport({ width: 1200, height: 1300 });
+      await expect(page).toMatch("Sedimentarias");
+      await expect(page).toClick("a[href='/register']");
+      await expect(page).toMatch("Crear cuenta");
+      await expect(page).toFill("input[name='email']", email);
+      await expect(page).toFill("input[name='name']", name);
+      await expect(page).toFill("input[name='dni']", dni);
+      await expect(page).toFill("input[name='password']", password);
+      await expect(page).toFill("input[name='confirmPassword']", confirmPassword);
+      await expect(page).toClick('button', { text: 'Regístrate' });
+    });
+
+    then("Warning below name", async () => {
+      await expect(page).toMatch("El campo no puede estar vacio");
+    });
+  });
 });
