@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import type { AlertColor } from "@mui/material/Alert";
-import { useNavigate, useParams } from "react-router-dom";
-import Link from "@mui/material/Link";
-import { addUser, getRocksById } from "../api/api";
-import Swal from "sweetalert2";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getRocksById } from "../api/api";
 import "../css/LoginRegister.css";
-import { Grid, Typography } from "@mui/material";
+import { Card, CardMedia, Grid, Typography } from "@mui/material";
 import { Rock } from "../shared/shareddtypes";
-
 type RegisterProps = {
   handleAddToCart(r: Rock): void;
 };
@@ -28,6 +21,9 @@ function ProductView(props: RegisterProps): JSX.Element {
   if (rock !== undefined)
     return (
       <>
+      <Card>
+
+    
         <Grid container
           style={{ width: '100%' }}
           direction="column"
@@ -36,6 +32,11 @@ function ProductView(props: RegisterProps): JSX.Element {
           <Grid item>
             <Typography variant="h2">{rock.name}</Typography>
           </Grid>
+          <CardMedia component="img"
+          height="500"
+          image={rock.img}
+          alt={rock.name}
+        />
           <Grid item>
             <Grid container spacing={2} >
               <Grid item xs={6} >
@@ -69,6 +70,7 @@ function ProductView(props: RegisterProps): JSX.Element {
           </Grid>
 
         </Grid>
+        </Card>
       </>
     );
   else
