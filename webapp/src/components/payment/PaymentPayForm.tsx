@@ -25,6 +25,8 @@ type Props = {
 };
 
 const PaymentPayForm: React.FC<Props> = ({nextView, previusView, setLoggedPod, isLoggedPod}) => {
+
+    const [cardIsValid, setCardIsValid] = useState(false);
     
     return (
         <Grid container spacing={2} className='paymentpage-payment' >
@@ -32,7 +34,7 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView, setLoggedPod, i
                 <Typography variant="h4" component="h4">Método de pago</Typography>
             </Grid>
             <Grid item xs={12}>
-                <CardForm></CardForm>
+                <CardForm setCardIsValid={setCardIsValid}></CardForm>
             </Grid>
             <Grid item xs={12}>
             <Typography variant="h4" component="h4">Direccion de envío</Typography>
@@ -69,9 +71,6 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView, setLoggedPod, i
                 </Button>
             </div>
             </Grid>
-            
-
-            
         </Grid>
     )
 };

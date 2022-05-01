@@ -12,6 +12,7 @@ import { isValidDateValue } from '@testing-library/user-event/dist/utils';
 
 
 type Props = {
+    setCardIsValid: Function;
 };
 
 type NotificationType = {
@@ -24,7 +25,7 @@ interface CheckStatus {
     message: string;
 }
 
-const CardForm: React.FC<Props> = ({}) => {
+const CardForm: React.FC<Props> = ({setCardIsValid}) => {
     
     const [nameCard, setNameCard] = useState('');
     const [cardNumber, setCardNumber] = useState('');
@@ -37,92 +38,137 @@ const CardForm: React.FC<Props> = ({}) => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        var resultCheckCard = checkCard();
-        if (resultCheckCard[0]){
+        
+        let checkStatus:CheckStatus = checkCard();
+        if (checkStatus.isValid){
             setNotificationStatus(true);
             setNotification({ 
                 severity:'success',
-                message:'You have been registered in the system!'
+                message:'Targeta credito valida'
             });
         }
         else{
             setNotificationStatus(true);
             setNotification({ 
                 severity:'error',
-                message: resultCheckCard[1].toString()
+                message: checkStatus.message
             });
         }
+        setCardIsValid(checkStatus.isValid);
     }
 
     return (
-        <div>
+        <Grid container spacing={2} className='paymentpage-payment' >
         <form name="loggin" onSubmit={handleSubmit}>
-            <TextField
-                required
-                name="nameCard"
-                label="Nombre del titular" 
-                variant="outlined"
-                value={nameCard}
-                error = {true}
-                helperText={ 'El campo no puede estar vacio' }
-                onChange={e => processText(e.target.value, CHARACTERS_NO_NUMS, CARD_NAME_LENGHT,30,"",setNameCard)}
-                
-            />
-            <TextField
-                required
-                name="CardNumber"
-                label="Numero de targeta" 
-                variant="outlined"
-                value={cardNumber}
-                error = {true}
-                helperText={ 'El campo no puede estar vacio' }
-                onChange={e => processText(e.target.value, NUMBERS, CARD_NUMBER_LENGHT,4,CARD_NUMBER_SEPARATOR,setCardNumber)}
-            />
-            <TextField
-                required
-                name="ExpDate"
-                label="Fecha Vencimiento MM/AA" 
-                variant="outlined"
-                value={expDate}
-                error = {true}
-                helperText={ 'El campo no puede estar vacio' }
-                onChange={e => processText(e.target.value, NUMBERS, CARD_EXP_DATE_LENGHT,2,DATE_SEPARATOR,setExpDate)}
-            />
-            <TextField
-                required
-                name="Cvc"
-                label="CVC" 
-                variant="outlined"
-                value={cvc}
-                error = {true}
-                helperText={ 'El campo no puede estar vacio' }
-                onChange={e => processText(e.target.value, NUMBERS, CARD_CVC_LENGHT,1,"",setCvc)}
-            />
-            <Button
-                size="medium"
-                disableElevation
-                variant="contained"
-                disabled={false}
-                type="submit"
-            >
-                Validar
-            </Button>
+            <Grid item xs={12}>
+                <TextField
+                    required
+                    name="nameCard"
+                    label="Nombre del titular" 
+                    variant="outlined"
+                    margin="dense"
+                    value={nameCard}
+                    error = {nameCard===""}
+                    helperText={ "" }
+                    onChange={e => processText(e.target.value, CHARACTERS_NO_NUMS, CARD_NAME_LENGHT,30,"",setNameCard)}
+                    
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <TextField  sx={{ width: '30em' }}
+                    required
+                    name="CardNumber"
+                    label="Numero de targeta" 
+                    variant="outlined"
+                    margin="dense"
+                    value={cardNumber}
+                    error = {cardNumber===""}
+                    helperText={ "" }
+                    onChange={e => processText(e.target.value, NUMBERS, CARD_NUMBER_LENGHT,4,CARD_NUMBER_SEPARATOR,setCardNumber)}
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <TextField
+                    required
+                    name="ExpDate"
+                    label="Fecha Vencimiento MM/AA" 
+                    variant="outlined"
+                    margin="dense"
+                    value={expDate}
+                    error = {expDate===""}
+                    helperText={ "" }
+                    onChange={e => processText(e.target.value, NUMBERS, CARD_EXP_DATE_LENGHT,2,DATE_SEPARATOR,setExpDate)}
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <TextField
+                    required
+                    name="Cvc"
+                    label="CVC" 
+                    variant="outlined"
+                    margin="dense"
+                    value={cvc}
+                    error = {cvc===""}
+                    helperText={ "" }
+                    onChange={e => processText(e.target.value, NUMBERS, CARD_CVC_LENGHT,1,"",setCvc)}
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <Button
+                    size="medium"
+                    disableElevation
+                    variant="contained"
+                    disabled={false}
+                    type="submit"
+                >
+                    Validar
+                </Button>
+            </Grid>
+            
+            
+            
+           
         </form>
         <Snackbar open={notificationStatus} autoHideDuration={3000} onClose={()=>{setNotificationStatus(false)}}>
             <Alert severity={notification.severity} sx={{ width: '100%' }}>
                 {notification.message}
             </Alert>
         </Snackbar>
-        </div>
+        </Grid>
 
     )
 
     function checkCard() {
-        if( checkTextField(nameCard, CARD_NAME_LENGHT, "") ) return [false, " Nombre no válido"]
-        if( checkTextField(cardNumber, CARD_NUMBER_LENGHT, CARD_NUMBER_SEPARATOR) ) return [false, " Numero targeta no válido"]
-        if( checkDate(expDate) ) return [false, " fecha vencimiento no válida"]
-        if( checkTextField(cvc, CARD_CVC_LENGHT, "") ) return [false, " cvc no válido"]
-        return [true, ""]
+        //Check numero targeta
+        let checkStatus:CheckStatus = checkTextField(cardNumber, CARD_NUMBER_LENGHT, CARD_NUMBER_SEPARATOR);
+        if(!checkStatus.isValid) {
+            checkStatus.message = "Numero targeta no válido" + checkStatus.message;
+            return checkStatus;
+        }
+
+        //Check fecha targeta
+        checkStatus = checkDate(expDate);
+        if(!checkStatus.isValid) {
+            checkStatus.message = "Fecha vencimiento no válida" + checkStatus.message;
+            return checkStatus;
+        }
+
+        //Check cvc targeta
+        checkStatus = checkTextField(cvc, CARD_CVC_LENGHT, "");
+        if(!checkStatus.isValid) {
+            checkStatus.message = "CVC no válido" + checkStatus.message;
+            return checkStatus;
+        }
+
+        //Check nombre targeta
+        if(nameCard.length<3) {
+            checkStatus.isValid = false; 
+            checkStatus.message = "Nombre no válido" + "(nombre muy corto, introduzca nombre completo)";
+            return checkStatus;
+        }
+
+        checkStatus.isValid = true;
+        return checkStatus;
     }
 };
 
@@ -183,24 +229,24 @@ const CardForm: React.FC<Props> = ({}) => {
         }
         checkStatus.isValid = true;
         return checkStatus;
-        
     }
 
     function checkTextField(text: string, lengthExpected: number, separatorChar: string) {
         const checkStatus:CheckStatus = { isValid: false, message: '' };
 
         if(text === "") {
-            checkStatus.message = "(campo vacio)";
+            checkStatus.message = "(campo vacío)";
             return checkStatus;
         }
         
-        var nChar = 0;
-        for (var i = 0; i < text.length;i++) {
-            if(text[i]!=separatorChar)    
-                nChar++;
-        }
+            var nChar = 0;
+            for (var i = 0; i < text.length;i++) {
+                if(text[i]!=separatorChar)    
+                    nChar++;
+            }
+
         if(nChar!=lengthExpected) {
-            checkStatus.message = "(formato no apropiado)";
+            checkStatus.message = "(formato no válido)";
             return checkStatus;
         }
         checkStatus.isValid = true;
