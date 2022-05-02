@@ -75,7 +75,9 @@ const PaymentListItems: React.FC<Props> = ({cartContent, nextView, previusView, 
                     </Table>
                     </TableContainer>
 
-                <div id='actionButtons-payment'>
+                    <Grid container spacing={2} className='paymentpage-payment' >
+                    <Grid item xs={4}></Grid>
+                        <Grid item xs={2}>
                         <Button
                             size="medium"
                             disableElevation
@@ -87,6 +89,8 @@ const PaymentListItems: React.FC<Props> = ({cartContent, nextView, previusView, 
                         >
                             Volver
                         </Button>
+                        </Grid>
+                        <Grid item xs={6}>
                         <Button
                             size="medium"
                             disableElevation
@@ -99,7 +103,8 @@ const PaymentListItems: React.FC<Props> = ({cartContent, nextView, previusView, 
                         >
                             Completar Pago
                         </Button>
-                </div>
+                        </Grid>
+                    </Grid>
             </div> 
         }
         </div>

@@ -68,13 +68,11 @@ export const loginUser = async (req: Request, res: Response): Promise<any> => {
     let email = req.body.email;
     let password = await crypto.createHmac('sha256', "abcdefg")
         .update(req.body.password).digest('hex');
-    let query = {email:email.toString(), password: password.toString()}
-    let user = await User.findOne(
-        {
-            query
-        }
-    );
+    let query = {email:email.toString(),
+                 password: password.toString()}
 
+                 
+    let user = await User.findOne(query);
     if (user == null) {
         res.status(401);
         res.json({

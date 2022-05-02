@@ -27,18 +27,20 @@ type Props = {
 const PaymentShipping: React.FC<Props> = ({nextView, previusView, setLoggedPod, isLoggedPod}) => {
     
     return (
-        <Grid container spacing={2} className='paymentpage-payment' >
+        <Grid container spacing={5} rowSpacing={5} className='paymentpage-payment' >
             <Grid item xs={12}>
             <Typography variant="h4" component="h4">Direccion de envío</Typography>
-                
+            
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={8}>
                 {(!isLoggedPod) ? 
                 <LoginPod setLoggedPod={setLoggedPod}></LoginPod>
                 : <ProfileViewer logoutEnabled={true} />}
             </Grid>
-            <Grid item xs={12}>
-            <div id='actionButtons-payment'>
+            <Grid item xs={4}></Grid>
+            <Grid item xs={12}></Grid>
+            <Grid item xs={4}></Grid>
+            <Grid item xs={2}>
                 <Button
                     size="medium"
                     disableElevation
@@ -50,6 +52,8 @@ const PaymentShipping: React.FC<Props> = ({nextView, previusView, setLoggedPod, 
                 >
                     Volver
                 </Button>
+            </Grid>
+            <Grid item xs={6}>
                 <Button
                     size="medium"
                     disableElevation
@@ -61,8 +65,10 @@ const PaymentShipping: React.FC<Props> = ({nextView, previusView, setLoggedPod, 
                 >
                     Guardar y Continuar
                 </Button>
-            </div>
             </Grid>
+            
+            <Grid item xs={4}></Grid>
+
         </Grid>
     )
 };
