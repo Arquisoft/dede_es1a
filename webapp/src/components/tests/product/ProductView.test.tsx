@@ -1,8 +1,6 @@
 import {render } from "@testing-library/react";
 import { Rock } from '../../../shared/shareddtypes';
-import Product from "../../Product";
 import ProductView from "../../ProductView";
-import {LIST_OF_NAMES} from '../../Showcases'
 
 test('Check that the showcases render properly', async () => {
     const productInfoArr:string[]=["Prueba","PruebaType"]
