@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { height, padding } from '@mui/system';
 type ProductProps = {
   product: Rock;
-  buyable: boolean;
   handleAddToCart(r: Rock): void;
 };
 //a
@@ -20,7 +19,7 @@ function Product(product: ProductProps): JSX.Element {
   return (
     <Card elevation={cardState} className="product" onMouseEnter={handleHoveringProduct} onMouseLeave={handleNotHoveringProduct}>
       
-      <CardActionArea href={'/product/'+product.product.rockId}>
+      <CardActionArea href={'/product/'+product.product.rockId} sx={{paddingBottom:'1vh'}}>
         <CardMedia component="img"
           height="200"
           image={product.product?.img}
@@ -57,6 +56,8 @@ function Product(product: ProductProps): JSX.Element {
               </Grid>
             </Grid>
         </CardContent>
+        
+        </CardActionArea >
         <Button
         sx={{marginBottom:'1em'}}
         variant="contained"
@@ -65,7 +66,6 @@ function Product(product: ProductProps): JSX.Element {
         style={{ width: '100%' }}
         onClick={() => product.handleAddToCart(product.product as Rock)}>
         Comprar</Button>
-        </CardActionArea >
     </Card >
   );
 }

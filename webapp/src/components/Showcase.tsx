@@ -8,7 +8,7 @@ type RockListProps = {
   name: string;
   handleAddToCart(r: Rock): void;
   search: SearchCritery;
-  testRocks?:Rock[]
+  rocks?:Rock[]
 };
 export const NUMBER_OF_PRODUCTS_SHOWN: number = 2;
 function Showcase(prefilteredbox: RockListProps): JSX.Element {
@@ -102,8 +102,8 @@ function Showcase(prefilteredbox: RockListProps): JSX.Element {
     "&type=" +
     type;
   const refreshRockList = async () => {
-    if(prefilteredbox.testRocks!==undefined){
-      setRocks(prefilteredbox.testRocks)
+    if(prefilteredbox.rocks!==undefined){
+      setRocks(prefilteredbox.rocks)
     }else
       setRocks(
         await getFilteredRocks(
@@ -135,7 +135,6 @@ function Showcase(prefilteredbox: RockListProps): JSX.Element {
                 <Product
                   product={rocks[product]}
                   handleAddToCart={prefilteredbox.handleAddToCart}
-                  buyable={false}
                 />
               </Grid>
             );

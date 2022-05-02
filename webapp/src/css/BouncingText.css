@@ -1,0 +1,29 @@
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.pulse {
+  animation-name: pulse;
+  animation-duration: 1s;
+}
+.text {
+  text-align: center;
+  margin-top: 56px;
+  color: rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+
+.animated {
+  animation-duration: 2.5s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}

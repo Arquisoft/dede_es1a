@@ -34,8 +34,9 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView}) => {
             <Grid item xs={12}>
                 <CardForm setCardIsValid={setCardIsValid}></CardForm>
             </Grid>
-            <Grid item xs={12}>
-            <div id='actionButtons-payment'>
+            <Grid item xs={12}></Grid>
+            <Grid item xs={4}></Grid>
+            <Grid item xs={2}>
                 <Button
                     size="medium"
                     disableElevation
@@ -47,6 +48,8 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView}) => {
                 >
                     Volver
                 </Button>
+            </Grid>
+            <Grid item xs={6}>
                 <Button
                     size="medium"
                     disableElevation
@@ -58,7 +61,6 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView}) => {
                 >
                     Guardar y Continuar
                 </Button>
-            </div>
             </Grid>
         </Grid>
     )

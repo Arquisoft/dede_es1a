@@ -1,22 +1,23 @@
-.cartItem-ci{
-    display:grid;
-    grid-template-columns: repeat(3,auto);
-    grid-template-rows: repeat(1,1fr);
-    
+.cartItem-ci {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(1, 1fr);
     padding: 1em;
 }
-.img-ci{
+
+.img-ci {
     vertical-align: bottom;
 }
-.name-ci{
+
+.name-ci {
     text-align: start;
 }
-.quantityController-ci {
-    display:grid;
-    grid-template-columns: repeat(3,auto);
-    grid-template-rows: repeat(1,auto);
-    gap: 1em 1em;
 
+.quantityController-ci {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(1, auto);
+    gap: 1em 1em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
 }

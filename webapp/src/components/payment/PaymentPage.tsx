@@ -1,5 +1,10 @@
 import Grid from '@mui/material/Grid';
 import {  useEffect } from 'react';
+
+import Button from '@mui/material/Button';
+import { AppBar, Card, CardContent, Typography } from '@mui/material';
+import { North } from '@mui/icons-material';
+import { useState, useEffect } from 'react';
 import { Rock } from '../../shared/shareddtypes';
 import { addOrder } from '../../api/api';
 import PaymentSummary from './PaymentSummary';
@@ -21,12 +26,12 @@ type Props = {
     setNewCart: (isNewCart: boolean) => void;
 };
 
-const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
+const PaymentPage: React.FC<Props> = ({ cartContent, setNewCart }) => {
 
-    
+
     const [paymentView, setPaymentView] = React.useState(0);
     useEffect(() => {
-        if(paymentView<0 || paymentView>=NUM_VIEWS) {
+        if (paymentView < 0 || paymentView >= NUM_VIEWS) {
             window.location.href = '/home';
             setPaymentView(0);
         }
@@ -42,98 +47,98 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
     const getView = (paymentView: number) => {
         switch (paymentView) {
-          case ITEMS_TO_BUY_VIEW:
-            return (
-                <PaymentListItems 
-                    cartContent={cartContent} 
-                    nextView={nextView} 
-                    previusView={previusView} 
-                    handlePay={handlePay}
-                ></PaymentListItems>
-            );
+            case ITEMS_TO_BUY_VIEW:
+                return (
+                    <PaymentListItems
+                        cartContent={cartContent}
+                        nextView={nextView}
+                        previusView={previusView}
+                        handlePay={handlePay}
+                    ></PaymentListItems>
+                );
 
             case PAYMENT_FORM_VIEW:
                 return (
-                    <PaymentPayForm 
-                        nextView={nextView} 
+                    <PaymentPayForm
+                        nextView={nextView}
                         previusView={previusView}
                     ></PaymentPayForm>
                 );
 
-          case SHIPPING_VIEW:
-            return (
-                <PaymentShipping 
-                    nextView={nextView} 
-                    previusView={previusView}
-                    setLoggedPod={setLoggedPod}
-                    isLoggedPod={isLoggedPod}
-                ></PaymentShipping>
-            );
+            case SHIPPING_VIEW:
+                return (
+                    <PaymentShipping
+                        nextView={nextView}
+                        previusView={previusView}
+                        setLoggedPod={setLoggedPod}
+                        isLoggedPod={isLoggedPod}
+                    ></PaymentShipping>
+                );
 
             case PAYMENT_COMPLETE:
-            return (
-                <PaymentComplete nextView={nextView} ></PaymentComplete>
-            );
-      }
+                return (
+                    <PaymentComplete nextView={nextView} ></PaymentComplete>
+                );
+        }
     }
 
-    
+
     const [isLoggedPod, setLoggedPod] = React.useState(false);
-    
+
     const getPaymentSummary = () => {
         return <PaymentSummary cartContent={cartContent} simplificate={(!isLoggedPod)}></PaymentSummary>
     }
 
     function getUserEmail() {
         const userEmail = sessionStorage.getItem("userLogged");
-        
-        if (userEmail) 
+        if (userEmail)
             return userEmail;
-        else 
-          return "";
-        
+        else
+            return "";
     }
 
-    const addOrders = async (rock:Rock) => {
+    const addOrders = async (rock: Rock) => {
         let code = rock.id;
         let rockId = rock.rockId;
         let price = rock.price;
         let name = rock.name;
         let type = rock.type;
         console.log(getUserEmail());
-        await addOrder({code: code.toString(), userEmail: getUserEmail(), price: price, productId: rockId, productName: name, productType: type, orderId: "", date: new Date});
+        await addOrder({ code: code.toString(), userEmail: getUserEmail(), price: price, productId: rockId, productName: name, productType: type, orderId: "", date: new Date });
     }
 
     const handlePay = () => {
         setNewCart(true);
-        
-        if(sessionStorage.getItem("userLogged")){
-            cartContent.forEach(function(rock){
 
-                for (let i = 0; i< rock.quantityCart; i++){
+        if (sessionStorage.getItem("userLogged")) {
+            cartContent.forEach(function (rock) {
+
+                for (let i = 0; i < rock.quantityCart; i++) {
                     addOrders(rock);
                 }
             });
             alert("Su pedido ha sido realizado correctamente");
-        }else{
+        } else {
             alert("Se ha producido un error en la creación de su pedido");
         }
     }
 
-
-    
     return (
+        <Card>
         <Grid container spacing={2} className='PaymentProcess-payment' >
             <Grid item xs={12}>
-            <h1 id='title-payment' >Mi compra</h1>
+                <AppBar position='relative' sx={{ padding: '2vh' }} >
+                    <Typography variant="h4" component="h4"> Mi compra</Typography>
+                </AppBar>
             </Grid>
             <Grid item xs={8}>
                 {getView(paymentView)}
             </Grid>
             <Grid item xs={4}>
-                {paymentView === PAYMENT_COMPLETE ? null:  getPaymentSummary()}
+                {paymentView === PAYMENT_COMPLETE ? null : getPaymentSummary()}
             </Grid>
         </Grid>
+        </Card>
     )
 };
 

@@ -1,34 +1,33 @@
-
 .principal {
-  margin-top: 7em;
-  background-color: rgb(241, 236, 230);
-  
-}
-
-body {
+    margin-top: 7em;
 
 }
-
+body{
+    background-color: #fffaee;
+}
 header {
-  background-color: #f3af2f;
+    background-color: #f3af2f;
 }
 
 @media only screen and (max-width: 1000px) {
-  body {
-    font-size: 12px;
-  }
-  .btnBuy{
-    font-size:  12px !important;
-  }
+    body {
+        font-size: 12px;
+    }
+    .btnBuy {
+        font-size: 12px !important;
+    }
 }
+
 @media only screen and (max-width: 800px) {
-  body {
-    font-size: 8px;
-  }
-  .btnBuy{
-    font-size:  8px !important;
-  }
+    body {
+        font-size: 8px;
+    }
+    .btnBuy {
+        font-size: 8px !important;
+    }
 }
+
+@import "BouncingText.css";
 @import "Catalog.css";
 @import "Showcases.css";
 @import "Product.css";

@@ -70,10 +70,16 @@ function Filter(props: FilterProps): JSX.Element {
       }));
   };
   const handleChangeNameSubstring = (name:string)=>{
-
+    setCritery(critery => ({
+      ...critery,
+      nameSubstring:name
+    }));
   }
-  const handleChangeType = (name:string)=>{
-
+  const handleChangeType = (type:string)=>{
+    setCritery(critery => ({
+      ...critery,
+      type:type
+    }));
   }
   let filterLink =
   "/catalog?mohsMin=" +
