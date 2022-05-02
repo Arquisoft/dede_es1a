@@ -2,8 +2,6 @@ import { AppBar, Button, Card, Grid, List, Typography } from "@mui/material";
 import { Rock } from "../shared/shareddtypes";
 import CartItem from "./CartItem";
 import "../css/ShoppingCart.css";
-import LoginPod from "./solid-pods/LoginPod";
-import { useNavigate } from "react-router-dom";
 
 type CartProps = {
   cartContent: Rock[];
