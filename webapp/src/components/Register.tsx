@@ -65,7 +65,7 @@ function RegisterForm(): JSX.Element {
     repPass: String
   ) => {
     axios
-      .post("http://localhost:5000/user/signup", {
+      .post( ("http://localhost:5000/users/add"|| process.env.REACT_APP_API_URI +"/users/add"), {
         name: name,
         dni: dni,
         email: email,
