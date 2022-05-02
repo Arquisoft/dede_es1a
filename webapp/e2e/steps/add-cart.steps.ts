@@ -48,6 +48,8 @@ defineFeature(feature, test => {
       await expect(page).toClick('button', { text: 'Iniciar Sesión' });
       await expect(page2).toMatch("Mohs");
       await expect(page2).toClick('button', { text: 'Comprar' });
+      await page2.waitForNavigation;
+      await page2.waitForTimeout(2000);
     });
 
     then("Se ve en el carrito", async () => {
