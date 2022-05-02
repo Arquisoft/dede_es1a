@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 
 import Button from '@mui/material/Button';
 // import '../css/PaymentProcess.css'
-import { AppBar, CardContent, Typography } from '@mui/material';
+import { AppBar, Card, CardContent, Typography } from '@mui/material';
 import { North } from '@mui/icons-material';
 import { useState, useEffect } from 'react';
 import { Rock } from '../../shared/shareddtypes';
@@ -130,6 +130,7 @@ const PaymentPage: React.FC<Props> = ({ cartContent, setNewCart }) => {
     }
 
     return (
+        <Card>
         <Grid container spacing={2} className='PaymentProcess-payment' >
             <Grid item xs={12}>
                 <AppBar position='relative' sx={{ padding: '2vh' }} >
@@ -143,6 +144,7 @@ const PaymentPage: React.FC<Props> = ({ cartContent, setNewCart }) => {
                 {paymentView === PAYMENT_COMPLETE ? null : getPaymentSummary()}
             </Grid>
         </Grid>
+        </Card>
     )
 };
 
