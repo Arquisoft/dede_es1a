@@ -44,7 +44,7 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
             setNotificationStatus(true);
             setNotification({ 
                 severity:'success',
-                message:'Targeta credito valida'
+                message:'tarjeta credito valida'
             });
         }
         else{
@@ -78,7 +78,7 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
                 <TextField  sx={{ width: '25em'}}
                     required
                     name="CardNumber"
-                    label="Numero de targeta" 
+                    label="Numero de tarjeta" 
                     variant="outlined"
                     margin="dense"
                     value={cardNumber}
@@ -139,28 +139,28 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
     )
 
     function checkCard() {
-        //Check numero targeta
+        //Check numero tarjeta
         let checkStatus:CheckStatus = checkTextField(cardNumber, CARD_NUMBER_LENGHT, CARD_NUMBER_SEPARATOR);
         if(!checkStatus.isValid) {
-            checkStatus.message = "Numero targeta no válido" + checkStatus.message;
+            checkStatus.message = "Numero tarjeta no válido" + checkStatus.message;
             return checkStatus;
         }
 
-        //Check fecha targeta
+        //Check fecha tarjeta
         checkStatus = checkDate(expDate);
         if(!checkStatus.isValid) {
             checkStatus.message = "Fecha vencimiento no válida" + checkStatus.message;
             return checkStatus;
         }
 
-        //Check cvc targeta
+        //Check cvc tarjeta
         checkStatus = checkTextField(cvc, CARD_CVC_LENGHT, "");
         if(!checkStatus.isValid) {
             checkStatus.message = "CVC no válido" + checkStatus.message;
             return checkStatus;
         }
 
-        //Check nombre targeta
+        //Check nombre tarjeta
         if(nameCard.length<3) {
             checkStatus.isValid = false; 
             checkStatus.message = "Nombre no válido" + "(nombre muy corto, introduzca nombre completo)";
