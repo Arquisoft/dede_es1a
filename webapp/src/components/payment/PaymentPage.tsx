@@ -131,8 +131,6 @@ const PaymentPage: React.FC<Props> = ({ cartContent, setNewCart }) => {
         }
     }
 
-
-
     return (
         <Grid container spacing={2} className='PaymentProcess-payment' >
             <Grid item xs={12}>

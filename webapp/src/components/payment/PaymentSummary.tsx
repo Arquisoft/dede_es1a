@@ -28,8 +28,8 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
             return memoryCart;
         else 
           return "";
-        
     }
+
     const[addressOK, setAddresOk] = useState<boolean>();
     const [deliveryCosts, setDeliveryCosts] = useState<Number>();
     const findDC = async () => {
@@ -55,20 +55,25 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
 
     return (
         <div id='bill-payment'>
-            <h1>Resumen de Pago</h1>
-            <h2>Costes (no iva): {  (getTotalPrice() - (getTotalPrice()*0.21)).toFixed(2) }€</h2>
-            <h2>Costes (iva 21%): { getTotalPrice().toFixed(2) }€</h2>
+            <Typography variant="h4" component="h4">Resumen de Pago</Typography>
+            <Typography variant="h4" component="h4">Costes (no iva): {  (getTotalPrice() - (getTotalPrice()*0.21)).toFixed(2) }€</Typography>
+            <Typography variant="h4" component="h4">Costes (iva 21%): { getTotalPrice().toFixed(2) }€</Typography>
 
             {simplificate ? 
                 null
                 : 
                 <div>
                     {addressOK ?
-                        <h2>Costes de Envio:{Number(deliveryCosts).toFixed(2)}€</h2>
+                        <Typography variant="h4" component="h4">
+                            Costes de Envio:{Number(deliveryCosts).toFixed(2)}€
+                            </Typography>
                     :
-                        <h2>No se ha especificado una dirección correcta, el pedido sera almacenado en la tienda a espera de recogida</h2>
+                        <Typography variant="h4" component="h4">
+                            No se ha especificado una dirección correcta, el pedido sera almacenado en la tienda a espera de recogida
+                        </Typography>
                     }
-                    <h2>Total: {getFinalDeliveryCosts()}€</h2>
+                    
+                    <Typography variant="h4" component="h4"><h2>Total: {getFinalDeliveryCosts()}€</h2></Typography>
                     
                 </div>
             }
