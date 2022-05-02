@@ -7,7 +7,7 @@ import { LIST_OF_ROCKS_TEST } from "./code/shared";
 test("Check that the showcases render properly", async () => {
   const { container } = render(
     <Showcase
-      testRocks={LIST_OF_ROCKS_TEST}
+      rocks={LIST_OF_ROCKS_TEST}
       handleAddToCart={function (r: Rock): void {
         throw new Error("Function not implemented.");
       }}

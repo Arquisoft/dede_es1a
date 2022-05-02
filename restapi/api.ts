@@ -35,6 +35,8 @@ api.get("/rocks/list/fiery", findRocksFiery);
 
 api.get("/rocks/list/critery", findByCritery);
 
+api.get("/rocks/list/best-seller", getBestSeller);
+
 api.post("/rocks/add", addRock);
 
 api.post("/rocks/delete", deleteRock);
@@ -47,6 +49,6 @@ api.post("/orders/add", addOrder);
 
 api.post("/orders/deliveryCosts", getDeliveryCosts)
 
-api.get("/orders/bestSeller", getBestSeller);
+
 
 export default api;
