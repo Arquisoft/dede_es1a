@@ -13,7 +13,7 @@ test('cardForm page basics are rendered', ()=> {
         <CardForm setCardIsValid={() => {} } />);
     
     expect(page.container).toHaveTextContent("Nombre del titular");
-    expect(page.container).toHaveTextContent("Numero de targeta");
+    expect(page.container).toHaveTextContent("Numero de tarjeta");
     expect(page.container).toHaveTextContent("Vencimiento MM/AA");
     expect(page.container).toHaveTextContent("CVC");
     expect(page.getByText ("Validar")).toBeDefined();
