@@ -20,19 +20,22 @@ import CardFormT from './creditCardForm/CardForm';
 type Props = {
     nextView: () => void;
     previusView: () => void;
+    setLoggedPod: (b:boolean) => void;
+    isLoggedPod: boolean;
 };
 
-const PaymentPayForm: React.FC<Props> = ({nextView, previusView}) => {
-
-    const [cardIsValid, setCardIsValid] = useState(false);
+const PaymentShipping: React.FC<Props> = ({nextView, previusView, setLoggedPod, isLoggedPod}) => {
     
     return (
         <Grid container spacing={2} className='paymentpage-payment' >
             <Grid item xs={12}>
-                <Typography variant="h4" component="h4">Método de pago</Typography>
+            <Typography variant="h4" component="h4">Direccion de envío</Typography>
+                
             </Grid>
             <Grid item xs={12}>
-                <CardForm setCardIsValid={setCardIsValid}></CardForm>
+                {(!isLoggedPod) ? 
+                <LoginPod setLoggedPod={setLoggedPod}></LoginPod>
+                : <ProfileViewer logoutEnabled={true} />}
             </Grid>
             <Grid item xs={12}>
             <div id='actionButtons-payment'>
@@ -51,7 +54,7 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView}) => {
                     size="medium"
                     disableElevation
                     variant="contained"
-                    disabled={!cardIsValid}
+                    disabled={!isLoggedPod}
                     onClick={() => {
                         nextView();
                     }}
@@ -64,6 +67,6 @@ const PaymentPayForm: React.FC<Props> = ({nextView, previusView}) => {
     )
 };
 
-export default PaymentPayForm;
+export default PaymentShipping;
 
 

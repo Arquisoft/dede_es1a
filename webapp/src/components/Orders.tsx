@@ -47,6 +47,7 @@ const OrderHistory = (props: OrdersProps) => {
     return (
         <div>
             <div  style={{ margin: '170px' }}>
+                <h1>Historial de Pedidos</h1>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="customized table">
                         <TableHead>

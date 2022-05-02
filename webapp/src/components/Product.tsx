@@ -1,27 +1,33 @@
 import { Rock } from '../shared/shareddtypes';
 import Button from '@mui/material/Button';
 import { Card, CardActionArea, CardContent, CardMedia, Grid, Paper, Typography } from '@mui/material';
+import { useState } from 'react';
+import { height, padding } from '@mui/system';
 type ProductProps = {
-  product: Rock | null;
+  product: Rock;
   buyable: boolean;
   handleAddToCart(r: Rock): void;
 };
-
 //a
 function Product(product: ProductProps): JSX.Element {
+  const [cardState,setCardState] = useState<2 | 8>(2)
+  const handleHoveringProduct = (event: React.MouseEvent<HTMLElement>)=>{
+    setCardState(8)
+  }
+  const handleNotHoveringProduct = (event: React.MouseEvent<HTMLElement>)=>{
+    setCardState(2)
+  }
   return (
-    
-    <Card className="product">
-      <CardActionArea>
+    <Card elevation={cardState} className="product" onMouseEnter={handleHoveringProduct} onMouseLeave={handleNotHoveringProduct}>
+      
+      <CardActionArea href={'/product/'+product.product.rockId}>
         <CardMedia component="img"
           height="200"
           image={product.product?.img}
           alt={product.product?.name}
         />
-        </CardActionArea >
+        
         <CardContent>
-          {product.product !== null ?
-
             <Grid container spacing={3} >
               <Grid item xs={12}>
                 <Paper elevation={3} className='productDataContainer' />
@@ -50,24 +56,17 @@ function Product(product: ProductProps): JSX.Element {
                 <Paper />
               </Grid>
             </Grid>
-
-            : <></>
-          }
-
-
-
-      
-      <Button
+        </CardContent>
+        <Button
+        sx={{marginBottom:'1em'}}
         variant="contained"
         className='btnBuy'
         color="primary"
         style={{ width: '100%' }}
         onClick={() => product.handleAddToCart(product.product as Rock)}>
         Comprar</Button>
-        </CardContent>
-        
+        </CardActionArea >
     </Card >
-    
   );
 }
 

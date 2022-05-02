@@ -27,7 +27,6 @@ export async function getRocas():Promise<Rock[]>{
 } 
 
 export async function getRocksById(rockId:String):Promise<Rock[]>{
-  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   let response = await fetch(apiEndPoint+'/rocks/' + rockId);
   //The objects returned by the api are directly convertible to User objects
   return response.json()
@@ -100,4 +99,18 @@ export async function getOrders(): Promise<Order[]>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   let response = await fetch(apiEndPoint + "/orders/userList/" + sessionStorage.getItem("userLogged"));
   return response.json();
+}
+
+export async function addOrder(order:Order):Promise<boolean>{
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint+'/orders/add', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({'userEmail':order.userEmail, 'price':order.price, 'productId':order.productId,
+                              'productName':order.productName, 'productType': order.productType})
+    });
+  if (response.status===200)
+    return true;
+  else
+    return false;
 }
