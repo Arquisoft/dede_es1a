@@ -20,12 +20,16 @@ export async function getUsers():Promise<User[]>{
     return response.json()
 }
 
-export async function getRocas():Promise<Rock[]>{
+export async function getRocks():Promise<Rock[]>{
   let response = await fetch(apiEndPoint+'/rocks/list');
   //The objects returned by the api are directly convertible to User objects
   return response.json()
 } 
-
+export async function getBestSellerRocks():Promise<Rock[]>{
+  let response = await fetch(apiEndPoint+'/rocks/list/best-seller');
+  //The objects returned by the api are directly convertible to User objects
+  return response.json()
+} 
 export async function getRocksById(rockId:String):Promise<Rock[]>{
   let response = await fetch(apiEndPoint+'/rocks/' + rockId);
   //The objects returned by the api are directly convertible to User objects

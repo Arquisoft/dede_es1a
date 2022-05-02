@@ -10,9 +10,10 @@ test('PaymentSummary basics are rendered', ()=> {
     
     expect(page.container).toHaveTextContent("Resumen de Pago");
     expect(page.container).toHaveTextContent("Costes (no iva):");
+    expect(page.container).toHaveTextContent("No se ha especificado una dirección correcta, el pedido sera almacenado en la tienda a espera de recogida");
+
     expect(page.container).toHaveTextContent("Costes (iva 21%):");
 
-    expect(page.container).toHaveTextContent("Costes de Envio:");
     expect(page.container).toHaveTextContent("Total:");
 })
 

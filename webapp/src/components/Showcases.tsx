@@ -9,9 +9,9 @@ type RockListProps = {
 
 export const LIST_OF_CRITERIES: SearchCritery[] = [
   { type: "sedimentaria" },
-  { type: "magmática" },
+  { type: "metamórfica" },
   {type: "ígnea"},
-  {type: "todas"}
+  {type: ""}
 ];
 export const LIST_OF_NAMES:string[]=[
   "Sedimentarias",
