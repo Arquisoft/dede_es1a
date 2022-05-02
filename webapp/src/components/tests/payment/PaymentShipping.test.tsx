@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import PaymentPage from "../../payment/PaymentPage";
 import PaymentShipping from "../../payment/PaymentShipping";
 
@@ -60,3 +60,22 @@ test('btn guardar si logueado', ()=> {
     expect(page.getByText ("Guardar y Continuar")).toBeEnabled();
 })
 
+
+test('btn volver y continuar', ()=> {
+
+    const nextView = jest.fn();
+    const previusView = jest.fn();
+
+    const page = render(
+        <PaymentShipping nextView={nextView } 
+            previusView={previusView} 
+            setLoggedPod={() => {} } 
+            isLoggedPod={true}
+        />);
+        
+    fireEvent.click(page.getByText ("Guardar y Continuar"));
+    expect(nextView).toHaveBeenCalled();
+
+    fireEvent.click(page.getByText ("Volver"));
+    expect(previusView).toHaveBeenCalled();
+})
