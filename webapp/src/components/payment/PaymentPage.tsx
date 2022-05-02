@@ -1,6 +1,4 @@
 import Grid from '@mui/material/Grid';
-import {  useEffect } from 'react';
-
 import Button from '@mui/material/Button';
 import { AppBar, Card, CardContent, Typography } from '@mui/material';
 import { North } from '@mui/icons-material';
