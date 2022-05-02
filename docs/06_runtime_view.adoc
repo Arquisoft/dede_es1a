@@ -106,10 +106,16 @@ The the runtime interactions inside the system purchase any item in our store ar
 [plantuml,"ObtainUserAddress",png]
 ----
 actor Client
-participant User Interface
+participant PODs
+participant Backend
 database "DataBase"
-Client -> User Interface: View orders
-User Interface -> "DataBase": Obtain user orders
-"DataBase" -> User Interface: Return user orders
-User Interface -> Show user orders
+PODs -> Client: Ask for getting client data 
+alt User have address
+    DataBase -> Backend: Obtain User address
+    Backend -> Frontend: Send user address
+    Frontend -> Cliente: Show address
+else User doesn't have address
+    Backend -> Frontend: Don't send any address
+    Frontend -> Cliente: Show message that user don't hace address
+end
 ----
