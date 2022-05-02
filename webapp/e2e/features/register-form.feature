@@ -1,6 +1,6 @@
 Feature: Registering a new user
 
-Scenario: The user is not registered in the site
+Scenario: The user register in the site
   Given An unregistered user
   When I fill the data in the form and press Regístrate
   Then I should be redirected to Login Page
@@ -24,7 +24,7 @@ Scenario: User Register blank confirmPassword
   Given Name, Dni, Password and Email of a user
   When I fill the data in the form and press Regístrate
   Then Warning below confirmPassword
-Scenario: Password and Confirm Password don't match
+Scenario: Password and Confirm Password dont match
   Given Email, Name, Dni, Password and confirmPassword of a user
   When I fill the data in the form and press Regístrate
   Then Warning below confirmPassword (Las contraseñas no coinciden)

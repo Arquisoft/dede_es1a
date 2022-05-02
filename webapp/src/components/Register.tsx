@@ -153,9 +153,9 @@ function RegisterForm(): JSX.Element {
           <Grid item width={'50%'}>
             <TextField
               required
+              id = "email"
               label="Email:"
               name="email"
-              id="filled-size-small"
               variant="filled"
               value={email}
               fullWidth
@@ -172,9 +172,9 @@ function RegisterForm(): JSX.Element {
           <Grid item width={'50%'}>
             <TextField
               required
+              id = "name"
               label="Name:"
               name="name"
-              id="filled-size-small"
               variant="filled"
               fullWidth
               value={name}
@@ -191,9 +191,9 @@ function RegisterForm(): JSX.Element {
           <Grid item width={'50%'}>
             <TextField
               required
+              id = "dni"
               label="DNI:"
               name="dni"
-              id="filled-size-small"
               variant="filled"
               fullWidth
               value={dni}
@@ -208,9 +208,9 @@ function RegisterForm(): JSX.Element {
           <Grid item width={'50%'}>
             <TextField
               required
+              id="password"
               label="Password:"
               name="password"
-              id="filled-size-small"
               variant="filled"
               type="password"
               fullWidth
@@ -228,9 +228,9 @@ function RegisterForm(): JSX.Element {
           <Grid item width={'50%'}>
             <TextField
               required
+              id="confirmPassword"
               label="Confirm Password:"
               name="confirmPassword"
-              id="filled-size-small"
               variant="filled"
               type="password"
               value={confirmPassword}
