@@ -1,7 +1,9 @@
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render } from "@testing-library/react";
 import PaymentPage from "../../payment/PaymentPage";
 import PaymentShipping from "../../payment/PaymentShipping";
 
+
+  
 test('Shipping page basics are rendered', ()=> {
     const page = render(
         <PaymentShipping nextView={() => {} } 
@@ -72,10 +74,13 @@ test('btn volver y continuar', ()=> {
             setLoggedPod={() => {} } 
             isLoggedPod={true}
         />);
+       
+        act(() => {
+            fireEvent.click(page.getByText ("Guardar y Continuar"));
+            expect(nextView).toHaveBeenCalled();
         
-    fireEvent.click(page.getByText ("Guardar y Continuar"));
-    expect(nextView).toHaveBeenCalled();
-
-    fireEvent.click(page.getByText ("Volver"));
-    expect(previusView).toHaveBeenCalled();
+            fireEvent.click(page.getByText ("Volver"));
+            expect(previusView).toHaveBeenCalled();
+          })
+   
 })

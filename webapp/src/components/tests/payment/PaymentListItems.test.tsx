@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render } from "@testing-library/react";
 import CardForm from "../../payment/creditCardForm/CardForm";
 import PaymentListItems from "../../payment/PaymentListItems";
 import PaymentPage from "../../payment/PaymentPage";
@@ -26,6 +26,43 @@ test('PaymentListItems basics are rendered', ()=> {
     expect(page.getByText ("Volver")).toBeDefined();
     expect(page.getByText ("Volver")).toBeEnabled();
 
-    expect(page.getByText ("Completar pago")).toBeDefined();
-    expect(page.getByText ("Completar pago")).toBeEnabled();
+    expect(page.getByText ("Completar Pago")).toBeDefined();
+    expect(page.getByText ("Completar Pago")).toBeEnabled();
 }) 
+
+test('PaymentListItems with no articles to buy', ()=> {
+    
+    const page = render(
+        <PaymentListItems cartContent={[]} nextView={() => {} } previusView={() => {} } handlePay={() => {} }  />);
+    
+    expect(page.container).toHaveTextContent("Articulos");
+    expect(page.container).toHaveTextContent("No se puede completar la compra:");
+    expect(page.container).toHaveTextContent("No hay articulos en el pedido");
+
+    expect(page.getByText ("Pagina principal")).toBeDefined();
+    expect(page.getByText ("Pagina principal")).toBeEnabled();
+}) 
+
+
+test('PaymentListItems page btn volver y continuar', ()=> {
+
+    const nextView = jest.fn();
+    const previusView = jest.fn();
+    const handlePay = jest.fn();
+
+    const rock = LIST_OF_ROCKS_TEST[1];
+
+    const page = render(
+        <PaymentListItems cartContent={[rock]} 
+            nextView={nextView } 
+            previusView={previusView} 
+            handlePay={handlePay}  />);
+    
+        
+    fireEvent.click(page.getByText ("Completar Pago"));
+    expect(nextView).toHaveBeenCalled();
+    expect(handlePay).toHaveBeenCalled();
+
+    fireEvent.click(page.getByText ("Volver"));
+    expect(previusView).toHaveBeenCalled();
+})

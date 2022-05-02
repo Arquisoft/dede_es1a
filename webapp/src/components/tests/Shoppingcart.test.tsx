@@ -1,7 +1,11 @@
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render } from "@testing-library/react";
 import Cart from "../ShoppingCart";
 import { LIST_OF_ROCKS_TEST } from "./code/shared";
 
+act(() => {
+    /* fire events that update state */
+  })
+  
 
     // Cart renders basic structure
     test('cart basics are rendered', ()=> {
