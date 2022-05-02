@@ -408,4 +408,10 @@ describe('order ', () => {
             .set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });
+
+    it('can get the best seller', async () =>{
+        const response: Response = await request(app).get("/api/orders/bestSeller")
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+    });
 });
