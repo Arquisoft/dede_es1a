@@ -96,9 +96,9 @@ The the runtime interactions inside the system purchase any item in our store ar
 ----
 actor Client
 participant User Interface
-database "POD"
+database "DataBase"
 Client -> User Interface: View orders
-User Interface -> "POD": Obtain user orders
-"POD" -> User Interface: Return user orders
+User Interface -> "DataBase": Obtain user orders
+"DataBase" -> User Interface: Return user orders
 User Interface -> Show user orders
 ----
