@@ -80,6 +80,17 @@ function App(): JSX.Element {
     );
   };
 
+  function getUserLogged() {
+    
+      var emailString = sessionStorage.getItem("userLogged");
+
+      
+      if (!emailString)
+        emailString = "admin@email.es";
+
+    return emailString;
+    };
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -96,34 +107,35 @@ function App(): JSX.Element {
                 path="/catalog"
                 element={<Catalog handleAddToCart={handleAddToCart} />}
               />
-              <Route path="/orders" element={ 
-            sessionStorage.getItem("userLogged") ?
-            <OrderHistory email={"admin@email.es"}/> 
-            :
-            <LogIn />
-          
-            } />
-            <Route path="/payment" element={ 
-              sessionStorage.getItem("userLogged") ?
-              <PaymentProcess cartContent={cartContent} setNewCart={setNewCart} /> 
-              :
-              <LogIn />
-            } />
+              <Route path="/orders" element={
+                
+                sessionStorage.getItem("userLogged") ?
+                  <OrderHistory email={getUserLogged()} />
+                  :
+                  <LogIn />
 
-            <Route path="/login" element={
-            sessionStorage.getItem("userLogged") ?
-              <Catalog handleAddToCart={handleAddToCart} />
-              :
-              <LogIn />
-          
-            } />
+              } />
+              <Route path="/payment" element={
+                sessionStorage.getItem("userLogged") ?
+                  <PaymentProcess cartContent={cartContent} setNewCart={setNewCart} />
+                  :
+                  <LogIn />
+              } />
 
-            <Route path="/register" element={
-              sessionStorage.getItem("userLogged") ?
-              <Catalog handleAddToCart={handleAddToCart} />
-                :
-                <Register />
-            } />
+              <Route path="/login" element={
+                sessionStorage.getItem("userLogged") ?
+                  <Catalog handleAddToCart={handleAddToCart} />
+                  :
+                  <LogIn />
+
+              } />
+
+              <Route path="/register" element={
+                sessionStorage.getItem("userLogged") ?
+                  <Catalog handleAddToCart={handleAddToCart} />
+                  :
+                  <Register />
+              } />
               <Route
                 path="/logout"
                 element={<Welcome handleAddToCart={handleAddToCart} />}
