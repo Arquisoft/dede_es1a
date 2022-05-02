@@ -19,7 +19,7 @@ The the runtime interactions inside the system to log or register are the follow
 === Purchase 
 image:Diagram_ASW_Runtime_Purchase.png["Hierarchy of building blocks"]
 The the runtime interactions inside the system purchase any item in our store are the following:
-[plantuml,"Diagrama Añadir producto",png]
+[plantuml,"DiagramaAñadirProducto",png]
 ----
 actor Client
 participant Shopping Cart
@@ -33,7 +33,7 @@ Shopping Cart -> Client: View shopping cart
 
 === Delete Product from Shopping Cart.
 
-[plantuml,"Diagrama Eliminar Producto",png]
+[plantuml,"DiagramaEliminarProducto",png]
 ----
 actor Client
 participant Shopping Cart
@@ -46,7 +46,7 @@ Shopping Cart -> Client: Shopping cart is updated
 
 === Login
 
-[plantuml,"Diagrama Inicio de sesión",png]
+[plantuml,"DiagramaInicioSesión",png]
 ----
 actor Client
 participant Frontend
@@ -63,7 +63,7 @@ end
 
 === Register
 
-[plantuml,"Diagrama Registro",png]
+[plantuml,"DiagramaRegistro",png]
 ----
 actor Client
 participant Frontend
@@ -92,7 +92,7 @@ The the runtime interactions inside the system purchase any item in our store ar
  - The api processes the request and answers with the items.
  - The interface updates and shows the client their desired products.
 
-[plantuml,"Ver pedidos",png]
+[plantuml,"VerPedidos",png]
 ----
 actor Client
 participant User Interface
