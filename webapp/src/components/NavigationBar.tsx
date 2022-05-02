@@ -3,11 +3,9 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Avatar, Tooltip } from '@mui/material';
+import { Tooltip } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { checkServerIdentity } from 'tls';
 import { logout } from '../api/api';
-import {useSession} from "@inrupt/solid-ui-react";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 type Props = {
@@ -55,7 +53,7 @@ const NavBar:React.FC<Props>=({openCart}) =>{
                 {isLoggedIn ? (
                     [<Typography variant="body1" component="div" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
                     {sessionStorage.getItem("userLogged")}</Typography>,
-                    <Button color="inherit" href = "/orders">Perfil</Button>
+                    <Button color="inherit" id= 'orders' href = "/orders">Perfil</Button>
                     ,<Button color="inherit" onClick={() => logOutUser()} href = "/logout">Desconectarse</Button>]
                 ):(
                     [<Button color="inherit" href = "/login">Iniciar Sesión</Button>,

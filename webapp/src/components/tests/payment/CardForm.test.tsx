@@ -1,8 +1,5 @@
-import { act, fireEvent, render } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 import CardForm from "../../payment/creditCardForm/CardForm";
-import PaymentPage from "../../payment/PaymentPage";
-import PaymentPayForm from "../../payment/PaymentPayForm";
-import PaymentShipping from "../../payment/PaymentShipping";
 
 act(() => {
     /* fire events that update state */

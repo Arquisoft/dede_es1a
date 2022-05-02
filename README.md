@@ -1,8 +1,8 @@
 # dede_es1a
 
-[![Actions Status](https://github.com/arquisoft/dede_0/workflows/CI%20for%20ASW2122/badge.svg)](https://github.com/arquisoft/dede_0/actions)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_dede_0&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_dede_0)
-[![codecov](https://codecov.io/gh/arquisoft/dede_0/branch/master/graph/badge.svg?token=VN4XG9NTRO)](https://codecov.io/gh/pglez82/asw2122_0)
+[![CI for ASW2122](https://github.com/Arquisoft/dede_es1a/actions/workflows/asw2122.yml/badge.svg)](https://github.com/Arquisoft/dede_es1a/actions/workflows/asw2122.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_dede_es1a&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_dede_es1a)
+[![codecov](https://codecov.io/gh/Arquisoft/dede_es1a/branch/master/graph/badge.svg?token=MTCR6Luj05)](https://codecov.io/gh/Arquisoft/dede_es1a)
 
 <p float="left">
 <img src="https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg" height="100">
