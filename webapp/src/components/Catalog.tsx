@@ -38,7 +38,7 @@ function Catalog(rockListPros: RockListProps): JSX.Element {
       densityMinStr = query.get("densityMin"),
       densityMaxStr = query.get("densityMax"),
       priceMinStr = query.get("priceMin"),
-      priceMaxStr = query.get("pirceMax");
+      priceMaxStr = query.get("priceMax");
     var nameSubstring = query.get("nameSubstring");
     var typeSearched = query.get("type");
 
