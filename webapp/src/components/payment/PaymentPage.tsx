@@ -97,12 +97,10 @@ const PaymentPage: React.FC<Props> = ({ cartContent, setNewCart }) => {
 
     function getUserEmail() {
         const userEmail = sessionStorage.getItem("userLogged");
-
         if (userEmail)
             return userEmail;
         else
             return "";
-
     }
 
     const addOrders = async (rock: Rock) => {

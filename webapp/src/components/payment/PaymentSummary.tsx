@@ -22,7 +22,7 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
     const getTotalPrice = () => cartContent.reduce((sum: number, item) => sum + item.quantityCart * item.price, 0);
     
     function getAddressContent() {
-        const memoryCart = sessionStorage.getItem("address");
+        const memoryCart = localStorage.getItem("address");
         
         if (memoryCart) 
             return memoryCart;
@@ -33,7 +33,7 @@ const PaymentSummary: React.FC<Props> = ({cartContent, simplificate}) => {
     const[addressOK, setAddresOk] = useState<boolean>();
     const [deliveryCosts, setDeliveryCosts] = useState<Number>();
     const findDC = async () => {
-        if(sessionStorage.getItem("address")){
+        if(localStorage.getItem("address")){
             setDeliveryCosts(await getDeliveryCosts(getAddressContent()));
             setAddresOk(true);
         }else{
