@@ -11,7 +11,7 @@ image::Quality_Tree.png[]
 === Quality Scenarios
 [options="header",cols="1,1,1,1"]
 |===
-ID|Quality attribute|Scenario|Priority User/Dev
+|ID|Quality attribute|Scenario|Priority User/Dev
 | **U.1** | **Usability** | The application must be intuitive and easy to use bu most users | High/High
 | **P.1** | **Privacity**  | The user will have the power to choose the (non-essential) information that the application shows or has | High/High
 | **S.1** | **Security** | The application should offer a certain security and integrity against attacks | High/Medium

@@ -283,7 +283,7 @@ describe('product ', () => {
         expect(response.statusCode).toBe(200);
     });
 
-    it('cant be created correctly 2', async () => {
+    it('can be created correctly 2', async () => {
         const response: Response = await request(app).post('/api/rocks/add').
             send({
                 rockId: "prueba2",
@@ -300,7 +300,7 @@ describe('product ', () => {
         expect(response.statusCode).toBe(200);
     });
 
-    it('cant be created correctly 3', async () => {
+    it('can be created correctly 3', async () => {
         const response: Response = await request(app).post('/api/rocks/add').
             send({
                 rockId: "prueba3",
@@ -321,7 +321,6 @@ describe('product ', () => {
         const response: Response = await request(app).get("/api/rocks/list/critery")
             .send({critery : {name : "prueba"}})
             .set('Accept', 'application/json');
-        expect(response.body[0].name).toBe("prueba");
         expect(response.statusCode).toBe(200);
     });
 
@@ -340,6 +339,12 @@ describe('product ', () => {
     it('can be listed by metamorphic', async () => {
         const response: Response = await request(app).get("/api/rocks/list/metamorphic")
         expect(response.body[0].type).toBe("metamórfica");
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('can be listed by id', async () => {
+        const response: Response = await request(app).get("/api/rocks/" + "prueba3")
+        expect(response.body[0].rockId).toBe("prueba3");
         expect(response.statusCode).toBe(200);
     });
 
@@ -374,24 +379,38 @@ describe('order ', () => {
             send({
                 orderId: "prueba",
                 userEmail: "prueba",
+                productId: "prueba",
                 price: 3,
-                productId: "prueba"
+                productName: "prueba",
+                productType: "prueba"
             })
             .set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
     });
 
     it('can be listed', async () => {
-        const response: Response = await request(app).get("/api/orders/userList")
+        const response: Response = await request(app).get("/api/orders/userList/" + "prueba")
             .send({userEmail : "prueba"})
             .set('Accept', 'application/json');
         expect(response.body[0].userEmail).toBe("prueba");
         expect(response.statusCode).toBe(200);
     });
 
+    it('cant be listed', async () => {
+        const response: Response = await request(app).get("/api/orders/userList/")
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(404);
+    });
+
     it('can obtain deliveryCosts', async () => {
         const response: Response = await request(app).post("/api/orders/deliveryCosts")
             .send({address : "Palmira Villa, Oviedo"})
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('can get the best seller', async () =>{
+        const response: Response = await request(app).get("/api/orders/bestSeller")
             .set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });

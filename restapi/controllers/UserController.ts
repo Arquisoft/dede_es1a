@@ -1,7 +1,6 @@
-import express, { Request, Response, Router } from 'express';
+import  { Request, Response } from 'express';
 const User = require("../models/User");
 
-const mongoose = require("mongoose");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 
@@ -30,7 +29,7 @@ export const addUser = async (req: Request, res: Response): Promise<any> => {
         res.send(errors);
     }
     else {
-        let query = {email: email}
+        let query = {email: email.toString()}
         let user = await User.find(query);
         if (user[0]) {
             res.status(401);
@@ -69,14 +68,11 @@ export const loginUser = async (req: Request, res: Response): Promise<any> => {
     let email = req.body.email;
     let password = await crypto.createHmac('sha256', "abcdefg")
         .update(req.body.password).digest('hex');
+    let query = {email:email.toString(),
+                 password: password.toString()}
 
-    let user = await User.findOne(
-        {
-            email: email,
-            password: password
-        }
-    );
-
+                 
+    let user = await User.findOne(query);
     if (user == null) {
         res.status(401);
         res.json({
@@ -95,7 +91,7 @@ export const loginUser = async (req: Request, res: Response): Promise<any> => {
             //autenticado: true,
           //  token: token
         //});
-        res.send(req.session.usuario);
+        res.send();
     }
 }
 

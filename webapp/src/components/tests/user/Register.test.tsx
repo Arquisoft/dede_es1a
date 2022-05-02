@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import Register from '../../Register';
 

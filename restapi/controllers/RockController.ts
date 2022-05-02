@@ -74,7 +74,6 @@ export const findByCritery = async (req:Request, res:Response) => {
             $regex:req.query.type
         }
     };
-    console.log(critery)
     var rocks
     try {
         rocks = await Rock.find(critery)
@@ -105,10 +104,9 @@ export const addRock = async (req:Request, res:Response): Promise<any> => {
     let density = req.body.density;
     let texture = req.body.texture;
     let img = req.body.img;
-  
-    let rock = await Rock.findOne(
-        { name: name }
-    );
+    
+    let query = {name: name.toString()}
+    let rock = await Rock.findOne(query);
     if (rock) {
         res.status(401);
         res.send({ error: "Error: This rock is already in the app " + name });

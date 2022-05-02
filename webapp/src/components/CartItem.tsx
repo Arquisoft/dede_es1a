@@ -1,56 +1,62 @@
-import { Typography } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import { Card, CardContent, CardMedia } from '@mui/material';
-import { Rock } from '../shared/shareddtypes';
-import '../css/CartItem.css';
+import { Grid, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import { Card, CardContent, CardMedia } from "@mui/material";
+import { Rock } from "../shared/shareddtypes";
 
-type Props = {
-    item: Rock;
-    handleAddToCart: (selectedItem: Rock) => void;
-    handleRemoveFromCart: (id: string) => void;
-}
-
-const CartItem: React.FC<Props> = ({item, handleAddToCart, handleRemoveFromCart}) => {
-    return (
-    <Card className="cartItem-ci" >
-        <CardMedia
-            className = "img-ci"
-            component="img"
-            sx={{ width: 150, maxWidth: 150 }}
-            image={item.img}
-            alt={item.name}
-        />
-        <CardContent>
-            <Typography className='name-ci' variant="h5"> {item.name} </Typography>
-            <div className="quantityController-ci">  
-                <Button
-                    size="small"
-                    disableElevation
-                    variant="contained"
-                    color="primary" 
-                    onClick={() => handleRemoveFromCart(item.name)}
-                >-</Button>
-                <Typography id="quantity-ci" variant="h6"> 
-                    {item.quantityCart + " uds" }
-                </Typography>
-                <Button
-                    size="small"
-                    disableElevation
-                    variant="contained"
-                    color="primary" 
-                    onClick={() => handleAddToCart(item)}
-                >+</Button>
-            </div>
-            <Typography id="quantity-ci" variant="h6">
-                {(item.price * item.quantityCart).toFixed(2) + " €"}
-            </Typography>
-        </CardContent>
-        
-    </Card>
-
-    )
+type CartItemProps = {
+  item: Rock;
+  handleAddToCart: (selectedItem: Rock) => void;
+  handleRemoveFromCart: (id: string) => void;
 };
 
+function CartItem(props: CartItemProps): JSX.Element {
+  return (
+    <Card className="cartItem-ci">
+      <CardMedia
+        className="img-ci"
+        component="img"
+        sx={{ width: 150, maxWidth: 150 }}
+        image={props.item.img}
+        alt={props.item.name}
+      />
+      <CardContent>
+        <Typography className="name-ci" variant="h5">
+          {" "}
+          {props.item.name}{" "}
+        </Typography>
+        <div className="quantityController-ci">
+          <Button
+            size="small"
+            disableElevation
+            variant="contained"
+            color="primary"
+            onClick={() => props.handleRemoveFromCart(props.item.name)}
+          >
+            <Typography id="quantity-ci" variant="h6">
+              -
+            </Typography>
+          </Button>
+          <Typography id="quantity-ci" variant="h6">
+            {props.item.quantityCart + " uds"}
+          </Typography>
+          <Button
+            size="small"
+            disableElevation
+            variant="contained"
+            color="primary"
+            onClick={() => props.handleAddToCart(props.item)}
+          >
+            <Typography id="quantity-ci" variant="h6">
+              +
+            </Typography>
+          </Button>
+        </div>
+        <Typography id="quantity-ci" variant="h6">
+          {(props.item.price * props.item.quantityCart).toFixed(2) + " €"}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+}
 
 export default CartItem;
-

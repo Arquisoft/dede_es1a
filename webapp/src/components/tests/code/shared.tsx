@@ -4,6 +4,7 @@ import { Order } from "../../../shared/shareddtypes"
 export const LIST_OF_ROCKS_TEST : Rock[]= [
     {
       id: 0,
+      rockId:"0",
       name: "test0",
       img: "test0img",
       price: 0,
@@ -14,6 +15,7 @@ export const LIST_OF_ROCKS_TEST : Rock[]= [
     },
     {
       id: 1,
+      rockId:"1",
       name: "test1",
       img: "test1img",
       price: 1,
@@ -24,6 +26,7 @@ export const LIST_OF_ROCKS_TEST : Rock[]= [
     },
     {
       id: 2,
+      rockId:"2",
       name: "test2",
       img: "test2img",
       price: 2,
@@ -34,6 +37,7 @@ export const LIST_OF_ROCKS_TEST : Rock[]= [
     },
     {
       id: 3,
+      rockId:"3",
       name: "test3",
       img: "test3img",
       price: 3,
@@ -46,6 +50,7 @@ export const LIST_OF_ROCKS_TEST : Rock[]= [
 
 export const LIST_OF_ORDERS_TEST : Order[]= [
     {
+        code:"1",
         orderId : "123",
         date: new Date("2020-12-12"),
         price : 150,
@@ -55,6 +60,7 @@ export const LIST_OF_ORDERS_TEST : Order[]= [
         productType : "magmática"
     },
     {
+        code:"2",
         orderId : "1234",
         date: new Date("2021-12-12"),
         price : 180,
@@ -64,6 +70,7 @@ export const LIST_OF_ORDERS_TEST : Order[]= [
         productType : "metamórfica"
     },
     {
+        code: "3",
         orderId : "12345",
         date: new Date("2022-12-12"),
         price : 190,
@@ -73,6 +80,7 @@ export const LIST_OF_ORDERS_TEST : Order[]= [
         productType : "ígnea"
     },
     {
+        code : "4",
         orderId : "123567",
         date: new Date("2019-12-12"),
         price : 110,
