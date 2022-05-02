@@ -3,7 +3,7 @@
 === Risks and Technical Debts
 [options="header",cols="1,1"]
 |===
-Risk|Trade off
+|Risk|Trade off
 | The interface is unfriendly to users | We will have to invest time to test and code the flows through the interfaces
 | The payment data of the purchases can intervene | slower payment transactions
 | An attacker can access and modify the data of our application | More time to choose a robust db for the application

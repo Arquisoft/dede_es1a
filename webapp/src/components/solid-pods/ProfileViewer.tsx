@@ -1,8 +1,8 @@
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
-import { Button, Card, CardActionArea, CardContent, Container, Typography } from "@material-ui/core";
-import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
+import { Card, CardContent, Container, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import { FOAF } from "@inrupt/lit-generated-vocab-common";
 import GetPodAddress from './GetPodAddress';
-import { Rock } from "../../shared/shareddtypes";
 
 type Props = {
   logoutEnabled: boolean;

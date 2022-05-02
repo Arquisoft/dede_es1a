@@ -37,7 +37,7 @@ test('Check user orders', async () => {
         var order = LIST_OF_ORDERS_TEST[index];
         expect(container).toHaveTextContent(order.productName.toString());
         expect(container).toHaveTextContent(order.productType.toString());
-  /*      expect(container).toHaveTextContent(order.date.getDay().toString());*/
+        expect(container).toHaveTextContent(order.date.toLocaleString().substring(0, 10));
         expect(container).toHaveTextContent(order.price.toString());
       }
     

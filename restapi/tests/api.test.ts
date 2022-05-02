@@ -283,7 +283,7 @@ describe('product ', () => {
         expect(response.statusCode).toBe(200);
     });
 
-    it('cant be created correctly 2', async () => {
+    it('can be created correctly 2', async () => {
         const response: Response = await request(app).post('/api/rocks/add').
             send({
                 rockId: "prueba2",
@@ -300,7 +300,7 @@ describe('product ', () => {
         expect(response.statusCode).toBe(200);
     });
 
-    it('cant be created correctly 3', async () => {
+    it('can be created correctly 3', async () => {
         const response: Response = await request(app).post('/api/rocks/add').
             send({
                 rockId: "prueba3",
@@ -405,6 +405,12 @@ describe('order ', () => {
     it('can obtain deliveryCosts', async () => {
         const response: Response = await request(app).post("/api/orders/deliveryCosts")
             .send({address : "Palmira Villa, Oviedo"})
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+    });
+
+    it('can get the best seller', async () =>{
+        const response: Response = await request(app).get("/api/orders/bestSeller")
             .set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });

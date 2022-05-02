@@ -1,29 +1,20 @@
-import List from '@mui/material/List';
-import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-
-import Button from '@mui/material/Button';
-// import '../css/PaymentProcess.css'
-import { CardContent, Typography } from '@mui/material';
-import { North } from '@mui/icons-material';
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import { Rock } from '../../shared/shareddtypes';
-import { addOrder, getDeliveryCosts } from '../../api/api';
-import { findConfigFile } from 'typescript';
+import { addOrder } from '../../api/api';
 import PaymentSummary from './PaymentSummary';
-import CartItem from '../CartItem';
-import PaymentItem from './PaymentItem';
 import React from 'react';
 import PaymentPayForm from './PaymentPayForm';
 import PaymentComplete from './PaymentComplete';
-import { useSession } from '@inrupt/solid-ui-react';
 import PaymentListItems from './PaymentListItems';
+import PaymentShipping from './PaymentShipping';
 
 
-const NUM_VIEWS = 3;
-const PAYMENT_FORM_VIEW = 0;
-const ITEMS_TO_BUY_VIEW = 1;
-const PAYMENT_COMPLETE = 2;
+const NUM_VIEWS = 4;
+const SHIPPING_VIEW = 0;
+const PAYMENT_FORM_VIEW = 1;
+const ITEMS_TO_BUY_VIEW = 2;
+const PAYMENT_COMPLETE = 3;
 
 type Props = {
     cartContent: Rock[];
@@ -33,15 +24,12 @@ type Props = {
 const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
     
-    const [paymentView, setPaymentView] = React.useState(PAYMENT_FORM_VIEW);
+    const [paymentView, setPaymentView] = React.useState(0);
     useEffect(() => {
-        if(paymentView>=NUM_VIEWS) {
+        if(paymentView<0 || paymentView>=NUM_VIEWS) {
             window.location.href = '/home';
             setPaymentView(0);
-        } else if(paymentView<0) {
-            window.location.href = '/home';
-            setPaymentView(0);
-        } 
+        }
     }, [paymentView]);
 
 
@@ -56,24 +44,30 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
         switch (paymentView) {
           case ITEMS_TO_BUY_VIEW:
             return (
-                
                 <PaymentListItems 
                     cartContent={cartContent} 
                     nextView={nextView} 
                     previusView={previusView} 
                     handlePay={handlePay}
                 ></PaymentListItems>
-                
             );
 
-          case PAYMENT_FORM_VIEW:
+            case PAYMENT_FORM_VIEW:
+                return (
+                    <PaymentPayForm 
+                        nextView={nextView} 
+                        previusView={previusView}
+                    ></PaymentPayForm>
+                );
+
+          case SHIPPING_VIEW:
             return (
-                <PaymentPayForm 
+                <PaymentShipping 
                     nextView={nextView} 
                     previusView={previusView}
                     setLoggedPod={setLoggedPod}
                     isLoggedPod={isLoggedPod}
-                ></PaymentPayForm>
+                ></PaymentShipping>
             );
 
             case PAYMENT_COMPLETE:
@@ -101,12 +95,13 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
     }
 
     const addOrders = async (rock:Rock) => {
+        let code = rock.id;
         let rockId = rock.rockId;
         let price = rock.price;
         let name = rock.name;
         let type = rock.type;
         console.log(getUserEmail());
-        await addOrder({ userEmail: getUserEmail(), price: price, productId: rockId, productName: name, productType: type, orderId: "", date: new Date});
+        await addOrder({code: code.toString(), userEmail: getUserEmail(), price: price, productId: rockId, productName: name, productType: type, orderId: "", date: new Date});
     }
 
     const handlePay = () => {
@@ -128,13 +123,17 @@ const PaymentPage: React.FC<Props> = ({cartContent, setNewCart}) => {
 
     
     return (
-        <div className='PaymentProcess-payment' >
+        <Grid container spacing={2} className='PaymentProcess-payment' >
+            <Grid item xs={12}>
             <h1 id='title-payment' >Mi compra</h1>
-            <div id='info-payment' >
+            </Grid>
+            <Grid item xs={8}>
                 {getView(paymentView)}
-                {getPaymentSummary()}
-            </div>
-        </div>
+            </Grid>
+            <Grid item xs={4}>
+                {paymentView === PAYMENT_COMPLETE ? null:  getPaymentSummary()}
+            </Grid>
+        </Grid>
     )
 };
 
