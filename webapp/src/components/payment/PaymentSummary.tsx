@@ -90,7 +90,7 @@ const PaymentSummary: React.FC<Props> = ({ cartContent, simplificate }) => {
                     }
                     
                     <Grid item xs={12} >
-                        <Typography variant="h5" component="h5"><h2>Total: {getFinalDeliveryCosts()}€</h2></Typography>
+                        <Typography variant="h5" component="h5">Total: {getFinalDeliveryCosts()}€</Typography>
                     </Grid>
                     </Grid>
             }
