@@ -27,7 +27,13 @@ import { LIST_OF_ROCKS_TEST } from "./code/shared";
         expect(cartComponent.getByText ("Realizar Pedido")).toBeEnabled();
     })
 
-    
+    // Cart hasnt products
+    test('cart hasnt products', ()=> {
+        const cartComponent = render(<Cart cartContent={[]} handleAddToCart={() => {}} handleRemoveFromCart={() => {}}/>);
+        
+        expect(cartComponent.container).toHaveTextContent("0.00 €");
+        expect(cartComponent.getByText ("Realizar Pedido")).toBeDisabled();
+    })
 
     // button to add or remove ud article
     test('button to add and to remove ud of the cart', ()=> {
