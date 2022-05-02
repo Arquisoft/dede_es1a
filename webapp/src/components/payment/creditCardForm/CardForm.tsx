@@ -202,7 +202,7 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
         for (var i = 0; i < filteredText.length ; i++) {
             processedText+=filteredText[i];
             numberOfsection++;
-            if(i<(maxLength-sectionLength) && numberOfsection%sectionLength == 0) {
+            if(i<(maxLength-sectionLength) && numberOfsection%sectionLength === 0) {
                 processedText+=separatorChar;
             }   
         }
@@ -241,11 +241,11 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
         
             var nChar = 0;
             for (var i = 0; i < text.length;i++) {
-                if(text[i]!=separatorChar)    
+                if(text[i]!==separatorChar)    
                     nChar++;
             }
 
-        if(nChar!=lengthExpected) {
+        if(nChar!==lengthExpected) {
             checkStatus.message = "(formato no válido)";
             return checkStatus;
         }

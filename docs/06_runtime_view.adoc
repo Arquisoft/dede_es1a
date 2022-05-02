@@ -22,13 +22,13 @@ The the runtime interactions inside the system purchase any item in our store ar
 [plantuml,"DiagramaAñadirRoca",png]
 ----
 actor Client
-participant Shopping Cart
-Client -> Shopping Cart: Authentication request
-Shopping Cart -> Client: Authentication answer
-Client -> Shopping Cart: Add products
+participant ShoppingCart
+Client -> ShoppingCart: Authentication request
+ShoppingCart -> Client: Authentication answer
+Client -> ShoppingCart: Add products
 note across: Then, the product is stored
-Client -> Shopping Cart: Click on shopping cart
-Shopping Cart -> Client: View shopping cart
+Client -> ShoppingCart: Click on shopping cart
+ShoppingCart -> Client: View shopping cart
 ----
 
 === Delete Product from Shopping Cart.
@@ -36,12 +36,12 @@ Shopping Cart -> Client: View shopping cart
 [plantuml,"DiagramaEliminarRoca",png]
 ----
 actor Client
-participant Shopping Cart
-Client -> Shopping Cart: Click on shopping cart
-Shopping Cart -> Cliente: View shopping cart
-Client -> Shopping Cart: Delete selected product
+participant ShoppingCart
+Client -> ShoppingCart: Click on shopping cart
+ShoppingCart -> Client: View shopping cart
+Client -> ShoppingCart: Delete selected product
 note across: Then, the product is deleted
-Shopping Cart -> Client: Shopping cart is updated
+ShoppingCart -> Client: Shopping cart is updated
 ----
 
 === Login
@@ -68,14 +68,14 @@ end
 actor Client
 participant Frontend
 participant Backend
-Cliente -> Frontend: Introduce email, name, dni, password and confirm password
+Client -> Frontend: Introduce email, name, dni, password and confirm password
 Frontend -> Backend: Authentication request
 alt User exists
     Backend -> Frontend: Sign up fails
-    Frontend -> Cliente: Notification to user (email in use)
+    Frontend -> Client: Notification to user (email in use)
 else User doesn't exists
     Backend -> Frontend: New user registered
-    Frontend -> Cliente: Redirects login page
+    Frontend -> Client: Redirects login page
 end
 ----
 
