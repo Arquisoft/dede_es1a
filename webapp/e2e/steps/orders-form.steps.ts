@@ -54,9 +54,12 @@ defineFeature(feature, test => {
       await expect(page).toFill("#password", password);
       await expect(page).toClick('button', { text: 'Iniciar Sesión' });
       await expect(page2).toMatch("Mohs");
+      await expect(page2).toClick("a[href='/catalog']");
+      await expect(page2).toMatch("Mohs");
     });
 
     then("I should see my orders", async () => {
+      await page2.waitForTimeout(2000);
       await expect(page2).toClick("a[href='/orders']");
       await expect(page3).toMatch("Cuarcita");
     });
