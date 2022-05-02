@@ -102,7 +102,8 @@ const PaymentPage: React.FC<Props> = ({ cartContent, setNewCart }) => {
         let name = rock.name;
         let type = rock.type;
         console.log(getUserEmail());
-        await addOrder({ code: code.toString(), userEmail: getUserEmail(), price: price, productId: rockId, productName: name, productType: type, orderId: "", date: new Date });
+        
+        await addOrder({ code: "", userEmail: getUserEmail(), price: price, productId: rockId, productName: name, productType: type, orderId: "", date: new Date });
     }
 
     const handlePay = () => {
