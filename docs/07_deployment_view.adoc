@@ -23,10 +23,11 @@ Mapping of Building Blocks to Infrastructure::
 |===
 |Node|Description
 | Browser | The method with which the user will connect to the application
+|Ubuntu EC2| The virtual machine in which the application will be deployed
 | Webapp | The layer of views that the users will be able to see
 | RestApi | The layer of logic with which the application will connect
-| SOLID USER POD | The address of the user will be obtained from his POD
-| Cloudinary | The API in which the images of the application's products are stored
-| Node Geocoder | The API that allows to obtain the coordinates of the user's address to calculate the shipping costs
+| USER POD | The address of the user will be obtained from his POD
+| ATLAS | The provider that stores the database in mongodb
 | DB MongoDB | The database of the application with which the restapi will interact
+| Cloudinary | The API in which the images of the application's products are stored
 |===
