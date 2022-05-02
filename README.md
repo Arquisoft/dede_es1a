@@ -11,7 +11,12 @@
 </p>
 
 This project is a basic example of website using **React** with **Typescript** and an endpoint using **NodeJS** with **express**.
+## Development Team
 
+- Ignacio Gómez Gasch, UO271548
+- Valentin Dumitru, UO277867
+- Adrián Estrada González, UO276900
+- Jorge Toraño Herrera, UO276853
 ## Quick start guide
 
 `<mark>`In case you already have node.js and npm, make sure you update them before attempting to build the images`</mark>`
@@ -29,6 +34,7 @@ This will create two docker images as they don't exist in your system (the webap
 - [RestApi raw metrics - http://localhost:5000/metrics](http://localhost:5000/metrics)
 - [Prometheus server - http://localhost:9090](http://localhost:9090)
 - [Grafana server http://localhost:9091](http://localhost:9091)
+- [Deploy on AWS](http://3.212.207.144:3000/home)
 
 If you want to run it without docker. Compile and run the restapi:
 
@@ -62,11 +68,4 @@ Our information:
 - Webapp: https://github.com/Arquisoft/dede_es1a/tree/master/webapp
 - Restapi: https://github.com/Arquisoft/dede_es1a/tree/master/restapi
 
-
-## Development Team
-
-- Ignacio Gómez Gasch, UO271548
-- Valentin Dumitru, UO277867
-- Adrián Estrada González, UO276900
-- Jorge Toraño Herrera, UO276853
  
