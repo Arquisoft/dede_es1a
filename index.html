@@ -466,15 +466,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
 <li><a href="#_level_1">5.2. Level 1</a></li>
+<li><a href="#_level_2">5.3. Level 2</a></li>
 </ul>
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_add_product_to_shopping_cart">6.1. Add Product to Shopping Cart</a></li>
-<li><a href="#_delete_product_from_shopping_cart">6.2. Delete Product from Shopping Cart.</a></li>
-<li><a href="#_login">6.3. Login</a></li>
-<li><a href="#_register">6.4. Register</a></li>
-<li><a href="#_view_user_orders">6.5. View User Orders</a></li>
+<li><a href="#_add_rock_to_shopping_cart">6.1. Add Rock to Shopping Cart</a></li>
+<li><a href="#_log_in_register">6.2. Log In / Register</a></li>
+<li><a href="#_purchase">6.3. Purchase</a></li>
+<li><a href="#_delete_product_from_shopping_cart">6.4. Delete Product from Shopping Cart.</a></li>
+<li><a href="#_login">6.5. Login</a></li>
+<li><a href="#_register">6.6. Register</a></li>
+<li><a href="#_view_user_orders">6.7. View User Orders</a></li>
+<li><a href="#_filter_catalog">6.8. Filter Catalog</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -496,6 +500,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_quality_tree">10.1. Quality Tree</a></li>
 <li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
 <li><a href="#section-technical-risks">10.3. Risks and Technical Debts</a></li>
+<li><a href="#_at_the_moment">10.4. At the moment</a></li>
+<li><a href="#_at_the_beginning">10.5. At the beginning</a></li>
 </ul>
 </li>
 <li><a href="#section-glossary">11. Glossary</a></li>
@@ -956,6 +962,52 @@ All web and services will be optimized with the main aim of making queue waiting
 </table>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_level_2">5.3. Level 2</h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="./images/Diagram_ASW_Level2.png" alt="Level 2 Diagram">
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Name</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">  Stores the data of the client</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">  Stores our own data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">  Our major stakeholder, uses our site</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">What the user sees and interacts with, the front end.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The server of the interface, processes the information and deals with the database and the PODs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -964,42 +1016,112 @@ All web and services will be optimized with the main aim of making queue waiting
 <h2 id="section-runtime-view">6. Runtime View</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_add_product_to_shopping_cart">6.1. Add Product to Shopping Cart</h3>
+<h3 id="_add_rock_to_shopping_cart">6.1. Add Rock to Shopping Cart</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_log_in_register">6.2. Log In / Register</h3>
+<div class="paragraph">
+<p><span class="image"><img src="./images/Diagram_ASW_Runtime_LoginRegister.png" alt="Hierarchy of building blocks"></span></p>
+</div>
+<div class="paragraph">
+<p>The the runtime interactions inside the system to log or register are the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>First the client enters the webpage.</p>
+</li>
+<li>
+<p>Then clicks on login/register, it goes to the log in page.</p>
+</li>
+<li>
+<p>The user is required to allow the the app to collect data from the POD.</p>
+</li>
+<li>
+<p>If allowed, the POD gives the necessary data.</p>
+</li>
+<li>
+<p>We look into our database to see if user exists, if exists brings back his data, if dont we store them.</p>
+</li>
+<li>
+<p>Now the user is logged in and it goes back to the home page.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_purchase">6.3. Purchase</h3>
+<div class="paragraph">
+<p><span class="image"><img src="./images/Diagram_ASW_Runtime_Purchase.png" alt="Hierarchy of building blocks"></span>
+The the runtime interactions inside the system purchase any item in our store are the following:</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Diagrama%20Añadir%20producto.png" alt="Diagrama Añadir producto" width="247" height="371">
+<img src="./images/DiagramaAñadirRoca.png" alt="DiagramaAñadirRoca" width="247" height="371">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_delete_product_from_shopping_cart">6.2. Delete Product from Shopping Cart.</h3>
+<h3 id="_delete_product_from_shopping_cart">6.4. Delete Product from Shopping Cart.</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Diagrama%20Eliminar%20Producto.png" alt="Diagrama Eliminar Producto" width="261" height="341">
+<img src="./images/DiagramaEliminarRoca.png" alt="DiagramaEliminarRoca" width="261" height="341">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_login">6.3. Login</h3>
+<h3 id="_login">6.5. Login</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Diagrama%20Inicio%20de%20sesión.png" alt="Diagrama Inicio de sesión" width="541" height="383">
+<img src="./images/DiagramaInicioSesión.png" alt="DiagramaInicioSesión" width="541" height="383">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_register">6.4. Register</h3>
+<h3 id="_register">6.6. Register</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Diagrama%20Registro.png" alt="Diagrama Registro" width="615" height="414">
+<img src="./images/DiagramaRegistro.png" alt="DiagramaRegistro" width="615" height="414">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_view_user_orders">6.5. View User Orders</h3>
+<h3 id="_view_user_orders">6.7. View User Orders</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Ver%20pedidos.png" alt="Ver pedidos" width="316" height="305">
+<img src="./images/VerPedidos.png" alt="VerPedidos" width="316" height="305">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_filter_catalog">6.8. Filter Catalog</h3>
+<div class="paragraph">
+<p><span class="image"><img src="./images/Diagram_ASW_Runtime_FilterCatalog.png" alt="Hierarchy of building blocks"></span>
+The the runtime interactions inside the system purchase any item in our store are the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>First the client enters the webpage.</p>
+</li>
+<li>
+<p>Then types the desired words to search for.</p>
+</li>
+<li>
+<p>Clicks search.</p>
+</li>
+<li>
+<p>The api processes the request and answers with the items.</p>
+</li>
+<li>
+<p>The interface updates and shows the client their desired products.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/ObtainUserAddress.png" alt="ObtainUserAddress" width="567" height="414">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1045,6 +1167,10 @@ With this, the intention is to achieve a good experience for the user in the use
 <td class="tableblock halign-left valign-top"><p class="tableblock">The method with which the user will connect to the application</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ubuntu EC2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine in which the application will be deployed</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Webapp</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The layer of views that the users will be able to see</p></td>
 </tr>
@@ -1053,20 +1179,20 @@ With this, the intention is to achieve a good experience for the user in the use
 <td class="tableblock halign-left valign-top"><p class="tableblock">The layer of logic with which the application will connect</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID USER POD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USER POD</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The address of the user will be obtained from his POD</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cloudinary</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The API in which the images of the application&#8217;s products are stored</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Node Geocoder</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The API that allows to obtain the coordinates of the user&#8217;s address to calculate the shipping costs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ATLAS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The provider that stores the database in mongodb</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DB MongoDB</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The database of the application with which the restapi will interact</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloudinary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The API in which the images of the application&#8217;s products are stored</p></td>
 </tr>
 </tbody>
 </table>
@@ -1218,41 +1344,62 @@ With this, the intention is to achieve a good experience for the user in the use
 </div>
 <div class="sect2">
 <h3 id="section-technical-risks">10.3. Risks and Technical Debts</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_at_the_moment">10.4. At the moment</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Risk</th>
-<th class="tableblock halign-left valign-top">Trade off</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Risk</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trade off</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low knowledge of the use of PODS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We have had little time to learn how this technology works. Invest more time to improve the state of the web.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time. We are conditioned by a delivery date and other subjects</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We must optimize individual and group work as much as possible</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is complicated to test the functionalities of the application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Increased work to design tests that test all the functionalities of the application</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_at_the_beginning">10.5. At the beginning</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Risk</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trade off</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The interface is unfriendly to users</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We will have to invest time to test and code the flows through the interfaces</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The payment data of the purchases can intervene</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">slower payment transactions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">slower payment transactions because the use of SOLID</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An attacker can access and modify the data of our application</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">More time to choose a robust db for the application</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It is complicated to add new functionalities to the application</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Refactor and choose application design patterns well to facilitate the addition of new functionalities</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Waiting times for application processes are very long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Increased work to design a code as efficient as possible</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It is complicated to test the functionalities of the application</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Increased work to design tests that test all the functionalities of the application</p></td>
 </tr>
 </tbody>
 </table>
