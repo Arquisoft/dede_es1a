@@ -108,14 +108,15 @@ The the runtime interactions inside the system purchase any item in our store ar
 actor Client
 participant PODs
 participant Backend
+participant Frontend
 database "DataBase"
-PODs -> Client: Ask for getting client data 
+PODs -> Client: Ask for getting user data 
 alt User have address
-    DataBase -> Backend: Obtain User address
+    DataBase -> Backend: Obtain user address
     Backend -> Frontend: Send user address
-    Frontend -> Cliente: Show address
+    Frontend -> Client: Show address
 else User doesn't have address
     Backend -> Frontend: Don't send any address
-    Frontend -> Cliente: Show message that user don't hace address
+    Frontend -> Client: Show message that user don't hace address
 end
 ----
