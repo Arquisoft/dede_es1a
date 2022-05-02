@@ -3,7 +3,7 @@
 
 }
 body{
-    background-color: #f8f3e8;
+    background-color: #fffaee;
 }
 header {
     background-color: #f3af2f;
@@ -27,6 +27,7 @@ header {
     }
 }
 
+@import "BouncingText.css";
 @import "Catalog.css";
 @import "Showcases.css";
 @import "Product.css";

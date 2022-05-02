@@ -136,7 +136,6 @@ function Showcase(prefilteredbox: RockListProps): JSX.Element {
                 <Product
                   product={rocks[product]}
                   handleAddToCart={prefilteredbox.handleAddToCart}
-                  buyable={false}
                 />
               </Grid>
             );

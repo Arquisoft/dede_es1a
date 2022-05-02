@@ -8,4 +8,5 @@ test('check that everything is rendering propertly', async () => {
     throw new Error('Function not implemented.');
   } }/>);
   expect(screen.getByAltText("logo")).toBeInTheDocument();
+  expect(screen.getByText("Bienvenido a Rock-Shop")).toBeInTheDocument();
 });

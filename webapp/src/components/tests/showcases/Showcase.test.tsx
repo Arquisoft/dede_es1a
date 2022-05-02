@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
-import Showcase, { NUMBER_OF_PRODUCTS_SHOWN } from "../Showcase";
-import { Rock } from "../../shared/shareddtypes";
-import { LIST_OF_ROCKS_TEST } from "./code/shared";
+import Showcase, { NUMBER_OF_PRODUCTS_SHOWN } from "../../Showcase";
+import { Rock } from "../../../shared/shareddtypes";
+import { LIST_OF_ROCKS_TEST } from "../code/shared";
 
 
 test("Check that the showcases render properly", async () => {
