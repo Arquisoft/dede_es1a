@@ -1,17 +1,17 @@
 #catalog {
-
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  padding-bottom: 5em;
-  gap: 1em;
-  row-gap: 3em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding-bottom: 5em;
+    gap: 1em;
+    row-gap: 3em;
 }
 
-#catalogFilter{
-  padding: 2em ;
+#catalogFilter {
+    padding: 2em;
 }
-#accordeonFilter{
-  margin-top: 5em !important;
-  top: 1em;
-  margin-bottom: 3em;
+
+#accordeonFilter {
+    margin-top: 5em !important;
+    top: 1em;
+    margin-bottom: 3em;
 }

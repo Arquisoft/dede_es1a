@@ -124,8 +124,6 @@ function Catalog(rockListPros: RockListProps): JSX.Element {
             <Grid item xs={3} key={index}>
             <Product
               product={rock}
-              
-              buyable={true}
               handleAddToCart={rockListPros.handleAddToCart}
             />
             </Grid>

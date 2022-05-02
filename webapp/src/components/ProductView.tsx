@@ -8,6 +8,7 @@ import { Rock } from "../shared/shareddtypes";
 import ProductViewData from "./ProductViewData";
 type RegisterProps = {
   handleAddToCart(r: Rock): void;
+  product?:Rock
 };
 
 function ProductView(props: RegisterProps): JSX.Element {
@@ -18,7 +19,9 @@ function ProductView(props: RegisterProps): JSX.Element {
       setRock((await getRocksById(id))[0])
   }
   useEffect(() => {
-    refreshRock();
+    if(props.product===undefined)
+      refreshRock();
+    else setRock(props.product)
   }, []);
   if (rock !== undefined)
     return (
