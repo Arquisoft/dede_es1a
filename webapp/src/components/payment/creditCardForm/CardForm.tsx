@@ -1,14 +1,11 @@
 
-import List from '@mui/material/List';
-import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
-
 import Button from '@mui/material/Button';
-import { Alert, AlertColor, CardContent, Snackbar, TextField, Typography } from '@mui/material';
+import { Alert, AlertColor, CardContent, Snackbar, TextField, Grid, Typography } from '@mui/material';
 import { North } from '@mui/icons-material';
 import { useState, useEffect } from 'react';
 import { findConfigFile } from 'typescript';
 import { isValidDateValue } from '@testing-library/user-event/dist/utils';
+import { height } from '@mui/system';
 
 
 type Props = {
@@ -58,83 +55,86 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
     }
 
     return (
-        <Grid container spacing={2} className='paymentpage-payment' >
-        <form name="loggin" onSubmit={handleSubmit}>
-            <Grid item xs={12}>
-                <TextField sx={{ width: '25em' }}
-                    required
-                    name="nameCard"
-                    label="Nombre del titular" 
-                    variant="outlined"
-                    margin="dense"
-                    value={nameCard}
-                    error = {nameCard===""}
-                    helperText={ "" }
-                    onChange={e => processText(e.target.value, CHARACTERS_NO_NUMS, CARD_NAME_LENGHT,30,"",setNameCard)}
-                    
-                />
-            </Grid>
-            <Grid item xs={12}>
-                <TextField  sx={{ width: '25em'}}
-                    required
-                    name="CardNumber"
-                    label="Numero de tarjeta" 
-                    variant="outlined"
-                    margin="dense"
-                    value={cardNumber}
-                    error = {cardNumber===""}
-                    helperText={ "" }
-                    onChange={e => processText(e.target.value, NUMBERS, CARD_NUMBER_LENGHT,4,CARD_NUMBER_SEPARATOR,setCardNumber)}
-                />
-            </Grid>
-            <Grid item xs={12}>
-                <TextField
-                    required
-                    name="ExpDate"
-                    label="Vencimiento MM/AA" 
-                    variant="outlined"
-                    margin="dense"
-                    value={expDate}
-                    error = {expDate===""}
-                    helperText={ "" }
-                    onChange={e => processText(e.target.value, NUMBERS, CARD_EXP_DATE_LENGHT,2,DATE_SEPARATOR,setExpDate)}
-                />
-            </Grid>
-            <Grid item xs={12}>
-                <TextField
-                    required
-                    name="Cvc"
-                    label="CVC" 
-                    variant="outlined"
-                    margin="dense"
-                    value={cvc}
-                    error = {cvc===""}
-                    helperText={ "" }
-                    onChange={e => processText(e.target.value, NUMBERS, CARD_CVC_LENGHT,1,"",setCvc)}
-                />
-            </Grid>
-            <Grid item xs={12}>
-                <Button
-                    size="medium"
-                    disableElevation
-                    variant="contained"
-                    disabled={false}
-                    type="submit"
-                >
-                    Validar
-                </Button>
-            </Grid>
+        <div>
+        <form name="credircardForm" onSubmit={handleSubmit}>
+            <Grid container spacing={2} rowSpacing={2} >
+        
+                <Grid item xs={6} >
+                    <TextField
+                        sx ={{height : '150%'}}
+                        fullWidth
+                        required
+                        name="nameCard"
+                        label="Nombre del titular" 
+                        variant="outlined"
+                        value={nameCard}
+                        error = {nameCard===""}
+                        helperText={ "" }
+                        onChange={e => processText(e.target.value, CHARACTERS_NO_NUMS, CARD_NAME_LENGHT,30,"",setNameCard)}
+                        
+                    />
+                </Grid>
+                <Grid item xs={6}></Grid>
+                <Grid item xs={6}>
+                    <TextField  sx={{ width: '25em'}}
+                        required
+                        name="CardNumber"
+                        label="Numero de tarjeta" 
+                        variant="outlined"
+                        margin="dense"
+                        value={cardNumber}
+                        error = {cardNumber===""}
+                        helperText={ "" }
+                        onChange={e => processText(e.target.value, NUMBERS, CARD_NUMBER_LENGHT,4,CARD_NUMBER_SEPARATOR,setCardNumber)}
+                    />
+                </Grid>
+                <Grid item xs={6}></Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        name="ExpDate"
+                        label="Vencimiento MM/AA" 
+                        variant="outlined"
+                        margin="dense"
+                        value={expDate}
+                        error = {expDate===""}
+                        helperText={ "" }
+                        onChange={e => processText(e.target.value, NUMBERS, CARD_EXP_DATE_LENGHT,2,DATE_SEPARATOR,setExpDate)}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        name="Cvc"
+                        label="CVC" 
+                        variant="outlined"
+                        margin="dense"
+                        value={cvc}
+                        error = {cvc===""}
+                        helperText={ "" }
+                        onChange={e => processText(e.target.value, NUMBERS, CARD_CVC_LENGHT,1,"",setCvc)}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        size="medium"
+                        disableElevation
+                        variant="contained"
+                        disabled={false}
+                        type="submit"
+                    >
+                        Validar
+                    </Button>
+                </Grid>
             
-            
-            
-           
+            </Grid>
         </form>
         <Snackbar open={notificationStatus} autoHideDuration={3000} onClose={()=>{setNotificationStatus(false)}}>
             <Alert severity={notification.severity} sx={{ width: '100%' }}>
                 {notification.message}
             </Alert>
         </Snackbar>
-        </Grid>
+        </div>
 
     )
 
