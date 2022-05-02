@@ -81,6 +81,16 @@ end
 
 
 === View User Orders
+[plantuml,"VerPedidos",png]
+----
+actor Client
+participant User Interface
+database "DataBase"
+Client -> User Interface: View orders
+User Interface -> "DataBase": Obtain user orders
+"DataBase" -> User Interface: Return user orders
+User Interface -> Show user orders
+----
 
 === Filter Catalog 
 image:Diagram_ASW_Runtime_FilterCatalog.png["Hierarchy of building blocks"]
@@ -92,7 +102,8 @@ The the runtime interactions inside the system purchase any item in our store ar
  - The api processes the request and answers with the items.
  - The interface updates and shows the client their desired products.
 
-[plantuml,"VerPedidos",png]
+
+[plantuml,"ObtainUserAddress",png]
 ----
 actor Client
 participant User Interface
