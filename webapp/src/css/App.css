@@ -1,8 +1,10 @@
 .principal {
     margin-top: 7em;
-    background-color: rgb(241, 236, 230);
-}
 
+}
+body{
+    background-color: #f8f3e8;
+}
 header {
     background-color: #f3af2f;
 }
