@@ -29,7 +29,7 @@ export const addUser = async (req: Request, res: Response): Promise<any> => {
         res.send(errors);
     }
     else {
-        let query = {email: email}
+        let query = {email: email.toString()}
         let user = await User.find(query);
         if (user[0]) {
             res.status(401);
@@ -68,11 +68,10 @@ export const loginUser = async (req: Request, res: Response): Promise<any> => {
     let email = req.body.email;
     let password = await crypto.createHmac('sha256', "abcdefg")
         .update(req.body.password).digest('hex');
-
+    let query = {email:email.toString(), password: password.toString()}
     let user = await User.findOne(
         {
-            email: email,
-            password: password
+            query
         }
     );
 
