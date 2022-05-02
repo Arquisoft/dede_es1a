@@ -2,12 +2,20 @@
 
 === Risks and Technical Debts
 [options="header",cols="1,1"]
+
+=== At the moment
+|===
+|Risk|Trade off
+| Low knowledge of the use of PODS | We have had little time to learn how this technology works. Invest more time to improve the state of the web.
+| Time. We are conditioned by a delivery date and other subjects | We must optimize individual and group work as much as possible
+| It is complicated to test the functionalities of the application | Increased work to design tests that test all the functionalities of the application
+|===
+
+=== At the beginning
 |===
 |Risk|Trade off
 | The interface is unfriendly to users | We will have to invest time to test and code the flows through the interfaces
-| The payment data of the purchases can intervene | slower payment transactions
+| The payment data of the purchases can intervene | slower payment transactions because the use of SOLID
 | An attacker can access and modify the data of our application | More time to choose a robust db for the application
-| It is complicated to add new functionalities to the application | Refactor and choose application design patterns well to facilitate the addition of new functionalities
 | Waiting times for application processes are very long | Increased work to design a code as efficient as possible
-| It is complicated to test the functionalities of the application | Increased work to design tests that test all the functionalities of the application
 |===
