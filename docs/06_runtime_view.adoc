@@ -84,12 +84,12 @@ end
 [plantuml,"VerPedidos",png]
 ----
 actor Client
-participant User Interface
+participant UserInterface
 database "DataBase"
-Client -> User Interface: View orders
-User Interface -> "DataBase": Obtain user orders
-"DataBase" -> User Interface: Return user orders
-User Interface -> Show user orders
+Client -> UserInterface: View orders
+UserInterface -> "DataBase": Obtain user orders
+"DataBase" -> UserInterface: Return user orders
+UserInterface -> Client: Show user orders
 ----
 
 === Filter Catalog 
