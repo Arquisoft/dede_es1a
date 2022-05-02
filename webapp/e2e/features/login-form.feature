@@ -12,3 +12,7 @@ Scenario: User log in blank password
   Given Email and blank password of a user
   When I click in Iniciar Sesión
   Then Warning message below Password
+Scenario: User log in non existing account   
+  Given Email and blank password of a user
+  When I click in Iniciar Sesión
+  Then Warning message

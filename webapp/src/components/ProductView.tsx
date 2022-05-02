@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRocksById } from "../api/api";
 import "../css/LoginRegister.css";
-import { Button, Card, CardMedia, Grid, Paper, Typography } from "@mui/material";
-import InfoIcon from '@mui/icons-material/Info';
+import { Button, Card, CardMedia, Grid, Typography } from "@mui/material";
 import { Rock } from "../shared/shareddtypes";
 import ProductViewData from "./ProductViewData";
 type RegisterProps = {

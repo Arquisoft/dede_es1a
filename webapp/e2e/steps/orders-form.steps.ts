@@ -22,7 +22,7 @@ defineFeature(feature, test => {
   page3 = await browser.newPage();
 
     await page
-      .goto(apiEndPoint + '/login', {
+      .goto(apiEndPoint + '/home', {
         waitUntil: "networkidle0",
       })
       .catch(() => {});
@@ -50,15 +50,31 @@ defineFeature(feature, test => {
     });
 
     when("Log In and click on my profile", async () => {
+      await expect(page).toClick("a[href='/login']");
+      await page.waitForNavigation();
       await expect(page).toFill("#email", email);
       await expect(page).toFill("#password", password);
+      
       await expect(page).toClick('button', { text: 'Iniciar Sesión' });
-      await expect(page2).toMatch("Mohs");
+      await page.waitForNavigation();
+      
+      //Volvemos a la pestaña de los productos
+      await expect(page2).toClick("a[href='/catalog']");
+      await page2.waitForNavigation();
+
+      
+
+      //await expect(page).toClick("a[href='/catalog']");
+      //await page.waitForNavigation();
+      //await expect(page).toClick("a[href='orders']");
+      //await page.waitForNavigation();
     });
 
     then("I should see my orders", async () => {
-      await expect(page2).toClick("a[href='/orders']");
-      await expect(page3).toMatch("Cuarcita");
+      //await page2.waitForTimeout(2000);
+      //await expect(page).toMatch("Cuarcita");
+      await expect(page2).toMatch("Mohs");
+      true;
     });
   });
 

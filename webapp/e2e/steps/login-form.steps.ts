@@ -109,6 +109,29 @@ defineFeature(feature, test => {
     });
   })
 
+  test('User log in non existing account', ({given,when,then}) => {
+    
+    let email:string;
+    let password:string;
+
+    given('Email and blank password of a user', () => {
+      email = "pruebaNoExiste"
+      password = "p1"
+    });
+
+    when('I click in Iniciar Sesión', async () => {
+      await expect(page).toMatch('Iniciar Sesión')
+      
+      await expect(page).toFill('#email', email);
+      await expect(page).toFill('#password', password);
+
+      await expect(page).toClick('button', { text: 'Iniciar Sesión' })
+    });
+
+    then('Warning message', async () => {
+      await expect(page).toMatch('El usuario o contraseña son incorrectos, vuelva a introducirlos')
+    });
+  })
   afterEach(async ()=>{
     browser.close()
   })

@@ -11,7 +11,6 @@ type RockListProps = {
   rocks?:Rock[]
 };
 export const NUMBER_OF_PRODUCTS_SHOWN: number = 2;
-//a
 function Showcase(prefilteredbox: RockListProps): JSX.Element {
   const [rocks, setRocks] = useState<Rock[]>([]);
 

@@ -1,22 +1,16 @@
-import List from '@mui/material/List';
-import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import {  useEffect } from 'react';
 
 import Button from '@mui/material/Button';
-// import '../css/PaymentProcess.css'
 import { AppBar, Card, CardContent, Typography } from '@mui/material';
 import { North } from '@mui/icons-material';
 import { useState, useEffect } from 'react';
 import { Rock } from '../../shared/shareddtypes';
-import { addOrder, getDeliveryCosts } from '../../api/api';
-import { findConfigFile } from 'typescript';
+import { addOrder } from '../../api/api';
 import PaymentSummary from './PaymentSummary';
-import CartItem from '../CartItem';
-import PaymentItem from './PaymentItem';
 import React from 'react';
 import PaymentPayForm from './PaymentPayForm';
 import PaymentComplete from './PaymentComplete';
-import { useSession } from '@inrupt/solid-ui-react';
 import PaymentListItems from './PaymentListItems';
 import PaymentShipping from './PaymentShipping';
 
