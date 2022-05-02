@@ -1,14 +1,9 @@
 
-import List from '@mui/material/List';
-import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 
 import Button from '@mui/material/Button';
-import { Alert, AlertColor, CardContent, Snackbar, TextField, Typography } from '@mui/material';
-import { North } from '@mui/icons-material';
-import { useState, useEffect } from 'react';
-import { findConfigFile } from 'typescript';
-import { isValidDateValue } from '@testing-library/user-event/dist/utils';
+import { Alert, AlertColor, Snackbar, TextField } from '@mui/material';
+import { useState } from 'react';
 
 
 type Props = {
@@ -58,15 +53,17 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
     }
 
     return (
-        <Grid container spacing={2} className='paymentpage-payment' >
         <form name="loggin" onSubmit={handleSubmit}>
+        <Grid container spacing={2} className='paymentpage-payment' >
+        
             <Grid item xs={12}>
-                <TextField sx={{ width: '25em' }}
+                <TextField
                     required
                     name="nameCard"
                     label="Nombre del titular" 
                     variant="outlined"
                     margin="dense"
+                    
                     value={nameCard}
                     error = {nameCard===""}
                     helperText={ "" }
@@ -128,13 +125,14 @@ const CardForm: React.FC<Props> = ({setCardIsValid}) => {
             
             
            
-        </form>
+        
         <Snackbar open={notificationStatus} autoHideDuration={3000} onClose={()=>{setNotificationStatus(false)}}>
             <Alert severity={notification.severity} sx={{ width: '100%' }}>
                 {notification.message}
             </Alert>
         </Snackbar>
         </Grid>
+        </form>
 
     )
 
