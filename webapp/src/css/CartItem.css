@@ -2,19 +2,21 @@
     display:grid;
     grid-template-columns: repeat(3,auto);
     grid-template-rows: repeat(1,1fr);
-}
-
-.quantityController-ci {
-    grid-row-start: 1;
-    grid-row-end: 2;
-
-    grid-column-start: 2;
-    grid-column-end: 3;
-
-
     
+    padding: 1em;
+}
+.img-ci{
+    vertical-align: bottom;
+}
+.name-ci{
+    text-align: start;
+}
+.quantityController-ci {
     display:grid;
     grid-template-columns: repeat(3,auto);
     grid-template-rows: repeat(1,auto);
-}
+    gap: 1em 1em;
 
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}

@@ -8,6 +8,7 @@ export type User = {
   };
 export type Rock = {
     id:React.Key;
+    rockId:string;
     name: string;
     img: string;
     price: number;
@@ -17,6 +18,7 @@ export type Rock = {
     quantityCart:number
   }
 export type Order = {
+    code : string,
     orderId : String,
     date: Date,
     price : Number,

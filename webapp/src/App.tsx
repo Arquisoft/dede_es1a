@@ -1,28 +1,25 @@
-
 //import { useQuery } from 'react-query';
 //import Link from '@mui/material/Link';
 
-
-
-import { Drawer } from '@mui/material';
-import { useState, useEffect } from 'react';
-import Welcome from './components/Welcome';
-import './css/App.css';
+import { Drawer } from "@mui/material";
+import { useState, useEffect } from "react";
+import Welcome from "./components/Welcome";
+import "./css/App.css";
 import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
-import {Rock} from './shared/shareddtypes';
-import Catalog from './components/Catalog';
-import { ThemeProvider } from '@emotion/react';
+import { Rock } from "./shared/shareddtypes";
+import Catalog from "./components/Catalog";
+import { ThemeProvider } from "@emotion/react";
 import { theme } from "./code/Theme";
 import LogIn from "./components/Login";
 import Register from "./components/Register";
 import NavBar from "./components/NavigationBar";
 import { Container } from "@mui/material";
 
-import "./css/App.css"
+import "./css/App.css";
 import ShoppingCart from "./components/ShoppingCart";
-import PaymentProcess from './components/payment/PaymentPage';
-import OrderHistory from './components/Orders';
-
+import PaymentProcess from "./components/payment/PaymentPage";
+import OrderHistory from "./components/Orders";
+import ProductView from "./components/ProductView";
 type Props = {
   openCart: () => void;
 };
@@ -54,18 +51,19 @@ function App(): JSX.Element {
 
   const resetCart = () => {
     setCartContent([]);
+    localStorage.setItem("cart", JSON.stringify([]));
   };
 
   const handleAddToCart = (selectedItem: Rock) => {
     setCartContent((cart) => {
       if (cart.find((rocaInCart) => rocaInCart.name === selectedItem.name)) {
-        return cart.map(Rock => (
-          Rock.name === selectedItem.name ?
-            { ...Rock, quantityCart: Rock.quantityCart + 1 } :
-            Rock
-        ));
+        return cart.map((Rock) =>
+          Rock.name === selectedItem.name
+            ? { ...Rock, quantityCart: Rock.quantityCart + 1 }
+            : Rock
+        );
       }
-      return [...cart, {...selectedItem, quantityCart: 1}];
+      return [...cart, { ...selectedItem, quantityCart: 1 }];
     });
   };
 
@@ -76,7 +74,7 @@ function App(): JSX.Element {
           if (p.quantityCart === 1) {
             return sum;
           }
-          return [...sum, {...p, quantityCart: p.quantityCart - 1}];
+          return [...sum, { ...p, quantityCart: p.quantityCart - 1 }];
         } else {
           return [...sum, p];
         }
@@ -85,34 +83,75 @@ function App(): JSX.Element {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container maxWidth="xl" className="principal">
-        <NavBar openCart={() => setCartOpen(true)} />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/home" element={<Welcome handleAddToCart={handleAddToCart} />} />
-            <Route path="/" element={<Navigate replace to="/home" />} />
-            <Route path="/catalog" element={ <Catalog handleAddToCart={handleAddToCart} /> } />
-            <Route path="/orders" element={ <OrderHistory email={"admin@email.es"}/> } />
-            <Route path="/payment" element={ <PaymentProcess cartContent={cartContent} setNewCart={setNewCart} /> } />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/logout" element ={<Welcome handleAddToCart={handleAddToCart} />}/>
-          </Routes>
-        </BrowserRouter>
-        <Drawer
-          anchor="right"
-          open={isCartOpen}
-          onClose={() => setCartOpen(false)}
-        >
-          <ShoppingCart
-            cartContent={cartContent}
-            handleAddToCart={handleAddToCart}
-            handleRemoveFromCart={handleRemoveFromCart}
-          />
-        </Drawer>
-      </Container>
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={theme}>
+        <Container maxWidth="xl" className="principal">
+          <NavBar openCart={() => setCartOpen(true)} />
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/home"
+                element={<Welcome handleAddToCart={handleAddToCart} />}
+              />
+              <Route path="/" element={<Navigate replace to="/home" />} />
+              <Route
+                path="/catalog"
+                element={<Catalog handleAddToCart={handleAddToCart} />}
+              />
+              <Route path="/orders" element={ 
+            sessionStorage.getItem("userLogged") ?
+            <OrderHistory email={"admin@email.es"}/> 
+            :
+            <LogIn />
+          
+            } />
+            <Route path="/payment" element={ 
+              sessionStorage.getItem("userLogged") ?
+              <PaymentProcess cartContent={cartContent} setNewCart={setNewCart} /> 
+              :
+              <LogIn />
+            } />
+
+            <Route path="/login" element={
+            sessionStorage.getItem("userLogged") ?
+              <Catalog handleAddToCart={handleAddToCart} />
+              :
+              <LogIn />
+          
+            } />
+
+            <Route path="/register" element={
+              sessionStorage.getItem("userLogged") ?
+              <Catalog handleAddToCart={handleAddToCart} />
+                :
+                <Register />
+            } />
+              <Route
+                path="/logout"
+                element={<Welcome handleAddToCart={handleAddToCart} />}
+              />
+              <Route
+                path="/product/:id"
+                element={
+                  <ProductView handleAddToCart={handleAddToCart}></ProductView>
+                }
+              />
+            </Routes>
+          </BrowserRouter>
+          <Drawer
+            anchor="right"
+            open={isCartOpen}
+            onClose={() => setCartOpen(false)}
+          >
+            <ShoppingCart
+              cartContent={cartContent}
+              handleAddToCart={handleAddToCart}
+              handleRemoveFromCart={handleRemoveFromCart}
+            />
+          </Drawer>
+        </Container>
+      </ThemeProvider>
+    </>
   );
 }
 
