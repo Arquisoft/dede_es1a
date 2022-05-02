@@ -1,6 +1,6 @@
 [[section-runtime-view]]
 == Runtime View
-=== Add Product to Shopping Cart
+=== Add Rock to Shopping Cart
 
 === Log In / Register
 
@@ -19,7 +19,7 @@ The the runtime interactions inside the system to log or register are the follow
 === Purchase 
 image:Diagram_ASW_Runtime_Purchase.png["Hierarchy of building blocks"]
 The the runtime interactions inside the system purchase any item in our store are the following:
-[plantuml,"DiagramaAñadirProducto",png]
+[plantuml,"DiagramaAñadirRoca",png]
 ----
 actor Client
 participant Shopping Cart
@@ -33,7 +33,7 @@ Shopping Cart -> Client: View shopping cart
 
 === Delete Product from Shopping Cart.
 
-[plantuml,"DiagramaEliminarProducto",png]
+[plantuml,"DiagramaEliminarRoca",png]
 ----
 actor Client
 participant Shopping Cart
